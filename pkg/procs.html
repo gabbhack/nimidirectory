@@ -201,7 +201,7 @@ processes <em>unrelated</em> to the wait-er.</p>
 ideas to share.  With so many features and just me as a user, there are surely
 many bugs.</p>
 <p>Linux procps ps (<code>/bin/ps</code> on most Linux) opens, reads, parses
-&amp; closes both /proc/PID/stat and /proc/PID/status.  This make <code>procs display</code>
+&amp; closes both /proc/PID/stat and /proc/PID/status.  This makes <code>procs display</code>
 aka <code>pd</code> roughly 2X faster.  Using a <code>/n -&gt; /dev/null</code> symlink, <code>PROCS_CONFIG=/n tim &apos;pd -f%p\ %c&gt;/n&apos; &apos;/bin/ps ax&gt;/n&apos;</code> gives <code>(2.8576 +- 0.0070)e-03  pd -f%p\ %c&gt;/n</code> &amp; <code>(5.0281 +- 0.0063)e-03  /bin/ps ax&gt;/n</code>.  Adding process typology &amp;
 highlights back (not using <code>PROCS_CONFIG=/n</code>) slows <code>pd</code> down to <code>3.9739 +- 0.0044 ms</code>, still 1.27X faster than stock Linux <code>ps</code>.</p>
 </document>
@@ -272,7 +272,7 @@ highlights back (not using <code>PROCS_CONFIG=/n</code>) slows <code>pd</code> d
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-03-28T01:08:02Z
+        Builded at 2024-03-29T01:08:16Z
         </p>
       </div>
     </div>
