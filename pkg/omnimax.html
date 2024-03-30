@@ -104,27 +104,13 @@
 <li>  <a href="https://cmake.org/">cmake</a></li>
 <li><a href="https://gcc.gnu.org/">gcc</a> (<code>Windows</code>)  /  <a href="https://clang.llvm.org/">clang</a> (<code>MacOS</code>)</li>
 </ol>
-<h3>  <strong>MacOS</strong></h3>
-<p>To install dependencies on MacOS it is suggested to use a package manager like <a href="https://brew.sh/">brew</a>.</p>
-<p>After <code>brew</code> has been installed, run the following command in the <code>Terminal</code> app to install <code>nim</code> and <code>cmake</code>:</p>
-<pre>  <code>brew install nim cmake
-</code></pre>
-<p>Then, make sure that the <code>~/.nimble/bin</code> directory is set in your shell <code>$PATH</code>.
-If using bash (the default shell in MacOS), you can simply run this command:</p>
-<pre>  <code>echo &apos;export PATH=$PATH:~/.nimble/bin&apos; &gt;&gt; ~/.bash_profile
-</code></pre>
-<h3>  <strong>Windows:</strong></h3>
-<p>On Windows, the <a href="http://mingw.org/">MinGW</a>&apos;s <code>gcc</code> compiler needs also to be installed.</p>
-<p>To install dependencies on Windows it is suggested to use a package manager like <a href="https://community.chocolatey.org/">chocolatey</a>.</p>
-<p>After <code>chocolatey</code> has been installed, open <code>PowerShell</code> as administrator and run this command to install <code>nim</code>, <code>git</code>, <code>cmake</code>, <code>make</code> and <code>mingw</code>:</p>
-<pre>  <code>choco install nim git cmake make mingw -y
-</code></pre>
+<p>Note that omni only supports nim version 1.6.0. It is recommended to install it via <a href="https://github.com/dom96/choosenim">choosenim</a>.</p>
 <h2>  <strong>Installation</strong></h2>
 <p>To install <code>omnimax</code>, simply use the <code>nimble</code> package manager (it comes bundled with the <code>nim</code> installation).The command will also take care of installing <code>omni</code>:</p>
 <pre>  <code>nimble install omnimax -y
 </code></pre>
 <h2>  <strong>Usage</strong></h2>
-<pre>  <code>omnimax ~/.nimble/pkgs/omni-0.4.1/examples/OmniSaw.omni
+<pre>  <code>omnimax ~/.nimble/pkgs/omni-0.4.2/examples/OmniSaw.omni
 </code></pre>
 <h2>  <strong>Max object interface</strong></h2>
 <ol>
@@ -230,7 +216,7 @@ buffers:
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-03-29T01:08:16Z
+        Builded at 2024-03-30T01:06:00Z
         </p>
       </div>
     </div>

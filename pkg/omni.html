@@ -107,22 +107,7 @@ It aims to be a new, expressive and easy to use programming language to code aud
 <li>  <a href="https://nim-lang.org/">nim</a></li>
 <li>  <a href="https://git-scm.com/">git</a></li>
 </ol>
-<h3>  <strong>Linux</strong></h3>
-<p>Refer to your distribution&apos;s package manager and make sure you&apos;ve got <code>nim</code> and <code>git</code> installed.</p>
-<h3>  <strong>MacOS</strong></h3>
-<p>To install dependencies on MacOS it is suggested to use a package manager like <a href="https://brew.sh/">brew</a>.</p>
-<p>After <code>brew</code> has been installed, run the following command in the <code>Terminal</code> app to install <code>nim</code>:</p>
-<pre>  <code>brew install nim
-</code></pre>
-<p>Then, make sure that the <code>~/.nimble/bin</code> directory is set in your shell <code>$PATH</code>.
-If using bash (the default shell in MacOS), you can simply run this command:</p>
-<pre>  <code>echo &apos;export PATH=$PATH:~/.nimble/bin&apos; &gt;&gt; ~/.bash_profile
-</code></pre>
-<h3>  <strong>Windows:</strong></h3>
-<p>To install dependencies on Windows it is suggested to use a package manager like <a href="https://community.chocolatey.org/">chocolatey</a>.</p>
-<p>After <code>chocolatey</code> has been installed, open <code>PowerShell</code> as administrator and run this command to install <code>nim</code> and <code>git</code>:</p>
-<pre>  <code>choco install nim git -y
-</code></pre>
+<p>Note that <code>omni</code> only supports <code>nim</code> version 1.6.0. It is recommended to install it via <a href="https://github.com/dom96/choosenim">choosenim</a>.</p>
 <h2>  <strong>Installation</strong></h2>
 <p>To install <code>omni</code>, simply use the <code>nimble</code> package manager (it comes bundled with the <code>nim</code> installation):</p>
 <pre>  <code>nimble install omni -y
@@ -131,7 +116,7 @@ If using bash (the default shell in MacOS), you can simply run this command:</p>
 <p>Once you&apos;ve installed omni, the <code>omni</code> executable will be placed in your <code>~/.nimble/bin</code> folder.</p>
 <p>Run <code>omni -h</code> to get help on all the available flags.</p>
 <p>When running the <code>omni</code> compiler, the output is either a static or shared library (depending on the <code>--lib</code> flag). Along with it, an <code>omni.h</code> file (depending on the <code>--exportHeader</code> flag) containing all the callable functions in the shared/static library will be exported.</p>
-<pre>  <code>omni ~/.nimble/pkgs/omni-0.4.1/examples/OmniSaw.omni -o:./
+<pre>  <code>omni ~/.nimble/pkgs/omni-0.4.2/examples/OmniSaw.omni -o:./
 </code></pre>
 <p>This command will compile an antialiased sawtooth oscillator (part of the examples) to a shared library (<code>libOmniSaw.so/dylib/dll</code>), together with a header file (<code>omni.h</code>), in the current folder.</p>
 <h2>  <strong>Sine oscillator example</strong></h2>
@@ -210,7 +195,7 @@ If using bash (the default shell in MacOS), you can simply run this command:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-03-29T01:08:16Z
+        Builded at 2024-03-30T01:06:00Z
         </p>
       </div>
     </div>
