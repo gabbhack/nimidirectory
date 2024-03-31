@@ -591,6 +591,10 @@ fields, it will be inherited from the package or parent.</p>
 <tr>
 <td>  <code>filter</code></td>
 <td>glob pattern matching cached files to be excluded after compilation</td>
+</tr>
+<tr>
+<td>  <code>skipCompile</code></td>
+<td>glob pattern matching files to exclude from compilation</td>
 </tr></tbody></table>
 <p>Refer to the <a href="#source-trees">source trees</a> section to understand how these
 fields are used by targets.</p>
@@ -695,9 +699,9 @@ file = &quot;my_module.mod&quot;
 <p>Other users can then set the environment variable to the location of their
 choice without changing the <code>nasher.cfg</code>.</p>
 <h4>Source Trees</h4>
-<p>A target&apos;s source tree is built from the <code>include</code>, <code>exclude</code>, and <code>filter</code>
-fields. Remember, each of these are inherited from the <code>[package.sources]</code>
-section if not specified in the <code>[target.sources]</code> section.</p>
+<p>A target&apos;s source tree is built from the <code>include</code>, <code>exclude</code>,<code>filter</code> and
+<code>skipCompile</code> fields. Remember, each of these are inherited from the
+<code>[package.sources]</code> section if not specified in the <code>[target.sources]</code> section.</p>
 <p>nasher uses <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a>
 matching to identify desired files (e.g., <code>src/**/*.{nss,json}</code> matches all
 <code>.nss</code> or <code>.json</code> files in subdirectories of <code>src</code>).</p>
@@ -707,11 +711,13 @@ matching to identify desired files (e.g., <code>src/**/*.{nss,json}</code> match
 removed from the list.</li>
 </ol>
 <p>Pack operations (<a href="#convert">  <code>convert</code></a>, <a href="#compile">  <code>compile</code></a>, <a href="#pack">  <code>pack</code></a>,
-<a href="#install">  <code>install</code></a>, and <a href="#launch">launch</a>) commands use the source tree as
+<a href="#install">  <code>install</code></a>, and <a href="#launch">  <code>launch</code></a>) commands use the source tree as
 follows:</p>
 <ol>
 <li>The <code>convert</code> and <code>compile</code> commands process the source files and output to a
 cache directory.</li>
+<li>The <code>compile</code> command will prevent compilation of any files identified by
+<code>skipCompile</code> in nasher.cfg; skipped files may still be used as includes.</li>
 <li>Before the <code>pack</code> command is run, each cached file is checked against each
 <code>filter</code> pattern; matches are excluded from the final packaged file. Note
 that filters should not have any path information since they are compared to
@@ -1019,7 +1025,7 @@ file is older than the newest source file), <code>always</code> (always overwrit
 <ul>
 <li>The <code>--</code> operator causes all following arguments to be treated as positional
 arguments, even if they look like options. This is useful when setting config
-keys to values starting with <code>-</code>: <code>nasher config -- nssFlags &quot;-n /opt/nwn&quot;</code></li>
+keys to values starting with <code>-</code>: <code>nasher config --nssFlags &quot;-n /opt/nwn&quot;</code></li>
 <li>Keys like <code>nssCompiler</code> and <code>installDir</code> work best as global options</li>
 <li>Keys like <code>modName</code> or <code>useModuleFolder</code> work best as local options</li>
 <li><code>user.cfg</code> files are intentionally ignored by git. Do not include them in
@@ -1580,7 +1586,7 @@ page</a>.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-03-30T01:06:00Z
+        Builded at 2024-03-31T01:14:19Z
         </p>
       </div>
     </div>
