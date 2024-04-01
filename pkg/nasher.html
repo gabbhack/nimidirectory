@@ -322,6 +322,7 @@ file = &quot;$target.hak&quot;
   include = &quot;${sm-utils}/*.nss&quot; # This variable is expanded
   include = &quot;src/**/*.{nss,json}&quot;
   exclude = &quot;**/test_*.nss&quot;
+  skipCompile = &quot;util_i_library.nss&quot;
 
   [package.rules]
   &quot;hook_*.nss&quot; = &quot;src/Hooks&quot;
@@ -1018,6 +1019,12 @@ file is older than the newest source file), <code>always</code> (always overwrit
 <code>never</code> (never overwrite)</li>
 </ul>
 </li>
+<li><code>skipCompile</code>: semicolon-delimited list of glob patterns matching files to
+skip during compilation. Used to avoid errors when broken scripts are present.
+<ul>
+<li>default: &quot;&quot;</li>
+</ul>
+</li>
 </ul>
 <h4>Examples</h4>
 <pre>  <code class="language-console"><div class="line"><div class="line-content">$ <span class="com"># Set the path to nwnsc</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> config nssCompiler <span class="ide">~/.local/bin/nwnsc</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># Get the path to nwnsc</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> config nssCompiler</div></div><div class="line"><div class="line-content"><span class="out">~/.local/bin/nwnsc</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># Unset the path to nwnsc</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> config --unset nssCompiler</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># List all options set in the config files</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> config --list          <span class="com"># global</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> config --list --local  <span class="com"># local</span></div></div>  </code></pre>
@@ -1217,6 +1224,10 @@ separately unless you want to compile scripts files without packing.</p>
 <tr>
 <td><code>-f</code>, <code>--file</code></td>
 <td>compiles specific file; can be repeated</td>
+</tr>
+<tr>
+<td>  <code>--skipCompile</code></td>
+<td>don&apos;t compile specific file; can be repeated</td>
 </tr></tbody></table>
 <h4>Examples</h4>
 <pre>  <code class="language-console"><div class="line"><div class="line-content">$ <span class="com"># Compile the first target in nasher.cfg</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> compile</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># Compile the &quot;demo&quot; target</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> compile demo</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># Compile a single file used by the default target (by full path)</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> compile <span class="ide">--file:src/nss/myfile.nss</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">$ <span class="com"># Compile a single file used by a particular target (by filename)</span></div></div><div class="line"><div class="line-content">$ <span class="kwd">nasher</span> compile demo <span class="ide">--file:myfile.nss</span></div></div>  </code></pre>
@@ -1260,6 +1271,10 @@ run it separately unless you want to pack files without installing.</p>
 <tr>
 <td>  <code>--noCompile</code></td>
 <td>do not recompile updated scripts</td>
+</tr>
+<tr>
+<td>  <code>--skipCompile:&lt;file&gt;</code></td>
+<td>don&apos;t compile specific file; can be repeated</td>
 </tr>
 <tr>
 <td>  <code>--modName:&lt;name&gt;</code></td>
@@ -1325,6 +1340,10 @@ the module (<code>.mod</code>) file.</p>
 <tr>
 <td>  <code>--noPack</code></td>
 <td>do not re-pack the file (implies <code>--noConvert</code> and <code>--noCompile</code>)</td>
+</tr>
+<tr>
+<td>  <code>--skipCompile:&lt;file&gt;</code></td>
+<td>don&apos;t compile specific file; can be repeated</td>
 </tr>
 <tr>
 <td>  <code>--file:&lt;file&gt;</code></td>
@@ -1395,6 +1414,10 @@ command is only valid for module targets.</p>
 <tr>
 <td>  <code>--noPack</code></td>
 <td>do not re-pack the file (implies <code>--noConvert</code> and <code>--noCompile</code>)</td>
+</tr>
+<tr>
+<td>  <code>--skipCompile:&lt;file&gt;</code></td>
+<td>don&apos;t compile specific file; can be repeated</td>
 </tr>
 <tr>
 <td>  <code>--file:&lt;file&gt;</code></td>
@@ -1586,7 +1609,7 @@ page</a>.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-03-31T01:14:19Z
+        Builded at 2024-04-01T01:14:29Z
         </p>
       </div>
     </div>
