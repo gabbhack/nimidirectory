@@ -273,7 +273,7 @@ remove all of the <code>when declared</code> but you might run into Futhark tryi
 redeclare existing things, including built in types and names.</p>
 <h3>Opaque type functionality</h3>
 <p>If a type is not fully declared in your C headers but is still required for
-your project Futhark will generate a <code>type SomeType {.incompleteStruct.} = object</code> dummy
+your project Futhark will generate a <code>type SomeType = object</code> dummy
 type for it. Since most C libraries will pass things by pointer this makes sure
 that a <code>ptr SomeType</code> can exist and be passed around without having to know
 anything about <code>SomeType</code>. Disabling this feature will remove these definitions
@@ -518,7 +518,7 @@ you have a project of your own you want to show off, please make a PR!</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-02T01:12:07Z
+        Builded at 2024-04-03T01:08:11Z
         </p>
       </div>
     </div>
