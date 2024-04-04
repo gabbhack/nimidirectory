@@ -153,12 +153,12 @@ bytes into a local buffer and then repeat the reading operation until enough
 data is gathered and the local buffer can be processed. On the other hand,
 if more data was received, you need to complete the current stage of processing
 and then somehow feed the remaining bytes into the next stage of processing
-(e.g this might be a nested format or a different parsing branch in the formal
+(e.g. this might be a nested format or a different parsing branch in the formal
 grammar of the protocol). Both of these scenarios require logic that is
 difficult to write correctly and results in unnecessary copying of the input
 bytes.</p>
 <p>A major difference in the FastStreams design is that the arbitrary-length
-data obtained from the input device is managed by the stream itself and you
+data obtained from the input device is managed by the stream itself while you
 are provided with an API allowing you to control precisely how much data
 is consumed from the stream. Consuming the buffered content does not invoke
 costly asynchronous calls and you are allowed to peek at the stream contents
@@ -208,7 +208,7 @@ of the box the following input stream types:</p>
 </li>
 <li>
 <p>  <code>memFileInput</code></p>
-<p>For reading memory mapped files which provides best performance.</p>
+<p>For reading memory mapped files which provides the best performance.</p>
 </li>
 <li>
 <p>  <code>unsafeMemoryInput</code></p>
@@ -224,7 +224,7 @@ and sequences in a memory-safe way (by creating a copy).</p>
 </li>
 <li>
 <p><code>pipeInput</code> (async)</p>
-<p>For arbitrary conmmunication between a produced and a consumer.</p>
+<p>For arbitrary communication between a producer and a consumer.</p>
 </li>
 <li>
 <p><code>chronosInput</code> (async)</p>
@@ -336,7 +336,7 @@ while the stream is being used.</p>
 </li>
 <li>
 <p><code>pipeOutput</code> (async)</p>
-<p>For arbitrary conmmunication between a produced and a consumer.</p>
+<p>For arbitrary communication between a produced and a consumer.</p>
 </li>
 <li>
 <p><code>chronosOutput</code> (async)</p>
@@ -384,7 +384,7 @@ the <code>stream.getWritableBytes</code> API to continue using them without intr
 intermediate buffers.</p>
 <h4>Delayed Writes</h4>
 <p>Many protocols and formats employ fixed-size and variable-size length prefixes
-that have been tradionally difficult to handle because they require you to
+that have been traditionally difficult to handle because they require you to
 either measure the size of the content before writing it to the stream, or
 even worse, serialize it to a memory buffer in order to determine its size.</p>
 <p>FastStreams supports handling such length prefixes with a zero-copy mechanism
@@ -397,7 +397,7 @@ is written, you obtain <code>pos</code> again to determine the final value of th
 prefix. Throughout the whole time, you are free to call <code>write</code> on the cursor
 to populate the &quot;hole&quot; left in the stream with bytes, but at the end you must
 call <code>finalize</code> to unlock the stream for flushing. You can also perform the
-finalization in one step with <code>finalWrite</code> (the one-step approach is manatory
+finalization in one step with <code>finalWrite</code> (the one-step approach is mandatory
 for variable-size prefixes).</p>
 <h3>  <code>Pipeline</code></h3>
 <p>(This section is a stub and it will be expanded with more details in the future)</p>
@@ -409,9 +409,9 @@ steps and ending with a result.</p>
 <p>A result obtaining operation is a function of the kind:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">type</span> <span class="ide">PipelineResultProc</span><span class="op">*</span>[<span class="ide">T</span>] <span class="op">=</span> <span class="kwd">proc</span> (<span class="ide">i</span>: <span class="ide">InputStream</span>): <span class="ide">T</span></div></div><div class="line"><div class="line-content">                                   {<span class="op">.</span><span class="ide">gcsafe</span>, <span class="ide">raises</span>: [<span class="ide">Defect</span>, <span class="ide">CatchableError</span>]<span class="op">.</span>}</div></div>  </code></pre>
 <p>Please note that <code>stream.getOutput</code> is an example of such a function.</p>
-<p>Pipelnes executed in place with <code>executePipeline</code> API. If the first input source is
-async, then the whole pipeline with be executing asynchronously which can result
-in a much lower memory usage.</p>
+<p>Pipelines executed in place with <code>executePipeline</code> API. If the first input
+source is async, then the whole pipeline with be executing asynchronously which
+can result in a much lower memory usage.</p>
 <p>The pipeline transformation steps are usually employing the <code>fsMultiSync</code>
 pragma to make them usable in both synchronous and asynchronous scenarios.</p>
 <p>Please note that the above higher-level APIs are just about simplifying the
@@ -497,7 +497,7 @@ objects and the underlying <code>PageBuffers</code> directly.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-03T01:08:11Z
+        Builded at 2024-04-04T01:09:46Z
         </p>
       </div>
     </div>
