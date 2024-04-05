@@ -33041,6 +33041,23 @@ const packages = [
     "description": "🍬 General syntactic sugar",
     "license": "MIT",
     "web": "https://github.com/FyraLabs/sweet"
+  },
+  {
+    "name": "cdp",
+    "url": "https://github.com/Niminem/ChromeDevToolsProtocol",
+    "method": "git",
+    "tags": [
+      "cdp",
+      "chrome-devtools-protocol",
+      "chromedevtoolsprotocol",
+      "browser",
+      "browser-automation",
+      "web-scraper",
+      "spider"
+    ],
+    "description": "Low-level Nim wrapper for Chrome DevTools Protocol (CDP) v1.3 stable. Bend Chrome to your will with complete control over your browser. Scrape dynamic webpages, create browser automations, and beyond.",
+    "license": "MIT",
+    "web": "https://github.com/Niminem/ChromeDevToolsProtocol"
   }
 ]
 
