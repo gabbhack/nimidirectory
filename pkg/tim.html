@@ -98,10 +98,10 @@
                 <document><p align="center">
   <img src="https://raw.githubusercontent.com/openpeeps/tim/main/.github/timengine.png" style="max-width: 100%;" width="200px" alt="Tim - Template Engine" height="200px" /><br />
   ⚡️ A high-performance template engine &amp; markup language<br />
-  <strong>Fast</strong> • <strong>Compiled</strong> • Written in Nim language 👑
+  <strong>Fast</strong> • <strong>Compiled</strong> • Written in Nim 👑
 </p>
 <p align="center">
-  <code>nimble install tim</code>
+  <code>nimble install tim</code> / <code>npm install timl</code>
 </p>
 <p align="center">
   <a href="https://openpeeps.github.io/tim/">API reference</a><br /><br />
@@ -111,29 +111,47 @@
 <p>or more like a <em>todo list</em></p>
 <ul>
 <li>Fast &amp; easy to code!</li>
-<li>Cross-platform and multi-threaded</li>
-<li>Caching and Pre-compilation</li>
-<li>JIT Rendering</li>
-<li>Output Minifier</li>
+<li>Caching &amp; Pre-compilation</li>
 <li>Transpiles to <strong>JavaScript</strong> for <strong>Client-Side Rendering</strong></li>
 <li>Supports embeddable code <code>json</code>, <code>js</code>, <code>yaml</code>, <code>css</code></li>
-<li>Available as a <strong>Nimble library</strong> for <strong>Nim development</strong></li>
 <li>Built-in <strong>Browser Sync &amp; Reload</strong></li>
-<li>Built-in real-time Server-Side Rendering <code>SSR</code> via <code>ZeroMQ</code></li>
-<li>Source-to-Source translator (transpiles to <code>JavaScript</code>, <code>Ruby</code>, <code>Python</code> and more)</li>
-<li>Template localization</li>
+<li>Output Minifier</li>
 <li>Written in Nim language 👑</li>
 </ul>
-<h2>Quick Example</h2>
+<p><strong>Tim as a Package</strong>: For developers looking to incorporate Tim&apos;s power into their projects, Tim Engine is
+also available for Nim development as a Nimble package and for <strong>JavaScript</strong> developers as a native <strong>Node.js</strong> &amp; <strong>Bun</strong> <code>.addon</code>.
+This allows you to seamlessly integrate Tim compilation within your existing workflow, empowering you to leverage
+Tim&apos;s capabilities directly within your codebase.<br /></p>
+<h4>Other features</h4>
+<ul>
+<li>Available for Nim development via Nimble <code>nimble install tim</code></li>
+<li>Available for JavaScript backend via NPM <code>npm install timl</code></li>
+<li>Built-in AST Interpreter &amp; JIT Rendering</li>
+</ul>
+<p><strong>Standalone CLI App</strong><br />
+This user-friendly command-line interface allows you to easily compile Tim code
+directly to your desired target source code. Simply provide your Tim code as input, and the CLI will
+output the equivalent code in <code>Nim</code>, <code>JavaScript</code>, <code>Ruby</code>, or <code>Python</code>.</p>
+<h4>Other features</h4>
+<ul>
+<li>Available for Linux, MacOS and Windows</li>
+<li>Built-in real-time Server-Side Rendering <code>SSR</code> via <code>ZeroMQ</code></li>
+</ul>
+<h3>Quick Example</h3>
 <pre>  <code class="language-timl">div.container &gt; div.row &gt; div.col-lg-7.mx-auto
   h1.display-3.fw-bold: &quot;Tim is Awesome&quot;
   a href=&quot;https://github.com/openpeeps/tim&quot; title=&quot;This is hot!&quot;: &quot;Check Tim on GitHub&quot;
 </code></pre>
+<p><strong>👉 Tim Syntax Highlighting plugins</strong><br />
+<a href="https://marketplace.visualstudio.com/items?itemName=CletusIgwe.timextension">VSCode Extension</a> | <a href="https://packagecontrol.io/packages/tim">Sublime Text 4</a></p>
 <h2>Tim in action</h2>
-<p>Check <a href="https://github.com/openpeeps/tim/tree/main/example">/example</a> folder to better understand Tim&apos;s structure. <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/openpeeps/tim/main/example/preview.html">Also check the generated HTML file</a></p>
-<h4>Template structure</h4>
+<p>Check <a href="https://github.com/openpeeps/tim/tree/main/example">/example</a> folder to better understand Tim&apos;s structure.
+<a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/openpeeps/tim/main/example/preview.html">Also check the generated HTML file</a></p>
+<h3>Template structure</h3>
 <p>Tim has its own little filesystem that continuously monitors <code>.timl</code> for changes/creation or deletion.
 Here is a basic filesystem structure:</p>
+<details>
+  <summary>See Tim&apos;s filesystem structure</summary>
 <pre>  <code>storage/
   ast/
     # auto-generated
@@ -154,6 +172,7 @@ templates/
     products.timl
     product.timl
 </code></pre>
+</details>
 <h3>Client-Side Rendering</h3>
 <p>Tim Engine seamlessly shifts rendering to the client side for dynamic interactions, using the intuitive <code>@client</code> block statement.</p>
 <pre>  <code class="language-timl">body
@@ -174,10 +193,6 @@ templates/
       div.text-center &gt; button.btn.btn-dark.px-4.rounded-pill type=&quot;submit&quot;: &quot;Submit your message&quot;
   @end
 </code></pre>
-<h2>Browser Sync &amp; Reload</h2>
-<p>Compile your project with <code>-d:timHotCode</code> flag, then connect to Tim&apos;s WebSocket server to auto reload the page when there are changes on disk.<br />
-Note that this feature is not available when compiling with <code>-d:release</code>.</p>
-<pre>  <code class="language-js"><div class="line"><div class="line-content">{</div></div><div class="line"><div class="line-content">    <span class="kwd">const</span> <span class="ide">watchout</span> <span class="op">=</span> <span class="kwd">new</span> <span class="ide">WebSocket</span>('ws://127.0.0.1:6502/ws');</div></div><div class="line"><div class="line-content">    <span class="ide">watchout</span>.<span class="ide">addEventListener</span>('message', () <span class="op">=&gt;</span> <span class="ide">location</span>.<span class="ide">reload</span>());</div></div><div class="line"><div class="line-content">  }</div></div>  </code></pre>
 <h3>Data</h3>
 <p>Tim provides 3 types of data storages. <strong>Global</strong> and <strong>Local</strong> as JsonNode objects for handling immutable data from the app to your <code>timl</code> templates,
 and <strong>Template</strong> based data at template level using Tim&apos;s built-in AST-based interpreter.</p>
@@ -192,7 +207,7 @@ Note: Using <code>$app</code> in a template will mark it as JIT.</li>
 </code></pre>
 <ol start="2">
 <li><strong>Local data</strong> can be passed to a template from route&apos;s callback (controller).
-<code>$this</code> constant can be used to access data from the local storage.<br /></li>
+The constant <code>$this</code> can be used to access data from the local storage.<br /></li>
 </ol>
 <p>Note: Using <code>$this</code> in a template will mark it as JIT.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">timl</span><span class="op">.</span><span class="ide">render</span>(<span class="str">&quot;index&quot;</span>, <span class="ide">local</span> <span class="op">=</span> <span class="op">%*</span>{</div></div><div class="line"><div class="line-content">  <span class="ide">loggedin</span>: <span class="ide">true</span>,</div></div><div class="line"><div class="line-content">  <span class="ide">username</span>: <span class="str">&quot;Johnny Boy&quot;</span></div></div><div class="line"><div class="line-content">})</div></div>  </code></pre>
@@ -208,30 +223,66 @@ else:
 between these two is that constants are immutable and requires initialization.</li>
 </ol>
 <p>The scope of a declared variable is limited to the branch in which it was declared.</p>
-<pre>  <code class="language-timl">var a = 1       // a global variable
+<pre>  <code class="language-timl">var a = 1       // a global scoped variable
 if $a == 1:
   var b = 2     // a block-scoped variable
   echo $a + b   // prints 3
 echo $b         // error, undeclared variable
 </code></pre>
-<h4>Debug</h4>
-<p>For debug reasons you can use <code>echo</code> to print data</p>
-<pre>  <code>echo &quot;Hello, World!&quot;
-</code></pre>
+<p>  <em>Template variables are known at compile time. So the final output is generated as   <code>.html</code>.
+If the assigned value comes from local or global storage, then it will automatically trigger the JIT flag
+and the final result will be saved as   <code>.ast</code></em></p>
 <h4>Data types</h4>
 <p>Supported datatypes: <code>string</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>array</code>, <code>object</code></p>
 <pre>  <code>var a = &quot;Hello&quot;
 var b = 10
 var c = 10.5 
-var d = true    // false
+var d = true
 
 var e = []      // init an empty array
 var f = {}      // init an empty object
 </code></pre>
+<h4>Math</h4>
+<p>Math is cool.</p>
+<pre>  <code>var x = 2 * 2 - 1.5
+echo $x  // 2.5
+</code></pre>
+<h4>Debug</h4>
+<p>Sometimes you want to know what the heck is going on! For debug reasons you can use <code>echo</code> to print data.</p>
+<pre>  <code>echo &quot;Hello, World!&quot;
+echo $this.weirdThing
+</code></pre>
+<p>Also, Tim provides an <code>assert</code> command so you can unit test your code.</p>
+<pre>  <code>var x = &quot;Tim is awesome, right?&quot;
+assert $x.type == string
+assert $x == &quot;Tim is awesome, right?&quot;
+</code></pre>
+<p>  <em>Note,   <code>assert</code> commands are cleared when in   <code>release</code> mode</em></p>
 <h4>Function</h4>
-<p>  <em>todo</em></p>
+<pre>  <code class="language-timl">fn say(x: string): string // forward declaration
+
+fn say(x: string): string =
+  return &quot;Hello, &quot; &amp; $x
+
+echo say(&quot;Pantzini!&quot;)
+echo say &quot;Pantzini&quot;       // this works too
+
+// function overloading works too
+fn say(x: int): int = 
+  return $x * 1
+
+echo say(1)
+h1 &gt; span: say(2)
+</code></pre>
 <h4>Conditionals</h4>
-<p>  <em>todo</em></p>
+<pre>  <code class="language-timl">var x = 1
+if $x == 1 and $x &gt; 0:
+  span: &quot;one&quot;
+elif $x == 0 or $x &lt; 1:
+  span: &quot;zero&quot;
+else:
+  span: &quot;nope&quot;
+</code></pre>
 <h4>For loop</h4>
 <pre>  <code class="language-timl">var boxes = [
   {
@@ -241,13 +292,13 @@ var f = {}      // init an empty object
       fires and improve indoor air quality&quot; 
   }
   {
-    title: &quot;Town Crier&quot;,
+    title: &quot;Town Crier&quot;
     description: &quot;With booming voices and ringing bells,
       they delivered news and announcements in the days
       before mass media&quot;
   }
   {
-    title: &quot;Ratcatcher&quot;,
+    title: &quot;Ratcatcher&quot;
     description: &quot;These pest controllers faced smelly
       challenges, but their work helped prevent the
       spread of diseases like the plague&quot;
@@ -261,6 +312,19 @@ div.container &gt; div.row.mb-3
       div.card-title.fw-bold.h4: $box.title
       p.card-text: $box.description
 </code></pre>
+<h4>While loops</h4>
+<pre>  <code>var
+  i = 0
+  x = [&quot;fork&quot;, &quot;work&quot;, &quot;push&quot;]
+while $i &lt; $x.high:
+  span: $x[$i]
+  inc $i
+</code></pre>
+<p><code>break</code> command can be used in <code>for</code> and <code>while</code> loops to immediately leave the loop body</p>
+<pre>  <code>for $c in &quot;hello&quot;:
+  echo $x
+  break
+</code></pre>
 <h3>Escaping</h3>
 <p>  <em>todo</em></p>
 <h2>Embed Code</h2>
@@ -273,15 +337,105 @@ div.container &gt; div.row.mb-3
 @end
 </code></pre>
 <h3>JSON block</h3>
-<p>  <em>todo</em></p>
+<p>Note that JSON and YAML blocks requires identification, a <code>#someIdent</code> is required after <code>@json</code> or <code>@yaml</code></p>
+<pre>  <code class="language-timl">@json#sayHelloJson
+{&quot;hello&quot;: &quot;hello&quot;}
+@end
+</code></pre>
 <h3>YAML block</h3>
-<p>  <em>todo</em></p>
+<p>Tim can parse and validate YAML contents.</p>
+<pre>  <code class="language-timl">@yaml#sayHelloYaml
+hello: &quot;hello&quot;
+@end
+</code></pre>
 <h4>CSS</h4>
 <p>  <em>todo</em></p>
+<h4>Placeholders</h4>
+<p>  <em>todo</em></p>
+<h4>Standard Library</h4>
+<p>Tim provides a built-in standard library of functions and small utilities:<br />
+<code>std/system</code> (loaded by default), <code>std/[os, strings, arrays, objects, math]</code></p>
+<pre>  <code class="language-timl">// std/system
+fn random*(max: int): int
+fn len*(x: string): int
+fn encode*(x: string): string
+fn decode*(x: string): string
+fn toString*(x: int): string
+fn timl*(code: string): string
+
+// std/math
+fn ceil*(x: float): float
+fn floor*(x: float): float
+fn max*(x: int, y: int): int
+fn min*(x: int, y: int): int
+fn round*(x: float): float
+fn hypot*(x: float, y: float): float
+fn log*(x: float, base: float): float
+fn pow*(x: float, y: float): float
+fn sqrt*(x: float): float
+fn cos*(x: float): float
+fn sin*(x: float): float
+fn tan*(x: float): float
+fn acos*(x: float): float
+fn asin*(x: float): float
+fn rad2deg*(d: float): float
+fn deg2rad*(d: float): float
+fn atan*(x: float): float
+fn atan2*(x: float, y: float): float
+fn trunc*(x: float): float
+
+// std/strings
+fn endsWith*(s: string, suffix: string): bool
+fn startsWith*(s: string, prefix: string): bool
+fn capitalize*(s: string): string
+fn replace*(s: string, sub: string, by: string): string
+fn toLower*(s: string): string
+fn contains*(s: string, sub: string): bool
+fn parseBool*(s: string): bool
+fn parseInt*(s: string): int
+fn parseFloat*(s: string): float
+fn format*(s: string, a: array): string
+
+// std/arrays
+fn contains*(x: array, item: string): bool
+fn add*(x: array, item: string): void
+fn shift*(x: array): void
+fn pop*(x: array): void
+fn shuffle*(x: array): void
+fn join*(x: array, sep: string): string
+fn delete*(x: array, pos: int): void
+fn find*(x: array, item: string): int
+
+// std/os
+fn absolutePath*(path: string): string
+fn dirExists*(path: string): bool
+fn fileExists*(path: string): bool
+fn normalize*(path: string): string
+fn getFilename*(path: string): string
+fn isAbsolute*(path: string): bool
+fn readFile*(path: string): string
+fn isRelative*(path: string, base: string): bool
+fn getCurrentDir*(): string
+fn join*(head: string, tail: string): string
+fn parentDir*(path: string): string
+fn walkFiles*(path: string): array
+</code></pre>
+<h2>Browser Sync &amp; Reload</h2>
+<p>Compile your project with <code>-d:timHotCode</code> flag, then connect to Tim&apos;s WebSocket server to auto reload the page when there are changes on disk.<br /></p>
+<p>  <em>Note that this feature is not available when compiling with   <code>-d:release</code>.</em></p>
+<p>The internal websocket returns an empty string when detect file changes, so basically you can add an event listener on <code>message</code> in order to <code>reload</code> the page.</p>
+<pre>  <code class="language-js"><div class="line"><div class="line-content">{</div></div><div class="line"><div class="line-content">    <span class="kwd">function</span> <span class="ide">connectWatchoutServer</span>() {      </div></div><div class="line"><div class="line-content">      <span class="kwd">const</span> <span class="ide">watchout</span> <span class="op">=</span> <span class="kwd">new</span> <span class="ide">WebSocket</span>('ws://127.0.0.1:6502/ws');</div></div><div class="line"><div class="line-content">      <span class="ide">watchout</span>.<span class="ide">addEventListener</span>('message', () <span class="op">=&gt;</span> <span class="ide">location</span>.<span class="ide">reload</span>());</div></div><div class="line"><div class="line-content">      <span class="ide">watchout</span>.<span class="ide">addEventListener</span>('close', () <span class="op">=&gt;</span> {</div></div><div class="line"><div class="line-content">        <span class="ide">setTimeout</span>(() <span class="op">=&gt;</span> {</div></div><div class="line"><div class="line-content">          <span class="ide">console</span>.<span class="ide">log</span>('Watchout WebSocket is closed. Try again...')</div></div><div class="line"><div class="line-content">          <span class="ide">connectWatchoutServer</span>()</div></div><div class="line"><div class="line-content">        }, <span class="num">300</span>)</div></div><div class="line"><div class="line-content">      })</div></div><div class="line"><div class="line-content">    }</div></div><div class="line"><div class="line-content">    <span class="ide">connectWatchoutServer</span>()</div></div><div class="line"><div class="line-content">  }</div></div>  </code></pre>
+<h3>Syntax Extensions</h3>
+<ul>
+<li>VSCode Extension available in <a href="https://marketplace.visualstudio.com/items?itemName=CletusIgwe.timextension">VS Marketplace</a> (Thanks to <a href="https://github.com/Uzo2005">Cletus Igwe</a>)</li>
+<li>Sublime Syntax package available in <a href="https://github.com/openpeeps/tim/blob/main/editors/tim.sublime-syntax">/editors</a></li>
+</ul>
 <h3>❤ Contributions &amp; Support</h3>
 <ul>
 <li>🐛 Found a bug? <a href="https://github.com/openpeeps/tim/issues">Create a new Issue</a></li>
 <li>👋 Wanna help? <a href="https://github.com/openpeeps/tim/fork">Fork it!</a></li>
+<li>🎉 Spread the word! <strong>Tell your friends about Tim Engine</strong></li>
+<li>⚽️ Play with Tim Engine in your next web-project</li>
 <li>😎 <a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4">Get €20 in cloud credits from Hetzner</a></li>
 <li>🥰 <a href="https://www.paypal.com/donate/?hosted_button_id=RJK3ZTDWPL55C">Donate via PayPal address</a></li>
 </ul>
@@ -356,7 +510,7 @@ Copyright © 2024 OpenPeeps &amp; Contributors — All rights reserved.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-08T01:10:16Z
+        Builded at 2024-04-09T01:09:19Z
         </p>
       </div>
     </div>
