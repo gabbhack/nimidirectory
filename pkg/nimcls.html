@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">nimcls</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">class</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">dependency-injection</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">oop</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">inheritance</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">object</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">di</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">method</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">singleton</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">inject</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">Classes and dependency injection for Nim.</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install nimcls" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>NimCLS - Nim Classes &amp; Dependency Injection Library</h1>
+<p>Classes&apos; macro and a lightweight dependency injection library for the Nim programming language, designed to help easily create and manage dependency injection by using classes.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Classes</strong>: Create Nim objects using a simple syntax, similar to Python.</li>
+<li><strong>Debugging and Inspection Methods</strong>: Make development easier with methods that help debug and inspect class objects.</li>
+<li><strong>Superclass Invocation</strong>: Effortlessly call the super class&apos;s methods of an object.</li>
+<li><strong>Dependency Injection</strong>: Easily inject dependencies into your code and reduce boilerplate code.</li>
+<li><strong>Singleton Management</strong>: Manage and create singleton instances of classes.</li>
+<li><strong>Custom Injectors</strong>: Create custom injectors to manage dependencies just the way you need.</li>
+<li><strong>Pass Injection</strong>: Pass dependencies through procedures, functions and methods parameters.</li>
+<li><strong>Minimal Overhead</strong>: Keep your application lightweight with NimCLS&apos;s minimal overhead (Zero Dependencies).</li>
+</ul>
+<h2>Usage</h2>
+<h3>Installing NimCLS</h3>
+<p>You can install NimCLS via Nim&apos;s package manager, Nimble:</p>
+<pre>  <code class="language-bash">nimble install nimcls
+</code></pre>
+<h3>Basic Usage</h3>
+<ol>
+<li>Define your classes:</li>
+</ol>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">number</span>: <span class="ide">int</span> <span class="op">=</span> <span class="num">12</span></div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">config</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">call</span>(<span class="ide">self</span>: <span class="ide">MyClass</span>) : <span class="ide">string</span> {<span class="op">.</span><span class="ide">base</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="str">&quot;Class&quot;</span></div></div>  </code></pre>
+<ol start="2">
+<li>Set up an instance of the class and register it:</li>
+</ol>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">myClassObj</span> <span class="op">=</span> <span class="ide">MyClass</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addSingleton</span>(<span class="ide">myClassObj</span>)</div></div>  </code></pre>
+<ol start="3">
+<li>Retrieve the created instance with injected dependencies:</li>
+</ol>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">run</span>(<span class="ide">obj</span> : <span class="ide">MyClass</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">MyClass</span>)) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">obj</span><span class="op">.</span><span class="ide">call</span></div></div>  </code></pre>
+<h3>Example</h3>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Parent</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">value</span>: <span class="ide">int</span> <span class="op">=</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Parent</span>) {<span class="op">.</span><span class="ide">base</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Parent&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Child</span>(<span class="ide">Parent</span>):</div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Child</span>)  <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">callHello</span>(<span class="ide">classObject</span>: <span class="ide">Parent</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">Parent</span>))</div></div><div class="line"><div class="line-content">    <span class="ide">classObject</span><span class="op">.</span><span class="ide">hello</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">createChild</span> <span class="op">=</span> <span class="kwd">proc</span>(): <span class="ide">Child</span> <span class="op">=</span> <span class="ide">Child</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addInjector</span>(<span class="ide">Parent</span>, <span class="ide">createChild</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## prints &quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">callHello</span></div></div>  </code></pre>
+<h3>Injection Usage</h3>
+<p>There are two ways to register an injection:</p>
+<ol>
+<li>Create an instance of the class and register it using <code>addSingleton</code> procedure.</li>
+<li>Create a procedure which returns a class object and register it using <code>addInjector</code> procedure.</li>
+</ol>
+<p>After registering an injection, call <code>inject</code> and pass the registered type to get the object.</p>
+<h4>Examples</h4>
+<ol>
+<li>Adding a singleton:</li>
+</ol>
+<ul>
+<li>  <em>addSingleton[T]</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## only this instance of the class &quot;MyClass&quot; will be used.</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">myClassObj</span> <span class="op">=</span> <span class="ide">MyClass</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addSingleton</span>(<span class="ide">myClassObj</span>)</div></div>  </code></pre>
+<ul>
+<li>  <em>addSingleton[R,T]</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## only this instance of the class &quot;ChildClass&quot; will be used</span></div></div><div class="line"><div class="line-content"><span class="com">## but it will be registered as &quot;ParentClass&quot;.</span></div></div><div class="line"><div class="line-content"><span class="com">## &quot;ChildClass&quot; must be a subclass of  &quot;ParentClass&quot;.</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">myClassObj</span> <span class="op">=</span> <span class="ide">MyClass</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addSingleton</span>(<span class="ide">ParentClass</span>, <span class="ide">myClassObj</span>)</div></div>  </code></pre>
+<ol start="2">
+<li>Adding a procedure:</li>
+</ol>
+<ul>
+<li>  <em>addInjector[T]</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## A procedure that builds an instance of &quot;ChildClass&quot;</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">createChild</span>() : <span class="ide">ChildClass</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">child</span> <span class="op">=</span> <span class="ide">ChildClass</span>()</div></div><div class="line"><div class="line-content">    <span class="ide">child</span><span class="op">.</span><span class="ide">init</span>(<span class="str">&quot;configurations&quot;</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> <span class="ide">child</span></div></div><div class="line"><div class="line-content"><span class="com">## Each time &quot;ChildClass&quot; is injected, &quot;createChild&quot; will be called</span></div></div><div class="line"><div class="line-content"><span class="com">## and a new instance will be created</span></div></div><div class="line"><div class="line-content"><span class="ide">addInjector</span>(<span class="ide">createChild</span>)</div></div>  </code></pre>
+<ul>
+<li>  <em>addInjector[R,T]</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## A procedure that builds an instance of &quot;ChildClass&quot;</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">createChild</span>() : <span class="ide">ChildClass</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">child</span> <span class="op">=</span> <span class="ide">ChildClass</span>()</div></div><div class="line"><div class="line-content">    <span class="ide">child</span><span class="op">.</span><span class="ide">init</span>(<span class="str">&quot;configuration&quot;</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> <span class="ide">child</span></div></div><div class="line"><div class="line-content"><span class="com">## Each time &quot;ParentClass&quot; is injected, &quot;createChild&quot; will be called</span></div></div><div class="line"><div class="line-content"><span class="com">## and a new instance will be created</span></div></div><div class="line"><div class="line-content"><span class="com">## &quot;ChildClass&quot; must be a subclass of  &quot;ParentClass&quot;.</span></div></div><div class="line"><div class="line-content"><span class="ide">addInjector</span>(<span class="ide">ParentClass</span> , <span class="ide">createChild</span>)</div></div>  </code></pre>
+<ol start="3">
+<li>Injecting:</li>
+</ol>
+<ul>
+<li>  <em>Passing it as a parameter</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## A procedure that has a parameter of type &quot;ChildClass&quot; </span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">runChild</span>(<span class="ide">child</span>: <span class="ide">ChildClass</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">ChildClass</span>) ) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">child</span><span class="op">.</span><span class="ide">run</span></div></div>  </code></pre>
+<ul>
+<li>  <em>Getting it through a call</em></li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## A procedure that makes inject call</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">runChild</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">child</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">ChildClass</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">child</span><span class="op">.</span><span class="ide">run</span></div></div>  </code></pre>
+<h2>Limitations</h2>
+<ol>
+<li><strong>Constructors</strong>: Objects in Nim programming language cannot have a custom constructor.</li>
+<li><strong>Constants</strong>: Nim programming language does not support constant properties for objects. So, <code>let</code> and <code>const</code> cannot be used for <strong>classes&apos; properties</strong>.</li>
+<li><strong>Exporting class with no parent</strong>: Although, it is easy to export any class (public class) using the star mark <code>*</code>. Nim&apos;s compiler does not allow the following:</li>
+</ol>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># causes a syntax error !?!? </span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span><span class="op">*:</span></div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
+<p>However, you can solve this issue in <strong>two ways</strong>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Exported and Runs!</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="op">*</span><span class="ide">MyClass</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
+<p>OR</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># All classes are subclasses of &quot;ClassObj&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span><span class="op">*</span>(<span class="ide">ClassObj</span>):</div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
+<ol start="4">
+<li><strong>Super class calls</strong>: Calling a super class&apos;s methods is easy using the class&apos;s method <code>super</code> but <code>procCall</code> must be used to make the call.</li>
+</ol>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Not working, it will call the child object &apos;init&apos; method </span></div></div><div class="line"><div class="line-content"><span class="ide">child</span><span class="op">.</span><span class="ide">super</span><span class="op">.</span><span class="ide">init</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Works, it will call the super class method</span></div></div><div class="line"><div class="line-content"><span class="ide">procCall</span> <span class="ide">child</span><span class="op">.</span><span class="ide">super</span><span class="op">.</span><span class="ide">init</span></div></div>  </code></pre>
+<ol start="5">
+<li><strong>Procedures and functions</strong>: The classes&apos;s macro does not allow procedures and functions inside the class&apos;s body. Keeping procedures and functions outside of classes ensures that they remain relevant and focused solely on their intended functionality. Placing them within a class could introduce unnecessary complexity, leading to code that is harder to understand and maintain.</li>
+</ol>
+<h2>Methods and Procedures</h2>
+<ul>
+<li>Each class&apos;s object has the following methods :</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Arguments</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  <code>getClassName</code></td>
+<td>─</td>
+<td>  <code>string</code></td>
+<td>Returns the class&apos;s name as a<code>string</code>.</td>
+</tr>
+<tr>
+<td>  <code>getClassMethods</code></td>
+<td>─</td>
+<td>  <code>seq[string]</code></td>
+<td>Returns the class&apos;s methods in a sequence of<code>string</code>.</td>
+</tr>
+<tr>
+<td>  <code>getClassProperties</code></td>
+<td>─</td>
+<td>  <code>seq[string]</code></td>
+<td>Returns the class&apos;s properties in a sequence of<code>string</code>.</td>
+</tr>
+<tr>
+<td>  <code>getParentClassName</code></td>
+<td>─</td>
+<td>  <code>string</code></td>
+<td>Returns the class&apos;s parent&apos;s class name as a<code>string</code>.</td>
+</tr>
+<tr>
+<td>  <code>super</code></td>
+<td>─</td>
+<td>  <code>ClassObj</code></td>
+<td>Upcast the object and returns it.</td>
+</tr></tbody></table>
+<ul>
+<li>Dependency injection&apos;s procedures :</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Argument 1</th>
+<th>Argument 2</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  <code>addSingleton[T]</code></td>
+<td>  <code>ClassObj</code></td>
+<td>─</td>
+<td>─</td>
+<td>Adds a singleton object of type<code>T</code> to the injection table and uses <code>T</code> as key for it.</td>
+</tr>
+<tr>
+<td>  <code>addSingleton[R,T]</code></td>
+<td>  <code>typedesc[ClassObj]</code></td>
+<td>  <code>ClassObj</code></td>
+<td>─</td>
+<td>Adds a singleton object of type<code>T</code> to the injection table and uses <code>R</code> as key for it.</td>
+</tr>
+<tr>
+<td>  <code>addInjector[T]</code></td>
+<td>  <code>proc(): ClassObj</code></td>
+<td>─</td>
+<td>─</td>
+<td>Adds a procedure that returns an object of type<code>T</code> to the injectors table and uses <code>T</code> as key for it.</td>
+</tr>
+<tr>
+<td>  <code>addInjector[R,T]</code></td>
+<td>  <code>typedesc[ClassObj]</code></td>
+<td>  <code>proc(): ClassObj</code></td>
+<td>─</td>
+<td>Adds a procedure that returns an object of type<code>T</code> to the injectors table and uses <code>R</code> as key for it.</td>
+</tr>
+<tr>
+<td>  <code>inject[T]</code></td>
+<td>  <code>typedesc[ClassObj]</code></td>
+<td>─</td>
+<td>  <code>ClassObj</code></td>
+<td>Returns an object of type<code>T</code> which exists in the injection tables.</td>
+</tr>
+<tr>
+<td>  <code>isInjectable[T]</code></td>
+<td>  <code>typedesc[ClassObj]</code></td>
+<td>─</td>
+<td>  <code>bool</code></td>
+<td>Returns<code>true</code> if an object or a procedure of type <code>T</code> exists in the tables otherwise <code>false</code>.</td>
+</tr>
+<tr>
+<td>  <code>isSingleton[T]</code></td>
+<td>  <code>typedesc[ClassObj]</code></td>
+<td>─</td>
+<td>  <code>bool</code></td>
+<td>Returns<code>true</code> if an object of type <code>T</code> exists in the injection table otherwise <code>false</code>.</td>
+</tr>
+<tr>
+<td>  <code>resetInjectTbl</code></td>
+<td>─</td>
+<td>─</td>
+<td>─</td>
+<td>Resets and removes all entries in the injection and injectors tables.</td>
+</tr></tbody></table>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/YaDev/NimCLS">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-04-11T01:10:02Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
