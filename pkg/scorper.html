@@ -150,15 +150,7 @@ transformed, in order to catch any exceptions and transfer them to the <code>Fut
 <p>Effectively, this means that while code can be compiled with
 <code>{.push raises: [Defect]}</code>, the intended effect propagation and checking is
 <strong>disabled</strong> for <code>async</code> functions.</p>
-<p>To enable checking exception effects in <code>async</code> code, enable strict mode with
-<strong>  <code>-d:chronosStrictException</code></strong>.</p>
-<p>In the strict mode, <code>async</code> functions are checked such that they only raise
-<code>CatchableError</code> and thus must make sure to explicitly specify exception
-effects on forward declarations, callbacks and methods using
-<code>{.raises: [CatchableError].}</code> (or more strict) annotations.</p>
 </blockquote>
-<p>See <code>chronos</code> <a href="https://github.com/status-im/nim-chronos#error-handling">#Error handling</a> for more details.</p>
-<p>Use <code>-d:chronosStrictException</code> to enable strict mode as explained above.</p>
 <h2>Todos</h2>
 <ul>
 <li>[ ] Parse JSON streamingly.</li>
@@ -277,7 +269,7 @@ Transfer/sec:      3.12MB
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-11T01:10:02Z
+        Builded at 2024-04-18T01:09:03Z
         </p>
       </div>
     </div>

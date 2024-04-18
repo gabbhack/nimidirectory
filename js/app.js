@@ -33092,6 +33092,99 @@ const packages = [
     "description": "Classes and dependency injection for Nim.",
     "license": "MIT",
     "web": "https://github.com/YaDev/NimCLS"
+  },
+  {
+    "name": "stylus",
+    "url": "https://github.com/ferus-web/stylus",
+    "method": "git",
+    "tags": [
+      "css",
+      "parsing"
+    ],
+    "description": "A standards compliant CSS level 3 tokenizer and parser written in pure Nim",
+    "license": "MIT",
+    "web": "https://github.com/ferus-web/stylus"
+  },
+  {
+    "name": "mirage",
+    "url": "https://github.com/ferus-web/mirage",
+    "method": "git",
+    "tags": [
+      "interpreter",
+      "bytecode",
+      "code"
+    ],
+    "description": "A bytecode language generator and runtime",
+    "license": "MIT",
+    "web": "https://github.com/ferus-web/mirage"
+  },
+  {
+    "name": "ferusgfx",
+    "url": "https://github.com/ferus-web/ferusgfx",
+    "method": "git",
+    "tags": [
+      "graphics",
+      "gpu"
+    ],
+    "description": "A high-performance graphics renderer made for web engines",
+    "license": "MIT",
+    "web": "https://github.com/ferus-web/ferusgfx"
+  },
+  {
+    "name": "nimtcl",
+    "url": "https://github.com/neroist/nimtcl",
+    "method": "git",
+    "tags": [
+      "tcl",
+      "tk",
+      "wrapper",
+      "bindings",
+      "lang"
+    ],
+    "description": "Low-level Tcl & Tk bindings for Nim",
+    "license": "MIT",
+    "web": "https://github.com/neroist/nimtcl"
+  },
+  {
+    "name": "simpleMail",
+    "url": "https://github.com/up7down8/simpleMail",
+    "method": "git",
+    "tags": [
+      "smtp",
+      "mail"
+    ],
+    "description": "Make sending HTML and file emails easier.",
+    "license": "MIT",
+    "web": "https://github.com/up7down8/simpleMail"
+  },
+  {
+    "name": "asyncssh2",
+    "url": "https://github.com/up7down8/asyncssh2",
+    "method": "git",
+    "tags": [
+      "scp",
+      "ssh",
+      "sftp",
+      "asyncssh"
+    ],
+    "description": "Execute commands and upload/download files using multiple processes and asynchronous methods via SSH.",
+    "license": "MIT",
+    "web": "https://github.com/up7down8/asyncssh2"
+  },
+  {
+    "name": "rex",
+    "url": "https://github.com/minamorl/rex",
+    "method": "git",
+    "tags": [
+      "observable",
+      "observe",
+      "library",
+      "rx",
+      "reactive"
+    ],
+    "description": "Reactive programming, in nim",
+    "license": "MIT",
+    "web": "https://github.com/minamorl/rex"
   }
 ]
 

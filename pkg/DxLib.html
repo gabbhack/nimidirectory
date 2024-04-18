@@ -89,8 +89,28 @@
 <li><a href="https://github.com/777shuang/DxLib.dll/releases">DX ライブラリ DLL 版</a> をダウンロードし、作業ディレクトリに展開する</li>
 <li><code>import DxLib</code> と書く</li>
 </ol>
-<h2>注意</h2>
-<p><code>VERTEX_3D</code> 構造体は、命名規則の関係上、<code>VERTEX3D_OLD</code> に改名されています。</p>
+<h2>命名の変更点</h2>
+<table>
+<thead>
+<tr>
+<th>DXライブラリでの命名</th>
+<th>Nim版での命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  <code>VERTEX_3D</code></td>
+<td>  <code>VERTEX3D_OLD</code></td>
+</tr>
+<tr>
+<td>  <code>DX_BLENDMODE_MUL_A</code></td>
+<td>  <code>DX_BLENDMODE_MUL_ONLY_A</code></td>
+</tr>
+<tr>
+<td>  <code>DX_BLENDMODE_PMA_MUL_A</code></td>
+<td>  <code>DX_BLENDMODE_PMA_MUL_ONLY_A</code></td>
+</tr></tbody></table>
+<p>Nimの命名規則ではアンダーバーは使用できるが無視されるため、DXライブラリの命名をそのまま使用すると衝突が起きるのでこのような対応を行っています。</p>
 <h2>DxLibHeaderSpliter.nim について</h2>
 <p>DX ライブラリのヘッダファイルから、Nim のプロトタイプ宣言を生成するプログラム。<br />
 <code>c2nim</code> への PATH が通っている必要があります。(ほとんどの環境では心配する必要はありません)</p>
@@ -162,7 +182,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-11T01:10:02Z
+        Builded at 2024-04-18T01:09:03Z
         </p>
       </div>
     </div>
