@@ -33185,6 +33185,18 @@ const packages = [
     "description": "Reactive programming, in nim",
     "license": "MIT",
     "web": "https://github.com/minamorl/rex"
+  },
+  {
+    "name": "dim",
+    "url": "https://github.com/lorenzoliuzzo/dim",
+    "method": "git",
+    "tags": [
+      "dimensional",
+      "analysis"
+    ],
+    "description": "Dimensional Analysis in Nim",
+    "license": "GPL-3.0-or-later",
+    "web": "https://github.com/lorenzoliuzzo/dim"
   }
 ]
 
