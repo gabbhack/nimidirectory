@@ -97,41 +97,34 @@
             
                 <document><h1>WebsiteGenerator</h1>
 <h2>About</h2>
-<p><strong>websitegenerator</strong> lets you easily create static HTML and CSS in Nim.</p>
-<p>This project is currently in-development. More features will be added over time.</p>
-<h2>How is this useful?</h2>
-<p>It depends... Writing html manually can be very painful, as it is easy to forget a closing <code>&gt;</code>
-bracket and you often have to repeat yourself.</p>
-<p>With this library you can create templates and write what is actually important - the content!</p>
-<p>It is also very easy to read in some external data (for example from a <code>.json</code> file) and insert
-it into the html.</p>
+<p><strong>websitegenerator</strong> is a library that lets you generate static HTML and CSS files using Nim code.</p>
+<h2>Documentation</h2>
+<p>See <a href="https://nirokay.github.io/nim-docs/websitegenerator/websitegenerator.html">here</a> for in-depth
+code documentation.</p>
+<h2>Use cases</h2>
+<h3>Static site generation</h3>
+<p>Generating static sites is the primary focus of <strong>websitegenerator</strong>, especially if you have repetitive layouts
+with only the inserted data changing across them.</p>
+<h3>On-the-fly generation (for small projects)</h3>
+<p>You can use procs to template a HTML page or element and respond to HTTP requests with an HTTP-server.
+For example <a href="https://github.com/nirokay/TheDictionary">TheDictionary</a>, my attempt at an urban-dictionary
+webserver clone, uses <strong>websitegenerator</strong> to send back data with very little client-side javascript.</p>
 <h2>Examples</h2>
-<p>Some basic examples are located in <code>./examples/</code>, so you can quickly know, if you want to use
+<p>Some basic examples are located in <a href="./examples/">the examples directory</a>, so you can quickly know, if you want to use
 this or not.</p>
 <p>List of projects/sites using <strong>websitegenerator</strong>:</p>
 <ul>
 <li><a href="https://nirokay.github.io/">my homepage</a> (<a href="https://github.com/nirokay/nirokay.github.io/blob/main/index.nim">source</a>)</li>
 <li><a href="https://nirokay.github.io/HzgShowAround">HzgShowAround</a> (<a href="https://github.com/nirokay/hzgshowaround">source</a>)</li>
+<li>TheDictionary (<a href="https://github.com/nirokay/TheDictionary">source</a>)</li>
 </ul>
-<p>If you use this software to create a project/website feel free to create a PR with the edited
-README.md or message me somewhere.</p>
+<p>If you use this software to create a project/website: feel free to create a PR with the edited
+<code>README.md</code> or message me somewhere, so you project can be included here.</p>
 <h2>Installation</h2>
-<table>
-<thead>
-<tr>
-<th>nimble</th>
-<th>git</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  <code>nimble install websitegenerator</code></td>
-<td>  <code>git clone https://github.com/nirokay/websitegenerator &amp;&amp; cd websitegenerator &amp;&amp; nimble install</code></td>
-</tr></tbody></table>
+<p>  <code>nimble install websitegenerator</code></p>
 <h2>Licence</h2>
 <p>This projects codebase is distributed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</a>, however you may use this
-software to create webpages and css freely without limitations and distribute these products
-under any other licence.</p>
+software&apos;s outputs (HTML and CSS files) without any GPL limitations.</p>
 </document>
             
         </div>
@@ -200,7 +193,7 @@ under any other licence.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-22T01:12:03Z
+        Builded at 2024-04-23T01:10:44Z
         </p>
       </div>
     </div>

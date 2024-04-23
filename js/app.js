@@ -1,5 +1,18 @@
 const packages = [
   {
+    "name": "well_parser",
+    "url": "https://codeberg.org/samsamros/RRC-permits",
+    "method": "git",
+    "tags": [
+      "Texas Railroad Commission",
+      "Drilling Permits",
+      "Injection wells"
+    ],
+    "description": "This project is intended to parse Texas Railroad Commission data provided in an unsuitable and non-transparent format. As of 2024, this code is able to parse Drilling Permit Master and Trailer and Underground Injection Control Data",
+    "license": "GPL-3.0",
+    "web": "https://codeberg.org/samsamros/RRC-permits"
+  },
+  {
     "name": "avrman",
     "url": "https://github.com/Abathargh/avrman",
     "method": "git",
@@ -33197,6 +33210,36 @@ const packages = [
     "description": "Dimensional Analysis in Nim",
     "license": "GPL-3.0-or-later",
     "web": "https://github.com/lorenzoliuzzo/dim"
+  },
+  {
+    "name": "respite",
+    "url": "https://github.com/guzba/respite",
+    "method": "git",
+    "tags": [
+      "redis",
+      "resp",
+      "sqlite",
+      "sql",
+      "database",
+      "server"
+    ],
+    "description": "Redis protocol backed by SQLite",
+    "license": "MIT",
+    "web": "https://github.com/guzba/respite"
+  },
+  {
+    "name": "sudo",
+    "url": "https://github.com/FyraLabs/sudo.nim",
+    "method": "git",
+    "tags": [
+      "sudo",
+      "linux",
+      "unix"
+    ],
+    "description": "Detect if you are running as root, restart self with sudo if needed or setup uid zero when running with the SUID flag set.",
+    "license": "MIT",
+    "web": "https://github.com/FyraLabs/sudo.nim",
+    "doc": "https://fyralabs.github.io/sudo.nim/"
   }
 ]
 

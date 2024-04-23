@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">respite</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">redis</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">resp</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">sqlite</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">sql</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">database</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">server</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">Redis protocol backed by SQLite</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install respite" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Respite</h1>
+<p>  <strong>NOTE: Respite is in active development. It is not yet production-ready.</strong></p>
+<p>Respite is an implementation of the Redis server API on SQLite.</p>
+<p>Said another way, Respite is an epoll TCP server that speaks the Redis protocol and uses SQLite for its backing store.</p>
+<p>Just like Redis, Respite can easily handle a huge number of clients sending commands at the same time.</p>
+<h2>Supported commands</h2>
+<p>Below are the currently supported commands. Adding support for more commands is ongoing.</p>
+<h4>Transactions</h4>
+<p><code>MULTI</code>
+<code>EXEC</code>
+<code>DISCARD</code></p>
+<h4>Strings</h4>
+<p><code>GET</code>
+<code>SET</code>
+<code>DEL</code>
+<code>EXPIRE</code>
+<code>EXPIREAT</code>
+<code>TTL</code>
+<code>EXPIRETIME</code>
+<code>EXISTS</code>
+<code>PERSIST</code>
+<code>TYPE</code>
+<code>DECR</code>
+<code>DECRBY</code>
+<code>INCR</code>
+<code>INCRBY</code>
+<code>GETDEL</code></p>
+<h4>Hashes</h4>
+<p><code>HSET</code>
+<code>HSETNX</code>
+<code>HGET</code>
+<code>HINCRBY</code>
+<code>HDEL</code>
+<code>HEXISTS</code>
+<code>HGETALL</code>
+<code>HLEN</code>
+<code>HKEYS</code></p>
+<h4>Sets</h4>
+<p><code>SADD</code>
+<code>SCARD</code>
+<code>SISMEMBER</code>
+<code>SMEMBERS</code>
+<code>SREM</code>
+<code>SPOP</code></p>
+<h4>Sorted sets</h4>
+<p><code>ZADD</code>
+<code>ZREM</code>
+<code>ZCARD</code>
+<code>ZSCORE</code>
+<code>ZCOUNT</code>
+<code>ZREMRANGEBYSCORE</code></p>
+<h4>Connections</h4>
+<p><code>AUTH</code>
+<code>PING</code>
+<code>ECHO</code></p>
+<h2>Compatibility</h2>
+<p>Respite is intended to be compatibile with existing Redis clients, libraries and tools including <code>redis-cli</code> and <code>redis-benchmark</code>. This means Respite can be thought of as a drop-in alternative to Redis for many projects.</p>
+<p>While Respite may be a drop-in replacement, the use of SQLite does have implications that can either help or hurt depending on the specific use-case.</p>
+<p>For use-cases where data persistence is desired (not just an in-memory cache), Respite is an excellent option:</p>
+<ul>
+<li>Stores as much data as you have disk space for with no memory capacity limit.</li>
+<li>Excellent write durability provided by SQLite.</li>
+<li>Turns <code>MULTI</code>, <code>EXEC</code> into a real database transaction.</li>
+</ul>
+<p>For use-cases that are essentially just an in-memory cache, Respite can still work well:</p>
+<ul>
+<li>Good: use SQLite&apos;s in-memory database, avoiding all disk writes and clearing on restart.</li>
+<li>Bad: missing support for key eviction policies and memory usage cap, etc.</li>
+</ul>
+<h2>Configuration</h2>
+<p>Command line configuration compatibility with Redis is a goal, within reason. So far, the following configuration options are supported:</p>
+<ul>
+<li>  <code>-h hostname</code></li>
+<li>  <code>-p port</code></li>
+<li>  <code>--dir my/path</code></li>
+<li>  <code>--dbfilename respite.sqlite</code></li>
+<li><code>--save &quot;&quot;</code> (for in-memory only)</li>
+<li>  <code>--requirepass password</code></li>
+</ul>
+<h2>Networking</h2>
+<p>Both Respite and Redis use the same approach for networking and speak <a href="https://redis.io/docs/latest/develop/reference/protocol-spec/">RESP2</a>. This means you can carry over same expectations about connections and use the same clients as you would with Redis.</p>
+<p>Client connections are easy to open, can either be long-lived or transient, and you can have a lot or a little of them at any time. Concerns around connections that may be highly relevant for something like Postgres are a non-issue for Respite (and Redis itself).</p>
+<h2>Performance</h2>
+<p>As one would expect, Redis generally is able to handle more requests per second than Respite. In exchange, Respite has no memory storage limit and a better data persistence story. While more requests per second sounds great, it is not the only concern to think about.</p>
+<p>Command: <code>redis-benchmark -q -c 10 -n 1000000 -r 100000 -d 64 -t get,set</code></p>
+<h3>Google Cloud n2d-standard-2 VM, 2 vCPU + 8GB + balanced disk, $60/mo</h3>
+<p>Separate client and server in the same zone on same VPC.</p>
+<p>Respite in-memory only <code>respite-server --save &quot;&quot;</code></p>
+<pre>  <code>SET: 31436.65 requests per second, p50=0.279 msec
+GET: 32840.72 requests per second, p50=0.263 msec
+</code></pre>
+<p>Redis in-memory only <code>redis-server --save &quot;&quot;</code></p>
+<pre>  <code>SET: 43731.14 requests per second, p50=0.175 msec
+GET: 46834.02 requests per second, p50=0.159 msec
+</code></pre>
+<p>Respite <code>respite-server</code></p>
+<pre>  <code>SET: 22706.63 requests per second, p50=0.359 msec
+GET: 30275.51 requests per second, p50=0.295 msec
+</code></pre>
+<p>Redis <code>redis-server --save &quot;&quot; --appendonly yes</code></p>
+<pre>  <code>SET: 3342.47 requests per second, p50=2.919 msec      --appendfsync always
+SET: 41684.04 requests per second, p50=0.183 msec     --appendfsync everysec
+GET: 45167.12 requests per second, p50=0.167 msec
+</code></pre>
+<p>Very interesting results! It appears is that Redis with <code>--appendfsync everysec</code> is running face-first into the IOPS limit of GCP balanced disks, whereas SQLite appears not to. If you can sacrifice durability with <code>--appendfsync everysec</code> you avoid this sharp edge.</p>
+<p>Performance can be hard to predict. It appears Respite using SQLite would perform far better for write-heavy workloads where risking data-loss is unacceptable.</p>
+<h3>M1 MacBook Pro (local client and server, LOW VALUE METRIC!)</h3>
+<p>Respite in-memory only <code>respite-server --save &quot;&quot;</code></p>
+<pre>  <code>SET: 72332.73 requests per second, p50=0.119 msec
+GET: 77447.34 requests per second, p50=0.111 msec
+</code></pre>
+<p>Redis in-memory only <code>redis-server --save &quot;&quot;</code></p>
+<pre>  <code>SET: 121212.12 requests per second, p50=0.063 msec
+GET: 131943.53 requests per second, p50=0.055 msec
+</code></pre>
+<p>Respite <code>respite-server</code></p>
+<pre>  <code>SET: 48206.71 requests per second, p50=0.175 msec
+GET: 56773.02 requests per second, p50=0.167 msec
+</code></pre>
+<p>Redis <code>redis-server --save &quot;&quot; --appendonly yes</code></p>
+<pre>  <code>SET: 110399.65 requests per second, p50=0.071 msec
+GET: 125659.71 requests per second, p50=0.063 msec
+</code></pre>
+<h2>Building</h2>
+<p>To build Respite locally, clone the repo and run the following command from the repo base directory.</p>
+<p>  <code>nim c -r -d:release -d:useMalloc -o:respite-server src/respite.nim</code></p>
+<p>Note that this does require having <a href="https://nim-lang.org/">Nim</a> installed and in your path.</p>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/guzba/respite">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-04-23T01:10:44Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
