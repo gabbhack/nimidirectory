@@ -112,10 +112,11 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>NimCLS - Nim Classes &amp; Dependency Injection Library</h1>
-<p>Classes&apos; macro and a lightweight dependency injection library for the Nim programming language, designed to help easily create and manage dependency injection by using classes.</p>
+<p>Classes&apos; macro, interfaces&apos; macro and a lightweight dependency injection library for the Nim programming language, designed to help easily create and manage dependency injection by using classes and interfaces.</p>
 <h2>Features</h2>
 <ul>
 <li><strong>Classes</strong>: Create Nim objects using a simple syntax, similar to Python.</li>
+<li><strong>Interfaces</strong>: Define interfaces using a concise syntax.</li>
 <li><strong>Debugging and Inspection Methods</strong>: Make development easier with methods that help debug and inspect class objects.</li>
 <li><strong>Superclass Invocation</strong>: Effortlessly call the super class&apos;s methods, procedures and functions of an object.</li>
 <li><strong>Dependency Injection</strong>: Easily inject dependencies into your code and reduce boilerplate code.</li>
@@ -143,8 +144,10 @@
 </ol>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">run</span>(<span class="ide">obj</span> : <span class="ide">MyClass</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">MyClass</span>)) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">obj</span><span class="op">.</span><span class="ide">call</span></div></div>  </code></pre>
 <h3>Example</h3>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Parent</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">value</span>: <span class="ide">int</span> <span class="op">=</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">    <span class="kwd">proc</span> <span class="ide">getValue</span>(<span class="ide">self</span>: <span class="ide">Parent</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="ide">self</span><span class="op">.</span><span class="ide">value</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Parent</span>) {<span class="op">.</span><span class="ide">base</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Parent&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Child</span>(<span class="ide">Parent</span>):</div></div><div class="line"><div class="line-content">    <span class="kwd">proc</span> <span class="ide">getValue</span>(<span class="ide">self</span>: <span class="ide">Child</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="ide">self</span><span class="op">.</span><span class="ide">value</span> <span class="op">+</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Child</span>)  <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">callHello</span>(<span class="ide">classObject</span>: <span class="ide">Parent</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">Parent</span>)) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">classObject</span><span class="op">.</span><span class="ide">hello</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">createChild</span> <span class="op">=</span> <span class="kwd">proc</span>(): <span class="ide">Child</span> <span class="op">=</span> <span class="ide">Child</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addInjector</span>(<span class="ide">Parent</span>, <span class="ide">createChild</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## prints &quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">callHello</span>()</div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Parent</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">value</span>: <span class="ide">int</span> <span class="op">=</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">    <span class="kwd">proc</span> <span class="ide">getValue</span>(<span class="ide">self</span>: <span class="ide">Parent</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="ide">self</span><span class="op">.</span><span class="ide">value</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Parent</span>) {<span class="op">.</span><span class="ide">base</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Parent&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Child</span>(<span class="ide">Parent</span>):</div></div><div class="line"><div class="line-content">    <span class="kwd">proc</span> <span class="ide">getNewValue</span>(<span class="ide">self</span>: <span class="ide">Child</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="ide">self</span><span class="op">.</span><span class="ide">value</span> <span class="op">+</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Child</span>)  <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">callHello</span>(<span class="ide">classObject</span>: <span class="ide">Parent</span> <span class="op">=</span> <span class="ide">inject</span>(<span class="ide">Parent</span>)) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">classObject</span><span class="op">.</span><span class="ide">hello</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">createChild</span> <span class="op">=</span> <span class="kwd">proc</span>(): <span class="ide">Child</span> <span class="op">=</span> <span class="ide">Child</span>()</div></div><div class="line"><div class="line-content"><span class="ide">addInjector</span>(<span class="ide">Parent</span>, <span class="ide">createChild</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## prints &quot;Hello!! Child&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">callHello</span>()</div></div>  </code></pre>
 <h3>Classes Usage</h3>
+<h4>Overview</h4>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># ClassObj is RootObj</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span> <span class="com">## type MyClass = ref object of ClassObj</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="kwd">static</span> <span class="ide">NextClass</span> <span class="com">## type NextClass = object of ClassObj</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">OtherClass</span>(<span class="ide">MyClass</span>) <span class="com">## type MyClass = ref object of MyClass</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="kwd">static</span> <span class="ide">OtherNextClass</span>(<span class="ide">NextClass</span>) <span class="com">## type OtherNextClass = object of NextClass</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">TryGeneric</span>[<span class="ide">K</span>,<span class="ide">V</span>] <span class="com">## type TryGeneric[K,V] = ref object of ClassObj</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">GenericClass</span>[<span class="ide">T</span>]:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">value</span>: <span class="ide">T</span></div></div><div class="line"><div class="line-content"><span class="com">##</span></div></div><div class="line"><div class="line-content"><span class="com">## Translated to:</span></div></div><div class="line"><div class="line-content"><span class="com">## type GenericClass[T] </span></div></div><div class="line"><div class="line-content"><span class="com">##    = ref object of ClassObj</span></div></div><div class="line"><div class="line-content"><span class="com">##        value: T</span></div></div>  </code></pre>
 <p>There are two types of classes that can be used:</p>
 <p>1- Regular Class (Nim&apos;s <code>ref object</code>)</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">Person</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">name</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">hello</span>(<span class="ide">self</span>: <span class="ide">Person</span>) {<span class="op">.</span><span class="ide">base</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Hello!! my name is &quot;</span> <span class="op">&amp;</span> <span class="ide">self</span><span class="op">.</span><span class="ide">name</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">person</span> <span class="op">=</span> <span class="ide">Person</span>()</div></div><div class="line"><div class="line-content"><span class="ide">person</span><span class="op">.</span><span class="ide">name</span> <span class="op">=</span> <span class="str">&quot;Nim Dev&quot;</span></div></div>  </code></pre>
@@ -167,6 +170,15 @@
 <li>object types are typically used for small, immutable data structures where you want value semantics, such as structs in other programming languages.</li>
 <li>They are allocated on the stack, and their memory is automatically deallocated when they go out of scope.</li>
 </ul>
+<h3>Interface Usage</h3>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">Interface</span> <span class="ide">IRunner</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">run</span>(<span class="ide">self</span>: <span class="ide">IRunner</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">getFilePath</span>(<span class="ide">self</span>: <span class="ide">IRunner</span>): <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="kwd">method</span> <span class="ide">isRunning</span>(<span class="ide">self</span>: <span class="ide">IRunner</span>): <span class="ide">bool</span></div></div>  </code></pre>
+<h4>Macro Rules:</h4>
+<ol>
+<li>An interface cannot have a parent class/object.</li>
+<li>An interface cannot be a generic object.</li>
+<li>An interface must have at least one method.</li>
+<li>Only <em>  <strong>methods</strong></em> can be added to the interface.</li>
+</ol>
 <h3>Injection Usage</h3>
 <p>There are two ways to register an injection:</p>
 <ol>
@@ -222,17 +234,22 @@
 <p>However, you can solve this issue in <strong>two ways</strong>:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Exported and Runs!</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="op">*</span><span class="ide">MyClass</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
 <p>OR</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># All regular classes are subclasses of &quot;ClassObj&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span><span class="op">*</span>(<span class="ide">ClassObj</span>):</div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># All static classes are subclasses of &quot;ClassStaticObj&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="kwd">static</span> <span class="ide">MyClass</span><span class="op">*</span>(<span class="ide">ClassStaticObj</span>):</div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># All classes are subclasses of &quot;ClassObj&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">MyClass</span><span class="op">*</span>(<span class="ide">ClassObj</span>):</div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">me</span>: <span class="ide">string</span></div></div>  </code></pre>
 <ol start="4">
 <li><strong>Super class calls</strong>: Calling a super class&apos;s methods is easy using the class&apos;s method <code>super</code> but <code>procCall</code> must be used to make the call.</li>
 </ol>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Not working, it will call the child object &apos;init&apos; method </span></div></div><div class="line"><div class="line-content"><span class="ide">child</span><span class="op">.</span><span class="ide">super</span><span class="op">.</span><span class="ide">init</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Works, it will call the super class method</span></div></div><div class="line"><div class="line-content"><span class="ide">procCall</span> <span class="ide">child</span><span class="op">.</span><span class="ide">super</span><span class="op">.</span><span class="ide">init</span></div></div>  </code></pre>
 <ol start="5">
-<li><strong>Methods, Procedures and functions</strong>: The class&apos;s macro only allows methods, procedures, and functions that utilize the class&apos;s object as their <strong>first parameter</strong> within the class&apos;s body. By keeping unrelated methods, procedures, and functions outside of classes, we ensure their focus remains on their intended functionality. Placing them within a class may introduce unnecessary complexity, making the code harder to understand and maintain.</li>
+<li>
+<p><strong>Methods, Procedures and functions</strong>: The class&apos;s macro only allows methods, procedures, and functions that utilize the class&apos;s object as their <strong>first parameter</strong> within the class&apos;s body. By keeping unrelated methods, procedures, and functions outside of classes, we ensure their focus remains on their intended functionality. Placing them within a class may introduce unnecessary complexity, making the code harder to understand and maintain.</p>
+</li>
+<li>
+<p><strong>Objects casting</strong>: Nim&apos;s limitations regarding <strong>non-ref objects</strong> casting, introduce challenges for dependency injection. These limitations elevate the risk of data loss, raise concerns about type safety, complicate debugging, and may result in unexpected output and errors when accessing object fields post-downcasting due to the possibility of encountering invalid addresses.</p>
+</li>
 </ol>
 <h2>Methods and Procedures</h2>
 <ul>
-<li>Each class&apos;s object has the following methods :</li>
+<li>Each class&apos;s object has the following methods or procedures :</li>
 </ul>
 <table>
 <thead>
@@ -271,7 +288,7 @@
 <tr>
 <td>  <code>super</code></td>
 <td>─</td>
-<td><code>ClassObj</code> or <code>ClassStaticObj</code></td>
+<td>  <code>ClassObj</code></td>
 <td>Upcasts the object and returns it.</td>
 </tr></tbody></table>
 <ul>
@@ -290,49 +307,49 @@
 <tbody>
 <tr>
 <td>  <code>addSingleton[T]</code></td>
-<td><code>ClassObj</code> or <code>ClassStaticObj</code></td>
+<td><code>ClassObj</code> or <code>ref ClassObj</code></td>
 <td>─</td>
 <td>─</td>
 <td>Adds a singleton object of type<code>T</code> to the injection table and uses <code>T</code> as key for it.</td>
 </tr>
 <tr>
 <td>  <code>addSingleton[R,T]</code></td>
-<td>  <code>typedesc[ClassObj]</code></td>
-<td>  <code>ClassObj</code></td>
+<td>  <code>typedesc[ref ClassObj]</code></td>
+<td>  <code>ref ClassObj</code></td>
 <td>─</td>
 <td>Adds a singleton object of type<code>T</code> to the injection table and uses <code>R</code> as key for it.</td>
 </tr>
 <tr>
 <td>  <code>addInjector[T]</code></td>
-<td><code>proc(): ClassObj</code> or <code>proc(): ClassStaticObj</code></td>
+<td><code>proc(): ClassObj</code> or <code>proc(): ref ClassObj</code></td>
 <td>─</td>
 <td>─</td>
 <td>Adds a procedure that returns an object of type<code>T</code> to the injectors table and uses <code>T</code> as key for it.</td>
 </tr>
 <tr>
 <td>  <code>addInjector[R,T]</code></td>
-<td>  <code>typedesc[ClassObj]</code></td>
-<td>  <code>proc(): ClassObj</code></td>
+<td>  <code>typedesc[ref ClassObj]</code></td>
+<td>  <code>proc(): ref ClassObj</code></td>
 <td>─</td>
 <td>Adds a procedure that returns an object of type<code>T</code> to the injectors table and uses <code>R</code> as key for it.</td>
 </tr>
 <tr>
 <td>  <code>inject[T]</code></td>
-<td><code>typedesc[ClassObj]</code> or <code>typedesc[ClassStaticObj]</code></td>
+<td><code>typedesc[ClassObj]</code> or <code>typedesc[ref ClassObj]</code></td>
 <td>─</td>
 <td>  <code>T</code></td>
 <td>Returns an object of type<code>T</code> which exists in the injection tables.</td>
 </tr>
 <tr>
 <td>  <code>isInjectable[T]</code></td>
-<td><code>typedesc[ClassObj]</code> or <code>typedesc[ClassStaticObj]</code></td>
+<td><code>typedesc[ClassObj]</code> or <code>typedesc[ref ClassObj]</code></td>
 <td>─</td>
 <td>  <code>bool</code></td>
 <td>Returns<code>true</code> if an object or a procedure of type <code>T</code> exists in the tables otherwise <code>false</code>.</td>
 </tr>
 <tr>
 <td>  <code>isSingleton[T]</code></td>
-<td><code>typedesc[ClassObj]</code> or <code>typedesc[ClassStaticObj]</code></td>
+<td><code>typedesc[ClassObj]</code> or <code>typedesc[ref ClassObj]</code></td>
 <td>─</td>
 <td>  <code>bool</code></td>
 <td>Returns<code>true</code> if an object of type <code>T</code> exists in the injection table otherwise <code>false</code>.</td>
@@ -412,7 +429,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-23T01:10:44Z
+        Builded at 2024-05-05T01:15:41Z
         </p>
       </div>
     </div>

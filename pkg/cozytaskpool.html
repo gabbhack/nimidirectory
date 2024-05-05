@@ -106,9 +106,11 @@
                 <document><h1>Cozy Task Pool</h1>
 <p>Just a repeating pattern of launching <code>tasks</code> concurrently in threads with <code>threading/channels</code>, extracted into its own micro package.
 Not very ergonomic, just hides some of the boilerplate of preparing and tearing down everything.</p>
-<p><strong>Requires</strong> <code>--threads:on</code> and (<code>--mm:arc</code> or <code>--mm:orc</code>)</p>
+<p><strong>Requires</strong> <code>--threads:on</code> and (<code>--mm:arc</code> / <code>--mm:atomicArc</code> / <code>--mm:orc</code>)</p>
 <h2>Installation</h2>
-<p>Cozy Task Pool is in nimble directory.</p>
+<p>Cozy Task Pool is in the nimble directory, use <code>atlas</code> or <code>nimble</code> to install:</p>
+<pre>  <code>atlas use cozytaskpool
+</code></pre>
 <pre>  <code>nimble install cozytaskpool
 </code></pre>
 <h2>Usage</h2>
@@ -184,7 +186,7 @@ Not very ergonomic, just hides some of the boilerplate of preparing and tearing 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-04-23T01:10:44Z
+        Builded at 2024-05-05T01:15:41Z
         </p>
       </div>
     </div>
