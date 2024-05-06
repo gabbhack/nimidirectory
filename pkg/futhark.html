@@ -103,9 +103,9 @@
 <p>Have your eyes set on the perfect C library for your project? Can&apos;t find a
 wrapper for it in Nim? Look no further! Futhark aims to allow you to simply
 import C header files directly into Nim, and allow you to use them like you
-would from C without any manual intervention. It&apos;s still in an alpha state, but
-it can already wrap many complex header files without any rewrites or
-pre-processing.</p>
+would from C without any manual intervention. It&apos;s still in a beta state, but it
+already wraps most header files without any rewrites or pre-processing and has
+successfully been used to wrap complex projects.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">futhark</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Tell futhark where to find the C libraries you will compile with, and what</span></div></div><div class="line"><div class="line-content"><span class="com"># header files you wish to import.</span></div></div><div class="line"><div class="line-content"><span class="ide">importc</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">path</span> <span class="str">&quot;../stb&quot;</span></div></div><div class="line"><div class="line-content">  <span class="ide">define</span> <span class="ide">STB_IMAGE_IMPLEMENTATION</span></div></div><div class="line"><div class="line-content">  <span class="str">&quot;stb_image.h&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Tell Nim how to compile against the library. If you have a dynamic library</span></div></div><div class="line"><div class="line-content"><span class="com"># this would simply be a `--passL:&quot;-l&lt;library name&gt;`</span></div></div><div class="line"><div class="line-content"><span class="kwd">static</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">writeFile</span>(<span class="str">&quot;test.c&quot;</span>, """
   #define STB_IMAGE_IMPLEMENTATION
   #include "../stb/stb_image.h"
@@ -132,17 +132,28 @@ everything that is defined in the headers with Nim friendly types. The macro
 then reads this file and applies any overrides to types and names before it
 generates all the Nim definitions.</p>
 <h2>Basic usage</h2>
+<p>A lot of people coming from other wrapping tools start out a bit confused about
+Futhark. With other tools it is common to wrap things into a Nim module first,
+then import that module into your program. This is not the way Futhark is
+supposed to be used. With Futhark you handle your C imports in the <code>importc</code>
+block and just import the module in which you have that block. This is to ensure
+that all defines, configurations, and platform specific things will match up
+between your code and the C code. It is however possible to use Futhark to
+generate a wrapper, this is detailed in the &quot;Shipping wrappers&quot; section of this
+README.</p>
 <p>The four main things you need to know to use Futhark is <code>sysPath</code>, <code>path</code>,
 <code>compilerArgs</code>, and normal imports (the <code>&quot;stb_image.h&quot;</code> part in the above
 example).</p>
 <ul>
 <li><code>sysPath</code> denotes system paths, these will be passed to Øpir to make sure
 Clang knows where to find all the definitions. This can also be passed with
-<code>-d:sysPath:&lt;path 1&gt;:&lt;path 2&gt;</code> if you want to automatically generate these.</li>
+<code>-d:sysPath:&lt;path 1&gt;:&lt;path 2&gt;</code> if you want to automatically generate these. By
+default Futhark tries to find the <code>sysPath</code> automatically and you don&apos;t need
+to specify this yourself.</li>
 <li><code>path</code> denotes library paths, these will also be passed to Øpir, but anything
-found in these paths which is used by the files you have in your project will
-be wrapped by Futhark as well.</li>
-<li><code>comppilerArgs</code> specifies additional flags that should be passed to Clang
+found in these files which is used by anything in the explicitly imported
+files will be wrapped by Futhark as well.</li>
+<li><code>compilerArgs</code> specifies additional flags that should be passed to Clang
 when parsing the C headers.</li>
 <li>Files listed in quotes in the importc are equivalent to <code>#include &quot;file.h&quot;</code>
 in C. Futhark will generate all definitions in these files, and if <code>file.h</code>
@@ -150,14 +161,14 @@ imports more files found in any of the paths passed in by <code>path</code> thes
 will also be imported.</li>
 </ul>
 <p>Note: The difference between <code>sysPath</code> and <code>path</code> is simply about how Futhark
-handles the files. <code>sysPath</code> are paths which are fed to Øpir and Clang in order
-to make Clang able to read all the types. <code>path</code> are the paths Futhark takes
-into account when generating definitions. This difference exists to make sure
-Futhark doesn&apos;t import all kinds of low-level system stuff which is already
-available in Nim. A subpath of <code>sysPath</code> can be passed in with <code>path</code> without
-trouble. So <code>sysPath &quot;/usr/include&quot;</code> followed by <code>path &quot;/usr/include/X11&quot;</code> is
-fine and Futhark will only generate code for the explicitly mentioned files,
-and any files it requires from <code>/usr/include/X11</code>.</p>
+handles definitions found in these paths. <code>sysPath</code> are paths which are fed to
+Øpir and Clang in order to make Clang able to read all the types. <code>path</code> are
+the paths Futhark takes into account when generating definitions. This
+difference exists to make sure Futhark doesn&apos;t import all kinds of low-level
+system stuff which is already available in Nim. A subpath of <code>sysPath</code> can be
+passed in with <code>path</code> without trouble. So <code>sysPath &quot;/usr/include&quot;</code> followed by
+<code>path &quot;/usr/include/X11&quot;</code> is fine and Futhark will only generate code for the
+explicitly mentioned files, and any files it requires from <code>/usr/include/X11</code>.</p>
 <h2>Hard names and overrides</h2>
 <p>Nim, unlike C, is case and underscore insensitive and doesn&apos;t allow you to have
 identifiers starting with <code>_</code> or <code>__</code>, or identifiers that have more than one
@@ -179,6 +190,10 @@ this Futhark will rename these according to some fairly simple rules.</p>
 <tr>
 <td>union type</td>
 <td><code>union_</code> prefix</td>
+</tr>
+<tr>
+<td>enum type</td>
+<td><code>enum_</code> prefix</td>
 </tr>
 <tr>
 <td><code>_</code> prefix</td>
@@ -362,30 +377,31 @@ your implementation which makes it a bit cleaner. And the procedure can of
 course be written in camelCase if you prefer, it will still match the forward
 declaration.</p>
 <h1>Shipping wrappers</h1>
-<p>If you&apos;ve built wrappers with Futhark, and expanded them with a Nim interface
-and now it&apos;s time to share them. This section will give some best-practices on
-how to ship wrappers. Since the Øpir tool requires Clang to be installed it can
-be a bit tricky to get Futhark installed. In addition to this Futhark obviously
-requires access to the C header files, which might be installed in different
-places based on the system. Because of these things you might not want to have
-Futhark as a dependency for your bindings. To help with this Futhark has a
-<code>outputPath</code> argument which can be added to the <code>importc</code> block. This path is
-where the completed bindings will be stored, and also where Futhark will look
-for existing bindings to avoid rebuilding them. This means that with the
-<code>outputPath</code> set to a file you will need to use <code>-d:futharkRebuild</code> to update
-the file when you make changes in the <code>importc</code> block. If you set <code>outputPath</code>
-to a folder then <code>futhark</code> will store the files with the appended hash in this
-folder instead of in the <code>nimcache</code> folder and caching will work as usual. By
-using this feature you will be able to set a path local to your project and
-check the generated Futhark file into your version control system. But that is
-only half the job, because to be aware of the cache file Futhark still needs to
-be installed. The recommended way to get around this is to do a
-<code>when defined(useFuthark)</code> switch to check whether the user wants to use Futhark
-directly or to use the shipped wrapper. It is recommended to use the exact name
-<code>useFuthark</code>, this way the user can turn on Futhark for the entire project (in
-case you have imported another library which also uses Futhark). If you want to
-give the user the option to switch on Futhark for only your project it is
-recommended to use an additional switch with <code>useFutharkFor&lt;project name&gt;</code>.</p>
+<p>You&apos;ve built wrappers with Futhark, expanded them with a nice Nim interface and
+it&apos;s time to share them with the world! This section will give some
+best-practices on how to ship wrappers. Since the Øpir tool requires Clang to
+be installed it can be a bit tricky to get Futhark installed. In addition to
+this Futhark obviously requires access to the C header files, which might be
+installed in different places based on the system. Because of these things you
+might not want to have Futhark as a dependency for your bindings. To help with
+this Futhark has an <code>outputPath</code> argument which can be added to the <code>importc</code>
+block. This path is where the completed bindings will be stored, and also where
+Futhark will look for existing bindings to avoid rebuilding them. This means
+that with the <code>outputPath</code> set to a file you will need to use
+<code>-d:futharkRebuild</code> to update the file when you make changes in the <code>importc</code>
+block. If you set <code>outputPath</code> to a folder then <code>futhark</code> will store the files
+with the appended hash in this folder instead of in the <code>nimcache</code> folder and
+caching will work as usual. By using this feature you will be able to set a
+path local to your project and check the generated Futhark file into your
+version control system. But that is only half the job, because to be aware of
+the cache file Futhark still needs to be installed. The recommended way to get
+around this is to do a <code>when defined(useFuthark)</code> switch to check whether the
+user wants to use Futhark directly or to use the shipped wrapper. It is
+recommended to use the exact name <code>useFuthark</code>, this way the user can turn on
+Futhark for the entire project (in case you have imported another library which
+also uses Futhark). If you want to give the user the option to switch on
+Futhark for only your project it is recommended to use an additional switch
+with <code>useFutharkFor&lt;project name&gt;</code>.</p>
 <p>A complete sample would look a bit something like this:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">when</span> <span class="ide">defined</span>(<span class="ide">useFuthark</span>) <span class="kwd">or</span> <span class="ide">defined</span>(<span class="ide">useFutharkForExample</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">import</span> <span class="ide">futhark</span>, <span class="ide">os</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">importc</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">outputPath</span> <span class="ide">currentSourcePath</span><span class="op">.</span><span class="ide">parentDir</span> <span class="op">/</span> <span class="str">&quot;generated.nim&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">path</span> <span class="str">&quot;&lt;path to library&gt;&quot;</span></div></div><div class="line"><div class="line-content">    <span class="str">&quot;libfile.h&quot;</span></div></div><div class="line"><div class="line-content"><span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">include</span> <span class="str">&quot;generated.nim&quot;</span></div></div>  </code></pre>
 <p>Keep in mind that when your package is installed the generated Futhark output
@@ -395,6 +411,34 @@ would be placed in the folder of your package using this code. If the
 use the one specified in your package installation, while users doing
 <code>useFuthark</code> would generate one based on its hash (or reuse yours if the hash
 matches).</p>
+<h2>Project mode</h2>
+<p>Futhark is best used when it is allowed to see the C files while compiling. This
+allows it to make sure that all platform specific stuff matches up perfectly.
+However this is not always possible, or for whatever other reason wanted. One
+scenario where this is the case is for embedded projects. The Futhark macro
+doesn&apos;t work when targeting platforms without proper OS support, so using it the
+recommended way is simply not possible.</p>
+<p>Because of this it is also possible to use Futhark in &quot;project mode&quot;. In project
+mode you simply don&apos;t specify any files to import. Instead you only specify
+which <code>path</code>&apos;s you want to search. Futhark will then recreate the original
+folder structure of the header files it finds and generate Nim files in their
+place. These try to properly import and export each other so the behaviour is as
+similar to C and if Futhark finds <code>.c</code> files next to the <code>.h</code> files of the same
+name it also adds <code>{.passL:&quot;-I&lt;path&gt;&quot;.}</code> and <code>{.compile: &quot;&lt;file&gt;&quot;.}</code> pragmas to
+automatically import and compile the required C files. This means that a
+separate dummy wrapper project can be set up which just generates this folder
+structure, and the main project can simply import files from this folder as if
+they where normal modules.</p>
+<p>While this is quite a nice feature it isn&apos;t as bullet-proof as the traditional
+way to use Futhark. It might require some pre-processing of the C project, and
+it often means more work with getting everything compiled properly. But when
+normal Futhark usage isn&apos;t possible or desired this is a decent option.</p>
+<p>To minimize the pre-processing burden this mode also adds a new option <code>ignore</code>
+to the <code>importc</code> block. This is simply a file or folder to ignore while
+traversing the given paths. Futhark will not try to generate any input for this
+file/folder, but it will look at the headers inside to resolve other parts of
+the project. This is mainly useful if you have folders with examples or other
+code you&apos;re not actually supposed to import.</p>
 <h1>But why not use c2nim or nimterop?</h1>
 <p>Both c2nim and nimterop have failed me in the past when wrapping headers. This
 boils down to how they are built. c2nim tries to read and understand C files
@@ -519,7 +563,7 @@ you have a project of your own you want to show off, please make a PR!</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-05T01:15:41Z
+        Builded at 2024-05-06T01:12:31Z
         </p>
       </div>
     </div>
