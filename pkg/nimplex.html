@@ -186,12 +186,16 @@ helps with the Python bindings. You can do it with a single command:</p>
 <p><strong>Simplex / Compositional Graphs</strong> generation is <em>  <strong>the most critical capability</strong></em>, first introduced in the nimplex manuscript. They are created by using combinatorics and disocvered patterns to assign edges between all neighboring nodes during the simplex grid (graph nodes) generation process. Effectively, a traversal graph is generated, spanning all possible compositions (given a resolution) creating an extremely efficient representation of the problem space, which allows deployment of numerous graph algorithms.</p>
 <img src="https://raw.githubusercontent.com/amkrajewski/nimplex/dbcd9a6e1edd21aebec5e3ec964593ea1a13d23a/assets/Fig3.png" style="max-width: 100%;" width="800" alt="Simplex Graph for Ternary Space" />
 <p>Critically, unlike the O(N^2) distance-based graph generation methods, this approach <strong>scales linearly</strong> with the resulting number of nodes. Because of that, it is extremely efficient even in high-dimensional spaces, where the number of edges goes into trillions and beyond. Nimplex can <strong>both generate and find neighbors</strong> for around <strong>2M points per second in 9-dimensional space</strong> on a modern CPU.</p>
-<p>As explored in the manuscript, such representations, even of different dimensions, can can then be used to efficeintly encode complex problem spaces where some prior assumptions and knowledge are available. In the Example #2 from manuscript, inspired by problem of joining titanium with stainless steel in <a href="https://doi.org/10.1016/j.addma.2022.102649">10.1016/j.addma.2022.102649</a> using 3-component spaces, one encode 3 separate paths where some components are shared in predetermined fashion. This to efficiently encode the problem space in form of a structure graph (left panel below and then use it to construct a single <strong>simplex graph complex</strong> (right panel below) as a single consistent structure.</p>
+<p>As explored in the manuscript, such representations, even of different dimensions, can can then be used to efficeintly encode complex problem spaces where some prior assumptions and knowledge are available. In the Example #2 from manuscript, inspired by problem of joining titanium with stainless steel in <a href="https://doi.org/10.1016/j.addma.2022.102649">10.1016/j.addma.2022.102649</a> using 3-component spaces, one encode 3 separate paths where some components are shared in predetermined fashion. This to efficiently encode the problem space in form of a structure graph (left panel below) and then use it to construct a single <strong>simplex graph complex</strong> (right panel below) as a single consistent structure.</p>
 <img src="https://raw.githubusercontent.com/amkrajewski/nimplex/dbcd9a6e1edd21aebec5e3ec964593ea1a13d23a/assets/Fig4.png" style="max-width: 100%;" width="1000" alt="Simplex Graph Complex" />
+<p>With such graph representation, one can very easily deploy any scientific library for graph exploration, constrained and biased by models operating in the elemental space mapping <code>nimplex</code> provides. A neat and concise demonstration of this is provided in the <a href="examples/02.AdditiveManufacturingPathPlanning.ipynb">  <code>02.AdditiveManufacturingPathPlanning.ipynb</code></a> under <code>examples</code> directory, where thermodynamic phase stability models constrain a 4-component (tetrahedral) design space existing in 7-component chemical space and property model related to yield strength (RMSAD) is used to bias designed paths towards objectives like property maximization or gradient minimization with extremely concise code simply modifying the weights on unidirectional edges in the graph. For instance, the figure below (approximately) depicts the shortest path through a subset of tetrahedron formed by solid solution phases, later stretched in space proportionally to RMDAS gradient magnitude.</p>
+<img src="https://raw.githubusercontent.com/amkrajewski/nimplex/main/assets/Fig5.png" style="max-width: 100%;" width="1000" alt="Gradient Magnitude Stretched Graph with Shortest Path" />
 </li>
 </ol>
+<blockquote>
 <p>Several other methods are in testing and will likely be added in the future releases. If you have any suggestions, please open an issue on GitHub as we are always soliciting new ideas and use cases based on real-world problems in the
 scientific computing community.</p>
+</blockquote>
 <h2>Usage in Nim</h2>
 <p>Usage within Nim is fairly straightforward. You can install it using Nimble as explained earlier, or install it directly from GitHub, making sure to use the slightly modified <code>@#nimble</code> branch:</p>
 <pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">nimble</span> install -y <span class="ide">https://github.com/amkrajewski/nimplex@#nimble</span></div></div>  </code></pre>
@@ -322,7 +326,7 @@ compare performance across implementations (<code>simplex_graph(3, 1000)</code> 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-06T01:12:31Z
+        Builded at 2024-05-07T01:11:59Z
         </p>
       </div>
     </div>
