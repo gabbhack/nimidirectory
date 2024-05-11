@@ -33335,6 +33335,18 @@ const packages = [
     "description": "A nim wrapper around mcsrvstat",
     "license": "MIT",
     "web": "https://github.com/Minejerik/nimsrvstat"
+  },
+  {
+    "name": "easter",
+    "url": "https://github.com/GeK2K/easter",
+    "method": "git",
+    "tags": [
+      "gregorian",
+      "easter"
+    ],
+    "description": "Easter date calculation engine.",
+    "license": "MIT",
+    "web": "https://github.com/GeK2K/easter"
   }
 ]
 
