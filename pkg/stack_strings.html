@@ -95,12 +95,15 @@
 <p>The <code>stack_strings</code> module provides a string implementation that works with 100% stack memory.</p>
 <p>This module is primarily meant for programs that want to avoid any and all heap allocation, such as code for embedded targets.
 If you use <code>--mm:arc</code> and <code>-d:useMalloc</code> in tandem with this module, your program will be able to do string operations without allocating any memory at runtime.</p>
+<h1>Current Status</h1>
+<p>This library is functionally complete, but open to new features if they are relevant.</p>
+<p>The project is actively maintained, so if you find that there are problems on a version equal to or greater than the minimum supported version, please open an issue.</p>
 <h1>Documentation</h1>
 <p>You can view the latest documentation online <a href="https://docs.termer.net/nim/stack_strings/">here</a>.</p>
 <p>To generate documentation, clone this repository and then run <code>nimble docgen</code>.
 The generated HTML docs will be available in the <code>docs</code> directory in the project root.</p>
 <h1>Nim Version Support</h1>
-<p>Only Nim <code>1.6.14</code>+ is supported as there are bugs with <code>static int</code> in prior versions.</p>
+<p>Only Nim <code>1.6.14</code>+ (including <code>2.0.0</code>+) is supported as there are bugs with <code>static int</code> in prior versions.</p>
 </document>
             
         </div>
@@ -169,7 +172,7 @@ The generated HTML docs will be available in the <code>docs</code> directory in 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-12T01:18:05Z
+        Builded at 2024-05-13T01:14:20Z
         </p>
       </div>
     </div>

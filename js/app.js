@@ -33347,6 +33347,33 @@ const packages = [
     "description": "Easter date calculation engine.",
     "license": "MIT",
     "web": "https://github.com/GeK2K/easter"
+  },
+  {
+    "name": "happyx-ui",
+    "url": "https://github.com/HapticX/happyx-ui",
+    "method": "git",
+    "tags": [
+      "web",
+      "gui",
+      "ui",
+      "library",
+      "happyx",
+      "happyx-native"
+    ],
+    "description": "UI library for HappyX web framework",
+    "license": "MIT",
+    "web": "https://github.com/HapticX/happyx-ui"
+  },
+  {
+    "name": "nudates",
+    "url": "https://github.com/GeK2K/nudates",
+    "method": "git",
+    "tags": [
+      "dates"
+    ],
+    "description": "Some useful tools when working with dates.",
+    "license": "MIT",
+    "web": "https://github.com/GeK2K/nudates"
   }
 ]
 
