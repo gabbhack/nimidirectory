@@ -95,13 +95,13 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>cascade · <a href="https://nimble.directory/pkg/cascade">  <img src="https://flat.badgen.net/badge/available%20on/nimble/yellow" style="max-width: 100%;" alt="nimble" /></a> <img src="https://flat.badgen.net/github/license/citycide/cascade" style="max-width: 100%;" alt="license" /></h1>
+                <document><h1>cascade · <a href="https://nimble.directory/pkg/cascade">  <img src="https://flat.badgen.net/badge/available%20on/nimble/yellow" style="max-width: 100%;" alt="nimble" /></a> <img src="https://flat.badgen.net/github/license/haltcase/cascade" style="max-width: 100%;" alt="license" /></h1>
 <blockquote>
 <p>Method &amp; assignment cascades for Nim, inspired by Smalltalk &amp; Dart.</p>
 </blockquote>
 <p>cascade is a macro for Nim that implements <em>method cascades</em>, a feature
 originally from Smalltalk that&apos;s made its way into modern languages like
-<a href="https://www.dartlang.org/guides/language/language-tour#cascade-notation-">Dart</a> and <a href="http://beust.com/weblog/2015/10/30/exploring-the-kotlin-standard-library/">Kotlin</a>.</p>
+<a href="https://dart.dev/language/operators#cascade-notation">Dart</a> and <a href="https://kotlinlang.org/docs/scope-functions.html#apply">Kotlin</a>.</p>
 <p>It allows you to avoid repeating an object&apos;s name for each method call
 or assignment. A common case is something like a button:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># before</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">res</span> <span class="op">=</span> <span class="ide">Button</span>()</div></div><div class="line"><div class="line-content"><span class="ide">res</span><span class="op">.</span><span class="ide">text</span> <span class="op">=</span> <span class="str">&quot;ok&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">res</span><span class="op">.</span><span class="ide">width</span> <span class="op">=</span> <span class="num">30</span></div></div><div class="line"><div class="line-content"><span class="ide">res</span><span class="op">.</span><span class="ide">color</span> <span class="op">=</span> <span class="str">&quot;#13a89e&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">res</span><span class="op">.</span><span class="ide">enable</span>()</div></div>  </code></pre>
@@ -189,24 +189,24 @@ foo.bar.baz = Baz(str: &quot;we&apos;re down here now!&quot;)
 </li>
 </ul>
 <blockquote>
-<p>Is something missing? Check the open <a href="https://github.com/citycide/cascade/issues">issues</a> first or open a new
+<p>Is something missing? Check the open <a href="https://github.com/haltcase/cascade/issues">issues</a> first or open a new
 one. Pull requests are appreciated!</p>
 </blockquote>
 <h2>building</h2>
 <p>To build cascade from source you&apos;ll need to have <a href="https://github.com/nim-lang/nim">Nim</a> installed,
 and should also have <a href="https://github.com/nim-lang/nimble">Nimble</a>, Nim&apos;s package manager.</p>
 <ol>
-<li>Clone the repo: <code>git clone https://github.com/citycide/cascade.git</code></li>
+<li>Clone the repo: <code>git clone https://github.com/haltcase/cascade.git</code></li>
 <li>Move into the newly cloned directory: <code>cd cascade</code></li>
 <li>Make your changes: <code>cascade.nim</code>, <code>tests/tests.nim</code></li>
 <li>Run tests: <code>nimble test</code></li>
 </ol>
 <h2>contributing</h2>
-<p>You can check the <a href="https://github.com/citycide/cascade/issues">issues</a> for anything unresolved, search for a
+<p>You can check the <a href="https://github.com/haltcase/cascade/issues">issues</a> for anything unresolved, search for a
 problem you&apos;re encountering, or open a new one. Pull requests for improvements
 are also welcome.</p>
 <h2>license</h2>
-<p>MIT © <a href="https://github.com/citycide">Bo Lingen / citycide</a></p>
+<p>MIT © <a href="https://github.com/haltcase">Bo Lingen / haltcase</a></p>
 </document>
             
         </div>
@@ -275,7 +275,7 @@ are also welcome.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-13T01:14:20Z
+        Builded at 2024-05-14T01:12:40Z
         </p>
       </div>
     </div>

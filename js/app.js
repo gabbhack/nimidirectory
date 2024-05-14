@@ -33365,6 +33365,19 @@ const packages = [
     "web": "https://github.com/HapticX/happyx-ui"
   },
   {
+    "name": "dira",
+    "url": "https://github.com/tdely/dira",
+    "method": "git",
+    "tags": [
+      "git",
+      "profile",
+      "manager"
+    ],
+    "description": "git profile manager",
+    "license": "MIT",
+    "web": "https://github.com/tdely/dira"
+  },
+  {
     "name": "nudates",
     "url": "https://github.com/GeK2K/nudates",
     "method": "git",
@@ -33374,6 +33387,21 @@ const packages = [
     "description": "Some useful tools when working with dates.",
     "license": "MIT",
     "web": "https://github.com/GeK2K/nudates"
+  },
+  {
+    "name": "leveldbstatic",
+    "url": "https://github.com/codex-storage/nim-leveldb",
+    "method": "git",
+    "tags": [
+      "leveldb",
+      "library",
+      "wrapper",
+      "static",
+      "static-linked"
+    ],
+    "description": "Statically linked LevelDB wrapper for Nim",
+    "license": "MIT",
+    "web": "https://github.com/codex-storage/nim-leveldb"
   }
 ]
 
