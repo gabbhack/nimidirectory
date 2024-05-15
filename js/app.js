@@ -30719,6 +30719,23 @@ const packages = [
     "web": "https://github.com/indiscipline/cozytaskpool"
   },
   {
+    "name": "cozylogwriter",
+    "url": "https://github.com/indiscipline/cozylogwriter",
+    "method": "git",
+    "tags": [
+      "log",
+      "logging",
+      "terminal",
+      "color",
+      "colors",
+      "colours",
+      "colour"
+    ],
+    "description": "Basic zero-dependency logging with automatic colors and styling for Nim.",
+    "license": "GPL-2.0-or-later",
+    "web": "https://github.com/indiscipline/cozylogwriter"
+  },
+  {
     "name": "grammarian",
     "url": "https://github.com/olmeca/grammarian",
     "method": "git",
@@ -33402,6 +33419,26 @@ const packages = [
     "description": "Statically linked LevelDB wrapper for Nim",
     "license": "MIT",
     "web": "https://github.com/codex-storage/nim-leveldb"
+  },
+  {
+    "name": "nimtk",
+    "url": "https://github.com/neroist/nimtk",
+    "method": "git",
+    "tags": [
+      "gui",
+      "ui",
+      "tcl",
+      "tk",
+      "tkinter",
+      "wrapper",
+      "cross-platform",
+      "windows",
+      "linux",
+      "macosx"
+    ],
+    "description": "High-level Tk wrapper for Nim",
+    "license": "MIT",
+    "web": "https://github.com/neroist/nimtk"
   }
 ]
 

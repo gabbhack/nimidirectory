@@ -127,11 +127,6 @@ URL=http://[::1]:80
 
 cat *.eris | eriscmd verify
 </code></pre>
-<h2>mkerisfs</h2>
-<p>Creates <a href="https://eris.codeberg.page/eer/eris-fs.xml">ERIS-FS</a> images.
-This utility only writes out raw images, so pipe it to the ERIS encoder of your choice.</p>
-<pre>  <code class="language-sh">$ mkerisfs --1k «some relative file path» | eris-go put --convergent &quot;$ERIS_STORE_URL&quot;
-</code></pre>
 <h2>Helpers</h2>
 <h3>rclerislink</h3>
 <p>The <code>rclerislink</code> utility is a document input handler for the <a href="https://www.recoll.org/">Recoll</a> indexer that allows <a href="https://eris.codeberg.page/eer/linkfile.xml">ERIS link file</a> content to be dereferenced and indexed.</p>
@@ -214,7 +209,7 @@ application/x-eris-link+cbor = execm /some/path/to/rclerislink
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-14T01:12:40Z
+        Builded at 2024-05-15T01:13:18Z
         </p>
       </div>
     </div>
