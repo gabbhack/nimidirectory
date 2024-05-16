@@ -104,6 +104,7 @@ recomended for use in production code, APIs may break at any time!</strong></p>
 <ul>
 <li><a href="#avr_io---nim-register-bindings-and-utilities-for-avr-microcontrollers">avr_io - nim register bindings and utilities for AVR microcontrollers</a>
 <ul>
+<li>  <a href="#requirements">Requirements</a></li>
 <li>  <a href="#support">Support</a></li>
 <li>  <a href="#install">Install</a></li>
 <li>  <a href="#documentation">Documentation</a></li>
@@ -111,6 +112,16 @@ recomended for use in production code, APIs may break at any time!</strong></p>
 </ul>
 </li>
 </ul>
+<h2>Requirements</h2>
+<p>This library uses features that are bugged on the current nim
+releases (2.0.x).
+Their specific fixes will be merged into the devel branch
+starting from nim 2.2.x. This means that up until nim 2.2.x
+releases, using some of the avr_io feature requires a nim
+devel installation.</p>
+<p>If you use choosenim just execute:</p>
+<pre>  <code class="language-bash">choosenim update devel
+</code></pre>
 <h2>Support</h2>
 <p>The nim modules that offer IO register mappings and ISR definitions are
 generated using the chips&apos; datasheets as a reference.</p>
@@ -221,7 +232,7 @@ setting up the library.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-15T01:13:18Z
+        Builded at 2024-05-16T01:13:10Z
         </p>
       </div>
     </div>
