@@ -111,10 +111,20 @@
 <p>tested with version 1.2, hash df8f16c. later versions may not work, try this version if you have any issues</p>
 <p>has futhark set up but commented out. to use, put clap repo files in <code>clap-main</code> folder, not as a folder in that folder</p>
 <p>most types are defined in clap ending with <code>_t</code>. this looks kinda ugly imo, and isn&apos;t necessary in nim, but futhark looks for whether the <code>_t</code> version is defined, so all types that end with <code>_t</code> are aliased to remove that, and where types are used, the aliased version is used.</p>
+<h3>supported extensions:</h3>
+<ul>
+<li>audio ports</li>
+<li>note ports</li>
+<li>parameters</li>
+<li>latency</li>
+<li>logging</li>
+<li>state</li>
+<li>gui</li>
+</ul>
 <h3>known missing api sections (PRs welcome):</h3>
 <ul>
 <li>transport events</li>
-<li>gui</li>
+<li>thread checking (basically empty file)</li>
 <li>definitely others</li>
 </ul>
 <h3>building</h3>
@@ -122,7 +132,7 @@
 <pre>  <code>nim compile --out:&quot;example&quot; --app:lib --threads:on &quot;.../nim_clap/example.nim&quot;
 </code></pre>
 <p>or for debugging</p>
-<pre>  <code>nim compile --verbosity:2 --hints:off --out:&quot;example&quot; --app:lib --forceBuild --threads:on -
+<pre>  <code>nim compile --verbosity:1 --hints:off --out:&quot;example&quot; --app:lib --forceBuild --threads:on -
 -lineDir:on --lineTrace:on --debuginfo:on &quot;.../nim_clap/example.nim&quot;
 </code></pre>
 <h4>mac</h4>
@@ -197,7 +207,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-19T01:17:45Z
+        Builded at 2024-05-20T01:13:25Z
         </p>
       </div>
     </div>
