@@ -139,6 +139,16 @@
 <p>then copy the binary (and .dSYM if debugging) into the provided example.clap bundle for macos. if you change the filename, you will need to change the bundle plist to have the updated name.</p>
 <h4>other platforms</h4>
 <p>i am not sure what is needed for windows or linux, but reaper at least doesn&apos;t care if it is bundled or not. i simply copied and modified the surge bundle.</p>
+<h3>documentation</h3>
+<p>to view existing generated documentation</p>
+<ul>
+<li>run <code>python3 -m http.server 7029 --directory htmldocs</code></li>
+<li>visit http://localhost:7029/clap.html</li>
+</ul>
+<p>to generate documentation</p>
+<ul>
+<li>run <code>nim doc --project --index:on --outdir:htmldocs src/clap.nim</code></li>
+</ul>
 </document>
             
         </div>
@@ -207,7 +217,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-20T01:13:25Z
+        Builded at 2024-05-21T01:13:12Z
         </p>
       </div>
     </div>
