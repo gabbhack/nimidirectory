@@ -263,6 +263,22 @@ worked around by instead importing <code>serde</code> and calling its <code>Json
 Note that <code>serde</code>&apos;s <code>JsonNode.parse</code> returns a <code>Result[JsonNode, CatchableError]</code>
 instead of just a plain <code>JsonNode</code> object as in <code>std/json</code>&apos;s <code>parseJson</code>:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">pkg</span><span class="op">/</span><span class="ide">serde</span><span class="op">/</span><span class="ide">json</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">{<span class="op">.</span><span class="ide">push</span> <span class="ide">raises</span>:[]<span class="op">.</span>}</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">MyAppError</span> <span class="op">=</span> <span class="kwd">object</span> <span class="kwd">of</span> <span class="ide">CatchableError</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">parseMe</span>(<span class="ide">me</span>: <span class="ide">string</span>): <span class="ide">JsonNode</span> {<span class="op">.</span><span class="ide">raises</span>: [<span class="ide">MyAppError</span>]<span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">without</span> <span class="ide">parsed</span> <span class="op">=?</span> <span class="ide">JsonNode</span><span class="op">.</span><span class="ide">parse</span>(<span class="ide">me</span>), <span class="ide">error</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">raise</span> <span class="ide">newException</span>(<span class="ide">MyAppError</span>, <span class="ide">error</span><span class="op">.</span><span class="ide">msg</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">parsed</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">assert</span> """{"hello":"world"}"""<span class="op">.</span><span class="ide">parseMe</span> <span class="op">==</span> <span class="op">%*</span> { <span class="str">&quot;hello&quot;</span>: <span class="str">&quot;world&quot;</span> }</div></div>  </code></pre>
+<h2>Known issues</h2>
+<p>There is a known issue when using mixins with generic overloaded procs like
+<code>fromJson</code>. At the time of mixin call, only the <code>fromJson</code> overloads in scope of
+the called mixin are available to be dispatched at runtime. There could be other
+<code>fromJson</code> overloads declared in other modules, but are not in scope at the time
+the mixin was called. Therefore, anytime <code>fromJson</code> is called targeting a
+declared overload, it may or may not be dispatchable. This can be worked around
+by forcing the <code>fromJson</code> overload into scope at compile time. For example, in
+your application where the <code>fromJson</code> overload is defined, at the bottom of the
+module add:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">static</span>: <span class="ide">MyType</span><span class="op">.</span><span class="ide">fromJson</span>(<span class="str">&quot;&quot;</span>)</div></div>  </code></pre>
+<p>This will ensure that the <code>MyType.fromJson</code> overload is dispatchable.</p>
+<p>The basic types that serde supports should already have their overloads forced
+in scope in <a href="./serde/json/deserializer.nim#L340-L356">the <code>deserializer</code>
+module</a>.</p>
+<p>For an illustration of the problem, please see this <a href="https://github.com/gmega/serialization-bug/tree/main/narrow">narrow example</a> by <a href="https://github.com/gmega">@gmega</a>.</p>
 </document>
             
         </div>
@@ -331,7 +347,7 @@ instead of just a plain <code>JsonNode</code> object as in <code>std/json</code>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-21T01:13:12Z
+        Builded at 2024-05-22T01:13:45Z
         </p>
       </div>
     </div>
