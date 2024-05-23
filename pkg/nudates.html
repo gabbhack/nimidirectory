@@ -94,34 +94,30 @@ with <code>dates</code> (the prefix <code>nu</code> stands for <code>Nim utils</
 <pre>  <code class="language-text">requires &quot;nudates &gt;= 0.1.0&quot;
 </code></pre>
 <p>and start using it.</p>
-<h2>Feature overview</h2>
+<h2>Overview</h2>
 <p>We will limit ourselves here to a few examples but the user
 is invited to browse the module documentation to have an
 overview of all the functionalities made available.</p>
 <p>In the standard library, dates can be handled with the <code>DateTime</code>
 type of the <a href="https://nim-lang.org/docs/times.html">times</a> module. As its name suggests, this type
 actually allows us to manage dates and times at the same time.
-But sometimes intra-day information (hours, minutes, seconds, etc.)
-is not important to us. Let&apos;s give an example.</p>
-<p><code>dt1 = dateTime(2025, mDec, 31, 2)</code> and <code>dt2 = dateTime(2025, mDec, 31, 4)</code>
-represent the same date (December 31, 2025) while <code>dt1 == dt2</code> is <code>false</code>
-because the hours are not the same (resp. <code>2</code> and <code>4</code>). Consequently we
-have defined new comparison operators (<code>~==</code>, <code>!~==</code>, <code>&lt;&lt;</code>, <code>&lt;&lt;~==</code>, <code>&gt;&gt;</code>,
-<code>&gt;&gt;~==</code>) which do the same job as the original comparison operators
-(resp. <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>), but which do not take intraday
-information (hours, minutes, seconds, etc.) into account in their processing
-(the reader will find a justification of the notations adopted in the
-respective documentation of these operators).</p>
-<p>We have decided to also make the following alternatives available
-to the user: <code>eq</code>, <code>neq</code>, <code>lt</code>, <code>leq</code>, <code>gt</code>, <code>geq</code>. All these
-possibilities are detailed in the documentation below.</p>
+But sometimes intraday information (hours, minutes, seconds, etc.)
+is not important to us.</p>
+<p>For example, <code>dt1 = dateTime(2025, mDec, 25, 2)</code> and
+<code>dt2 = dateTime(2025, mDec, 25, 4)</code> both correspond to Christmas Day
+of the year 2025, while <code>dt1 == dt2</code> is <code>false</code> because the hours are
+not the same (resp. <code>2</code> and <code>4</code>). Consequently we have defined new
+comparison operators (<code>~==</code>, <code>!~==</code>, <code>&lt;&lt;</code>, <code>&lt;&lt;~==</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;~==</code>)
+which do the same job as the original comparison operators of the
+<code>DateTime</code> type (resp. <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>), but which
+do not take intraday information (hours, minutes, seconds, etc.) into
+account in their processing.</p>
+<p>The user will find a justification of the notations adopted in the
+respective documentation of these operators. But we have decided
+to also make the following alternatives available to the user:
+<code>eq</code>, <code>neq</code>, <code>lt</code>, <code>leq</code>, <code>gt</code>, <code>geq</code>. All these possibilities
+are detailed in the documentation below.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt1</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">2</span>)  <span class="com"># 2011-09-18T:02:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt2</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">5</span>)  <span class="com"># 2011-09-18T:05:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt3</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mOct</span>, <span class="num">18</span>, <span class="num">1</span>)  <span class="com"># 2011-10-18T:01:00:00</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">==</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt1</span>  <span class="com"># same as: dt1.eq(dt1)</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">!=</span> <span class="ide">dt2</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt2</span>  <span class="com"># same as: dt1.eq(dt2)</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span>  <span class="op">&lt;</span> <span class="ide">dt3</span>  <span class="kwd">and</span>  <span class="ide">dt1</span>  <span class="op">&lt;&lt;</span> <span class="ide">dt3</span>  <span class="com"># same as: dt1.lt(dt2) </span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt3</span>  <span class="op">&gt;</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt3</span>  <span class="op">&gt;&gt;</span> <span class="ide">dt1</span>  <span class="com"># same as: dt1.gt(dt2)</span></div></div>  </code></pre>
-<p>The user has the possibility to work without the functionalities
-which are made available here. For example by ensuring that all
-intra-day information is systematically created with their default
-values and is never modified; or by setting them to 0 before using
-the default comparison operators of the <code>times</code> module. <em>Personally
-I would not favor any of these choices</em>.</p>
 <h2>Documentation</h2>
 <p>  <a href="https://gek2k.github.io/nudates/">API Reference</a></p>
 </document>
@@ -192,7 +188,7 @@ I would not favor any of these choices</em>.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-22T01:13:45Z
+        Builded at 2024-05-23T01:13:05Z
         </p>
       </div>
     </div>

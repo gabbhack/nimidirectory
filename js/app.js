@@ -33471,6 +33471,21 @@ const packages = [
     "description": "Nim bindings for EGL",
     "license": "MIT",
     "web": "https://github.com/lualvsil/negl"
+  },
+  {
+    "name": "rng",
+    "url": "https://github.com/penguinite/rng",
+    "method": "git",
+    "tags": [
+      "random",
+      "sysrand",
+      "rng",
+      "crypto",
+      "cross"
+    ],
+    "description": "Basic wrapper over std/sysrand",
+    "license": "BSD-3-Clause",
+    "web": "https://github.com/penguinite/rng"
   }
 ]
 

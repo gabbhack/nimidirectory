@@ -99,6 +99,7 @@
 <p>A self-contained LevelDB wrapper for Nim in a Nim friendly way. Uses git-submodule and nimterop so that no external libraries have to be installed or linked.</p>
 <p>Original nim LevelDB wrapper: <a href="https://github.com/zielmicha/leveldb.nim">HERE</a></p>
 <p>Replacing of system library dependency with self-contained C/CPP interoperability by (Codex.Storage)[https://codex.storage]</p>
+<h2>Usage</h2>
 <p>Create a database:</p>
 <pre>  <code class="language-Nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">leveldbstatic</span></div></div><div class="line"><div class="line-content">   <span class="kwd">import</span> <span class="ide">options</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">   <span class="kwd">var</span> <span class="ide">db</span> <span class="op">=</span> <span class="ide">leveldb</span><span class="op">.</span><span class="ide">open</span>(<span class="str">&quot;/tmp/mydata&quot;</span>)</div></div>  </code></pre>
 <p>Read or modify the database content:</p>
@@ -107,6 +108,28 @@
 <pre>  <code class="language-Nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">batch</span> <span class="op">=</span> <span class="ide">newBatch</span>()</div></div><div class="line"><div class="line-content">   <span class="kwd">for</span> <span class="ide">i</span> <span class="kwd">in</span> <span class="num">1.</span><span class="op">.</span><span class="num">10</span>:</div></div><div class="line"><div class="line-content">     <span class="ide">batch</span><span class="op">.</span><span class="ide">put</span>(<span class="str">&quot;key&quot;</span> <span class="op">&amp;</span> <span class="op">$</span><span class="ide">i</span>, <span class="op">$</span><span class="ide">i</span>)</div></div><div class="line"><div class="line-content">   <span class="ide">batch</span><span class="op">.</span><span class="ide">delete</span>(<span class="str">&quot;bin&quot;</span>)</div></div><div class="line"><div class="line-content">   <span class="ide">db</span><span class="op">.</span><span class="ide">write</span>(<span class="ide">batch</span>)</div></div>  </code></pre>
 <p>Iterate over subset of database content:</p>
 <pre>  <code class="language-Nim"><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">key</span>, <span class="ide">val</span> <span class="kwd">in</span> <span class="ide">db</span><span class="op">.</span><span class="ide">iterPrefix</span>(<span class="ide">prefix</span> <span class="op">=</span> <span class="str">&quot;key1&quot;</span>):</div></div><div class="line"><div class="line-content">     <span class="ide">echo</span> <span class="ide">key</span>, <span class="str">&quot;: &quot;</span>, <span class="ide">val</span></div></div><div class="line"><div class="line-content">   <span class="kwd">for</span> <span class="ide">key</span>, <span class="ide">val</span> <span class="kwd">in</span> <span class="ide">db</span><span class="op">.</span><span class="ide">iter</span>(<span class="ide">seek</span> <span class="op">=</span> <span class="str">&quot;key3&quot;</span>, <span class="ide">reverse</span> <span class="op">=</span> <span class="ide">true</span>):</div></div><div class="line"><div class="line-content">     <span class="ide">echo</span> <span class="ide">key</span>, <span class="str">&quot;: &quot;</span>, <span class="ide">val</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">   <span class="ide">db</span><span class="op">.</span><span class="ide">close</span>()</div></div>  </code></pre>
+<h2>Compiling with optimizations</h2>
+<p>CMake is used during compilation to determine which of the following optimization options are enabled. You can set the following nim compiler flags to 0 or 1 to override them:</p>
+<ul>
+<li>fdatasync from &lt;unistd.h&gt; <code>--passC:-DHAVE_FDATASYNC=1</code></li>
+<li>F_FULLSYNC from &lt;fcntl.h&gt; <code>--passC:-DHAVE_FULLFSYNC=1</code></li>
+<li>O_CLOEXEC from &lt;fcntl.h&gt; <code>--passC:-DHAVE_O_CLOEXEC=1</code></li>
+<li>crc32c from &lt;crc32c/crc32c.h&gt; <code>--passC:-DHAVE_CRC32C=1</code></li>
+<li>snappy from &lt;snappy.h&gt; <code>--passC:-DHAVE_SNAPPY=1</code></li>
+<li>zstd from &lt;zstd.h&gt; <code>--passC:-DHAVE_ZSTD=1</code></li>
+</ul>
+<h2>Updating</h2>
+<p>When you want to update this library to a new version of LevelDB, follow these steps:</p>
+<ul>
+<li>Update LevelDB submodule to new version.</li>
+<li>Run &apos;build.sh&apos;.</li>
+<li>Run &apos;nimble build&apos; and &apos;nimble test&apos;.</li>
+<li>Make sure everything&apos;s working.</li>
+<li>Increment version of this library in &apos;leveldbstatic.nimble&apos;.</li>
+<li>Commit the changes.</li>
+<li>Tag the commit with the new version number.</li>
+<li>Push.</li>
+</ul>
 </document>
             
         </div>
@@ -175,7 +198,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-22T01:13:45Z
+        Builded at 2024-05-23T01:13:05Z
         </p>
       </div>
     </div>
