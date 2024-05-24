@@ -94,6 +94,8 @@
 </ul>
 <h2>Compatibility</h2>
 <p>Nim +2.0.0</p>
+<h2>Main dependencies</h2>
+<p>Nim standard library only.</p>
 <h2>Getting started</h2>
 <p>Install <code>easter</code> using <code>nimble</code>:</p>
 <pre>  <code class="language-text">nimble install easter
@@ -102,7 +104,7 @@
 <pre>  <code class="language-text">requires &quot;easter &gt;= 0.1.0&quot;
 </code></pre>
 <p>and start using it:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">easter</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">easterSunday2054</span> <span class="op">=</span> <span class="ide">gregorianEasterSundayMMDD</span>(<span class="num">2054</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># the &apos;gregorianEasterSundayMMDD&apos; proc returns an Option</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">easterSunday2054</span> <span class="kwd">is</span> <span class="ide">Option</span>[(<span class="ide">int</span>, <span class="ide">int</span>)]</div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">get</span>(<span class="ide">easterSunday2054</span>) <span class="op">==</span> (<span class="ide">month</span>: <span class="num">3</span>, <span class="ide">monthday</span>: <span class="num">29</span>)</div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">easter</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">easterSunday2054</span> <span class="op">=</span> <span class="ide">gregorianEasterSundayMMDD</span>(<span class="num">2054</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># the &apos;gregorianEasterSundayMMDD&apos; proc returns an Option</span></div></div><div class="line"><div class="line-content"><span class="com"># for the reasons given in the documentation</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">easterSunday2054</span> <span class="kwd">is</span> <span class="ide">Option</span>[(<span class="ide">int</span>, <span class="ide">int</span>)]</div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">get</span>(<span class="ide">easterSunday2054</span>) <span class="op">==</span> (<span class="ide">month</span>: <span class="num">3</span>, <span class="ide">monthday</span>: <span class="num">29</span>)</div></div>  </code></pre>
 <h2>Documentation</h2>
 <p>  <a href="https://gek2k.github.io/easter/">API Reference</a></p>
 </document>
@@ -173,7 +175,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-23T01:13:05Z
+        Builded at 2024-05-24T01:13:26Z
         </p>
       </div>
     </div>
