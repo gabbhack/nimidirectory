@@ -86,6 +86,8 @@
 with <code>dates</code> (the prefix <code>nu</code> stands for <code>Nim utils</code>).</p>
 <h2>Compatibility</h2>
 <p>Nim +2.0.0</p>
+<h2>Dependencies</h2>
+<p>Nim standard library only.</p>
 <h2>Getting started</h2>
 <p>Install <code>nudates</code> using <code>nimble</code>:</p>
 <pre>  <code class="language-text">nimble install nudates
@@ -111,13 +113,13 @@ comparison operators (<code>~==</code>, <code>!~==</code>, <code>&lt;&lt;</code>
 which do the same job as the original comparison operators of the
 <code>DateTime</code> type (resp. <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>), but which
 do not take intraday information (hours, minutes, seconds, etc.) into
-account in their processing.</p>
-<p>The user will find a justification of the notations adopted in the
-respective documentation of these operators. But we have decided
-to also make the following alternatives available to the user:
-<code>eq</code>, <code>neq</code>, <code>lt</code>, <code>leq</code>, <code>gt</code>, <code>geq</code>. All these possibilities
-are detailed in the documentation below.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt1</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">2</span>)  <span class="com"># 2011-09-18T:02:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt2</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">5</span>)  <span class="com"># 2011-09-18T:05:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt3</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mOct</span>, <span class="num">18</span>, <span class="num">1</span>)  <span class="com"># 2011-10-18T:01:00:00</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">==</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt1</span>  <span class="com"># same as: dt1.eq(dt1)</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">!=</span> <span class="ide">dt2</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt2</span>  <span class="com"># same as: dt1.eq(dt2)</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span>  <span class="op">&lt;</span> <span class="ide">dt3</span>  <span class="kwd">and</span>  <span class="ide">dt1</span>  <span class="op">&lt;&lt;</span> <span class="ide">dt3</span>  <span class="com"># same as: dt1.lt(dt2) </span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt3</span>  <span class="op">&gt;</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt3</span>  <span class="op">&gt;&gt;</span> <span class="ide">dt1</span>  <span class="com"># same as: dt1.gt(dt2)</span></div></div>  </code></pre>
+account in their processing (the reader will find a justification of
+the notations adopted in the respective documentation of these operators).</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt1</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">2</span>)  <span class="com"># 2011-09-18T:02:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt2</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mSep</span>, <span class="num">18</span>, <span class="num">5</span>)  <span class="com"># 2011-09-18T:05:00:00</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dt3</span> <span class="op">=</span> <span class="ide">dateTime</span>(<span class="num">2011</span>, <span class="ide">mOct</span>, <span class="num">18</span>, <span class="num">1</span>)  <span class="com"># 2011-10-18T:01:00:00</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">==</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt1</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span> <span class="op">!=</span> <span class="ide">dt2</span>  <span class="kwd">and</span>  <span class="ide">dt1</span> <span class="op">~==</span> <span class="ide">dt2</span></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt1</span>  <span class="op">&lt;</span> <span class="ide">dt3</span>  <span class="kwd">and</span>  <span class="ide">dt1</span>  <span class="op">&lt;&lt;</span> <span class="ide">dt3</span> </div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">dt3</span>  <span class="op">&gt;</span> <span class="ide">dt1</span>  <span class="kwd">and</span>  <span class="ide">dt3</span>  <span class="op">&gt;&gt;</span> <span class="ide">dt1</span></div></div>  </code></pre>
+<h2>Used in</h2>
+<ul>
+<li>  <a href="https://github.com/GeK2K/businessdays">businessdays</a></li>
+</ul>
 <h2>Documentation</h2>
 <p>  <a href="https://gek2k.github.io/nudates/">API Reference</a></p>
 </document>
@@ -188,7 +190,7 @@ are detailed in the documentation below.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-24T01:13:26Z
+        Builded at 2024-05-25T01:12:15Z
         </p>
       </div>
     </div>
