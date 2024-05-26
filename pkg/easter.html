@@ -86,15 +86,19 @@
                 <document><h1>Easter</h1>
 <p>  <a href="https://opensource.org/licenses/MIT">    <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="max-width: 100%;" alt="License: MIT" />  </a></p>
 <h2>Introduction</h2>
-<p>Unlike Christmas which is always on December 25, the date of Easter Sunday varies from year to year. However, there are algorithms that allow you to calculate this date for any past, present or future year.</p>
-<p>The algorithm that was implemented in this module is described <a href="https://en.wikipedia.org/wiki/Date_of_Easter#Anonymous_Gregorian_algorithm">here</a> and its results were <strong>successfully compared to the 518 Easter Sunday dates</strong> that can be found on these webpages:</p>
+<p>Unlike Christmas which is always on December 25, the date of Easter Sunday
+varies from year to year. However, there are algorithms that allow you to
+calculate this date for any past, present or future year.</p>
+<p>The algorithm that was implemented in this module is described <a href="https://en.wikipedia.org/wiki/Date_of_Easter#Anonymous_Gregorian_algorithm">here</a>
+and its results were <strong>successfully compared to the 518 Easter Sunday
+dates</strong> that can be found on these webpages:</p>
 <ul>
 <li>http://palluy.fr/index.php?page=1583-a-1600-apres-paques</li>
 <li>https://www.census.gov/data/software/x13as/genhol/easter-dates.html</li>
 </ul>
 <h2>Compatibility</h2>
 <p>Nim +2.0.0</p>
-<h2>Main dependencies</h2>
+<h2>Dependencies</h2>
 <p>Nim standard library only.</p>
 <h2>Getting started</h2>
 <p>Install <code>easter</code> using <code>nimble</code>:</p>
@@ -106,7 +110,7 @@
 <p>and start using it:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">easter</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">easterSunday2054</span> <span class="op">=</span> <span class="ide">gregorianEasterSundayMMDD</span>(<span class="num">2054</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># the &apos;gregorianEasterSundayMMDD&apos; proc returns an Option</span></div></div><div class="line"><div class="line-content"><span class="com"># for the reasons given in the documentation</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">easterSunday2054</span> <span class="kwd">is</span> <span class="ide">Option</span>[(<span class="ide">int</span>, <span class="ide">int</span>)]</div></div><div class="line"><div class="line-content"><span class="ide">doAssert</span>:  <span class="ide">get</span>(<span class="ide">easterSunday2054</span>) <span class="op">==</span> (<span class="ide">month</span>: <span class="num">3</span>, <span class="ide">monthday</span>: <span class="num">29</span>)</div></div>  </code></pre>
 <h2>Documentation</h2>
-<p>  <a href="https://gek2k.github.io/easter/">API Reference</a></p>
+<p>  <a href="https://gek2k.github.io/easter/easter.html">API Reference</a></p>
 </document>
             
         </div>
@@ -175,7 +179,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-25T01:12:15Z
+        Builded at 2024-05-26T01:18:54Z
         </p>
       </div>
     </div>
