@@ -33486,6 +33486,45 @@ const packages = [
     "description": "Basic wrapper over std/sysrand",
     "license": "BSD-3-Clause",
     "web": "https://github.com/penguinite/rng"
+  },
+  {
+    "name": "businessdays",
+    "url": "https://github.com/GeK2K/businessdays",
+    "method": "git",
+    "tags": [
+      "calendar",
+      "businessday",
+      "bizday",
+      "holiday"
+    ],
+    "description": "Business Days (or Working Days) calculator.",
+    "license": "MIT",
+    "web": "https://github.com/GeK2K/businessdays"
+  },
+  {
+    "name": "nim_lk",
+    "url": "https://git.sr.ht/~ehmry/nim_lk",
+    "method": "git",
+    "tags": [
+      "package",
+      "sbom"
+    ],
+    "description": "Nix lockfile generator",
+    "license": "BSD-3-Clause",
+    "web": "https://git.sr.ht/~ehmry/nim_lk"
+  },
+  {
+    "name": "gitty",
+    "url": "https://github.com/chrischtel/gitty",
+    "method": "git",
+    "tags": [
+      "cli",
+      "tool",
+      "gitignore"
+    ],
+    "description": "Easily create .gitignore files from your terminal",
+    "license": "BSD-3-Clause",
+    "web": "https://github.com/chrischtel/gitty"
   }
 ]
 
