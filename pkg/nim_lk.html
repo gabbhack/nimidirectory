@@ -86,6 +86,7 @@
                 <document><h1>Nim lockfile generator</h1>
 <p>Generates Nix specific lockfiles for Nim packages.</p>
 <p>It puts your dependencies in the Nix store where they belong.</p>
+<p>This tool requires Nix to be available, specifically the <code>nix-prefetch-url</code> and <code>nix-prefetch-git</code> tools.</p>
 <h2>Nimble to Nix lockfile</h2>
 <pre>  <code class="language-sh">cd «Nim project with a Nimble file»
 nim_lk nimble-to-nix &gt; lock.json
@@ -171,6 +172,12 @@ nim_lk nimble-to-sbom &gt; sbom.json
 <p>A generated SBOM describes the package that corresponds to a given Nimble file and lists its direct and transitive dependencies.
 The SBOM also contains a superset of the information in the Nix lockfile format, so the SBOM can also be used to generate Nim configuration files.</p>
 <p>See the local <a href="./sbom.json">sbom.json</a> file as an example.</p>
+<p>Nix can extract FOD paths from SBOMS in a similar manner to lockfiles.
+The <a href="./bom-to-nim-cfg.nix">bom-to-nim-cfg.nix</a> file demonstrates how to generate a Nim configuration that adds Nix store paths to the module lookup path.</p>
+<h2>Nimble emulation</h2>
+<p>Nimble is an interpreter that executes Nim code in <code>*.nimble</code> scripts and when that script sets some variables in the right way then you have a package description.</p>
+<p>This design is not even wrong as it allows packages to be described in arbitrary formats.</p>
+<p>The <a href="./nim_lk.nimble">nimble file</a> in this repository is a drop-in Nimble replacement for repositories that contain a <code>sbom.json</code> file.</p>
 </document>
             
         </div>
@@ -239,7 +246,7 @@ The SBOM also contains a superset of the information in the Nix lockfile format,
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-27T01:14:46Z
+        Builded at 2024-05-28T01:13:44Z
         </p>
       </div>
     </div>
