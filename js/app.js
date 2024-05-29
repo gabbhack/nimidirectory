@@ -33525,6 +33525,26 @@ const packages = [
     "description": "Easily create .gitignore files from your terminal",
     "license": "BSD-3-Clause",
     "web": "https://github.com/chrischtel/gitty"
+  },
+  {
+    "name": "libtray",
+    "url": "https://github.com/neroist/libtray",
+    "method": "git",
+    "tags": [
+      "wrapper",
+      "bindings",
+      "tray",
+      "libtray",
+      "windows",
+      "qt",
+      "linux",
+      "macos",
+      "gui"
+    ],
+    "description": "Wrapper for dmikushin/tray",
+    "license": "MIT",
+    "web": "https://github.com/neroist/libtray",
+    "doc": "https://neroist.github.io/libtray/libtray.html"
   }
 ]
 

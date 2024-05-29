@@ -112,6 +112,10 @@ versions may not work.</p>
 <h3>Advanced usage</h3>
 <p>For more examples demonstrating many functionalities and patterns that ZMQ offers, see the <code>tests/</code> and <code>examples/</code> folder.</p>
 <p>The examples are commented to better understand how zmq works.</p>
+<h3>Log EAGAIN errno</h3>
+<p>Sometimes EAGAIN error happens in ZMQ context; typically this is a non-ctritical error that can be ignored. Nonetheless, if you desire to log or display such error, it is possible to enable it using the <code>enableLogEagain</code> and disable it with <code>disableLogEagain</code>.</p>
+<h3>Setting default flag as DONTWAIT</h3>
+<p>The default flag passed to send / receive is NOFLAGS. This can be overriden by defining <code>-d:defaultFlagDontWait</code></p>
 </document>
             
         </div>
@@ -180,7 +184,7 @@ versions may not work.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-28T01:13:44Z
+        Builded at 2024-05-29T01:17:17Z
         </p>
       </div>
     </div>

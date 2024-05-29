@@ -127,7 +127,7 @@ $ markdown &lt; README.md &gt; README.html
 <pre>  <code class="language-bash">$ nimble test
 </code></pre>
 <p>Build document:</p>
-<pre>  <code class="language-bash">$ nim doc --project --git.url=https://github.com/soasme/nim-markdown --git.commit=v0.7.0 src/markdown.nim
+<pre>  <code class="language-bash">$ nim doc --project --git.url=https://github.com/soasme/nim-markdown --git.commit=v0.8.0 src/markdown.nim
 </code></pre>
 <p>The <a href="https://enqueuezero.com/markdown-parser.html">Markdown Parser</a> serves as a guidance on the implementation of <code>nim-markdown</code>, or in any generic programming language.</p>
 <h2>Roadmap</h2>
@@ -168,6 +168,7 @@ $ markdown &lt; README.md &gt; README.html
 <h2>ChangeLog</h2>
 <p>Released:</p>
 <ul>
+<li>v0.8.8, 29 May 2024, performance improvement: read more chars into Text. <a href="https://github.com/soasme/nim-markdown">#72</a>.</li>
 <li>v0.8.7, 25 Feb 2023, bugfix: allow whitespace and tab after code closing fence. <a href="https://github.com/soasme/nim-markdown/issues/64">#64</a>.</li>
 <li>v0.8.6, 9 Jul 2022, bugfix: export no internal procs.</li>
 <li>v0.8.5, 19 Mar 2021, bugfix: codespan might be empty. #42.</li>
@@ -265,7 +266,7 @@ $ markdown &lt; README.md &gt; README.html
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-28T01:13:44Z
+        Builded at 2024-05-29T01:17:17Z
         </p>
       </div>
     </div>
