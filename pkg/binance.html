@@ -87,34 +87,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>Binance API</h1>
-<p>  <em>This is still a work in progress, but you are welcome to contribute</em></p>
-<p>TODO:</p>
-<ul>
-<li>Withdrawal API</li>
-<li>Websocket streams</li>
-</ul>
-<h2>Installation</h2>
-<p>  <code>nimble install binance</code></p>
-<h2>Setup</h2>
-<p>Open a Binance account and create an API key.<br />
-Create two directories called <code>logs</code> and <code>keys</code> in the same directory where you&apos;ll be executing the program from. Inside <code>keys</code> create two files called <code>api.key</code> and <code>secret.key</code>. Save your generated API key in the former and you secret key in the latter.</p>
-<h2>Example</h2>
-<pre>  <code>import binance
-
-const apiKey = slurp(&quot;./keys/api.key&quot;)
-const secretKey = slurp(&quot;./keys/secret.key&quot;)
-let b = newBinanceApi(apiKey, secretKey)
-
-
-if b.ping():
-  echo &quot;The server is online.&quot;
-else:
-  echo &quot;The server is offline.&quot;
-</code></pre>
-<h2>Contributing</h2>
-<p>Please, do!</p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -182,7 +155,7 @@ else:
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-30T01:14:23Z
+        Builded at 2024-05-31T01:15:06Z
         </p>
       </div>
     </div>

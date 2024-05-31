@@ -130,7 +130,7 @@
 in for Tk. Instead, this is separated in <code>nimtk</code>, in which <code>Tk</code> only holds the Tcl
 interpreter, and <code>Root</code> is the root window. Below is common code in all of the
 examples:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="op">../</span><span class="ide">src</span><span class="op">/</span><span class="ide">nimtk</span><span class="op">/</span><span class="ide">all</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span></div></div><div class="line"><div class="line-content">  <span class="ide">tk</span> <span class="op">=</span> <span class="ide">newTk</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">root</span> <span class="op">=</span> <span class="ide">tk</span><span class="op">.</span><span class="ide">getRoot</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="op">...</span></div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimtk</span><span class="op">/</span><span class="ide">all</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span></div></div><div class="line"><div class="line-content">  <span class="ide">tk</span> <span class="op">=</span> <span class="ide">newTk</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">root</span> <span class="op">=</span> <span class="ide">tk</span><span class="op">.</span><span class="ide">getRoot</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="op">...</span></div></div>  </code></pre>
 <p>If you want to emulate tkinter&apos;s behavior with nimtk (for whatever reason?),
 <code>nimtk/tkinter</code> contains some converters which may be of use. <strong>Still discouraged
 though!</strong></p>
@@ -204,7 +204,7 @@ though!</strong></p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-30T01:14:23Z
+        Builded at 2024-05-31T01:15:06Z
         </p>
       </div>
     </div>
