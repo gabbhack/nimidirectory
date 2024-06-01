@@ -83,25 +83,57 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>GuildenStern</h1>
+                <document><h1>  <span style="color:red">VERSION 7, In progress</span></h1>
+<h1>GuildenStern</h1>
 <p>Modular multithreading Linux HTTP + WebSocket server</p>
 <h2>Example</h2>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># nim r --d:release --d:threadsafe thisexample</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cgi</span>, <span class="ide">strtabs</span>, <span class="ide">guildenstern</span><span class="op">/</span>[<span class="ide">dispatcher</span>, <span class="ide">httpserver</span>]</div></div><div class="line"><div class="line-content">     </div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handleGet</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">html</span> <span class="op">=</span> """
-    <!doctype html><title>GuildenStern Example</title><body>
-    <form action="http://localhost:5051" method="post" accept-charset="utf-8">
-    <input name="say" id="say" value="Hi"><button>Send"""</div></div><div class="line"><div class="line-content">  <span class="ide">reply</span>(<span class="ide">html</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handlePost</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">try</span>: <span class="ide">echo</span> <span class="ide">readData</span>(<span class="ide">getBody</span>())<span class="op">.</span><span class="ide">getOrDefault</span>(<span class="str">&quot;say&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">except</span>: (<span class="ide">reply</span>(<span class="ide">Http400</span>) ; <span class="kwd">return</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">reply</span>(<span class="ide">Http303</span>, [<span class="str">&quot;location: http://localhost:5050&quot;</span>])</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">getserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handleGet</span>)</div></div><div class="line"><div class="line-content"><span class="ide">getserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5050</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">postserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handlePost</span>)</div></div><div class="line"><div class="line-content"><span class="ide">postserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5051</span>)</div></div><div class="line"><div class="line-content"><span class="ide">joinThreads</span>(<span class="ide">getserver</span><span class="op">.</span><span class="ide">thread</span>, <span class="ide">postserver</span><span class="op">.</span><span class="ide">thread</span>)</div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># nim r --d:release --d:threadsafe thisexample</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cgi</span>, <span class="ide">guildenstern</span><span class="op">/</span>[<span class="ide">dispatcher</span>, <span class="ide">httpserver</span>]</div></div><div class="line"><div class="line-content">     </div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handleGet</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;method: &quot;</span>, <span class="ide">getMethod</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;uri: &quot;</span>, <span class="ide">getUri</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">isUri</span>(<span class="str">&quot;/favicon.ico&quot;</span>): <span class="ide">reply</span>(<span class="ide">Http204</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">html</span> <span class="op">=</span> """
+      <!doctype html><title>GuildenStern Example</title><body>
+      <form action="http://localhost:5051" method="post" accept-charset="utf-8">
+      <input name="say" value="Hi"><button>Send"""</div></div><div class="line"><div class="line-content">    <span class="ide">reply</span>(<span class="ide">html</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handlePost</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;client said: &quot;</span>, <span class="ide">readData</span>(<span class="ide">getBody</span>())<span class="op">.</span><span class="ide">getOrDefault</span>(<span class="str">&quot;say&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">reply</span>(<span class="ide">Http303</span>, [<span class="str">&quot;location: &quot;</span> <span class="op">&amp;</span> <span class="ide">http</span><span class="op">.</span><span class="ide">headers</span><span class="op">.</span><span class="ide">getOrDefault</span>(<span class="str">&quot;origin&quot;</span>)])</div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">getserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handleGet</span>, <span class="ide">contenttype</span> <span class="op">=</span> <span class="ide">NoBody</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">postserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handlePost</span>, <span class="ide">loglevel</span> <span class="op">=</span> <span class="ide">INFO</span>, <span class="ide">headerfields</span> <span class="op">=</span> [<span class="str">&quot;origin&quot;</span>])</div></div><div class="line"><div class="line-content"><span class="ide">getserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5050</span>)</div></div><div class="line"><div class="line-content"><span class="ide">postserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5051</span>, <span class="ide">threadpoolsize</span> <span class="op">=</span> <span class="num">200</span>, <span class="ide">maxactivethreadcount</span> <span class="op">=</span> <span class="num">20</span>)</div></div><div class="line"><div class="line-content"><span class="ide">joinThreads</span>(<span class="ide">getserver</span><span class="op">.</span><span class="ide">thread</span>, <span class="ide">postserver</span><span class="op">.</span><span class="ide">thread</span>)</div></div>  </code></pre>
 <h2>Documentation</h2>
-<p>https://olliniinivaara.github.io/GuildenStern/index.html</p>
-<p>  <a href="https://github.com/olliNiinivaara/GuildenStern/blob/master/docs/migration.md">migration guide</a></p>
+<h3>6.1.0 (latest official):</h3>
+<p>https://olliniinivaara.github.io/GuildenStern/6.1.0/index.html</p>
+<h3>7.0.0 (forthcoming):</h3>
+<p>https://olliniinivaara.github.io/GuildenStern/7.0.0/theindex.html</p>
 <h2>Installation</h2>
+<h3>6.1.0 (latest official):</h3>
 <p>atlas use GuildenStern</p>
-<h2>Release notes, 6.1.0 (2023-09-02)</h2>
+<h3>7.0.0 (forthcoming):</h3>
+<p>git clone https://github.com/olliNiinivaara/GuildenStern.git</p>
+<h2>Release notes, 7.0.0 (2024-06-??)</h2>
+<h3>StreamingServer has been merged to HttpServer</h3>
 <ul>
-<li>fixed nimble path</li>
-<li>fixed README example</li>
-<li>new receiveInChucks iterator in streamingserver for receiving big data, for example POST data that does not fit in main memory</li>
-<li>new startDownload-continueDownload-finishDownload combo in streamingserver for sending big and/or dynamic responses as <em>Transfer-Encoding: chunked</em></li>
-<li>new and upgraded streamingserver examples as required</li>
+<li><em>receiveInChunks</em> iterator renamed to <em>receiveStream</em></li>
+<li><em>maxrequestlength</em> renamed to <em>bufferlength</em></li>
+<li>newHttpServer does not anymore take <em>hascontent</em> parameter, but instead:</li>
+<li>newHttpServer takes <em>contenttype</em> parameter:
+<ul>
+<li><em>Compact</em> (the default mode): Equivalent to previous hasContent=true mode, where whole request body must fit into the buffer</li>
+<li><em>NoBody</em>: Equivalent to previous hasContent=false mode, for optimized handling of requests like GET that do not have a body</li>
+<li><em>Streaming</em>: Equivalent to previous StreamingServer, where you have to read the body yourself using the <em>receiveStream</em> iterator</li>
+</ul>
+</li>
+<li><em>startDownload-continueDownload-finishDownload</em> combo renamed to <em>replyStartChunked-replyContinueChunked-replyFinishChunked</em></li>
+</ul>
+<h3>Header processing streamlined</h3>
+<ul>
+<li><em>parseHeaders</em> and <em>parseAllHeaders</em> obsoleted</li>
+<li>newHttpServer takes <em>headerfields</em> parameter, listing header fields that you need</li>
+<li>in request handlers <em>http.headers</em> StringTableRef is automatically populated with needed header key-value pairs</li>
+</ul>
+<h3>New MultipartServer</h3>
+<ul>
+<li>handles <em>multipart/form-data</em> for you as neatly parsed</li>
+<li>operates in streaming manner, allowing huge uploads without blowing up RAM</li>
+</ul>
+<h3>Improvements to websockets</h3>
+<ul>
+<li>If you do not accept a connection (reply <em>false</em> in <em>upgradeCallback</em>), a HTTP 400 reply is now automatically sent before the socket is closed</li>
+<li>PONG is now automatically replied to PINGs, <em>sendPong</em> proc is removed</li>
+<li>default reply values changed, now <em>timeoutsecs</em> = 10, <em>sleepmillisecs</em> = 10</li>
+<li>if all in-flight receivers are blocking, now suspends for (<em>sleepmillisecs</em> * in-flight receiver count) milliseconds</li>
+<li>fixed <em>isMessage</em> bug</li>
 </ul>
 </document>
             
@@ -171,7 +203,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-05-31T01:15:06Z
+        Builded at 2024-06-01T01:19:01Z
         </p>
       </div>
     </div>

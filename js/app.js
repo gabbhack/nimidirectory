@@ -33545,6 +33545,20 @@ const packages = [
     "license": "MIT",
     "web": "https://github.com/neroist/libtray",
     "doc": "https://neroist.github.io/libtray/libtray.html"
+  },
+  {
+    "name": "shobiz",
+    "url": "https://github.com/logavanc/shobiz",
+    "method": "git",
+    "tags": [
+      "cli",
+      "logging",
+      "structured",
+      "json"
+    ],
+    "description": "Simple structured console messages for Nim applications.",
+    "license": "MIT",
+    "web": "https://github.com/logavanc/shobiz"
   }
 ]
 
