@@ -128,29 +128,31 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><div align="center">
+<p>  <img src="https://raw.githubusercontent.com/webui-dev/webui-logo/main/webui_240.png" style="max-width: 100%;" alt="Logo" /></p>
 <h1>WebUI Nim</h1>
-<!--  [release-version]: https://img.shields.io/github/v/tag/webui-dev/go-webui?style=for-the-badge&amp;logo=webtrees&amp;logoColor=C0CAF5&amp;labelColor=414868&amp;color=7664C6  -->
-<!--  [![][build-status]](https://github.com/webui-dev/go-webui/actions?query=branch%3Amain)  -->
-<p>  <a href="https://github.com/webui-dev/nim-webui/pulse">    <img src="https://img.shields.io/github/last-commit/webui-dev/nim-webui?style=for-the-badge&amp;logo=github&amp;logoColor=C0CAF5&amp;labelColor=414868" style="max-width: 100%;" alt="" />  </a></p>
-<!--  [![][release-version]](https://github.com/webui-dev/go-webui/releases/latest)  -->
-<p>  <a href="https://github.com/webui-dev/nim-webui/blob/main/LICENSE">    <img src="https://img.shields.io/github/license/webui-dev/nim-webui?style=for-the-badge&amp;logo=opensourcehardware&amp;label=License&amp;logoColor=C0CAF5&amp;labelColor=414868&amp;color=8c73cc" style="max-width: 100%;" alt="" />  </a></p>
+<!--  [build-status]: https://img.shields.io/github/actions/workflow/status/webui-dev/webui-nim/ci.yml?branch=main&amp;style=for-the-badge&amp;logo=githubactions&amp;labelColor=414868&amp;logoColor=C0CAF5  -->
+<!--  [![][build-status]](https://github.com/webui-dev/webui-nim/actions?query=branch%3Amain)  -->
+<p><a href="https://github.com/webui-dev/nim-webui/pulse">  <img src="https://img.shields.io/github/last-commit/webui-dev/nim-webui?style=for-the-badge&amp;logo=github&amp;logoColor=C0CAF5&amp;labelColor=414868" style="max-width: 100%;" alt="" /></a>
+<a href="https://github.com/webui-dev/nim-webui/releases/latest">  <img src="https://img.shields.io/github/v/tag/webui-dev/nim-webui?style=for-the-badge&amp;logo=webtrees&amp;logoColor=C0CAF5&amp;labelColor=414868&amp;color=7664C6" style="max-width: 100%;" alt="" /></a>
+<a href="https://github.com/webui-dev/nim-webui/blob/main/LICENSE">  <img src="https://img.shields.io/github/license/webui-dev/nim-webui?style=for-the-badge&amp;logo=opensourcehardware&amp;label=License&amp;logoColor=C0CAF5&amp;labelColor=414868&amp;color=8c73cc" style="max-width: 100%;" alt="" /></a></p>
 <blockquote>
-<p>WebUI is not a web-server solution or a framework, but it allows you to use any web browser as a GUI, with Nim in the backend and HTML5 in the frontend. All in a lightweight portable lib.</p>
+<p>Use any web browser or WebView as GUI, with Nim in the backend and modern web technologies in the frontend, all in a lightweight portable lib.</p>
 </blockquote>
 <!-- 
 Nim wrapper and bindings for [WebUI](https://github.com/webui-dev/webui), a fully independent and cross-platform web UI library.
 
-Instead of using a third-party library, WebUI instead uses a pre-installed browser (Edge, Firefox, Chrome, Chromium, or Safari). So, there&apos;s no need for any large SDK or library for development/production, all you need is a web browser!
+Instead of using a third-party library, WebUI instead uses a pre-installed browser (Edge, Firefox, Chrome, Chromium, or Safari). So, there&apos;s no need for any large SDK or library for development/production, all you need is a web browser (or a webview, if you&apos;re into that)!
  -->
-<p>  <img src="https://raw.githubusercontent.com/malisipi/vwebui/main/screenshot.png" style="max-width: 100%;" alt="Image" /></p>
+<p>  <img src="https://github.com/webui-dev/webui/assets/16948659/39c5b000-83eb-4779-a7ce-9769d3acf204" style="max-width: 100%;" alt="Screenshot" /></p>
 </div>
 <h2>Features</h2>
 <ul>
-<li>Fully Independent (<em>No need for any third-party library</em>)</li>
-<li>Lightweight (<em>~600 Kb</em> (<em>300 Kb when compiling with DLL</em>)) &amp; Small memory footprint</li>
-<li>Fast binary communication protocol between WebUI and the browser (<em>Instead of JSON</em>)</li>
+<li>Fully Independent (<em>Only needs a web browser or a WebView at runtime</em>)</li>
+<li>Lightweight &amp; Small memory footprint</li>
+<li>Fast binary communication protocol between WebUI and the browser</li>
 <li>Multi-platform &amp; Multi-Browser</li>
 <li>Using private profile for safety</li>
+<li>Cross-platform WebView</li>
 </ul>
 <h2>Screenshot</h2>
 <p>This <a href="https://github.com/neroist/webui/tree/main/examples/text_editor">text editor example</a> is written in Nim using WebUI as the GUI library.</p>
@@ -165,7 +167,7 @@ Instead of using a third-party library, WebUI instead uses a pre-installed brows
 <li>  <a href="https://webui.me/docs/2.4.0/#/nim_api">https://webui.me/docs/2.4.0/#/nim_api</a></li>
 <li><a href="https://neroist.github.io/webui-docs/">https://neroist.github.io/webui-docs/</a> (same thing but made in nimib)</li>
 </ul>
-<p>There isn&apos;t much documentation as of right now, so I suggest to get started using some <a href="#examples">examples</a> or WebUI&apos;s own <a href="https://github.com/webui-dev/webui/tree/main/examples">examples</a> or <a href="https://webui.me/docs/">documentation</a>.</p>
+<p>I suggest to get started using some <a href="#examples">examples</a> or WebUI&apos;s own <a href="https://github.com/webui-dev/webui/tree/main/examples">examples</a> or <a href="https://webui.me/docs/">documentation</a>.</p>
 <p>Heres a very <a href="examples/minimal.nim">  <em>minimal</em></a> example of using the wrapper:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">webui</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">window</span> <span class="op">=</span> <span class="ide">newWindow</span>() <span class="com"># Create a new Window</span></div></div><div class="line"><div class="line-content"><span class="ide">window</span><span class="op">.</span><span class="ide">show</span>(<span class="str">&quot;&lt;html&gt;Hello&lt;/html&gt;&quot;</span>) <span class="com"># Show the window with html content</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">wait</span>() <span class="com"># Wait until the window gets closed</span></div></div>  </code></pre>
 <h3>Examples</h3>
@@ -188,6 +190,71 @@ compiler, static compilation will take place instead. Static libraries and DLLs 
 be found in WebUI&apos;s website <a href="https://webui.me/#download">here</a>.</p>
 <p>In addition, you can also enable WebUI&apos;s logging via <code>-d:webuiLog</code> but that flag
 only works for static compilation.</p>
+<h2>Other Wrappers/Bindings</h2>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Status</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/go-webui">Go-WebUI</a></td>
+</tr>
+<tr>
+<td>Nim</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/nim-webui">Nim-WebUI</a></td>
+</tr>
+<tr>
+<td>Pascal</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/pascal-webui">Pascal-WebUI</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/python-webui">Python-WebUI</a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/rust-webui">Rust-WebUI</a></td>
+</tr>
+<tr>
+<td>TypeScript / JavaScript</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/deno-webui">Deno-WebUI</a></td>
+</tr>
+<tr>
+<td>V</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/v-webui">V-WebUI</a></td>
+</tr>
+<tr>
+<td>Zig</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/webui-dev/zig-webui">Zig-WebUI</a></td>
+</tr>
+<tr>
+<td>Odin</td>
+<td>  <em>not complete</em></td>
+<td>  <a href="https://github.com/webui-dev/odin-webui">Odin-WebUI</a></td>
+</tr>
+<tr>
+<td>Delphi</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/salvadordf/WebUI4Delphi">WebUI4Delphi</a></td>
+</tr>
+<tr>
+<td>QuickJS</td>
+<td>✔️</td>
+<td>  <a href="https://github.com/xland/QuickUI">QuickUI</a></td>
+</tr></tbody></table>
 <h2>Supported Web Browsers</h2>
 <table>
 <thead>
@@ -258,6 +325,27 @@ only works for static compilation.</p>
 <td>  <em>coming soon</em></td>
 <td>  <em>coming soon</em></td>
 <td>  <em>coming soon</em></td>
+</tr></tbody></table>
+<h2>Supported WebView Platforms</h2>
+<table>
+<thead>
+<tr>
+<th>WebView</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows WebView2</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>Linux GTK WebView</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>macOS WKWebView</td>
+<td>✔️</td>
 </tr></tbody></table>
 <h2>License</h2>
 <p>MIT License. See <a href="LICENSE">LICENSE</a></p>
@@ -333,7 +421,7 @@ only works for static compilation.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-01T01:19:01Z
+        Builded at 2024-06-02T01:19:11Z
         </p>
       </div>
     </div>

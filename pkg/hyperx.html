@@ -124,6 +124,10 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
 <blockquote>
 <p>Nim +2.0</p>
 </blockquote>
+<h2>Requirements</h2>
+<ul>
+<li>OpenSSL</li>
+</ul>
 <h2>Client</h2>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># this define needs to be in the main nim file</span></div></div><div class="line"><div class="line-content"><span class="com"># or pass it as a compiler parameter `-d:ssl`</span></div></div><div class="line"><div class="line-content"><span class="com"># or define it in the nim.cfg file</span></div></div><div class="line"><div class="line-content">{<span class="op">.</span><span class="ide">define</span>: <span class="ide">ssl</span><span class="op">.</span>}</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">std</span><span class="op">/</span><span class="ide">asyncdispatch</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">pkg</span><span class="op">/</span><span class="ide">hyperx</span><span class="op">/</span><span class="ide">client</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">main</span>() {<span class="op">.</span><span class="ide">async</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">client</span> <span class="op">=</span> <span class="ide">newClient</span>(<span class="str">&quot;www.google.com&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">withClient</span>(<span class="ide">client</span>):</div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">queries</span> <span class="op">=</span> [</div></div><div class="line"><div class="line-content">      <span class="str">&quot;john+wick&quot;</span>,</div></div><div class="line"><div class="line-content">      <span class="str">&quot;winston&quot;</span>,</div></div><div class="line"><div class="line-content">      <span class="str">&quot;ms+perkins&quot;</span></div></div><div class="line"><div class="line-content">    ]</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">tasks</span> <span class="op">=</span> <span class="ide">newSeq</span>[<span class="ide">Future</span>[<span class="ide">Response</span>]]()</div></div><div class="line"><div class="line-content">    <span class="kwd">for</span> <span class="ide">q</span> <span class="kwd">in</span> <span class="ide">queries</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">tasks</span><span class="op">.</span><span class="ide">add</span> <span class="ide">client</span><span class="op">.</span><span class="ide">get</span>(<span class="str">&quot;/search?q=&quot;</span> <span class="op">&amp;</span> <span class="ide">q</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">responses</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">all</span>(<span class="ide">tasks</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">for</span> <span class="ide">r</span> <span class="kwd">in</span> <span class="ide">responses</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">doAssert</span> <span class="str">&quot;:status: 200&quot;</span> <span class="kwd">in</span> <span class="ide">r</span><span class="op">.</span><span class="ide">headers</span></div></div><div class="line"><div class="line-content">      <span class="ide">doAssert</span> <span class="str">&quot;doctype&quot;</span> <span class="kwd">in</span> <span class="ide">r</span><span class="op">.</span><span class="ide">text</span></div></div><div class="line"><div class="line-content"><span class="ide">waitFor</span> <span class="ide">main</span>()</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;ok&quot;</span></div></div>  </code></pre>
 <h2>Server</h2>
@@ -136,6 +140,16 @@ to generate mine. Idk if there is an easier way to try this.</p>
 debugging messages</p>
 <pre>  <code>nim c -r -d:hyperxDebug client.nim
 </code></pre>
+<h2>FAQ</h2>
+<h3>What if I need to serve http/1 and http/3 traffic?</h3>
+<p>You may use a reverse proxy such a <a href="https://github.com/caddyserver/caddy">Caddy</a> or a cloud offering such as AWS ALB for this. There are many ways to enumerate them all, but basically look for a service that can receive http/1, 2, 3 traffic and forward it as http/2.</p>
+<h3>Is data streaming supported?</h3>
+<p>Yes. Both server and client support data streaming. See the examples.</p>
+<h3>Can I use http/2 in place of WebSockets?</h3>
+<p>If you don&apos;t need to serve web-browsers, then yes. Http/2 allows full-duplex data communication over a single stream. Web-browsers only support half-duplex streaming <a href="https://github.com/whatwg/fetch/issues/1254">for whatever reason</a>.</p>
+<p>If you need to support web-browsers it gets tricky for some use cases, as you need to do two fetches, one to stream the request, one to stream the response, and something like an ID in the URL so the server can associate both streams.</p>
+<h3>Are there benchmarks?</h3>
+<p>The CI runs h2load on it, but it only starts a single server instance. Proper bench-marking would start a server per CPU, and run a few combinations of load. To save you the trip, the CI results show around 30K requests/s.</p>
 <h2>LICENSE</h2>
 <p>MIT</p>
 </document>
@@ -206,7 +220,7 @@ debugging messages</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-01T01:19:01Z
+        Builded at 2024-06-02T01:19:11Z
         </p>
       </div>
     </div>
