@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">chagashi</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">encoding</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">charset</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">encode</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">decode</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">Implementation of the WHATWG-specified text encoders and decoders</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install chagashi" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Chagashi: a Nim implementation of the WHATWG encoding standard</h1>
+<p>Chagashi is a Nim text encoding/decoding library in compliance with the WHATWG
+standards for <a href="https://sr.ht/~bptato/chawan">Chawan</a>.</p>
+<h2>Minimal example</h2>
+<p>Note that this uses the high-level interface, which is rather inefficient. For
+most use-cases, encodercore, decodercore and validatorcore are preferable (and
+much faster).</p>
+<pre>  <code class="language-Nim"><div class="line"><div class="line-content"><span class="com"># Makeshift iconv (without error handling for invalid parameters).</span></div></div><div class="line"><div class="line-content"><span class="com"># Usage: nim r whatever.nim -f fromCharset -t toCharset &lt;infile.txt &gt;outfile.txt</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">std</span><span class="op">/</span><span class="ide">os</span>, <span class="ide">chagashi</span><span class="op">/</span>[<span class="ide">encoder</span>, <span class="ide">decoder</span>, <span class="ide">charset</span>, <span class="ide">validator</span>]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">fromCharset</span> <span class="op">=</span> <span class="ide">CHARSET_UTF_8</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">toCharset</span> <span class="op">=</span> <span class="ide">CHARSET_UTF_8</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">i</span> <span class="kwd">in</span> <span class="num">1.</span><span class="op">.</span><span class="ide">paramCount</span>():</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">paramStr</span>(<span class="ide">i</span>) <span class="op">==</span> <span class="str">&quot;-f&quot;</span>: <span class="ide">fromCharset</span> <span class="op">=</span> <span class="ide">getCharset</span>(<span class="ide">paramStr</span>(<span class="ide">i</span> <span class="op">+</span> <span class="num">1</span>))</div></div><div class="line"><div class="line-content">  <span class="kwd">elif</span> <span class="ide">paramStr</span>(<span class="ide">i</span>) <span class="op">==</span> <span class="str">&quot;-t&quot;</span>: <span class="ide">toCharset</span> <span class="op">=</span> <span class="ide">getCharset</span>(<span class="ide">paramStr</span>(<span class="ide">i</span> <span class="op">+</span> <span class="num">1</span>))</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">fromCharset</span> <span class="op">!=</span> <span class="ide">CHARSET_UNKNOWN</span> <span class="kwd">and</span> <span class="ide">toCharset</span> <span class="op">!=</span> <span class="ide">CHARSET_UNKNOWN</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">ins</span> <span class="op">=</span> <span class="ide">stdin</span><span class="op">.</span><span class="ide">readAll</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">insDecoded</span> <span class="op">=</span> <span class="kwd">if</span> <span class="ide">fromCharset</span> <span class="op">==</span> <span class="ide">CHARSET_UTF_8</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">ins</span><span class="op">.</span><span class="ide">toValidUTF8</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">newTextDecoder</span>(<span class="ide">fromCharset</span>)<span class="op">.</span><span class="ide">decodeAll</span>(<span class="ide">ins</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">insEncoded</span> <span class="op">=</span> <span class="kwd">if</span> <span class="ide">toCharset</span> <span class="op">==</span> <span class="ide">CHARSET_UTF_8</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">insDecoded</span></div></div><div class="line"><div class="line-content"><span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">newTextEncoder</span>(<span class="ide">toCharset</span>)<span class="op">.</span><span class="ide">encodeAll</span>(<span class="ide">insDecoded</span>)</div></div><div class="line"><div class="line-content"><span class="ide">stdout</span><span class="op">.</span><span class="ide">write</span>(<span class="ide">insEncoded</span>)</div></div>  </code></pre>
+<h2>Q&amp;A</h2>
+<p>Q: What encodings does Chagashi support?</p>
+<p>A: All the ones you can find on
+<a href="https://encoding.spec.whatwg.org/">https://encoding.spec.whatwg.org/</a>, no
+more and no less.</p>
+<p>Q: What is the intermediate format?</p>
+<p>A: UTF-8, because it is the native encoding of Nim. In general, you can just
+take whatever non-UTF-8 string you want to decode, pass it to the decoder, and
+use the result immediately.</p>
+<p>Q: Is it correct?</p>
+<p>A: At the moment, Chagashi only uses memory-safe operations, so at the very
+least it cannot have memory errors.</p>
+<p>Testing is still somewhat inadequate: many single-byte encodings are not
+tested yet, and we do not have fuzzing either. This will be improved over time.</p>
+<p>Q: Is it fast?</p>
+<p>A: Reduced code size and/or complexity is generally preferred to performance.
+However, it is still reasonably fast in the most common cases.</p>
+<p>To check whether it is fast enough for your needs, you can try something like</p>
+<pre>  <code>$ BENCH_FILE=my_test_file BENCH_CHARSET=SomeCharset BENCH_ITER=10000 make bench
+</code></pre>
+<p>If you need better performance, feel free to complain in the
+<a href="https://todo.sr.ht/~bptato/chawan">tickets</a> with a specific input and I may
+look into it. Patches are welcome, too.</p>
+<p>Q: How do I decode UTF-8?</p>
+<p>A: Obviously you can&apos;t decode UTF-8 into UTF-8; therefore there is no
+<code>TextDecoderUTF8</code> type either, and calling <code>newTextDecoder</code> with the UTF-8
+charset will panic.</p>
+<p>Instead, use the <code>TextValidatorUTF8</code> object (in chagashi/validatorcore &amp;
+chagashi/validator) and its <code>validate</code> function. This works almost exactly like
+TextDecoder, except it does not copy anything; it just goes through the input
+stream, reports the number of valid characters read in the <code>n</code> variable, and
+returns tdrError on error.</p>
+<p>Q: How do I encode UTF-8?</p>
+<p>A: You have to make sure that the UTF-8 you are passing to the encoder is at
+least valid <em>WTF-8</em>. The encoder will convert surrogate codepoints to
+replacement characters, but it <em>does not</em> validate the input byte stream.</p>
+<p>To validate your input, you can run <code>validateUtf8()</code> from <code>std/unicode</code>, or the
+aforementioned <code>TextValidatorUTF8.validate()</code>.</p>
+<p>Q: Why no UTF-16 encoder?</p>
+<p>A: It&apos;s not specified in the encoding standard, and I don&apos;t need one. Maybe try
+std/encodings.</p>
+<p>Q: Why replace your previous character decoding library?</p>
+<p>A: It suffered from lots of serious problems:</p>
+<ul>
+<li>Its intermediate format is UTF-32, which makes the common use-case (decoding
+from/to UTF-8) rather inefficient.</li>
+<li>It requires copying of the input buffer, another source of inefficiency. It
+does that with non-memory-safe operations, too.</li>
+<li>It&apos;s based on std/streams, which is a pull-based interface: you give it a data
+source, then take whatever data you need. This works so long as you don&apos;t mind
+blocking, but gets unusable for asynchronous text decoding. Chakasu did have
+somewhat of a non-blocking interface too, but it&apos;s a kludge and requires even
+more copying.</li>
+</ul>
+<p>The readme did say &quot;no stable API&quot;, but if I&apos;m going to completely re-design
+the interface, I might as well make it a new library.</p>
+<p>Q: I don&apos;t believe you.</p>
+<p>A: OK, here&apos;s the real reason: it annoyed me that its name was a verb.</p>
+<h2>Thanks</h2>
+<p>To the standard authors for writing a detailed, easy to implement specification.</p>
+<p>Chagashi&apos;s multibyte test files (test/data.tar.xz) were borrowed from Henri
+Sivonen&apos;s excellent <a href="https://github.com/hsivonen/encoding_rs">encoding_rs</a>
+library.</p>
+<h2>License</h2>
+<p>Chagashi is dedicated to the public domain. See the UNLICENSE file for details.</p>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        Unlicense
+                    </p>
+                
+
+                
+                    <p> <a href="https://git.sr.ht/~bptato/chagashi">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-06-05T01:14:58Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
