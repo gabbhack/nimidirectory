@@ -87,27 +87,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>This repo is abandoned and archived, no further support is expected</h1>
-<p>I really made this library as a quick test of Nim&apos;s term-rewriting macros. Nim&apos;s term-rewriting macros are powerful, but they have their limitations, and there are also some compiler bugs that simply cannot be worked-around in this library (most open issues at the time of writing hit that). Moreover, I&apos;ve noticed that people who write offensive infosec tools started using strenc. I&apos;m pretty sure that some people who used this library for straight up malware. If you wish to try to continue its development further - feel free to fork, but that&apos;ll probably require fixing the relevant TRM parts of the Nim compiler.</p>
-<h1>nim-strenc</h1>
-<p>This is a Nim library for automatic encryption (currently via XOR with a different key for each string generated at compile-time) of string literals.
-You can install it from Nimble via</p>
-<pre>  <code class="language-sh">nimble install strenc
-</code></pre>
-<p>and then just use it like so:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">strenc</span></div></div><div class="line"><div class="line-content"><span class="com"># After importing the module you don&apos;t have to do anything else to activate encryption</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;hello world&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;how are you?&quot;</span></div></div>  </code></pre>
-<p>In the compiled C code strings will look like this:</p>
-<pre>  <code class="language-c"><div class="line"><div class="line-content"><span class="ide">STRING_LITERAL</span>(<span class="ide">TM__huvhZYSc4ExMXNTyiw83eQ_2</span>, <span class="str">&quot;!+# </span>\"r$\?<span class="str">#:3&quot;</span>, <span class="num">11</span>);</div></div><div class="line"><div class="line-content"><span class="ide">STRING_LITERAL</span>(<span class="ide">TM__huvhZYSc4ExMXNTyiw83eQ_3</span>, <span class="str">&quot;qul&lt;|lz0h}f+&quot;</span>, <span class="num">12</span>);</div></div>  </code></pre>
-<p>If you wish to disable all hints for places where the encryption was applied, add <code>hint(&quot;Pattern&quot;, false)</code>
-to your <code>.nims</code> config file, or, if you use <code>.cfg</code>, <code>--hint[Pattern]:off</code></p>
-<h3>Please do not forget to strip your binaries if you want this library to be useful! Otherwise it&apos;ll be much easier to find the code which does string decryption.</h3>
-<h2>How does it work?</h2>
-<p>This library uses one of the lesser known Nim features - term-rewriting macros. They allow to implicitly <em>rewrite</em> code at compile-time by using different kinds of patterns. You can read more <a href="https://nim-lang.org/docs/manual_experimental.html#term-rewriting-macros">in the manual here</a>.</p>
-<h2>Why?</h2>
-<p>Because it&apos;s fun and this library can actually help you to protect string data in the application from
-not-so-experienced &quot;haxxors&quot;.</p>
-<h3>Do not forget that a person with enough programming and/or reverse-engineering knowledge will still be able to get the original content of all encrypted strings!</h3>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -175,7 +155,7 @@ not-so-experienced &quot;haxxors&quot;.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-07T01:17:21Z
+        Builded at 2024-06-08T01:15:08Z
         </p>
       </div>
     </div>
