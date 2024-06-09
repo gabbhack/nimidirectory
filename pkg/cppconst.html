@@ -99,6 +99,9 @@ const int* foo() {
 <p>The type <code>CConst</code> cannot be normally instantiated or used as a parameter type or return type. Only the pointers can. Such as <code>ptr CConst[T]</code> (corresponding to C++ <code>const T*</code>), <code>ptr ptr CConst[T]</code> (<code>const T**</code>), <code>ptr CConst[ptr T]</code> (<code>T * const*</code>) and <code>ptr CConst[ptr CConst[T]]</code> (<code>const T * const*</code>); the outmost level must not be <code>CConst</code> (or <code>CConst[ptr]</code>).</p>
 </li>
 <li>
+<p>This distinguishes between levels of constness (very strictly); between that of a pointer and of a pointee (for ensuring the most compatibility with C++). Basically, what wouldn&apos;t be allowed in C++ is not allowed.</p>
+</li>
+<li>
 <p>The recommend (though not required) version of the compiler to be used with this is 1.2.0 or later. The backend C++ compiler has to at least support C++11 or later.</p>
 </li>
 </ul>
@@ -170,7 +173,7 @@ const int* foo() {
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-08T01:15:08Z
+        Builded at 2024-06-09T01:21:45Z
         </p>
       </div>
     </div>

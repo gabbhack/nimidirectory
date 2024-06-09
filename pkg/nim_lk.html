@@ -161,9 +161,11 @@ NIM_LOCK_EXCLUDES += &quot;foobar&quot;
 # Generate nim.cfg.
 : lock.json |&gt; !nim_cfg |&gt; | ./&lt;lock&gt;
 
-# Build some Nim.
-: foreach *.nim | ./&lt;lock&gt; |&gt; nim c -o:%o %f |&gt; %B
+# Generate some build rules using JQ.
+run ./Tuprules.jq sbom.json
 </code></pre>
+<h3>Tuprules.jq</h3>
+<p>See ./<a href="./Tuprules.jq">Tuprules.jq</a> for an example JQ script that generates Tup build rules from an SBOM.</p>
 <h2>Nimble to CycloneDX SBOM</h2>
 <pre>  <code class="language-sh">cd «Nim project with a Nimble file»
 nim_lk nimble-to-sbom &gt; sbom.json
@@ -246,7 +248,7 @@ The <a href="./bom-to-nim-cfg.nix">bom-to-nim-cfg.nix</a> file demonstrates how 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-08T01:15:08Z
+        Builded at 2024-06-09T01:21:45Z
         </p>
       </div>
     </div>
