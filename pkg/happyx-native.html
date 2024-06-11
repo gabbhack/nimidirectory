@@ -120,8 +120,8 @@
 </code></pre>
 <h2>Features</h2>
 <ul>
-<li>Support for Chrome/Yandex/Edge browsers;</li>
-<li>Support for Android;</li>
+<li>Support for Chrome/Yandex/Edge browsers &amp; Webview</li>
+<li>Support for Android</li>
 </ul>
 <h2>Project Initialization</h2>
 <p>To init project you should use this command:</p>
@@ -167,7 +167,7 @@ If you want to disable some architectures then use:</p>
 | armeabi-v7a  | <code>--no-armeabi-v7a</code> |
 | arm64-v8a    | <code>--no-arm64-v8a</code>   |</p>
 <p>If you doesn&apos;t want to use gradle building then use</p>
-<pre>  <code class="language-shel">hpx-native build --target android --no-gradle
+<pre>  <code class="language-shell">hpx-native build --target android --no-gradle
 </code></pre>
 <p>This command will build only <code>.so</code> libraries.</p>
 <h3>Building Assets</h3>
@@ -176,6 +176,14 @@ If you want to disable some architectures then use:</p>
 <blockquote>
 <p>This option can be disabled via <code>--no-build-assets</code></p>
 </blockquote>
+<h3>Webview Notes</h3>
+<p>When building with <code>-d:webview</code>, on Windows, you may notice that the window icon is not set
+for you. This is due to a limitation within Happyx Native, that will be resolved in the
+future. Currently, you may manually link in your desired window icon, like how is done in
+<a href="https://github.com/neroist/webview/tree/main/examples/example_application/windows">https://github.com/neroist/webview/tree/main/examples/example_application/windows</a>.</p>
+<p>In addition, Webview does not currently support window positioning
+(see <a href="https://github.com/webview/webview/issues/642">https://github.com/webview/webview/issues/642</a>), so the <code>x</code> and <code>y</code> arguments passed to
+<code>nativeApp</code> will be ignored.</p>
 <h2>Browsers</h2>
 <p>If you want choose other browser instead of default - use these flags:</p>
 <table>
@@ -201,6 +209,10 @@ If you want to disable some architectures then use:</p>
 <tr>
 <td align="center">Yandex</td>
 <td align="center">  <code>-d:yandex</code></td>
+</tr>
+<tr>
+<td align="center">Webview</td>
+<td align="center">  <code>-d:webview</code></td>
 </tr></tbody></table>
 </document>
             
@@ -270,7 +282,7 @@ If you want to disable some architectures then use:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-10T01:17:53Z
+        Builded at 2024-06-11T01:16:29Z
         </p>
       </div>
     </div>
