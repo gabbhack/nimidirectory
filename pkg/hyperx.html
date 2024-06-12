@@ -148,6 +148,7 @@ debugging messages</p>
 <h3>Backpressure</h3>
 <p>Backpressure is based on the http2 spec flow-control. The amount of data a connection can process at a time is bounded by the flow-control window size. The initial window size is set to 256KB. Not calling recv in time will buffer up to window size of data.</p>
 <p>The window size can be set using the <code>hyperxWindowSize</code> define. For example <code>-d:hyperxWindowSize:65536</code> will set the size to the http/2 spec default of 64KB. Setting a window smaller than 64KB is not well supported.</p>
+<p>There is built-in backpressure based on bounded queues for the rest of non-data frames.</p>
 <h3>Using http/2 in place of WebSockets</h3>
 <p>Http/2 allows full-duplex data communication over a single stream. If you plan to only ever use this client and server, you won&apos;t need websockets.</p>
 <p>Web-browsers only support half-duplex streaming <a href="https://github.com/whatwg/fetch/issues/1254">for whatever reason</a>, though.</p>
@@ -224,7 +225,7 @@ debugging messages</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-11T01:16:29Z
+        Builded at 2024-06-12T01:16:33Z
         </p>
       </div>
     </div>
