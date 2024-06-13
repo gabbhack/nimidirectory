@@ -33634,6 +33634,40 @@ const packages = [
     "description": "High-level wrapper for QuickJS",
     "license": "MIT & Unlicense",
     "web": "https://git.sr.ht/~bptato/monoucha"
+  },
+  {
+    "name": "libcapstone",
+    "url": "https://github.com/m4ul3r/libcapstone-nim",
+    "method": "git",
+    "tags": [
+      "capstone",
+      "disassembly",
+      "disassembler",
+      "library",
+      "futhark",
+      "wrapper"
+    ],
+    "description": "Futhark generated wrapper around libcapstone",
+    "license": "MIT",
+    "web": "https://github.com/m4ul3r/libcapstone-nim"
+  },
+  {
+    "name": "libunicorn",
+    "url": "https://github.com/m4ul3r/libunicorn-nim",
+    "method": "git",
+    "tags": [
+      "unicorn",
+      "unicorn-engine",
+      "enumlation",
+      "cpu-emulator",
+      "security",
+      "library",
+      "futhark",
+      "wrapper"
+    ],
+    "description": "Futhark generated wrapper around unicorn-engine",
+    "license": "MIT",
+    "web": "https://github.com/m4ul3r/libunicorn-nim"
   }
 ]
 
