@@ -184,14 +184,17 @@ the exceptions to &quot;dwarf&quot; on 32-bit and &quot;seh&quot; on 64-bit. Cha
 installation directory to &quot;C:\mingw-w64&quot; and add it to your system PATH in &quot;My
 Computer&quot;/&quot;This PC&quot; -&gt; Properties -&gt; Advanced system settings -&gt; Environment
 Variables -&gt; Path -&gt; Edit -&gt; New -&gt; C:\mingw-w64\mingw64\bin (it&apos;s &quot;C:\mingw-w64\mingw32\bin&quot; on 32-bit)</p>
-<p>Install <a href="https://gitforwindows.org/">Git for Windows</a> and use a &quot;Git Bash&quot; shell to clone and build Nimbus.</p>
+<p>Install <a href="https://gitforwindows.org/">Git for Windows</a> and use it to clone Nimbus.</p>
 <p>Install <a href="https://cmake.org/">cmake</a>.</p>
-<p>If you don&apos;t want to compile RocksDB and SQLite separately, you can fetch pre-compiled DLLs with:</p>
-<pre>  <code class="language-bash">mingw32-make fetch-dlls # this will place the right DLLs for your architecture in the &quot;build/&quot; directory
+<p>After adding the Git bin directory to your path open a &quot;Git Bash&quot; shell:</p>
+<pre>  <code class="language-bash">bash
 </code></pre>
-<p>You can now follow those instructions in the previous section by replacing <code>make</code> with <code>mingw32-make</code> (regardless of your 32-bit or 64-bit architecture):</p>
-<pre>  <code class="language-bash">mingw32-make nimbus # build the Nimbus binary
-mingw32-make test # run the test suite
+<p>After installing Mingw-w64 and adding it to your path you should have the <code>mingw32-make</code> tool available. Next create a link from <code>make</code> to <code>mingw32-make</code>:</p>
+<pre>  <code class="language-bash">ln -s mingw32-make.exe make.exe
+</code></pre>
+<p>You can now follow those instructions in the previous section. For example:</p>
+<pre>  <code class="language-bash">make nimbus # build the Nimbus binary
+make test # run the test suite
 # etc.
 </code></pre>
 <h4>Raspberry PI</h4>
@@ -501,7 +504,7 @@ make update
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-13T01:15:50Z
+        Builded at 2024-06-14T01:15:56Z
         </p>
       </div>
     </div>

@@ -90,7 +90,9 @@
                 <document><h1>Chame: an HTML5 parser library in Nim</h1>
 <h2>Usage</h2>
 <p>Include Chame in your project using either Nimble or as a git submodule.</p>
-<pre>  <code>requires &quot;chame&quot;
+<pre>  <code>requires &quot;chame &gt;= 1.0.0&quot;
+# optional, if you want support for charsets other than UTF-8
+requires &quot;chagashi &gt;= 0.5.0&quot;
 </code></pre>
 <p>Then, check the <a href="https://chawan.net/doc/chame/">documentation</a> for a
 description of the API.</p>
@@ -99,7 +101,8 @@ description of the API.</p>
 <ul>
 <li>Almost full compliance with the WHATWG standard. (Except for the few missing
 features listed in the following section.)</li>
-<li>Passes all tokenizer and tree builder tests in html5lib-tests<a href="Except">^1</a></li>
+<li>Passes all tokenizer and tree builder tests in html5lib-tests (except for the
+JS ones)</li>
 <li>Includes a minimal DOM implementation</li>
 <li>No mandatory dependencies other than the Nim standard library</li>
 <li>Optional character encoding support (see <a href="chame/minidom_cs.nim">minidom_cs</a>)</li>
@@ -108,20 +111,11 @@ features listed in the following section.)</li>
 <li>document.write (no actual implementation here, but it&apos;s possible to implement
 it on top of Chame)</li>
 </ul>
-<p>for tree builder tests requiring JavaScript and xmlViolation
-tokenizer tests.</p>
 <h2>Manual</h2>
 <p>There is a manual available at <a href="doc/manual.md">doc/manual.md</a>.</p>
 <h2>To-do</h2>
-<p>Some parts of the specification have not been implemented yet. These are:</p>
-<ul>
-<li>SVG script element</li>
-</ul>
-<p>Support for this feature is planned.</p>
-<p>Other, non-standard-related tasks:</p>
-<ul>
-<li>Optimize inefficient parts of the library</li>
-</ul>
+<p>At this point the library is complete. The only remaining tasks are
+optimization-related.</p>
 <h2>Bugs, feedback, etc.</h2>
 <p>Feedback, complaints, etc. are accepted at
 <a href="https://todo.sr.ht/~bptato/chawan">SourceHut</a> or the Nim forum
@@ -227,7 +221,7 @@ translation of this algorithm into Nim.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-13T01:15:50Z
+        Builded at 2024-06-14T01:15:56Z
         </p>
       </div>
     </div>

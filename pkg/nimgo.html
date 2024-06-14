@@ -113,29 +113,27 @@
             
                 <document><h1>NimGo</h1>
 <p>  <em>NimGo: Asynchronous Library Inspired by Go&apos;s Asyncio. Or for Purists: Stackful Coroutines library associated with an I/O Event Loop and Dispatcher</em></p>
-<p>This repository is currently an alpha release. You can expect bugs and inefficiencies. Do not use in production !</p>
+<p>This repository is currently an alpha release. Breaking change and API redesign won&apos;t be avoided.</p>
 <h2>Goal</h2>
 <p>Provide a simple, concise and efficient library for I/O.</p>
 <p>No async/await, no pragma, no Future[T] everywhere !</p>
 <p>Only one word to remember : <strong>goAsync</strong> (and optionaly <strong>wait</strong>, but seriously who needs that ?)</p>
-<h2>Future Roadmap</h2>
-<p>With Araq, we have decided to extend the model to make in multithreaded like Go. This will slow done the release of a production ready version and will likely break the actual API. The roadmap specific to this change has been put here: https://github.com/Alogani/NimGo/discussions/17</p>
-<p>I will make new releases regularly for users to have a working version.</p>
-<ul>
-<li>[ ] <em>Finish the implementation of goproc</em></li>
-<li>[ ] Add goproc support for windows (certainly by doing a wrapper around osproc)</li>
-<li>[ ] Adding more test cases</li>
-<li>[ ] Amelioration of efficiency of gonet</li>
-<li>[ ] Implement <code>GoChannel</code> a queue that can pass effienctly GC memory between coroutines and threads, without blocking the whole thread if waiting inside a coroutine. The thread queue has already been developped <a href="https://github.com/Alogani/NimGo_multithreadingattempt/blob/main/src/nimgo/private/threadqueue.nim">here</a></li>
-<li>[ ] Have feedback from users. Especially windows users to see if NimGo works on that OS (I can&apos;t test on that platform)</li>
-</ul>
+<h2>Current state</h2>
+<p>All working features can be found <a href="https://github.com/Alogani/NimGo/discussions/26">here</a>.</p>
+<p>For now, NimGo is a single-threaded library. On Araq&apos;s advice (and maybe it&apos;s help), NimGo will be transformed towards a multi-threaded library (like Golang). This specific transformation has its own roadmap that can be found <a href="https://github.com/Alogani/NimGo/discussions/17">here</a>.</p>
 <h2>Documentation</h2>
 <p>Full documentation can be browsered <a href="https://htmlpreview.github.io/?https://github.com/Alogani/NimGo/blob/main/htmldocs/nimgo.html">here</a>. The documentation is still under construction.</p>
+<h2>Contributions</h2>
+<p>They are welcomed and any help is valuable. A code of contribution can be found <a href="https://github.com/Alogani/NimGo/blob/main/CONTRIBUTING.md">here</a>.</p>
 <h2>Example</h2>
-<p>You can find more example in <a href="https://github.com/Alogani/NimGo/tree/main/tests">tests</a> folder or <a href="https://github.com/Alogani/NimGo/tree/main/benchmarks">benchmarks</a> folder</p>
+<p>The following working example will give you an idea of how NimGo works and how to use it.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimgo</span>, <span class="ide">nimgo</span><span class="op">/</span><span class="ide">gofile</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">MyFilePath</span> <span class="op">=</span> <span class="ide">currentSourcePath</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## # Basic I/O</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">readAndPrint</span>(<span class="ide">file</span>: <span class="ide">GoFile</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="com"># readAndPrint will be suspended until file.readLine return</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;MYLINE=&quot;</span>, <span class="ide">file</span><span class="op">.</span><span class="ide">readLine</span>()</div></div><div class="line"><div class="line-content">    <span class="com"># file.readAll will be registered in dispatcher. readAndPrint can continue its execution</span></div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">readTask</span>: <span class="ide">GoTask</span>[<span class="ide">string</span>] <span class="op">=</span> <span class="ide">goAsync</span> <span class="ide">file</span><span class="op">.</span><span class="ide">readAll</span>()</div></div><div class="line"><div class="line-content">    <span class="com"># we decide finally to get its data</span></div></div><div class="line"><div class="line-content">    <span class="com"># readAndPrint will be suspended until readTask is finished</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;UNREADLENGTH=&quot;</span>, (<span class="ide">wait</span> <span class="ide">readTask</span>)<span class="op">.</span><span class="ide">len</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">withEventLoop</span>():</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">myFile</span> <span class="op">=</span> <span class="ide">openGoFile</span>(<span class="ide">MyFilePath</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">goAndWait</span> <span class="ide">readAndPrint</span>(<span class="ide">myFile</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;I&apos;m not waiting for readAndPrint to finish !&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;But `withEventLoop` ensures all registered tasks are executed&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">myFile</span><span class="op">.</span><span class="ide">close</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## # Coroutines communication</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## ## Returning a value:</span></div></div><div class="line"><div class="line-content"><span class="kwd">block</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">proc</span> <span class="ide">getFirstLine</span>(<span class="ide">f</span>: <span class="ide">GoFile</span>): <span class="ide">string</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">f</span><span class="op">.</span><span class="ide">readLine</span>()</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">myFile</span> <span class="op">=</span> <span class="ide">openGoFile</span>(<span class="ide">MyFilePath</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;MYLINE=&quot;</span>, <span class="ide">goAndWait</span> <span class="ide">getFirstLine</span>(<span class="ide">myFile</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">myFile</span><span class="op">.</span><span class="ide">close</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## ## With closures:</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">main</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="com"># Any GC value can be shared between coroutines</span></div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">sharedData</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="com">## We have to use wait, otherwise sharedData will not be updated yet</span></div></div><div class="line"><div class="line-content">    <span class="ide">goAndWait</span> <span class="kwd">proc</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">        <span class="ide">sharedData</span> <span class="op">=</span> <span class="str">&quot;Inside the coroutine&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="ide">sharedData</span></div></div><div class="line"><div class="line-content"><span class="ide">main</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## # Unordered execution</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">printInDesorder</span>(<span class="ide">sleepTimeMs</span>: <span class="ide">int</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">sleepAsync</span>(<span class="ide">sleepTimeMs</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;&gt; I woke up after &quot;</span>, <span class="ide">sleepTimeMs</span>, <span class="str">&quot;ms&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">withEventLoop</span>():</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Batch 1&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">200</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">100</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">50</span>)</div></div><div class="line"><div class="line-content"><span class="com"># Or using waitAll</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;Batch 2&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">waitAll</span> <span class="op">@</span>[</div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">110</span>),</div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">220</span>),</div></div><div class="line"><div class="line-content">    <span class="ide">goAsync</span> <span class="ide">printInDesorder</span>(<span class="num">60</span>),</div></div><div class="line"><div class="line-content">]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com">## Timeout</span></div></div><div class="line"><div class="line-content"><span class="ide">goAndWait</span> <span class="kwd">proc</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Please input from stdin: &quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">data</span> <span class="op">=</span> <span class="ide">goStdin</span><span class="op">.</span><span class="ide">readChunk</span>(<span class="ide">timeoutMs</span> <span class="op">=</span> <span class="num">500</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="ide">data</span><span class="op">.</span><span class="ide">len</span>() <span class="op">==</span> <span class="num">0</span>:</div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;&gt; Too late&quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;&gt; So fast, you have succesfully written: &quot;</span>, <span class="ide">data</span></div></div>  </code></pre>
-<h2>Frequently asked questions</h2>
-<h3>Can you give me a quicktour of the modules ?</h3>
+<p>Here are the place wher eyou can find more examples:</p>
+<ul>
+<li><a href="https://github.com/Alogani/NimGo/tree/main/tests">tests</a> folder</li>
+<li><a href="https://github.com/Alogani/NimGo/tree/main/benchmarks">benchmarks</a> folder</li>
+</ul>
+<h2>Quicktour of the modules</h2>
 <p>Certainly! The NimGo library consists of the following key modules:</p>
 <ul>
 <li>nimgo: This module provides the necessary tools to create and manage the flow of execution.</li>
@@ -148,72 +146,12 @@
 <li>nimgo/public/gotasks: This module is already imported with the nimgo package and provides the <code>GoTask</code> abstraction for manipulating the flow of execution and return values.</li>
 </ul>
 <p>Most users will primarily interact with the higher-level modules like nimgo, nimgo/gofile, nimgo/gonet, and nimgo/public/gotasks, while the lower-level modules (nimgo/coroutines and nimgo/eventdispatcher) are intended for more advanced use cases.</p>
+<h2>Miscelleanous</h2>
 <h3>What do Araq thinks of it ?</h3>
 <p>&quot;Looks nice and has good ideas. But what&apos;s the benefit of this over just using threads? Coorperative scheduling is bug-prone much like multi-threading is IMHO without its performance benefits.&quot; from <a href="https://forum.nim-lang.org/t/11720">Araq, creator of Nim language and its main developper, 07/06/2024</a></p>
-<h3>What are coroutines? Can you explain the difference between stackful and stackless coroutines?</h3>
-<p>Coroutines are a way to have multiple tasks running within a single thread of execution. They allow you to pause a task, save its state, and then resume it later. NimGo use them internally and more precisely stackful coroutines.</p>
-<p>  <strong>Stackful Coroutines:</strong></p>
-<ul>
-<li>These coroutines have their own call stack, which is managed by the coroutine library.</li>
-<li>When a stackful coroutine is paused, its entire call stack is saved, so it can resume exactly where it left off.</li>
-<li>This gives you more flexibility and control, but it also uses more memory and requires more work to manage the call stack.</li>
-</ul>
-<p>  <strong>Stackless Coroutines:</strong></p>
-<ul>
-<li>These coroutines don&apos;t have their own call stack. Instead, they use the existing call stack of the underlying thread.</li>
-<li>When a stackless coroutine is paused, it simply yields control back to the calling code, without saving any call stack information.</li>
-<li>This is more lightweight and efficient, but it also means you have less control over the flow of execution, and you can&apos;t easily handle complex function calls or recursion.</li>
-</ul>
-<p>In the case of NimGo, the library uses stackful coroutines, which provide more power and flexibility, but also require more careful management. The lower-level modules expose the details of the stackful coroutines, while the higher-level modules abstract away the complexity for most users.</p>
-<h3>What are the drawbacks of stackful Coroutines ?</h3>
-<p>I won&apos;t say I have warned you ;-)</p>
-<p>This full paper is certainly the more in-depth explanation about drawbacks of stackful Coroutines: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1364r0.pdf. But those drawbacks should be mitigated by this other paper than comes in response: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0866r0.pdf</p>
-<p>The valid points are:</p>
-<ul>
-<li>Stackoverflow errors are confusing and hard to debug</li>
-<li>It is less efficient than stackless coroutines</li>
-<li>The higher memory usage of stackful coroutines can make thread usage more relevant</li>
-<li>Using it across threads is shooting you in the foot</li>
-</ul>
-<p>In my humble opinion, those points are not enough to make stackful coroutines irrelevant, and I still trust in it. But depending on your usage, you might take those drawbacks under considerations.</p>
-<h3>Is it more efficient than async/await ?</h3>
-<p>No, the NimGo library is not more efficient than async/await. It is likely to be a bit slower and consume more memory than async/await. For most typical use cases, the performance difference will be negligible. However, for highly demanding scenarios like managing thousands of concurrent socket connections, you may notice a more significant impact.</p>
-<h3>Is it more efficient than Os threads ?</h3>
-<p>It depends on the task:</p>
-<ul>
-<li>For I/O-bound tasks, async/await-based concurrency (e.g., std/asyncdispatch or NimGo) are generally faster, as they can wait for multiple I/O events at the same time without the overhead of managing multiple threads.</li>
-<li>For CPU-bound computation tasks, threads are generally faster than single-threaded async libraries, as they can leverage parallel execution across multiple CPU cores to speed up the code.</li>
-</ul>
-<p>Additionally, threads have a higher context switch cost compared to Coroutines, requires a more careful handling of deadlocks, of synchronization, and have constraints when moving memory around. However, threads and NimGo can be used together.</p>
-<h3>How to use NimGo in a multithreaded environment ?</h3>
-<p>Using NimGo&apos;s coroutines in a multithreaded environment requires some additional setup and considerations:</p>
-<ol>
-<li>Set a new dispatcher for each thread:</li>
-</ol>
-<ul>
-<li>For each new thread, you need to create a new global dispatcher using <code>newDispatcher()</code> and set it as the current dispatcher with <code>setCurrentThreadDispatcher()</code>.</li>
-<li>Alternatively, you can use the <code>insideNewEventLoop</code> template, which will set up a new dispatcher for the duration of the block.</li>
-<li>You must not use the same dispatcher in multiple threads, as it is not thread-safe.</li>
-</ul>
-<ol start="2">
-<li>Don&apos;t shared async objects across threads:</li>
-</ol>
-<ul>
-<li>Do not use any async objects (like GoTasks[T] or GoFile) that were defined before setting the new thread&apos;s dispatcher.</li>
-<li>Coroutines and the Dispatcher itself are not safe to move between threads.</li>
-</ul>
-<ol start="3">
-<li>Register shared objects in each thread using its file descriptor</li>
-</ol>
-<ul>
-<li>If you want to use an object (like goStdin) that was defined in another thread, you must register it again in the current thread. Here is an example with <code>goStdin</code>:</li>
-</ul>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com">## Thread 1:</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">fd</span> <span class="op">=</span> <span class="ide">goStdin</span><span class="op">.</span><span class="ide">getOsFileHandle</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">myChan</span><span class="op">.</span><span class="ide">send</span>(<span class="ide">fd</span>)</div></div><div class="line"><div class="line-content"><span class="com">## Thread 2:</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">fd</span> <span class="op">=</span> <span class="ide">myChan</span><span class="op">.</span><span class="ide">recv</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">goStdin2</span> <span class="op">=</span> <span class="ide">newGoFile</span>(<span class="ide">fd</span>, <span class="ide">fmRead</span>)</div></div>  </code></pre>
-<ul>
-<li>However this approach could lead to data races if locks are not used. The event dispatcher could think an I/O object is ready and perform a blocking I/O call, effectivly blocking the whole thread is data was stolen by another thread.</li>
-</ul>
-<p>All the other rules concerning sharing safely data between threads applies (use channels !)</p>
-<h3>NimGo&apos;s memory usage skyrocket?</h3>
+<h3>How does it work ?</h3>
+<p>If you are interested to know more about NimGo and Coroutines, you can check the wiki !</p>
+<h3>NimGo seems to have a high memory usage ?</h3>
 <p>NimGo coroutines use a lot of virtual memory, but not much actual physical memory (RAM).</p>
 <p>Here&apos;s why:</p>
 <ul>
@@ -223,93 +161,6 @@
 <li>So the high virtual memory usage doesn&apos;t mean high RAM usage. It&apos;s just a way to let the coroutines grow if they need to.</li>
 </ul>
 <p>The virtual memory usage may look high, but the actual RAM usage is much lower. This design doesn&apos;t prevent other programs from running. You can see the real memory usage by NimGo by looking at RESIDENT (RES) memory in the top command.</p>
-<h3>Why another async library, we already have std/asyncdispatch, chronos, etc ?</h3>
-<p>The NimGo library provides an alternative approach to handling asynchronous code compared to the existing options like std/asyncdispatch and chronos. The main difference is that classical async library &quot;colors&quot; functions (that <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">article</a> provides more information about it), meaning it modifies the function signature to include the asynchronous context.</p>
-<p>This approach can offer some advantages, such as providing more control over the flow of data. However, it also comes with some drawbacks:</p>
-<ul>
-<li>Increased verbosity in the codebase</li>
-<li>Slower compilation speeds</li>
-<li>Potential &quot;contamination&quot; of the codebase, as the async library requires all related functions to be written using its asynchronous constructs.</li>
-</ul>
-<h3>Is my code really async with NimGo ?</h3>
-<p>Yes, your code is indeed asynchronous when using NimGo, even if you don&apos;t explicitly see the asynchronous behavior. The asynchronicity is guaranteed by the type system, with types like GoFile and GoSocket abstractions that handle the underlying asynchronous operations.</p>
-<p>When using stackless coroutines like std/asyncdispatch, an I/O call is capable of suspending only the current function, whereas stackful coroutines like NimGo can suspend an arbitrary number of function from any depth (this arbitrary number of functions is called a context). While suspended, the runtime is able to execute other tasks, and then resume the Coroutine/context later when the I/O operation has completed.</p>
-<p>You can control where the context start by using the <code>goAsync</code> keyword provided by NimGo. And wait for the while Coroutine to finish by using the <code>wait</code> keyword. This gives you a fine-grained control over the asynchronous flow of your code.</p>
-<h3>But I heard all files operations were synchronous ?</h3>
-<p>A distinction has to be made between regular and special files. Special files can be asynchronous and NimGo will operates asynchronously on them if the OS permits it. Special files can represents, depending on the OS, pipes, sockets, etc. Regular files to the contrary stores plain text data or raw data on the filesystem. The operating system does consider regular file operations to be instantaneous, and asynchronous I/O is generally not possible for regular files, which can impact the behavior of I/O libraries across programming languages (including std/asyncdispatch).</p>
-<p>So no single threaded I/O library can read in a asynchronous way regular files. In case of latency or for big files, you will have to rely on OS Threads. There are plans to introduce a multi-threaded implementation of a channel in the future. This would allow the current coroutine to be blocked, without interrupting the entire event loop or dispatcher thread. This would simplify the handling of file operations with potential latency.</p>
-<h3>Is NimGo multithreaded ?</h3>
-<p>No, NimGo&apos;s event loop can only run in a single thread. Any asynchronous tasks managed by NimGo cannot be shared between multiple threads.</p>
-<p>However, it is possible to have multiple event loops, each running in their own separate thread. This allows you to parallelize asynchronous workloads across multiple threads. But you&apos;ll need to ensure strict separation between the event loops and their associated tasks to avoid any thread safety issues.</p>
-<h3>Aren&apos;t there already existing approach, like CPS (Continuation passing style) ?</h3>
-<p>No, CPS (Continuation Passing Style) is not a specific I/O library, but rather a programming paradigm. It provides a way to structure code using continuations, which can enable concurrency through a technique called stackless coroutines.</p>
-<p>Compared to the other async approach CPS with stackless coroutines offer some advantages:</p>
-<ul>
-<li>They can be more efficient in terms of memory usage and control flow.</li>
-<li>They provide fine-grained control over the data flow and execution.</li>
-<li>They may be better suited for certain use cases like compilers.</li>
-</ul>
-<p>However, CPS and stackless coroutines also have some drawbacks:</p>
-<ul>
-<li>They are more complex and verbose to use compared to callback-based approaches.</li>
-<li>They can be less intuitive and harder to integrate with existing synchronous codebases.</li>
-</ul>
-<p>It&apos;s important to note that the traditional async/await syntax in Nim is also a form of stackless coroutines, although implemented way differently. Instead NimGo choose to rely on stackful coroutines (also called green threads).</p>
-<p>You can see https://github.com/nim-works/cps for more details. It also seems to exists an I/O library built on continuation <a href="https://github.com/alaviss/nim-sys">nim-sys</a></p>
-<h3>When and how my function is executed ?</h3>
-<p>In NimGo, the behavior is different from the standard std/asyncdispatch library. When you use goAsync, your function is not executed immediately (but this behaviour could change in the future if it makes more sense). Instead, it is only executed when:</p>
-<ul>
-<li>You explicitly call <code>wait</code> on the specific task in your code.</li>
-<li>You call <code>runEventLoop()</code>, which is implicitly called when you use the withEventLoop template.</li>
-</ul>
-<p>It is generally recommended to rely more on <code>withEventLoop()</code> or <code>runEventLoop()</code> rather than <code>wait</code>, to ensure that all coroutines created with goAsync are executed, even if you didn&apos;t explicitly wait for them.</p>
-<p>Another key difference with std/asyncdispatch is that NimGo will not suspend only one function, but the whole Coroutine, which can represent an arbitrary number of nested functions (but limited, see below). You can think of goAsync as a checkpoint in your code, where the execution can be suspended and resumed later.</p>
-<h3>What is the recursion limit ?</h3>
-<p>In the current implementation, NimGo allocates 4 MiB of virtual memory by coroutines, allowing you to either:</p>
-<ul>
-<li>Allocate an array of 500_000 int64 in one function</li>
-<li>Allocate an array of 1024 int64 recursively in 500 functions</li>
-<li>Recursively go into 500_000 function (if you don&apos;t use tail-recursion)</li>
-</ul>
-<p>Going beyond those limits will crash your program:</p>
-<pre>  <code># If you go over the limit by less than 4 Kib
-Fatal error: Coroutine stackoverflow
-Coroutine creation stacktrace:
-[Stacktrace not of the error, but of the creation of the coroutine causing the overflow]
-Error: execution of an external program failed: [Name_of_the_program]
-
-# If you go over the limit by more han 4 Kib (allocating huge stack arrays for example):
-Error: execution of an external program failed:[Name_of_the_program]
-</code></pre>
-<p>Of course those numbers could vary depending of how much stack variables were created and their size. If you use heap variables like Ref T and tail recursion, you will probably never reach those limits.</p>
-<h3>Just Give Me the Coroutines, No Boilerplate</h3>
-<p>If you&apos;re not interested in all the boilerplate of I/O and event loops, and you just want to use coroutines directly with no additional overhead, you can do so by importing the nimgo/coroutines module.</p>
-<p>By importing only nimgo/coroutines, you&apos;ll have access to the core coroutines API, which allows you to create, suspend, and resume coroutines. This gives you a lightweight way to work with coroutines without the additional complexity of the full NimGo framework.</p>
-<p>However, it&apos;s important to note that by using only the coroutines API, you&apos;ll be limited in what you can do. The full power of NimGo comes from its integration with the event dispatcher/loop, which provide additional functionality for managing asynchronous tasks. If you want to leverage the dispatcher and event loop features, you can also import the nimgo/eventdispatcher module. This will give you access to the higher-level APIs for working with asynchronous code, while still allowing you to use the low-level coroutines primitives from the nimgo/coroutines module.</p>
-<h2>Is it safe to use ? Stackful coroutines don&apos;t provide a high surface attack ?</h2>
-<p>The safety of using stackful coroutines, like those provided by NimGo, depends on how you write your code. The risk of a stack overflow attack is not inherently higher with coroutines than with other programming techniques.</p>
-<p>NimGo employs various techniques to make stack overflow attacks more difficult.</p>
-<ul>
-<li>Heap-based stack allocation: NimGo allocates the coroutines&apos; stacks using heap memory, rather than the process stack. This makes it harder for an attacker to inject code or modify other parts of the program&apos;s memory.</li>
-<li>Large default stack size: NimGo allocates a large chunk of (virtual) memory for each coroutine&apos;s stack by default. This reduces the likelihood of a stack overflow, even when using deep recursion or large stack variables.</li>
-<li>Stack page protection: NimGo marks the last page of each coroutine&apos;s stack as protected. This means the operating system will kill the program before a stack overflow can occur, preventing potential attacks.</li>
-</ul>
-<p>Stackoverflow can still happen if you try to allocate stack variables of more than 4 KiB at the end of the stack</p>
-<h2>NimGo available flags</h2>
-<p>Here are what can be tweaked in NimGo (flags are case insensitive):</p>
-<ul>
-<li><code>d:NimGoNoDebug</code> (already set on release mode): if this flags is set on:
-<ul>
-<li>a certain number of checks will be disabled inside NimGo, mainly to avoid nil deference</li>
-<li>the creation stacktrace of Coroutines will not be recorded, so it will not be added to exceptions raised from inside a coroutine</li>
-<li>no error message will be print in case of a stackoverflow within a Coroutine</li>
-</ul>
-</li>
-<li><code>-d:NimGoNoVMem</code> (only available on posix): If this flags is set, the Coroutines&apos; stack won&apos;t be allocated using a virtual memory allocator but will use Nim&apos;s allocator (which use also generally virtual memory). The stack size of Coroutines won&apos;t be set by the internal value <code>VirtualStackSize</code>, but by the flag <code>PhysicalMemKib</code></li>
-<li><code>d:PhysicalMemKib:64</code> (only available on posix and when NimGoNoVMem flag is set. this is the default value): Allow to tweak the stack&apos;s size of each Coroutines. Lower value augments the risk of stackoverflow. Ideally, it would be a power of 2, but any value can be used. Please note that 4 Kib are always reserved to handle stackoverflow errors.</li>
-</ul>
-<h3>Can I contribute</h3>
-<p>With pleasure :-)</p>
 </document>
             
         </div>
@@ -378,7 +229,7 @@ Error: execution of an external program failed:[Name_of_the_program]
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-13T01:15:50Z
+        Builded at 2024-06-14T01:15:56Z
         </p>
       </div>
     </div>
