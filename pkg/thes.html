@@ -111,12 +111,19 @@ $ thes -i words.txt -b $HOME/.config/thes/m &lt;/dev/null
 <p>With all of the above, you are now ready for various use cases.  The basic
 functionality is seen by something like just:</p>
 <pre>  <code>$ thes amuse
-beguile  entertain  please  tickle    charm     interest   recreate
-convulse exhilarate refresh titillate cheer     quicken
-delight  kill       regale  while     enchant   wile
-distract knock dead relax   wow       engross   fracture one
-divert   loosen up  slay    absorb    fascinate raise a laugh
-enliven  occupy     solace  animate   fleet     raise a smile
+beguile    refresh   enchant
+convulse   regale    engross
+delight    relax     fascinate
+distract   slay      fleet
+divert     solace    interest
+enliven    tickle    quicken
+entertain  titillate wile
+exhilarate while     fracture one
+kill       wow       raise a laugh
+knock dead absorb    raise a smile
+loosen up  animate   recreate
+occupy     charm
+please     cheer
 </code></pre>
 <p>The (note -- <em>alphabetical</em>) block from &quot;absorb&quot;..&quot;wile&quot; is hopefully rendered
 differently than each before/after block.  This rendering shows the various
@@ -128,16 +135,36 @@ to see only short synonyms of &quot;cheer&quot;, for example.</p>
 <h2>Deeper Analysis</h2>
 <p>To do deeper analysis, one can also <code>nimble install</code>
 <a href="https://github.com/c-blake/gralg">grAlg</a> and use utility programs in <code>util/</code>.</p>
-<p>E.g., to create 4 undirected/reciprocal variants of the pre-parsed data (you
-could, of course, also pre-compile <code>symmSyn</code>):</p>
+<p>A simple Moby-like input manifesting all possibilities of what might be called
+&quot;maybe-intentional-maybe-delinquent non-reflexivity&quot; are covered by the example
+of 4*1-letter words in 3 synonym lists:</p>
+<pre>  <code>a,b   # c,d maybe-missing!
+b,a,c # d maybe-missing
+c,a,d # b maybe-missing; d defined only as synonym
+# d,c,a,maybe-b # maybe whole row missing
+</code></pre>
+<p>Here only a-b is &quot;complete&quot; (what some mathematicians might call &quot;closed&quot;) with
+reflexive (a==b =&gt; b==a) symmetry.  If one firmly believes in &quot;reflexivity of
+synonymity&quot; then one can <em>  <strong>impose this symmetry</strong></em> on answers by <em>  <strong>either
+restricting</strong></em> to an already symmetric subset of arcs aka edges (in this case
+just a,b and b,a) <em>  <strong>OR adding</strong></em> new arcs (<code>c</code> to <code>a,b</code>) or whole new words
+(maybe up to <code>d,a,b,c</code>) to augment the data.  These can all convert <em>  <strong>directed
+graphs</strong></em> of &quot;meanings&quot; to <em>  <strong>undirected</strong></em> ones.
+<a href="util/symmSyn.nim">  <code>util/symmSyn.nim</code></a> implements a few of these ideas if you&apos;d
+prefer to &quot;preprocess&quot; a Moby-like <code>words.txt</code> for actual <code>thes</code> usage.</p>
+<p>E.g., to create 4 more variants of the pre-parsed data<a href="You">^1</a>:</p>
 <pre>  <code class="language-sh">$ for kind in r d u a; do
   nim r -d:danger util/symmSyn -a $kind &lt; words.txt &gt; adj.txt
   thes -i adj.txt -b $HOME/.config/thes/$kind &lt; /dev/null
   rm adj.txt
 done
 </code></pre>
-<p>Now you can point <code>thes</code> or various <code>util/</code> programs to <code>--base ~/.config/thes/[rdua]</code> for various styles of undirected thesaurus.  For
-example..</p>
+<p>Here &apos;r&apos; is a fully (r)estricted to reflexive/reciprocal variant (just <code>a,b</code> &amp;
+<code>b,a</code> above) or maybe &quot;the smallest / &apos;most firmly arguable&apos; thesaurus&quot; while
+&apos;a&apos; is the &quot;fully filled out { (a)ll defined &amp; cross-refd }&quot; undirected variant
+(4 rows of a,b,c,d with each letter as a key) or maybe &quot;the biggest tent / most
+inclusive thesaurus&quot;.  The other two are less useful half-measures.</p>
+<p>Now you can point <code>thes</code> or various <code>util/</code> programs to <code>--base ~/.config/thes/[rdua]</code> for various styles of undirected thesaurus.</p>
 <h2>synoPath</h2>
 <p>Besides the reciprocity ideas above, one might also think to automatically
 enhance/extend a thesaurus by looking for 2-hop synonyms instead of just the
@@ -180,6 +207,7 @@ word pairs which you can then look at in more detail with <code>synoPath</code>.
 also use a first run as the basis to &quot;seed&quot; further runs starting with words you
 ended with last time - and as such more likely than random to be on a &quot;thin
 fringe&quot; in the graph, like <code>diam r niacin 4</code> gives me a diameter estimate of 9.</p>
+<p>could, of course, also pre-compile <code>symmSyn</code> instead of <code>nim r</code>.</p>
 </document>
             
         </div>
@@ -248,7 +276,7 @@ fringe&quot; in the graph, like <code>diam r niacin 4</code> gives me a diameter
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-14T01:15:56Z
+        Builded at 2024-06-15T01:15:55Z
         </p>
       </div>
     </div>
