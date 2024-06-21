@@ -95,16 +95,15 @@ A lot of the bytecode instructions are shamelessly ripped off from Lua :^) \</p>
 <h1>What it can do</h1>
 <ul>
 <li>Interpret bytecode</li>
+<li>Proper exception tracing</li>
 <li>Rudimentarily analyze &quot;hot&quot; code paths</li>
 </ul>
-<p>Mirage is ~2200 LoC and does most of the bytecode generation and interpretation work already. We&apos;re probably never going to get as fast/efficient as LLVM which has millions of hours of manpower and research applied to it with millions of LoC. <br />
+<p>Mirage is ~2800 LoC and does most of the bytecode generation and interpretation work already. We&apos;re probably never going to get as fast/efficient as LLVM which has millions of hours of manpower and research applied to it with millions of LoC. <br />
 It has plenty of bytecodes (there&apos;s too many to list here!) and can do most things you want. <br />
 There&apos;s also some work going on to implement a fully functioning JIT compiler without any external libraries, in pure Nim!</p>
 <h1>What it&apos;ll do</h1>
 <ul>
-<li>Apply advanced optimizations (speculative execution, etc.) to the bytecode</li>
-<li>Proper exception tracing</li>
-<li>JIT compile stuff</li>
+<li>JIT compile the bytecode whenever necessary</li>
 </ul>
 <h1>What it won&apos;t do, for now atleast.</h1>
 <ul>
@@ -184,7 +183,7 @@ There&apos;s also some work going on to implement a fully functioning JIT compil
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-20T01:21:00Z
+        Builded at 2024-06-21T01:21:27Z
         </p>
       </div>
     </div>
