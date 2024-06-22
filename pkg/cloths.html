@@ -84,8 +84,36 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>Cloths</h1>
-<p>Cloths provides the way to process and structure string easily.</p>
+<h2>Overview</h2>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cloths</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cloths</span><span class="op">/</span><span class="ide">styles</span><span class="op">/</span><span class="ide">markdown</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">weave</span> <span class="ide">multiline</span>:</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Cloths&quot;</span></div></div><div class="line"><div class="line-content">    <span class="str">&quot;provides&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">weave</span> <span class="ide">text</span>:</div></div><div class="line"><div class="line-content">      <span class="str">&quot;the&quot;</span></div></div><div class="line"><div class="line-content">      <span class="str">&quot;way&quot;</span></div></div><div class="line"><div class="line-content">      <span class="str">&quot;to&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">weave</span> <span class="ide">Tree</span>():</div></div><div class="line"><div class="line-content">      <span class="ide">weave</span> <span class="ide">orderedList</span>:</div></div><div class="line"><div class="line-content">        <span class="str">&quot;process&quot;</span></div></div><div class="line"><div class="line-content">        <span class="str">&quot;and&quot;</span></div></div><div class="line"><div class="line-content">        <span class="str">&quot;structure&quot;</span></div></div><div class="line"><div class="line-content">      <span class="ide">weave</span> <span class="ide">multiline</span>:</div></div><div class="line"><div class="line-content">        <span class="str">&quot;string&quot;</span></div></div><div class="line"><div class="line-content">        <span class="ide">weave</span> <span class="ide">Tree</span>() <span class="op">&gt;&gt;</span> <span class="ide">Underline</span>(<span class="ide">pattern</span>: <span class="str">&quot;~&quot;</span>):</div></div><div class="line"><div class="line-content">          <span class="str">&quot;easily.&quot;</span></div></div><div class="line"><div class="line-content">#[ ==> output:
+Cloths
+provides
+the way to
+├─ 1. process
+│  2. and
+│  3. structure
+└─ string
+   └─ easily.
+      ~~~~~~~
+]#</div></div>  </code></pre>
+<h2>User Manual</h2>
 <p>see <a href="https://panno8m.github.io/cloths/cloths">documentation</a>.</p>
+<h2>Dependencies</h2>
+<h3>Required</h3>
+<ul>
+<li>Nim Compiler &gt;= 2.0.0</li>
+</ul>
+<h3>Recommended</h3>
+<ul>
+<li>Nimble</li>
+</ul>
+<h2>Instalation</h2>
+<pre>  <code class="language-sh">nimble install cloths
+</code></pre>
+<pre>  <code class="language-sh">git clone https://github.com/panno8M/cloths.git
+cd cloths
+nimble install
+</code></pre>
 </document>
             
         </div>
@@ -154,7 +182,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-21T01:21:27Z
+        Builded at 2024-06-22T01:20:39Z
         </p>
       </div>
     </div>
