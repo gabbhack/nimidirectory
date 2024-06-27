@@ -84,38 +84,54 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>👑OOlib</h1>
-<p><img src="https://img.shields.io/github/license/Glasses-Neo/OOlib?color=blueviolet" style="max-width: 100%;" alt="license" /><a href="https://github.com/Glasses-Neo/OOlib/actions/workflows/test.yml">  <img src="https://github.com/Glasses-Neo/OOlib/actions/workflows/test.yml/badge.svg" style="max-width: 100%;" alt="test" /></a>
-<img src="https://img.shields.io/github/contributors/Glasses-Neo/OOlib?color=important" style="max-width: 100%;" alt="contributors" /><img src="https://img.shields.io/github/stars/Glasses-Neo/OOlib?style=social" style="max-width: 100%;" alt="stars" /></p>
+<p><img src="https://img.shields.io/github/license/glassesneo/OOlib?color=blueviolet" style="max-width: 100%;" alt="license" /><a href="https://github.com/glassesneo/OOlib/actions/workflows/test.yml">  <img src="https://github.com/glassesneo/OOlib/actions/workflows/test.yml/badge.svg" style="max-width: 100%;" alt="test" /></a>
+<img src="https://img.shields.io/github/contributors/glassesneo/OOlib?color=important" style="max-width: 100%;" alt="contributors" /><img src="https://img.shields.io/github/stars/glassesneo/OOlib?style=social" style="max-width: 100%;" alt="stars" /></p>
 <p><strong>OOlib is currently work in progress</strong>🔥</p>
 <h2>🗺Overview</h2>
 <p>OOlib is a nimble package for object oriented programming.</p>
 <h2>📜Usage</h2>
 <h3>class</h3>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">oolib</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">class</span> <span class="ide">Person</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span></div></div><div class="line"><div class="line-content">    <span class="ide">name</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="ide">age</span> <span class="op">=</span> <span class="num">0</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">steve</span> <span class="op">=</span> <span class="ide">Person</span><span class="op">.</span><span class="ide">new</span>(<span class="ide">name</span> <span class="op">=</span> <span class="str">&quot;Steve&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">tony</span> <span class="op">=</span> <span class="ide">Person</span><span class="op">.</span><span class="ide">new</span>(<span class="ide">name</span> <span class="op">=</span> <span class="str">&quot;Tony&quot;</span>, <span class="ide">age</span> <span class="op">=</span> <span class="num">30</span>)</div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">oolib</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">class</span> <span class="ide">Person</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span></div></div><div class="line"><div class="line-content">    <span class="ide">name</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="ide">age</span> <span class="op">=</span> <span class="num">0</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> <span class="ide">greet</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;hello, I&apos;m &quot;</span>, <span class="ide">self</span><span class="op">.</span><span class="ide">name</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">steve</span> <span class="op">=</span> <span class="ide">Person</span><span class="op">.</span><span class="ide">new</span>(<span class="ide">name</span> <span class="op">=</span> <span class="str">&quot;Steve&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">tony</span> <span class="op">=</span> <span class="ide">Person</span><span class="op">.</span><span class="ide">new</span>(<span class="ide">name</span> <span class="op">=</span> <span class="str">&quot;Tony&quot;</span>, <span class="ide">age</span> <span class="op">=</span> <span class="num">30</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">steve</span><span class="op">.</span><span class="ide">greet</span>()</div></div><div class="line"><div class="line-content"><span class="ide">tony</span><span class="op">.</span><span class="ide">greet</span>()</div></div>  </code></pre>
 <h3>protocol</h3>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">oolib</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">protocol</span> <span class="ide">Readable</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">text</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">protocol</span> <span class="ide">Writable</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">text</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> `<span class="ide">text</span><span class="op">=</span>`(<span class="ide">value</span>: <span class="ide">string</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">protocol</span> <span class="ide">Product</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">price</span>: <span class="ide">int</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">protocol</span> <span class="ide">pub</span> <span class="ide">Writer</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> <span class="ide">write</span>(<span class="ide">text</span>: <span class="ide">string</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">class</span> <span class="ide">Book</span> <span class="ide">impl</span> (<span class="ide">Readable</span>, <span class="ide">Product</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span></div></div><div class="line"><div class="line-content">    <span class="ide">text</span>: <span class="ide">string</span> <span class="op">=</span> <span class="str">&quot;&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">price</span>: <span class="ide">int</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">class</span> <span class="ide">Diary</span> <span class="ide">impl</span> (<span class="ide">Readable</span>, <span class="ide">Writable</span>, <span class="ide">Product</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">text</span> {<span class="op">.</span><span class="ide">initial</span><span class="op">.</span>}: <span class="ide">string</span> <span class="op">=</span> <span class="str">&quot;&quot;</span></div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">price</span>: <span class="ide">int</span></div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> `<span class="ide">text</span><span class="op">=</span>`(<span class="ide">value</span>: <span class="ide">string</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">self</span><span class="op">.</span><span class="ide">text</span> <span class="op">=</span> <span class="ide">value</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">class</span> <span class="ide">HTMLWriter</span> <span class="ide">impl</span> <span class="ide">Writer</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">writable</span>: <span class="ide">Writable</span></div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> <span class="ide">write</span>(<span class="ide">text</span>: <span class="ide">string</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="ide">self</span><span class="op">.</span><span class="ide">writable</span><span class="op">.</span><span class="ide">text</span> <span class="op">=</span> <span class="ide">text</span></div></div>  </code></pre>
+<p>See <a href="https://github.com/glassesneo/OOlib/blob/develop/docs/doc.md">doc.md</a></p>
 <h2>✨Features</h2>
 <ul>
-<li><code>class</code> macro
+<li><code>class</code>
 <ul>
 <li>Automatic generation of constructor</li>
 <li><code>self</code> inserted in procedures</li>
-<li>all routines (e.g., method, converter, template) with the only exception of macro</li>
+<li>All routines (e.g., method, converter, template) are supported, excluding macro</li>
 </ul>
 </li>
-<li><code>protocol</code> macro
+<li><code>protocol</code>
 <ul>
-<li>Provide an Kotlin-like interface</li>
-<li>defining setter/getter</li>
+<li>A Kotlin-like interface</li>
+<li>Defining setter/getter</li>
 </ul>
 </li>
+<li><code>construct</code>
+<ul>
+<li>An easy way to declare a class without <code>class</code>, only supporting normal class</li>
+</ul>
+</li>
+<li><code>protocoled</code>
+<ul>
+<li>The same as <code>construct</code>, but for interface</li>
+</ul>
+</li>
+<li><code>isInstanceOf</code> for checking if a variable is an instance of a class or can be converted into a protocol</li>
+</ul>
+<h2>💭Planning</h2>
+<ul>
+<li><code>struct</code> from Swift</li>
+<li><code>dataclass</code> from Kotlin</li>
+<li><code>sealed class</code> from Kotlin</li>
 </ul>
 <h2>Changelog</h2>
-<p>See <a href="https://github.com/Glasses-Neo/OOlib/blob/develop/CHANGELOG.md">CHANGELOG</a></p>
-<h2>🥷Author</h2>
-<p>  <a href="https://twitter.com/Glassesman10">    <img src="https://img.shields.io/twitter/follow/Glassesman10.svg?style=social&amp;label=@Glassesman10" style="max-width: 100%;" alt="Twitter" />  </a></p>
+<p>See <a href="https://github.com/glassesneo/OOlib/blob/develop/CHANGELOG.md">CHANGELOG</a></p>
 <h2>License</h2>
-<p>Copyright © 2021 Neo meganeo.programmer@gmail.com
+<p>Copyright © 2024 Neo glassesneo@protonmail.com
 This work is free. You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.</p>
 </document>
             
@@ -185,7 +201,7 @@ This work is free. You can redistribute it and/or modify it under the terms of t
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-26T01:22:16Z
+        Builded at 2024-06-27T01:22:41Z
         </p>
       </div>
     </div>
