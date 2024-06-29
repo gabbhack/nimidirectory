@@ -63,6 +63,10 @@
                 </span>
             
                 <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">macro</button></a>
+                </span>
+            
+                <span class="tag">
                     <button class="btn-tag pkg-btn-tag">obfuscation</button></a>
                 </span>
             
@@ -87,7 +91,25 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>nim-strenc</h1>
+<p>This is a Nim library for automatic encryption (currently via XOR with a different key for each string generated at compile-time) of string literals.
+You can install it from Nimble via</p>
+<pre>  <code class="language-sh">nimble install strenc
+</code></pre>
+<p>and then just use it like so:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">strenc</span></div></div><div class="line"><div class="line-content"><span class="com"># After importing the module you don&apos;t have to do anything else to activate encryption</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;hello world&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;how are you?&quot;</span></div></div>  </code></pre>
+<p>In compiled C code (or in any other backend, strenc works with all of them, although with the JS backend it&apos;ll be much easier for &quot;interested&quot; people to get the original contents back) strings will look like this:</p>
+<pre>  <code class="language-c"><div class="line"><div class="line-content"><span class="ide">STRING_LITERAL</span>(<span class="ide">TM__huvhZYSc4ExMXNTyiw83eQ_2</span>, <span class="str">&quot;as{xz2d</span>\177<span class="str">cr{&quot;</span>, <span class="num">11</span>);</div></div><div class="line"><div class="line-content"><span class="ide">STRING_LITERAL</span>(<span class="ide">TM__huvhZYSc4ExMXNTyiw83eQ_3</span>, <span class="str">&quot;kov</span>\036^NX\032BWL\011<span class="str">&quot;</span>, <span class="num">12</span>);</div></div>  </code></pre>
+<p>If you wish to disable all hints for places where the encryption was applied, add <code>hint(&quot;Pattern&quot;, false)</code>
+to your <code>.nims</code> config file, or, if you use <code>.cfg</code>, <code>--hint[Pattern]:off</code></p>
+<h3>Please do not forget to strip your binaries if you want this library to be useful! Otherwise it&apos;ll be much easier to find the code which does string decryption.</h3>
+<h2>How does it work?</h2>
+<p>This library uses one of the lesser known Nim features - term-rewriting macros. They allow to implicitly <em>rewrite</em> code at compile-time by using different kinds of patterns. You can read more <a href="https://nim-lang.org/docs/manual_experimental.html#term-rewriting-macros">in the manual here</a>.</p>
+<h2>Why?</h2>
+<p>Because it&apos;s fun and this library can actually help you to protect string data in the application from
+not-so-experienced &quot;haxxors&quot;.</p>
+<h3>Do not forget that a person with enough programming and/or reverse-engineering knowledge will still be able to get the original content of all encrypted strings!</h3>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -100,7 +122,7 @@
                 
 
                 
-                    <p> <a href="https://github.com/Yardanico/nim-strenc">Project website</a> </p>
+                    <p> <a href="https://github.com/nim-meta/strenc">Project website</a> </p>
                 
 
                 
@@ -155,7 +177,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-28T01:22:25Z
+        Builded at 2024-06-29T01:21:25Z
         </p>
       </div>
     </div>

@@ -87,9 +87,11 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>INim: Interactive Nim Shell <a href="https://github.com/yglukhov/nimble-tag">  <img src="https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png" style="max-width: 100%;" alt="nimble" /></a> <img src="https://github.com/inim-repl/INim/workflows/Nim%20CI/badge.svg" style="max-width: 100%;" alt="Nim CI" /></h1>
-<p>  <code>$ nimble install inim</code></p>
-<p>  <img src="https://github.com/AndreiRegiani/INim/blob/master/readme.gif?raw=true" style="max-width: 100%;" alt="alt text" /></p>
+                <document><h1>INim: interactive shell (REPL)</h1>
+<p>  <img src="https://github.com/inim-repl/INim/workflows/Nim%20CI/badge.svg" style="max-width: 100%;" alt="Nim CI" /></p>
+<pre>  <code>nimble install inim
+</code></pre>
+<img src="https://github.com/inim-repl/INim/assets/1467605/523c973b-ca2c-450e-92f2-187e2e580be0" style="max-width: 100%;" width="721" alt="Screenshot 2024-06-28 at 18 33 47" />
 <h2>Features</h2>
 <ul>
 <li>Runs on Linux, macOS and Windows</li>
@@ -101,16 +103,19 @@
 <li>Preload existing source code (access to non-exported* symbols): <code>inim -s example.nim</code></li>
 <li>Optional Colorized output</li>
 <li>Edit lines using $EDITOR (Ctrl-X)</li>
-<li>Built in tools like ipython (cd(), ls(), pwd(), call()) enabled with --withTools</li>
+<li>Built in tools like ipython (cd(), ls(), pwd(), call()) enabled with <code>--withTools</code></li>
 <li>When piped a file or some code, INim will execute that code and exit</li>
 <li>Extra compiler options can be specified by adding them as arguments inim with the -d flag (ie <code>inim -d:ssl -d:DEBUG</code>)</li>
 <li>Flags can turned on with <code>-d</code> by adding a <code>--</code> prefix to arguments (ie -d:--threads:on)</li>
 </ul>
-<h2>Config</h2>
-<p>Config is saved and loaded from <code>configDir / inim</code>.</p>
+<h2>Configuration</h2>
+<p><code>inim --createRcFile</code>, for persistent configuration which is loaded from these locations:</p>
 <ul>
-<li>On Windows, this is %APPDATA%\inim</li>
-<li>On Linux, this is /home/<user>/.config/inim</user>Currently, the config allows you to set two options:</li>
+<li>Linux &amp; macOS: <code>~/.config/inim</code></li>
+<li>Windows: <code>%APPDATA%\inim</code></li>
+</ul>
+<p>The config allows you to change the defaults for:</p>
+<ul>
 <li>Style
 <ul>
 <li><code>prompt</code>: Set prompt string (default: &quot;inim&gt; &quot;)</li>
@@ -131,6 +136,7 @@
 </ul>
 <h2>Contributing</h2>
 <p>Pull requests and suggestions are welcome.</p>
+<p>  <img src="https://github.com/AndreiRegiani/INim/blob/master/readme.gif?raw=true" style="max-width: 100%;" alt="alt text" /></p>
 </document>
             
         </div>
@@ -199,7 +205,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-28T01:22:25Z
+        Builded at 2024-06-29T01:21:25Z
         </p>
       </div>
     </div>
