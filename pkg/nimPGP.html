@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">nimPGP</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">pgp</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">encryption</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">rust</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">security</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">privacy</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">A high-level and easy to use PGP library. Using Rust & Sequoia-PGP on the backend!</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install nimPGP" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><p>  <img src="https://publiccdn.albassort.com/nimPGP/images/logo.png" style="max-width: 100%;" alt="nimPGP Logo" /></p>
+<h1>NIMPGP</h1>
+<p>Read the docs here: https://publiccdn.albassort.com/nimPGP/releases/latest/docs/nimPGP.html</p>
+<p>Self-Hosted git: https://gogs.albassort.com/albassort/nimPGP</p>
+<h2>Gitlab Git: https://gitlab.com/IAlbassort/nimPGP</h2>
+<h1>What is nimPGP</h1>
+<p>nimPGP is a pgp utility which uses <strong>Sequoia PGP</strong> on the backend. It allows for simple and idiomatic ways to utilize pgp in your code.
+It supports both parsing and generation of the following asymmetric algorithms on the primary keys and the subkeys in infinite configurations</p>
+<pre>  <code>Cv25519
+RSA2k, RSA3k, RSA4k
+P256, P384, P521
+</code></pre>
+<p>It is notable that it does NOT support any other algorithm. The following are somewhat common but not parsable:</p>
+<pre>  <code>RSA1K, RSA8K, ECC (and more)
+</code></pre>
+<h1>What nimPGP is not</h1>
+<p>nimPGP is NOT a Sequoia wrapper. It is not intended to replace the already existing Sequoia wrapper for Nim.</p>
+<p>All of the code is implemented in Rust and has bindings for Nim. You will not be able to interact with the entire breadth and scope
+of Sequoia. This is okay for everyday use but is not fit for, say, security analysis. Things are abstracted.</p>
+<h1>Features</h1>
+<p>(main feature black dot, white dot is options / parameters)</p>
+<ul>
+<li>Certificate creation
+<ul>
+<li>User ids</li>
+<li>Expiration length</li>
+<li>Primary Key Encryption algorithms</li>
+</ul>
+</li>
+<li>Subkeys
+<ul>
+<li>Individual Expiration times independent from the Primary Key</li>
+<li>Customizable keyflags for each key</li>
+<li>Individual Encryption algorithms independent from the Primary Key</li>
+</ul>
+</li>
+<li>Cert Encryption
+<ul>
+<li>Supports atomic passwords for each key as well as one single password for the entire Certificate</li>
+</ul>
+</li>
+<li>Message Signing</li>
+<li>Signature Verification</li>
+<li>Encrypting a message for a given Public Key</li>
+<li>Decrypting a message with a Private Key
+<ul>
+<li>Supports multiple private keys (keyrings) and password keyrings</li>
+</ul>
+</li>
+<li>Revoking a subkey</li>
+<li>Revoking a Primary Key</li>
+<li>Getting the intended recipients (by keyid) of an encrypted message</li>
+<li>Scaffolding a key to a Cert object which contains all of its information</li>
+</ul>
+<p>This covers most usecases, but there is more that can be covered in the future.</p>
+<h1>Exception Hanndling</h1>
+<p>　The base exception is <code>SequoiaException</code>, you can use this to catch all errors from nimPGG.</p>
+<p>The exceptions follow this inheritance pattern.</p>
+<ul>
+<li>CertParsingException
+<ul>
+<li>FailedToParseKeyPublicException</li>
+<li>FailedToParseKeyPrivateException</li>
+<li>FailedToParseKeyException</li>
+<li>CertIsInvalidException</li>
+</ul>
+</li>
+<li>MissMatchingKey
+<ul>
+<li>ExpectedPrivateKeyGotPublicException</li>
+<li>IncorrectKeyFlagsException</li>
+</ul>
+</li>
+<li>PasswordException
+<ul>
+<li>PasswordSetToAtomicButMissingEncryptedKeyidException</li>
+<li>IncorrectPasswordForSecretKeyException</li>
+<li>FoundEncryptedSecretButNoPasswordHandlerException</li>
+</ul>
+</li>
+<li>CertGenerationFailedException
+<ul>
+<li>KeyCannotBeUsedForTransportAndSigningException</li>
+</ul>
+</li>
+<li>NimSideSequoiaException
+<ul>
+<li>CertLacksPrivateKey</li>
+<li>MustBeLiveForMoreThan100SecondsException</li>
+</ul>
+</li>
+<li>CertMaybeRevokedException</li>
+<li>CertRevokedException</li>
+<li>FailedToWriteMessageException</li>
+<li>NoKeyMeetsSelectionException</li>
+<li>FailedToParseMessageException</li>
+<li>PackedParserFailedToRecurseException</li>
+<li>FailedToReadFromBufferException</li>
+<li>FailedToRevokeSubkeyException</li>
+<li>FailedToRevokePrimaryKeyException</li>
+<li>FailedToEncryptKeyException</li>
+<li>CertHasEncryptedKeyException</li>
+</ul>
+<p>I&apos;ve made all of the names very clear to what they are, even if they are long. This is to also help you understand which ones can come up in the functions you execute intuitively, in lieu of functioning helpers, as, on paper every function can raise any one of these.</p>
+<p>For additional clarity, the docs specify what functions raise which exception.</p>
+<h1>Security Concerns</h1>
+<p>Any security issues affecting Sequoia affects you. These tools are not so different from the tools they provide that they are likely to pose a security risk.</p>
+<hr />
+<h1>Memory</h1>
+<p><img src="https://publiccdn.albassort.com/nimPGP/images/memory.png" style="max-width: 100%;" alt="nimPGP memory diagram" />(This diagram shows how memory is read and written.)</p>
+<p>On the backend, memory ownership and management operates on the following core principles. These principles prevents memory leaks, and simplify operations:</p>
+<ol>
+<li>Pointers provided in parameters are NOT mutable. All data returned to Nim must transfer directly in the return value.</li>
+<li>Where possible, avoid manual allocation of arrays from Rust. For example, keyids are transferred in a <code>;</code> separated string as they are hex values.</li>
+<li>All non-gc managed pointers must be <code>deallocated</code> prior to return of the procedure, before the result is given to the user. Be it <code>allocated</code> by Rust, or <code>allocated</code> by Nim.</li>
+<li>Manual allocation of data can only occur in Rust if the function does not return an error. All <code>malloc</code> calls must happen directly before <code>return</code> is called</li>
+<li>After the Rust function returns, before an exception can be raised from its <code>error_code</code>, all manually managed Nim pointers must be <code>deallocated</code>. This means that because of rule 4, no data leak will occur.</li>
+<li>Thus, no manually allocated pointers will be exposed to the end user
+<img src="https://publiccdn.albassort.com/nimPGP/images/memory-flow.png" style="max-width: 100%;" alt="memory-flow" /></li>
+</ol>
+<p>(This diagram shows the order of operations to ensure memory safety.)</p>
+<hr />
+<h1>Usage</h1>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimPGP</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">times</span></div></div><div class="line"><div class="line-content"><span class="com">#   Sets the keyflags</span></div></div><div class="line"><div class="line-content"><span class="com">#   Note that, Sequoia does not allow for the creation of keys which both do Transport Encryption and Signing</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">signingKey</span> <span class="op">=</span> <span class="ide">newSubkey</span>({<span class="ide">ForSigning</span>})</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">transportKey</span> <span class="op">=</span> <span class="ide">newSubkey</span>({<span class="ide">ForTransport</span>, <span class="ide">ForStorageEncryption</span>})</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">certUnencrypted</span> <span class="op">=</span> <span class="ide">newCert</span>(<span class="op">@</span>[<span class="ide">signingKey</span>, <span class="ide">transportKey</span>], <span class="ide">validLength</span> <span class="op">=</span> <span class="ide">initDuration</span>(<span class="ide">days</span><span class="op">=</span><span class="num">365</span>))</div></div><div class="line"><div class="line-content"><span class="com">#Creates a handler used to encrypt a Cert</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">pwHandler</span> <span class="op">=</span> <span class="ide">newPasswordHandler</span>(<span class="str">&quot;password12345!&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">certEncrypted</span> <span class="op">=</span> <span class="ide">encryptKeys</span>(<span class="ide">certUnencrypted</span>, <span class="ide">pwHandler</span>)</div></div>  </code></pre>
+<hr />
+<h1>Sounds useful! How do I install</h1>
+<h2>Compile from source (recommended!):
+<code>sh #   This assumes this is an initial install nimble install nimPGP  #   Pay attention to the version installed, this assumes there is no prior versions cd ~/.nimble/pkgs2/nimPGP* #   Assuming you&apos;re on a debian derived-os #   As of pre-release it runs:  #   sudo apt install clang cargo llvm pkg-config nettle-dev -y ./scripts/install-deps-apt.sh #   compiles and links the .so to /usr/lib and the headers to /usr/include ./scripts/link.sh</code>
+Download precompiled (linux-x86 only!)
+<code>sh sudo apt install clang cargo llvm pkg-config nettle-dev -y #   Uses my private servers sudo curl https://publiccdn.albassort.com/nimPGP/releases/latest/libnimPGP.so &gt; /usr/lib/libnimPGP.so sudo curl https://publiccdn.albassort.com/nimPGP/releases/latest/nimPGP.h &gt; /usr/lib/nimPGP.h nimble install nimPGP </code></h2>
+<h1>Versioning</h1>
+<p>Versions are split into 3 numbers separated by <code>.</code>, for example, 1.0.0.</p>
+<p>The leftmost number represents the current feature-set, and increments when new functionality is added.</p>
+<p>The middle number represents bug-fixes and patches on the libnimPGP side, or major bugfixes/changes on the Nim side, usually resulting in incompatibility with the previous libnimPGP version.</p>
+<p>The rightmost increments when minor changes/bugfixes, or updates to documentation are added in Nim, but not in libnimPGP. This is for compatibility, and to help prevent needless manual dependency updating.</p>
+<p>1.0.1 is compatible with 1.0.0</p>
+<p>1.0.29 is compatible with 1.0.0 through 1.0.28, etc</p>
+<p>1.1.0 is not compatible with 1.0.1</p>
+<h2>2.0.0 is not compatible with 1.1.0</h2>
+<h1>Future</h1>
+<p>Currently, nothing is explicitly planned, save for expanding the API to cover more of Sequoia.</p>
+<p>Perhaps, if demand exists, I will make repositories to fix the manual dependency issue.</p>
+<h1>Credits</h1>
+<p>All code and documentation, and charts by Caroline Marceano as of initial release</p>
+<p>Code Review, Consulting, and Inspiration: Leorize (Check out their stuff: https://github.com/nim-works/nimskull)</p>
+<p>Code Review: Luyten Orion (Chronos) (Check out their stuff: https://github.com/Luyten-Orion)</p>
+<p>The beautiful people in the Sequoia IRC, who helped me when I needed it most.</p>
+<p>Code Review by my personal friends and family.</p>
+<h1>My PGP-KEy</h1>
+<p>Use this to verify the signatures of pre-build binaries you download. The distribution folders have a file in it named signed-sum.asc, which contains a sha-512 of the binary provided. Verify its signature, to prevent MTM attacks.</p>
+<pre>  <code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+Comment: albassort &lt;CarolineMarceano@albassort.com&gt; 
+
+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
+=g3W9
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+<hr />
+<p>We stand on the shoulders of giants</p>
+<p>巨人の肩の上に立つ</p>
+<p>Nani gigantum humeris</p>
+<p>Thank you for reading.</p>
+<hr />
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://gitlab.com/IAlbassort/nimPGP/">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-06-30T01:22:43Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
