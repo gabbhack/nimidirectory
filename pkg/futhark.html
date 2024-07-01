@@ -171,7 +171,7 @@ passed in with <code>path</code> without trouble. So <code>sysPath &quot;/usr/in
 explicitly mentioned files, and any files it requires from <code>/usr/include/X11</code>.</p>
 <h2>Hard names and overrides</h2>
 <p>Nim, unlike C, is case and underscore insensitive and doesn&apos;t allow you to have
-identifiers starting with <code>_</code> or <code>__</code>, or identifiers that have more than one
+identifiers starting or ending with <code>_</code>, or identifiers that have more than one
 consecutive <code>_</code> in them. Nim also has a set of reserved keywords like <code>proc</code>,
 <code>addr</code>, and <code>type</code> which would be inconvenient to have as names. Because of
 this Futhark will rename these according to some fairly simple rules.</p>
@@ -197,28 +197,35 @@ this Futhark will rename these according to some fairly simple rules.</p>
 </tr>
 <tr>
 <td><code>_</code> prefix</td>
-<td><code>internal</code> prefix</td>
+<td><code>internal_</code> prefix</td>
 </tr>
 <tr>
 <td><code>__</code> prefix</td>
-<td><code>compiler</code> prefix</td>
+<td><code>compiler_</code> prefix</td>
+</tr>
+<tr>
+<td><code>_</code> postfix</td>
+<td><code>_private</code> postfix</td>
 </tr>
 <tr>
 <td><code>__</code> in name</td>
-<td>All underscores removed</td>
+<td>All consecutive underscores collapsed into one</td>
 </tr>
 <tr>
 <td>Reserved keyword</td>
 <td>Append kind to name, <code>proc</code>, <code>const</code>, <code>struct</code> etc.</td>
 </tr></tbody></table>
-<p>Since this, along with Nims style-insensitivity, means that some identifiers
-might still collide, the name will further have the kind appended, and if it
-still collides it will append the hash of the original identifier. This
-shouldn&apos;t happen often in real projects and exists mostly to create a foolproof
-renaming scheme. Note that struct and union types also get a prefix, this is
-normally resolved automatically by C typedef-ing the <code>struct struct_name</code> to
-<code>struct_name_t</code>, but in case you need to use a <code>struct struct_name</code> type just
-keep in mind that in Nim it will be <code>struct_struct_name</code>.</p>
+<p>Apart from this the name is kept as it appears in the C sources, but note that
+because of Nims style insensitivity you can still call <code>some_proc</code> as <code>someProc</code>
+without any issues. This renaming scheme, along with Nims style-insensitivity,
+does however mean that some identifiers might collide. In this case the name
+will further have the kind appended, and if it still collides it will append
+the hash of the original identifier. This shouldn&apos;t happen often in real
+projects and exists mostly to create a foolproof renaming scheme. Note that
+struct and union types also get a prefix, this is normally resolved
+automatically by C typedef-ing the <code>struct struct_name</code> to <code>struct_name_t</code>, but
+in case you need to use a <code>struct struct_name</code> type just keep in mind that in
+Nim it will be <code>struct_struct_name</code>.</p>
 <p>If you want to rename an object or a field you can use the <code>rename</code> directive.
 Simply put <code>rename &lt;from&gt;, &lt;to&gt;</code> along with your other options. <code>&lt;from&gt;</code> can be
 either just an object name (before any other renaming) as a string or ident, or
@@ -564,7 +571,7 @@ you have a project of your own you want to show off, please make a PR!</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-06-30T01:22:43Z
+        Builded at 2024-07-01T01:24:40Z
         </p>
       </div>
     </div>
