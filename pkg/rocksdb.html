@@ -96,25 +96,23 @@
 <p>A Nim wrapper for <a href="https://github.com/facebook/rocksdb">Facebook&apos;s RocksDB</a>, a persistent key-value store for Flash and RAM Storage.</p>
 <h2>Current status</h2>
 <p>Nim-RocksDB provides a wrapper for the low-level functions in the librocksdb c library.</p>
-<h2>Requirements</h2>
-<p>A RocksDB installation that provides <code>librocksdb.so</code>. This means that on Debian, and possibly on other Linux distros, you need &quot;librocksdb-dev&quot;, not just a versioned &quot;librocksdbX.Y&quot; package that only provides <code>librocksdb.so.X.Y.Z</code>.</p>
+<h2>Installation</h2>
+<p>Nim-RocksDB requires Nim and the Nimble package manager. For Windows you will need Visual Studio 2015 Update 3 or greater with the English language pack.</p>
+<p>To get started run:</p>
+<pre>  <code>nimble install
+</code></pre>
+<p>This will download and install the RocksDB dynamic libraries for your platform and copy them into the <code>build/</code> directory of the project. When including this library in your application you may want to copy these libraries into another location or set the LD_LIBRARY_PATH environment variable (DYLD_LIBRARY_PATH on MacOS, PATH on Windows) to include the <code>build/</code> directory so that your application can find them on startup.</p>
+<p>Alternatively you can use the <code>rocksdb_static_linking</code> flag to statically link the library into your application.</p>
+<h3>Static linking</h3>
+<p>To build the RocksDB static libraries run:</p>
+<pre>  <code>./scripts/build_static_deps.sh
+</code></pre>
+<p>To statically link RocksDB, you would do something like:</p>
+<pre>  <code>nim c -d:rocksdb_static_linking --threads:on your_program.nim
+</code></pre>
+<p>See the config.nims file which contains the static linking configuration which is switched on with the <code>rocksdb_static_linking</code> flag. Note that static linking is currently not supported on windows.</p>
 <h2>Usage</h2>
 <p>See <a href="examples/simple_example.nim">simple_example</a></p>
-<h3>Static linking</h3>
-<p>To statically link librocksdb, you would do something like:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">nim</span> <span class="ide">c</span> <span class="op">-</span><span class="ide">d</span>:<span class="ide">rocksdb_static_linking</span> <span class="op">--</span><span class="ide">threads</span>:<span class="ide">on</span> <span class="ide">your_program</span><span class="op">.</span><span class="ide">nim</span></div></div>  </code></pre>
-<p>See the config.nims file which contains the static linking configuration which is switched on with the <code>rocksdb_static_linking</code> flag. Note that static linking is currently not supported on windows.</p>
-<h3>Building Windows DLLs</h3>
-<p>Prerequisites:</p>
-<ul>
-<li>Windows 7 or newer</li>
-<li>Git</li>
-<li>Visual Studio 2015 Update 3 or greater with the English language pack</li>
-</ul>
-<p>To build RocksDB for Windows, run the following:</p>
-<pre>  <code>.\scripts\build_dlls_windows.bat
-</code></pre>
-<p>After the build completes the built RocksDB DLLs will be located in the <code>build</code> directory.</p>
 <h3>Contribution</h3>
 <p>Any contribution intentionally submitted for inclusion in the work by you shall be dual licensed as above, without any
 additional terms or conditions.</p>
@@ -202,7 +200,7 @@ and Jeff Dean (jeff@google.com)</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-03T01:16:51Z
+        Builded at 2024-07-04T01:17:06Z
         </p>
       </div>
     </div>
