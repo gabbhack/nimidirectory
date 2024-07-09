@@ -8980,7 +8980,7 @@ const packages = [
   },
   {
     "name": "mathexpr",
-    "url": "https://github.com/Yardanico/nim-mathexpr",
+    "url": "https://github.com/nimbackup/nim-mathexpr",
     "method": "git",
     "tags": [
       "math",
@@ -8989,7 +8989,7 @@ const packages = [
     ],
     "description": "MathExpr - pure-Nim mathematical expression evaluator library",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/nim-mathexpr"
+    "web": "https://github.com/nimbackup/nim-mathexpr"
   },
   {
     "name": "frag",
@@ -9244,7 +9244,7 @@ const packages = [
   },
   {
     "name": "osureplay",
-    "url": "https://github.com/Yardanico/nim-osureplay",
+    "url": "https://github.com/nimbackup/nim-osureplay",
     "method": "git",
     "tags": [
       "library",
@@ -9255,7 +9255,7 @@ const packages = [
     ],
     "description": "osu! replay parser",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/nim-osureplay"
+    "web": "https://github.com/nimbackup/nim-osureplay"
   },
   {
     "name": "tiger",
@@ -9386,7 +9386,7 @@ const packages = [
   },
   {
     "name": "spinny",
-    "url": "https://github.com/Yardanico/spinny",
+    "url": "https://github.com/nimbackup/spinny",
     "method": "git",
     "tags": [
       "terminal",
@@ -9396,7 +9396,7 @@ const packages = [
     ],
     "description": "Spinny is a tiny terminal spinner package for the Nim Programming Language.",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/spinny"
+    "web": "https://github.com/nimbackup/spinny"
   },
   {
     "name": "nigui",
@@ -9568,7 +9568,7 @@ const packages = [
   },
   {
     "name": "vkapi",
-    "url": "https://github.com/Yardanico/nimvkapi",
+    "url": "https://github.com/nimbackup/nimvkapi",
     "method": "git",
     "tags": [
       "wrapper",
@@ -9579,7 +9579,7 @@ const packages = [
     ],
     "description": "A wrapper for the vk.com API (russian social network)",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/nimvkapi"
+    "web": "https://github.com/nimbackup/nimvkapi"
   },
   {
     "name": "slacklib",
@@ -13523,7 +13523,7 @@ const packages = [
   },
   {
     "name": "asciigraph",
-    "url": "https://github.com/Yardanico/asciigraph",
+    "url": "https://github.com/nimbackup/asciigraph",
     "method": "git",
     "tags": [
       "graph",
@@ -13533,7 +13533,7 @@ const packages = [
     ],
     "description": "Console ascii line charts in pure nim",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/asciigraph"
+    "web": "https://github.com/nimbackup/asciigraph"
   },
   {
     "name": "bearlibterminal",
@@ -18920,7 +18920,7 @@ const packages = [
   },
   {
     "name": "adb",
-    "url": "https://github.com/Yardanico/nim-adb",
+    "url": "https://github.com/nimbackup/nim-adb",
     "method": "git",
     "tags": [
       "adb",
@@ -18929,7 +18929,7 @@ const packages = [
     ],
     "description": "ADB protocol implementation in Nim",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/nim-adb"
+    "web": "https://github.com/nimbackup/nim-adb"
   },
   {
     "name": "z3nim",
@@ -19677,7 +19677,7 @@ const packages = [
   },
   {
     "name": "libvlc",
-    "url": "https://github.com/Yardanico/nim-libvlc",
+    "url": "https://github.com/nimbackup/nim-libvlc",
     "method": "git",
     "tags": [
       "vlc",
@@ -19690,7 +19690,7 @@ const packages = [
     ],
     "description": "libvlc bindings for Nim",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/nim-libvlc"
+    "web": "https://github.com/nimbackup/nim-libvlc"
   },
   {
     "name": "nimcoon",
@@ -20531,7 +20531,7 @@ const packages = [
   },
   {
     "name": "telenim",
-    "url": "https://github.com/Yardanico/telenim",
+    "url": "https://github.com/nimbackup/telenim",
     "method": "git",
     "tags": [
       "telegram",
@@ -20545,7 +20545,7 @@ const packages = [
     ],
     "description": "A high-level async TDLib wrapper for Nim",
     "license": "MIT",
-    "web": "https://github.com/Yardanico/telenim"
+    "web": "https://github.com/nimbackup/telenim"
   },
   {
     "name": "taskqueue",
@@ -33786,6 +33786,18 @@ const packages = [
     "description": "Modular, high-performance, zero-dependency cryptography stack for proof systems and blockchain protocols.",
     "license": "MIT or Apache License 2.0",
     "web": "https://github.com/mratsim/constantine"
+  },
+  {
+    "name": "ecslib",
+    "url": "https://github.com/glassesneo/ecslib",
+    "method": "git",
+    "tags": [
+      "game-development",
+      "entity-component-system"
+    ],
+    "description": "A nimble package for Entity Component System",
+    "license": "MIT",
+    "web": "https://github.com/glassesneo/ecslib"
   }
 ]
 

@@ -87,7 +87,36 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>nim-adb</h1>
+<p>ADB protocol implementation (client-side) in Nim.</p>
+<p>Examples are available in the <code>examples</code> directory.</p>
+<p>Compile with <code>-d:adbDebug</code> to see all ADB messages which are being sent/received</p>
+<p>Example output of the REPL with <code>-d:adbDebug</code>:</p>
+<pre>  <code>Connecting...
+SEND: AdbMessage(cmd=cmdConnect, arg0=16777216, arg1=4096, data=&quot;0x7f6259b931e8&quot;host::\0&quot;&quot;)
+RECV: AdbMessage(cmd=cmdConnect, arg0=16777216, arg1=4096, data=&quot;0x7f6259baf058&quot;device::ro.product.name=NV310WAC;ro.product.model=NV310WAC;ro.product.device=NV310WAC;\0&quot;&quot;)
+Connected, opening &quot;shell:&quot; stream...
+SEND: AdbMessage(cmd=cmdOpen, arg0=12345, arg1=0, data=&quot;0x7f6259b93620&quot;shell:\0&quot;&quot;)
+REPL ready!
+RECV: AdbMessage(cmd=cmdOkay, arg0=691, arg1=12345)
+RECV: AdbMessage(cmd=cmdWrite, arg0=691, arg1=12345, data=&quot;0x7f6259b972c0&quot;shell@NV310WAC:/ $ &quot;&quot;)
+SEND: AdbMessage(cmd=cmdOkay, arg0=12345, arg1=691)
+shell@NV310WAC:/ $ date
+SEND: AdbMessage(cmd=cmdWrite, arg0=12345, arg1=691, data=&quot;0x7f6259b93d50&quot;date\13\0&quot;&quot;)
+RECV: AdbMessage(cmd=cmdOkay, arg0=691, arg1=12345)
+RECV: AdbMessage(cmd=cmdWrite, arg0=691, arg1=12345, data=&quot;0x7f6259bb90d0&quot;date\13\13\10&quot;
+&quot;&quot;&quot;)
+SEND: AdbMessage(cmd=cmdOkay, arg0=12345, arg1=691)
+date
+RECV: AdbMessage(cmd=cmdWrite, arg0=691, arg1=12345, data=&quot;0x7f6259b96758&quot;Thu Jan 23 17:40:40 +07 2020\13\10&quot;
+&quot;&quot;&quot;)
+SEND: AdbMessage(cmd=cmdOkay, arg0=12345, arg1=691)
+Thu Jan 23 17:40:40 +07 2020
+RECV: AdbMessage(cmd=cmdWrite, arg0=691, arg1=12345, data=&quot;0x7f6259b97598&quot;shell@NV310WAC:/ $ \7&quot;&quot;)
+SEND: AdbMessage(cmd=cmdOkay, arg0=12345, arg1=691)
+shell@NV310WAC:/ $ 
+</code></pre>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -100,7 +129,7 @@
                 
 
                 
-                    <p> <a href="https://github.com/Yardanico/nim-adb">Project website</a> </p>
+                    <p> <a href="https://github.com/nimbackup/nim-adb">Project website</a> </p>
                 
 
                 
@@ -155,7 +184,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-08T01:19:15Z
+        Builded at 2024-07-09T01:18:14Z
         </p>
       </div>
     </div>

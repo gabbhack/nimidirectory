@@ -91,7 +91,32 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>asciigraph <img src="https://github.com/Yardanico/asciigraph/actions/workflows/test.yml/badge.svg" style="max-width: 100%;" alt="BuildAndTest" /></h1>
+<p>Console ascii line graphs in pure Nim ╭┈╯.</p>
+<h2>Installation</h2>
+<pre>  <code class="language-sh">nimble install asciigraph
+</code></pre>
+<h2>Usage</h2>
+<h3>Basic graph</h3>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">asciigraph</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">data</span> <span class="op">=</span> <span class="op">@</span>[<span class="num">3</span>, <span class="num">4</span>, <span class="num">9</span>, <span class="num">6</span>, <span class="num">2</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">8</span>, <span class="num">5</span>, <span class="num">10</span>, <span class="num">2</span>, <span class="num">7</span>, <span class="num">2</span>, <span class="num">5</span>, <span class="num">6</span>]</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">plot</span>(<span class="ide">data</span>, <span class="ide">caption</span><span class="op">=</span><span class="str">&quot;An example graph!&quot;</span>)</div></div>  </code></pre>
+<p>Running this example renders the following graph:</p>
+<pre>  <code> 10.00 ┤        ╭╮     
+  9.00 ┤ ╭╮     ││     
+  8.00 ┤ ││   ╭╮││     
+  7.00 ┤ ││   ││││╭╮   
+  6.00 ┤ │╰╮  ││││││ ╭ 
+  5.00 ┤ │ │ ╭╯╰╯│││╭╯ 
+  4.00 ┤╭╯ │╭╯   ││││  
+  3.00 ┼╯  ││    ││││  
+  2.00 ┤   ╰╯    ╰╯╰╯  
+          An example graph!
+</code></pre>
+<h2>Acknowledgements</h2>
+<p>This package is a Nim port of the <a href="https://github.com/kroitor/asciichart">asciichart</a> library written by <a href="https://github.com/kroitor">@kroitor</a>.</p>
+<p>Forked from https://github.com/KeepCoolWithCoolidge/asciigraph to update for latest Nim versions (and some other improvements).</p>
+<h2>Contributing</h2>
+<p>Feel free to make a pull request! :octocat:</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -104,7 +129,7 @@
                 
 
                 
-                    <p> <a href="https://github.com/Yardanico/asciigraph">Project website</a> </p>
+                    <p> <a href="https://github.com/nimbackup/asciigraph">Project website</a> </p>
                 
 
                 
@@ -159,7 +184,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-08T01:19:15Z
+        Builded at 2024-07-09T01:18:14Z
         </p>
       </div>
     </div>

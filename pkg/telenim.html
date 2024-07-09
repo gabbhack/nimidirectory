@@ -107,7 +107,41 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>:warning: Archived - please contribute to https://github.com/nimgram/nimgram instead</h1>
+<h1>telenim</h1>
+<p>This library (will be) a high-level TDLib wrapper for Nim.</p>
+<p>As of now it&apos;s in a pretty rough shape, but some stuff already works:</p>
+<ul>
+<li>[x] Parsing TDLib TL schema objects into Nim types (see <code>src/tdgen.nim</code>)</li>
+<li>[x] Using TDLib asynchronously (it runs in a separate thread)</li>
+<li>[ ] Parsing TDLib TL schema functions into Nim procedures</li>
+<li>[ ] Helper procedures for accessing common fields of TDLib objects</li>
+<li>[ ] High-level hand-written procedures for common bot operations</li>
+</ul>
+<p>To run the <code>examples/userbot.nim</code> example, you need:</p>
+<ul>
+<li>Config file in examples/config.json</li>
+</ul>
+<pre>  <code class="language-json">{
+  &quot;phone&quot;: &quot;+123124214&quot;,
+  &quot;password&quot;: &quot;2fa password if you have one&quot;,
+  &quot;api_id&quot;: &quot;api id of your telegram app&quot;,
+  &quot;api_hash&quot;: &quot;api hash&quot;
+}
+</code></pre>
+<ul>
+<li>
+<p>Compile with <code>--threads:on</code> (<code>config.nims</code> in <code>examples</code> folder already does that)</p>
+</li>
+<li>
+<p><code>libtdjson.so</code> (or <code>libtdjson.so.1.6.0</code>) in <code>lib</code> folder.
+If you want to run telenim with another TDLib version, you&apos;ll have to run tdgen.nim on td_api.tl from that TDLib version and then (for now) you also have to modify the generated <code>tdlib_types.nim</code> file to fix some invalid code.</p>
+</li>
+<li>
+<p><code>mathexpr</code> Nim library (for now it&apos;s just used as an example command for the userbot)</p>
+</li>
+</ul>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -120,7 +154,7 @@
                 
 
                 
-                    <p> <a href="https://github.com/Yardanico/telenim">Project website</a> </p>
+                    <p> <a href="https://github.com/nimbackup/telenim">Project website</a> </p>
                 
 
                 
@@ -175,7 +209,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-08T01:19:15Z
+        Builded at 2024-07-09T01:18:14Z
         </p>
       </div>
     </div>

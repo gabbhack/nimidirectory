@@ -91,7 +91,36 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Spinny</h1>
+<p>Spinny is a tiny terminal spinner package for <a href="https://nim-lang.org">Nim Programming Language</a>.</p>
+<h2>Getting Started</h2>
+<p>You can use Nimble to install the package by running:</p>
+<pre>  <code>nimble install spinny
+</code></pre>
+<p>This library uses threads for running in the background, so you must compile your application with or add to your <code>nim.cfg</code> or <code>config.nims</code>:</p>
+<pre>  <code>--threads:on
+</code></pre>
+<h2>Usage</h2>
+<p>Spinny is quite easy to use. You can set the color, text or symbol of an already running spinner.
+Spinny also optinally supports showing passed time (in seconds and hours).</p>
+<p>Be aware that you can only have <strong>one</strong> active spinner at any given moment!</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">spinny</span>, <span class="ide">os</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">spinner1</span> <span class="op">=</span> <span class="ide">newSpinny</span>(<span class="str">&quot;Loading file..&quot;</span><span class="op">.</span><span class="ide">fgWhite</span>, <span class="ide">skDots</span>)</div></div><div class="line"><div class="line-content"><span class="ide">spinner1</span><span class="op">.</span><span class="ide">setSymbolColor</span>(<span class="ide">fgBlue</span>)</div></div><div class="line"><div class="line-content"><span class="ide">spinner1</span><span class="op">.</span><span class="ide">start</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># do some work here</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">x</span> <span class="kwd">in</span> <span class="ide">countup</span>(<span class="num">5</span>, <span class="num">10</span>):</div></div><div class="line"><div class="line-content">  <span class="ide">sleep</span>(<span class="num">500</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">spinner1</span><span class="op">.</span><span class="ide">success</span>(<span class="str">&quot;File was loaded successfully.&quot;</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Also show time</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">spinner2</span> <span class="op">=</span> <span class="ide">newSpinny</span>(<span class="str">&quot;Downloading files..&quot;</span><span class="op">.</span><span class="ide">fgBlue</span>, <span class="ide">skDots5</span>, <span class="ide">time</span> <span class="op">=</span> <span class="ide">true</span>)</div></div><div class="line"><div class="line-content"><span class="ide">spinner2</span><span class="op">.</span><span class="ide">setSymbolColor</span>(<span class="ide">fgLightBlue</span>)</div></div><div class="line"><div class="line-content"><span class="ide">spinner2</span><span class="op">.</span><span class="ide">start</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># do some work here</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">x</span> <span class="kwd">in</span> <span class="ide">countup</span>(<span class="num">5</span>, <span class="num">10</span>):</div></div><div class="line"><div class="line-content">  <span class="ide">sleep</span>(<span class="num">500</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">spinner2</span><span class="op">.</span><span class="ide">error</span>(<span class="str">&quot;Sorry, something went wrong during downloading!&quot;</span>)</div></div>  </code></pre>
+<p>You can even use custom spinners if predefined ones aren&apos;t suitable for your needs.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">spinny</span>, <span class="ide">os</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># makeSpinner accepts two arguments - the interval between different frames,</span></div></div><div class="line"><div class="line-content"><span class="com"># and frames themselves as an array or a sequence of strings</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">spinner3</span> <span class="op">=</span> <span class="ide">newSpinny</span>(<span class="str">&quot;I&apos;m custom.&quot;</span>, <span class="ide">makeSpinner</span>(<span class="num">100</span>, [<span class="str">&quot;x&quot;</span>, <span class="str">&quot;y&quot;</span>]))</div></div><div class="line"><div class="line-content"><span class="ide">spinner3</span><span class="op">.</span><span class="ide">setSymbolColor</span>(<span class="ide">fgGreen</span>)</div></div><div class="line"><div class="line-content"><span class="ide">spinner3</span><span class="op">.</span><span class="ide">start</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># do some magnificent work here</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">x</span> <span class="kwd">in</span> <span class="ide">countup</span>(<span class="num">1</span>, <span class="num">5</span>):</div></div><div class="line"><div class="line-content">  <span class="ide">sleep</span>(<span class="num">500</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">spinner3</span><span class="op">.</span><span class="ide">success</span>(<span class="str">&quot;Looks like it&apos;s working!&quot;</span>)</div></div>  </code></pre>
+<p>Spinny embeds the <a href="http://github.com/molnarmark/colorize">colorize</a> library for terminal colors.
+For spinners to use, take a look at the <code>src/spinners.nim</code> file. (Credit goes to <a href="https://github.com/sindresorhus/cli-spinners">sindresorhus</a>)</p>
+<h2>API Reference</h2>
+<p>The following procs are available on a <code>Spinny</code> object:</p>
+<ul>
+<li>  <code>setSymbolColor*(spinny: Spinny, color: proc(x: string): string)</code></li>
+<li>  <code>setSymbol*(spinny: Spinny, symbol: string)</code></li>
+<li>  <code>setText*(spinny: Spinny, text: string)</code></li>
+<li>  <code>start*(spinny: Spinny)</code></li>
+<li>  <code>stop*(spinny: Spinny)</code></li>
+<li>  <code>success*(spinny: Spinny, msg: string)</code></li>
+<li>  <code>error*(spinny: Spinny, msg: string)</code></li>
+</ul>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -104,7 +133,7 @@
                 
 
                 
-                    <p> <a href="https://github.com/Yardanico/spinny">Project website</a> </p>
+                    <p> <a href="https://github.com/nimbackup/spinny">Project website</a> </p>
                 
 
                 
@@ -159,7 +188,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-08T01:19:15Z
+        Builded at 2024-07-09T01:18:14Z
         </p>
       </div>
     </div>
