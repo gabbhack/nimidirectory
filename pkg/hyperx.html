@@ -155,6 +155,10 @@ debugging messages</p>
 <p>If you need to support web-browsers it gets tricky for some use cases, as you need to do two fetches, one to stream the request, one to stream the response, and something like an ID in the URL so the server can associate both streams.</p>
 <h3>Benchmarks</h3>
 <p>The CI runs h2load on it, but it only starts a single server instance. Proper bench-marking would start a server per CPU, and run a few combinations of load. To save you the trip, the CI results show around 30K requests/s.</p>
+<h3>Related libs</h3>
+<ul>
+<li>  <a href="https://github.com/nitely/nim-grpc">nim-grpc</a></li>
+</ul>
 <h2>LICENSE</h2>
 <p>MIT</p>
 </document>
@@ -225,7 +229,7 @@ debugging messages</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-10T01:18:36Z
+        Builded at 2024-07-11T01:18:52Z
         </p>
       </div>
     </div>

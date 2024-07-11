@@ -176,6 +176,7 @@ The SBOM also contains a superset of the information in the Nix lockfile format,
 <p>See the local <a href="./sbom.json">sbom.json</a> file as an example.</p>
 <p>Nix can extract FOD paths from SBOMS in a similar manner to lockfiles.
 The <a href="./bom-to-nim-cfg.nix">bom-to-nim-cfg.nix</a> file demonstrates how to generate a Nim configuration that adds Nix store paths to the module lookup path.</p>
+<p>The SBOMs also contains sufficient information to build a Nix package. In some cases this may require additional dependency inputs. See <a href="./default.nix">default.nix</a> and <a href="./build-nim-sbom.nix">build-nim-sbom.nix</a> as an example.</p>
 <h2>Nimble emulation</h2>
 <p>Nimble is an interpreter that executes Nim code in <code>*.nimble</code> scripts and when that script sets some variables in the right way then you have a package description.</p>
 <p>This design is not even wrong as it allows packages to be described in arbitrary formats.</p>
@@ -248,7 +249,7 @@ The <a href="./bom-to-nim-cfg.nix">bom-to-nim-cfg.nix</a> file demonstrates how 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-10T01:18:36Z
+        Builded at 2024-07-11T01:18:52Z
         </p>
       </div>
     </div>
