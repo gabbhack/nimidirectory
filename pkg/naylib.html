@@ -91,7 +91,121 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Naylib</h1>
+<img src="assets/naylib.png" style="max-width: 100%;" width="15%" alt="Naylib logo" />
+<p>Welcome to this repository! Here you&apos;ll find a Nim wrapper for raylib, a library for
+creating 2D and 3D games. The Nim API is designed to be user-friendly and easy to use.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Easy-to-use API</strong>: Simplified Nim interface for raylib functions</li>
+<li><strong>Cross-platform support</strong>: Develop for multiple platforms including Windows, Linux, macOS, Web and Android</li>
+<li><strong>Comprehensive documentation</strong>: Detailed guides and API references</li>
+<li><strong>Active community</strong>: Get support and share your creations</li>
+</ul>
+<h2>Documentation</h2>
+<p>To learn more about how to use this wrapper, you can check out the documentation:</p>
+<ul>
+<li><a href="https://planetis-m.github.io/naylib/raylib.html">raylib</a> - Core library for videogame programming</li>
+<li><a href="https://planetis-m.github.io/naylib/raymath.html">raymath</a> - Mathematical functions for game development</li>
+<li><a href="https://planetis-m.github.io/naylib/rlgl.html">rlgl</a> - Abstraction layer for OpenGL with immediate-mode API</li>
+<li><a href="https://planetis-m.github.io/naylib/reasings.html">reasings</a> - Smooth animation transitions</li>
+<li><a href="https://planetis-m.github.io/naylib/rmem.html">rmem</a> - Memory pool and objects pool allocators</li>
+</ul>
+<p>If you&apos;re familiar with the C version of raylib, you may find the
+<a href="https://www.raylib.com/cheatsheet/cheatsheet.html">cheatsheet</a> useful.</p>
+<h2>Installation</h2>
+<p>Install naylib easily with <code>nimble install naylib</code>.</p>
+<p>Then, make sure to install the required dependencies using your OS&apos;s native
+package manager.</p>
+<h2>Examples</h2>
+<p>We&apos;ve also provided some example code to help you get started. You can find it in the
+accompanying <a href="https://github.com/planetis-m/raylib-examples">example repository</a>.
+To compile and run an example: <code>nim c -r -d:release example.nim</code></p>
+<h2>Changes from Raylib to Naylib</h2>
+<p>Naylib introduces several improvements and changes compared to the original Raylib.
+For a comprehensive overview of these changes, including memory management, naming
+conventions, and API improvements, please refer to our
+<a href="changes_overview.md">Changes Overview</a> document.</p>
+<h2>Advanced Usage</h2>
+<p>For detailed instructions on advanced topics, please refer to our
+<a href="advanced_usage.md">Advanced Usage Guide</a>.</p>
+<p>Here are quick links to some important sections:</p>
+<ul>
+<li><a href="advanced_usage.md#important-usage-tips">Important Usage Tips</a> - Learn how to properly call <code>closeWindow</code> and other crucial tips</li>
+<li><a href="advanced_usage.md#building-for-the-web-webassembly">Building for the Web (WebAssembly)</a> - Instructions for compiling your project for web browsers</li>
+<li><a href="advanced_usage.md#building-for-android">Building for Android</a> - Step-by-step guide for Android development</li>
+<li><a href="advanced_usage.md#raylib-functions-to-nim-alternatives">Raylib Functions to Nim Alternatives</a> - Find Nim equivalents for raylib functions</li>
+</ul>
+<h2>Platform Support</h2>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Windows</th>
+<th>Linux</th>
+<th>macOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native</td>
+<td>Supported, Tested</td>
+<td>Supported, Tested</td>
+<td>Supported, Tested</td>
+</tr>
+<tr>
+<td>WebAssembly</td>
+<td>Supported, Tested</td>
+<td>Supported, Tested</td>
+<td>Supported, Tested</td>
+</tr>
+<tr>
+<td>DRM</td>
+<td>Untested</td>
+<td>Supported</td>
+<td>Untested</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>Supported, Tested</td>
+<td>Supported, Tested</td>
+<td>Possibly Works</td>
+</tr>
+<tr>
+<td>Windows (Cross)</td>
+<td>N/A</td>
+<td>Known Issues</td>
+<td>Untested</td>
+</tr></tbody></table>
+<h3>Development Status</h3>
+<ul>
+<li>Our CI pipeline ensures quality across Windows, Linux, and macOS for both native and WebAssembly builds.</li>
+<li>We also maintain a separate CI for Android cross-compilation from Windows and Linux hosts.</li>
+</ul>
+<h3>CI Status</h3>
+<p>  <a href="https://github.com/planetis-m/naylib/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/naylib/ci.yml?branch=main&amp;label=Native%20%26%20WebAssembly%20CI" style="max-width: 100%;" alt="Native &amp; WebAssembly CI" />  </a></p>
+<p>  <a href="https://github.com/planetis-m/raylib-game-template/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/raylib-game-template/ci.yml?branch=master&amp;label=Android%20CI" style="max-width: 100%;" alt="Android CI" />  </a></p>
+<h2>Alternative Game Development Libraries</h2>
+<p>While we believe that Naylib provides a great option for game development with Nim, we understand that it may not be the perfect fit for everyone. Here are some noteworthy alternatives:</p>
+<ul>
+<li><a href="https://github.com/jmgomez/NimForUE">NimForUE</a>: Plugin for Unreal Engine 5</li>
+<li><a href="https://github.com/floooh/sokol-nim">sokol-nim</a>: Auto-generated bindings for sokol headers</li>
+<li><a href="https://github.com/panno8M/godot-nim">godot-nim (4.x)</a>: Godot 4.x bindings</li>
+<li><a href="https://github.com/pragmagic/godot-nim">godot-nim</a>: Godot 3 bindings</li>
+<li><a href="https://github.com/ftsf/nico">nico</a>: Pico-8 inspired game framework</li>
+<li><a href="https://github.com/pietroppeter/p5nim">p5nim</a>: Processing library</li>
+</ul>
+<p>For a comprehensive list of game development resources in Nim,
+visit <a href="https://github.com/ringabout/awesome-nim#game-development">awesome-nim</a>.</p>
+<h2>Contributing</h2>
+<p>We welcome contributions! Whether it&apos;s bug reports, feature requests, or code contributions,
+please feel free to engage with our project.</p>
+<h2>License</h2>
+<p>Naylib is open-source software. <a href="LICENSE">LICENSE-MIT</a></p>
+<h2>Contact</h2>
+<p>For support and discussions, join the <a href="https://discord.gg/ByYHrPUY">Nim Discord server</a>
+and visit the #gamedev channel.</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -159,7 +273,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-11T01:18:52Z
+        Builded at 2024-07-12T01:17:37Z
         </p>
       </div>
     </div>
