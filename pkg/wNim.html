@@ -112,51 +112,51 @@ Layout DSL is powered by Yuriy Glukhov&apos;s Kiwi constraint solving library.</
 <h2>Screenshots</h2>
 <p>  <img src="https://github.com/khchen/wNim/blob/master/docs/images/screenshot.png" style="max-width: 100%;" alt="demo.nim" /></p>
 <h2>Install</h2>
-<p>With git on windows:</p>
+<p>With git on Windows:</p>
 <pre>  <code>nimble install wNim
 </code></pre>
 <p>Without git:</p>
-<pre>  <code>1. Download and unzip this moudle (by click &quot;Code&quot; button).
-2. Start a console, change current dir to the folder which include &quot;wNim.nimble&quot; file.
-   (for example: C:\wNim-master\wNim-master&gt;)
+<pre>  <code>1. Download and unzip this module (by clicking the &quot;Code&quot; button).
+2. Start a console and change the current dir to the folder with the &quot;wNim.nimble&quot; file.
+   (for example C:\wNim-master\wNim-master&gt;)
 3. Run &quot;nimble install&quot;
 </code></pre>
 <h2>Import</h2>
 <p>The easiest way to use wNim is to import the whole package.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">wNim</span></div></div>  </code></pre>
-<p>However, the modules of wNim can be aslo imported one by one  to speed up compilation time.</p>
+<p>However, the modules of wNim can also be imported one by one to speed up compilation time.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">wNim</span><span class="op">/</span>[<span class="ide">wApp</span>, <span class="ide">wFrame</span>]</div></div>  </code></pre>
 <p>There are some simple rules:</p>
-<pre>  <code>1. For every classes in wNim, there is a corresponding module.
+<pre>  <code>1. For every class in wNim, there is a corresponding module.
    For example: wFrame, wIcon, wMenu, etc.
-2. wApp module must be imported in every wNim program.
-3. Symbols in wColors and wKeyCodes modules are imported automatically with wApp module.
-4. All event classes in wNim share the same constructor: Event(), so all subclasses module
-   of wEvent will be imported with wEvent module automatically.
-5. wMacros, wUtils, and wTypes modules are three special module in wNim.
-   See their document for more information.
+2. The wApp module must be imported into every wNim program.
+3. Symbols in wColors and wKeyCodes modules are imported automatically with the wApp module.
+4. All event classes in wNim share the same constructor: Event(), so all subclass modules
+   of wEvent will be automatically imported with the wEvent module.
+5. wMacros, wUtils, and wTypes modules are three special modules in wNim.
+   See their documentation for more information.
 </code></pre>
 <h2>Compile</h2>
-<p>To compile the examples, try following command:</p>
+<p>To compile the examples, try the following command:</p>
 <pre>  <code>nim c -d:release -d:strip --opt:size --app:gui demo.nim
 </code></pre>
 <p>For Windows XP compatibility, add:</p>
 <pre>  <code>-d:useWinXP
 </code></pre>
-<p>To compile by <a href="https://bellard.org/tcc/">Tiny C Compiler</a>, or want to add some resource files, take a look at https://github.com/khchen/winim/tree/master/tcclib</p>
+<p>To compile wNim with the <a href="https://bellard.org/tcc/">Tiny C Compiler</a> or to add resource files, take a look at https://github.com/khchen/winim/tree/master/tcclib</p>
 <h2>Q &amp; A</h2>
-<h3>Q: Why I start this project?</h3>
-<p>In the first, I just wanted to write some code to test and prove my winim library.
-I wrote some event handler, some GUI control class, more and more...Finally, it
-become a whole GUI framework now.</p>
-<h3>Q: Why the class and api name look so like wxWidgets?</h3>
-<p>English is not my mother tongue, I often have no idea how to name an object or
-a function. So I borrow wxWidgets&apos; names to develop my own framework.</p>
-<h3>Q: Why not add linux or macOS support?</h3>
+<h3>Q: Why did I start this project?</h3>
+<p>At first, I just wanted to write some code to test and prove my Winim library.
+I wrote some event handlers, some GUI control classes, and more. Finally, it
+became a whole GUI framework.</p>
+<h3>Q: Why do the class and API names look so alike wxWidgets?</h3>
+<p>English is not my mother tongue. I often have no idea how to name an object or
+a function. So, I borrowed wxWidgets&apos; names to develop my own framework.</p>
+<h3>Q: Why not add Linux or macOS support?</h3>
 <p>I start from winim. It is just a Windows API module.</p>
 <h3>Q: How is wNim compare to nimx, libui, NiGui etc?</h3>
-<p>They are all good GUI librarys. I think wNim is easier to use and produce smaller exe file.
-However, it only support Windows system.</p>
+<p>They are all good GUI libraries. I think wNim is easier to use and produces smaller .exe files.
+However, it only supports Windows.</p>
 <h2>Docs</h2>
 <ul>
 <li>https://khchen.github.io/wNim/wNim.html</li>
@@ -233,7 +233,7 @@ However, it only support Windows system.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-12T01:17:37Z
+        Builded at 2024-07-13T01:18:24Z
         </p>
       </div>
     </div>
