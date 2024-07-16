@@ -93,33 +93,25 @@
 <pre>  <code>nimble install box2d
 </code></pre>
 <h2>Documentation</h2>
-<p>I&apos;ve kept the names of external library members consistent with that of Box2D v3 to help in searching its
-<a href="https://box2d.org/documentation_v3/">documentation</a>. In cases when the identifiers conflict with
-reserved Nim keywords (ie. <code>b2BodyDef.type</code>), I&apos;ve escaped the names with backticks (`type`).</p>
+<p>See library documentation <a href="https://jon-edward.github.io/box2d.nim/">here</a>. Also,
+because the library&apos;s naming is largely consistent with that of Box2D, you can use the
+<a href="https://box2d.org/documentation_v3/">Box2D v3 documentation</a> directly.</p>
+<p>The only exception to the naming consistency is <code>b2BodyDef.type</code> being translated to <code>b2BodyDef.bodyType</code>
+because of the reserved <code>type</code> keyword in Nim.</p>
 <h2>Testing</h2>
-<p>I&apos;ve translated most of Box2D&apos;s tests to Nim to demonstrate how the wrapped definitions should be used in a
-Nim environment. In addition, I&apos;ve included larger examples using <a href="https://github.com/planetis-m/naylib">naylib</a>
-for rendering in the <a href="https://github.com/jon-edward/box2d.nim/tree/main/examples">examples</a>
+<p>There are most of Box2D&apos;s unit tests translated to Nim in the
+<a href="https://github.com/jon-edward/box2d.nim/tree/main/tests">tests</a> directory. In addition, there are larger examples
+using <a href="https://github.com/planetis-m/naylib">naylib</a> for rendering in the <a href="https://github.com/jon-edward/box2d.nim/tree/main/examples">examples</a>
 directory.</p>
-<h2>Notes</h2>
-<p>I was motivated to wrap Box2D v3 instead of (the currently more widely known) v2 because wrapping C is more
-straightforward than wrapping C++ in Nim, which was v2&apos;s implementation language. My hope is that having
-Erin Catto&apos;s work available to Nim developers will have a meaningful impact on the game development community
-within the Nim ecosystem.</p>
-<p>I used <a href="https://github.com/PMunch/futhark">futhark</a> to create the initial wrapping script to automate much of
-the work generating declarations, and I&apos;ve included what I used to generate the starting point in the
-<a href="https://github.com/jon-edward/box2d.nim/tree/main/scripts">scripts</a> directory.</p>
-<h2>Next steps</h2>
-<ul>
-<li>[ ] Add automated unit testing</li>
-<li>[ ] Add build tests</li>
-<li>[ ] Improve in-library documentation</li>
-<li>[ ] Add more examples</li>
-<li>[ ] Implement a higher level API that includes more idiomatic Nim patterns</li>
-<li>[ ] Add procedures to make vector math easier</li>
-<li>[ ] Make generated WASM faster</li>
-<li>[ ] Create utilities for performing physics calculations in a secondary thread</li>
-</ul>
+<p>Building and testing is done for <code>ubuntu-latest</code>, <code>windows-latest</code>, and <code>macos-latest</code> GitHub runners per release.</p>
+<h2>Simple example</h2>
+<p>Box2D passes the user IDs for creating, manipulating, and reading world members such as shapes and bodies. The properties
+of these members are stored in various -<code>Def</code> types, such as <a href="https://jon-edward.github.io/box2d.nim/box2d.html#b2BodyDef">  <code>b2BodyDef</code></a>.</p>
+<p>Making a dynamic body with a box shape is as simple as defining a world with a given gravity vector, creating a dynamic body in that world,
+attaching it to a shape, and stepping the simulation forward.</p>
+<p>Notice that -<code>Def</code> types are used only for passing to <code>b2Create</code>- functions,
+and opaque -<code>Id</code> objects (<code>worldId</code>, <code>bodyId</code>) are retained.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">box2d</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create world definition</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">worldDef</span> <span class="op">=</span> <span class="ide">b2DefaultWorldDef</span>()</div></div><div class="line"><div class="line-content"><span class="ide">worldDef</span><span class="op">.</span><span class="ide">gravity</span> <span class="op">=</span> <span class="ide">b2Vec2</span>(<span class="ide">x</span>: <span class="num">0.0</span><span class="ide">f</span>, <span class="ide">y</span>: <span class="op">-</span><span class="num">10.0</span><span class="ide">f</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create world from definition</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">worldId</span> <span class="op">=</span> <span class="ide">b2CreateWorld</span>(<span class="ide">worldDef</span><span class="op">.</span><span class="kwd">addr</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># worldDef no longer needed</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create body definition</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">bodyDef</span> <span class="op">=</span> <span class="ide">b2DefaultBodyDef</span>()</div></div><div class="line"><div class="line-content"><span class="ide">bodyDef</span><span class="op">.</span><span class="ide">bodyType</span> <span class="op">=</span> <span class="ide">b2_dynamicBody</span></div></div><div class="line"><div class="line-content"><span class="ide">bodyDef</span><span class="op">.</span><span class="ide">position</span> <span class="op">=</span> <span class="ide">b2Vec2</span>(<span class="ide">x</span>: <span class="num">0.0</span><span class="ide">f</span>, <span class="ide">y</span>: <span class="num">4.0</span><span class="ide">f</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create body from definition</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">bodyId</span> <span class="op">=</span> <span class="ide">b2CreateBody</span>(<span class="ide">worldId</span>, <span class="ide">bodyDef</span><span class="op">.</span><span class="kwd">addr</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># bodyDef no longer needed</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create polygon (indirectly through b2MakeSquare)</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">dynamicBox</span> <span class="op">=</span> <span class="ide">b2MakeSquare</span>(<span class="num">1.0</span><span class="ide">f</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create shape definition</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">shapeDef</span> <span class="op">=</span> <span class="ide">b2DefaultShapeDef</span>()</div></div><div class="line"><div class="line-content"><span class="ide">shapeDef</span><span class="op">.</span><span class="ide">density</span> <span class="op">=</span> <span class="num">1.0</span><span class="ide">f</span></div></div><div class="line"><div class="line-content"><span class="ide">shapeDef</span><span class="op">.</span><span class="ide">friction</span> <span class="op">=</span> <span class="num">0.3</span><span class="ide">f</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Create polygon from body, shape definition, and polygon</span></div></div><div class="line"><div class="line-content"><span class="kwd">discard</span> <span class="ide">b2CreatePolygonShape</span>(<span class="ide">bodyId</span>, <span class="ide">shapeDef</span><span class="op">.</span><span class="kwd">addr</span>, <span class="ide">dynamicBox</span><span class="op">.</span><span class="kwd">addr</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># shapeDef and dynamicBox no longer needed</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># C wrappers need C types, such as cfloats and cints</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">timeStep</span>: <span class="ide">cfloat</span> <span class="op">=</span> <span class="num">1</span><span class="op">/</span><span class="num">60</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">subStepCount</span>: <span class="ide">cint</span> <span class="op">=</span> <span class="num">4</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Step simulation 60 times</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">_</span> <span class="kwd">in</span> <span class="num">0.</span><span class="op">.&lt;</span><span class="num">60</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">b2World_Step</span>(<span class="ide">worldId</span>, <span class="ide">timeStep</span>, <span class="ide">subStepCount</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Check that the box fell</span></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;Dynamic box y-position: &quot;</span>, <span class="ide">b2Body_GetPosition</span>(<span class="ide">bodyId</span>)<span class="op">.</span><span class="ide">y</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Cleanup</span></div></div><div class="line"><div class="line-content"><span class="ide">b2DestroyBody</span>(<span class="ide">bodyId</span>)</div></div><div class="line"><div class="line-content"><span class="ide">b2DestroyWorld</span>(<span class="ide">worldId</span>)</div></div>  </code></pre>
 </document>
             
         </div>
@@ -188,7 +180,7 @@ the work generating declarations, and I&apos;ve included what I used to generate
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-15T01:20:25Z
+        Builded at 2024-07-16T01:20:14Z
         </p>
       </div>
     </div>
