@@ -133,29 +133,49 @@
 <h2>Examples</h2>
 <p>Run a piece of script.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
-  print "Hello, world! (1)"
+  print "Hello, world! (0)"
 """</div></div>  </code></pre>
-<p>Call nim code and get the return value in script.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># There are a lot of ways to bind nim code as closure in the VM.</span></div></div><div class="line"><div class="line-content"><span class="com"># Here using vm.def macro and anonymous procedure (lambda).</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">hello</span> <span class="kwd">do</span> (<span class="ide">n</span>: <span class="ide">int</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> fmt"Hello, world! ({n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
-  print hello(2)
-"""</div></div>  </code></pre>
-<p>Run script code and get the return value in nim.</p>
+<p>Run the script and get the return value in nim.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">ret</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
-  return "Hello, world! (3)"
+  return "Hello, world! (1)"
 """</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">ret</span></div></div>  </code></pre>
-<p>Run script code, and then run the returned closure in nim.</p>
+<p>Run the script, and then run the returned closure in nim using <code>()</code>.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">closure</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
   return fn (n)
     return "Hello, world! (${n})"
   end
-"""</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">closure</span>(<span class="num">4</span>)</div></div>  </code></pre>
-<p>Create a module in nim, and use it in script.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># In vm.def, [] to create a module, and lambda to create module function.</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  [<span class="ide">Module</span>]:</div></div><div class="line"><div class="line-content">    <span class="ide">hello</span> <span class="kwd">do</span> (<span class="ide">n</span>: <span class="ide">int</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">      <span class="kwd">return</span> fmt"Hello, world! ({n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
-  import Module
-  print Module.hello(5)
+"""</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">closure</span>(<span class="num">2</span>)</div></div>  </code></pre>
+<p>Bind nim code as a closure so that we can run it and get the return value in the script. Start the code binding by using the <code>vm.def</code> macro.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="com"># There are many ways to bind nim code, here we use a named code block.</span></div></div><div class="line"><div class="line-content">  <span class="ide">hello3</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> <span class="str">&quot;Hello, world! (3)&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="com"># Here we use an anonymous procedure (lambda).</span></div></div><div class="line"><div class="line-content">  <span class="ide">hello4</span> <span class="kwd">do</span> (<span class="ide">n</span>: <span class="ide">int</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> fmt"Hello, world! ({n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
+  print hello3()
+  print hello4(4)
 """</div></div>  </code></pre>
-<p>Create a class in script, and use it in nim.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">Foo</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
+<p>Create a module in nim and use it in the script. In vm.def, use <code>[]</code> to create a module, and a named code block or a lambda to create module functions.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  [<span class="ide">Module</span>]:</div></div><div class="line"><div class="line-content">    <span class="ide">hello5</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">echo</span> <span class="str">&quot;Hello, world! (5)&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="ide">hello6</span> <span class="kwd">do</span> (<span class="ide">n</span>: <span class="ide">int</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">      <span class="kwd">return</span> fmt"Hello, world! ({n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
+  import Module
+  Module.hello5()
+  print Module.hello6(6)
+"""</div></div>  </code></pre>
+<p>Create a class in the script and use it in nim. Method 1: Access the class object via vm.main.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">testMe</span>:</div></div><div class="line"><div class="line-content">    <span class="com"># `args` is injected symbol</span></div></div><div class="line"><div class="line-content">    <span class="com"># `vm.main.Foo` (NpClass) is callable; call it to create an instance.</span></div></div><div class="line"><div class="line-content">    <span class="ide">assert</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">main</span><span class="op">.</span><span class="ide">Foo</span> <span class="kwd">of</span> <span class="ide">NpClass</span></div></div><div class="line"><div class="line-content">    <span class="kwd">var</span> <span class="ide">foo</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">main</span><span class="op">.</span><span class="ide">Foo</span>(<span class="ide">args</span>[<span class="num">0</span>])</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="ide">foo</span><span class="op">.</span><span class="ide">hello</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
+  class Foo
+    def _init(n)
+      self.n = n
+    end
+    def hello()
+      return "Hello, world! (${self.n})"
+    end
+  end
+
+  # Test the class in the script first.
+  foo = Foo(7)
+  print foo.hello()
+
+  # Test the class in nim code.
+  testMe(8)
+"""</div></div>  </code></pre>
+<p>Method 2: Define a class and return it as class object (NpClass).</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">fooCls</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
   class Foo
     def _init(n)
       self.n = n
@@ -165,12 +185,13 @@
     end
   end
   return Foo
-"""</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">foo</span> <span class="op">=</span> <span class="ide">Foo</span>(<span class="num">6</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">foo</span><span class="op">.</span><span class="ide">hello</span>()</div></div>  </code></pre>
-<p>Create a class in nim, and use it in script.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># In module definition of vm.def, [] to create a class.</span></div></div><div class="line"><div class="line-content"><span class="com"># Lambda to create class methods (first parameter must be self).</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  [<span class="ide">Module</span>]:</div></div><div class="line"><div class="line-content">    [<span class="ide">Foo</span>]:</div></div><div class="line"><div class="line-content">      <span class="str">&quot;_init&quot;</span> <span class="kwd">do</span> (<span class="ide">self</span>: <span class="ide">NpVar</span>, <span class="ide">n</span>: <span class="ide">int</span>):</div></div><div class="line"><div class="line-content">        <span class="ide">self</span><span class="op">.</span><span class="ide">n</span> <span class="op">=</span> <span class="ide">n</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">      <span class="ide">hello</span> <span class="kwd">do</span> (<span class="ide">self</span>: <span class="ide">NpVar</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> fmt"Hello, world! ({self.n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
-  from Module import Foo
-  foo = Foo(7)
+"""</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">fooCls</span> <span class="kwd">of</span> <span class="ide">NpClass</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">foo</span> <span class="op">=</span> <span class="ide">fooCls</span>(<span class="num">9</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">foo</span><span class="op">.</span><span class="ide">hello</span>()</div></div>  </code></pre>
+<p>Create a class in nim and use it in the script. In the module definition of vm.def, use [] to create a class. Use a lambda to create class methods (the first parameter must be self). Note that the name of a lambda can be an identifier, a string, or a symbol.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">symbol</span> <span class="op">=</span> <span class="str">&quot;helloNext&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">def</span>:</div></div><div class="line"><div class="line-content">  [<span class="ide">Module</span>]:</div></div><div class="line"><div class="line-content">    [<span class="ide">Foo</span>]:</div></div><div class="line"><div class="line-content">      <span class="str">&quot;_init&quot;</span> <span class="kwd">do</span> (<span class="ide">self</span>: <span class="ide">NpVar</span>, <span class="ide">n</span>: <span class="ide">int</span>):</div></div><div class="line"><div class="line-content">        <span class="ide">self</span><span class="op">.</span><span class="ide">n</span> <span class="op">=</span> <span class="ide">n</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">      <span class="ide">hello</span> <span class="kwd">do</span> (<span class="ide">self</span>: <span class="ide">NpVar</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> fmt"Hello, world! ({self.n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">      `<span class="ide">symbol</span>` <span class="kwd">do</span> (<span class="ide">self</span>: <span class="ide">NpVar</span>) <span class="op">-&gt;</span> <span class="ide">string</span>:</div></div><div class="line"><div class="line-content">        <span class="ide">self</span><span class="op">.</span><span class="ide">n</span> <span class="op">=</span> <span class="ide">self</span><span class="op">.</span><span class="ide">n</span> <span class="op">+</span> <span class="num">1</span></div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> fmt"Hello, world! ({self.n})"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Test the class in nim code first.</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">module</span> <span class="op">=</span> <span class="ide">vm</span><span class="op">.</span><span class="kwd">import</span>(<span class="str">&quot;Module&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">foo</span> <span class="op">=</span> <span class="ide">module</span><span class="op">.</span><span class="ide">Foo</span>(<span class="num">10</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">foo</span><span class="op">.</span><span class="ide">hello</span>()</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">foo</span><span class="op">.</span><span class="ide">helloNext</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Test the class in the script.</span></div></div><div class="line"><div class="line-content"><span class="ide">vm</span><span class="op">.</span><span class="ide">run</span> """
+  import Module
+  foo = Module.Foo(12)
   print foo.hello()
+  print foo.helloNext()
 """</div></div>  </code></pre>
 <p>More examples and tutorials: https://github.com/khchen/nimpk/tree/main/examples.</p>
 <h2>Docs</h2>
@@ -179,7 +200,7 @@
 </ul>
 <h2>License</h2>
 <p>Read license.txt for more details.</p>
-<p>Copyright (c) 2022 Kai-Hung Chen, Ward. All rights reserved.</p>
+<p>Copyright (c) Chen Kai-Hung, Ward. All rights reserved.</p>
 <h2>Donate</h2>
 <p>If this project help you reduce time to develop, you can give me a cup of coffee :)</p>
 <p>  <a href="https://paypal.me/khchen0915?country.x=TW&amp;locale.x=zh_TW">    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" style="max-width: 100%;" alt="paypal" />  </a></p>
@@ -251,7 +272,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-18T01:17:32Z
+        Builded at 2024-07-19T14:48:47Z
         </p>
       </div>
     </div>
