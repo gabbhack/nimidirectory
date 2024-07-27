@@ -181,6 +181,8 @@
 <li>An interface must have at least one method.</li>
 <li>Only <em>  <strong>methods</strong></em> can be added to the interface.</li>
 </ol>
+<h3>Pragmas Usage</h3>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">nimcls</span></div></div><div class="line"><div class="line-content"><span class="com"># Example 1</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">myFinalClass</span> {<span class="op">.</span><span class="ide">final</span><span class="op">.</span>}</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Example 2</span></div></div><div class="line"><div class="line-content"><span class="ide">Class</span> <span class="ide">NextClass</span> {<span class="op">.</span><span class="ide">requiresInit</span>, <span class="ide">borrow</span>: `<span class="op">.</span>`<span class="op">.</span>} :</div></div><div class="line"><div class="line-content">    <span class="kwd">var</span></div></div><div class="line"><div class="line-content">        <span class="ide">name</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">        <span class="ide">id</span>: <span class="ide">int</span></div></div>  </code></pre>
 <h3>Injection Usage</h3>
 <p>There are two ways to register an injection:</p>
 <ol>
@@ -431,7 +433,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-26T01:18:22Z
+        Builded at 2024-07-27T01:17:38Z
         </p>
       </div>
     </div>
