@@ -94,21 +94,15 @@
                 <document><h1>nimmm</h1>
 <p><a href="https://github.com/joachimschmidt557/nimmm/actions/workflows/build.yml">  <img src="https://github.com/joachimschmidt557/nimmm/actions/workflows/build.yml/badge.svg" style="max-width: 100%;" alt="Build" /></a>
 <img src="https://img.shields.io/github/license/joachimschmidt557/nimmm.svg" style="max-width: 100%;" alt="GitHub" /></p>
-<p>A terminal file manager written in <a href="https://nim-lang.org/">nim</a>
-inspired by the awesome <a href="https://github.com/jarun/nnn">nnn</a>.</p>
-<p>  <a href="https://asciinema.org/a/aEEz3wkiAvjx2vlBZbQqxOga3">    <img src="https://asciinema.org/a/aEEz3wkiAvjx2vlBZbQqxOga3.svg" style="max-width: 100%;" alt="asciicast" />  </a></p>
-<p>The goal of <code>nimmm</code> is not to replace <code>nnn</code>; I just wanted to code my own
-version of <code>nnn</code> to my liking. <code>nimmm</code> does not nearly have the same amount of
-features and power than <code>nnn</code> but it has enough features to be usable as a daily
-driver for me.</p>
+<p>A terminal file manager for Linux</p>
+<p>  <a href="https://asciinema.org/a/tGAr5PkesSBBgYBmzCQl30hE0">    <img src="https://asciinema.org/a/tGAr5PkesSBBgYBmzCQl30hE0.svg" style="max-width: 100%;" alt="asciicast" />  </a></p>
 <h1>Table of Contents</h1>
 <ol>
 <li>  <a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a>
 <ol>
 <li>  <a href="#source">From source</a></li>
-<li>  <a href="#nimble">With nimble</a></li>
-<li>  <a href="#nix">With Nix</a></li>
+<li>  <a href="#nix">Nix</a></li>
 </ol>
 </li>
 <li><a href="#usage">Usage</a>
@@ -118,32 +112,33 @@ driver for me.</p>
 </ol>
 </li>
 <li>  <a href="#todo">ToDo</a></li>
-<li><a href="#dependencies">Dependencies</a>
-<ol>
-<li>  <a href="#compile-time">Compile-time</a></li>
-<li>  <a href="#run-time">Run-time</a></li>
-</ol>
-</li>
+<li>  <a href="#external-tools">External Tools</a></li>
 </ol>
 <h2>Features</h2>
 <ul>
-<li>Support for all plaforms where <code>nim</code> and <code>termbox</code> can be installed on</li>
+<li>Unlimited tab support</li>
 <li>Colorizing with <code>LS_COLORS</code></li>
 <li>Custom keymaps (see below)</li>
-<li>Simple selection mechanism</li>
 <li>Incremental search</li>
 </ul>
 <h2>Installation</h2>
+<p>I&apos;m not aware of any distros packaging <code>nimmm</code> apart from NixOS, so
+you will probably have to compile <code>nimmm</code> from source on non-NixOS
+distros.</p>
 <h3>From source <a name="source" /></h3>
-<pre>  <code class="language-shell">$ git clone https://github.com/joachimschmidt557/nimmm
-$ cd nimmm
-$ nimble build --threads:on
+<p>You will need the <a href="https://nim-lang.org/install_unix.html">Nim development
+toolchain</a>. Furthermore,
+<code>termbox-devel</code> or <code>libtermbox-dev</code> is required for the terminal user
+interface.</p>
+<pre>  <code class="language-bash">git clone https://github.com/joachimschmidt557/nimmm
+cd nimmm
+nimble build
 </code></pre>
-<h3>With nimble <a name="nimble" /></h3>
-<pre>  <code class="language-shell">$ nimble install nimmm
-</code></pre>
-<h3>With Nix <a name="nix" /></h3>
-<pre>  <code class="language-shell">$ nix-env -i nimmm
+<h3>Nix</h3>
+<p><code>nimmm</code> is included in nixpkgs.</p>
+<pre>  <code class="language-bash">nix-env -i nimmm
+# or, if you prefer nix flakes
+nix profile install nixpkgs#nimmm
 </code></pre>
 <h2>Usage</h2>
 <h3>Configuration</h3>
@@ -177,6 +172,7 @@ similar to other programs:</p>
 <code>$XDG_CONFIG_HOME/nimmm.conf</code> where <code>$XDG_CONFIG_HOME</code> defaults to
 <code>~/.config</code> if not set.</p>
 <h3>Default keymap <a name="keymaps" /></h3>
+<p>The default keymap is similar to that of <code>less</code>.</p>
 <table>
 <thead>
 <tr>
@@ -312,12 +308,17 @@ similar to other programs:</p>
 <td>close tab</td>
 </tr>
 <tr>
+<td>  <kbd>Tab</kbd></td>
+<td>  <code>next-tab</code></td>
+<td>next tab</td>
+</tr>
+<tr>
 <td><kbd>1</kbd>..<kbd>0</kbd></td>
 <td>  <code>tab-x</code></td>
 <td>go to tab 1..10</td>
 </tr></tbody></table>
-<p>If you prefer more Emacs-oriented movement keybindings, you can add
-this to your configuration file:</p>
+<p>Keybindings are customized in the configuration file. For example, if
+you prefer more Emacs-oriented movement keybindings, you can do this:</p>
 <pre>  <code class="language-toml">[Keybindings]
 
 h=none
@@ -334,18 +335,7 @@ b=left
 <ul>
 <li>Help page</li>
 </ul>
-<h2>Dependencies</h2>
-<h3>Compile-time</h3>
-<p>The main dependency nimmm needs is the <code>nim</code> development toolchain, i.e. the
-<code>nim</code> compiler and the <code>nimble</code> package manager. A C compiler (gcc, clang, etc.)
-or a C++ compiler is necessary for compiling the generated C/C++ code to
-binaries.</p>
-<p>Apart from that, these libraries are required:</p>
-<ul>
-<li><code>termbox-devel</code> or <code>libtermbox-dev</code> is required in order
-for the terminal user interface to work.</li>
-</ul>
-<h3>Run-time</h3>
+<h2>External programs</h2>
 <table>
 <thead>
 <tr>
@@ -359,8 +349,8 @@ for the terminal user interface to work.</li>
 <td><code>nimmm</code> delegates all operations on files and directories to these utilities to save all the error-handling and permission-checking work. These utilities should (hopefully) be on your UNIX system</td>
 </tr>
 <tr>
-<td><code>$SHELL</code> or fallback <code>/bin/sh</code></td>
-<td>a shell</td>
+<td><code>$SHELL</code> or fallback <code>sh</code></td>
+<td>an interactive shell</td>
 </tr>
 <tr>
 <td><code>$EDITOR</code> or fallback <code>vi</code></td>
@@ -444,7 +434,7 @@ for the terminal user interface to work.</li>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-27T01:17:38Z
+        Builded at 2024-07-28T01:24:57Z
         </p>
       </div>
     </div>

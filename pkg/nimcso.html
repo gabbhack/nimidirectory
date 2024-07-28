@@ -167,7 +167,7 @@ no knowledge of programming and only basic command line skills. A single command
 </li>
 </ul>
 <h2>Dataset Files</h2>
-<p>We wanted to make creating the input dataset as simple and as cross-platform as possible, thus <strong>the dataset file should be plain text file containing one set of elements (in any order) per line separated by commas.</strong> You can use <code>.txt</code> or <code>.csv</code> file extensions interchangeably, with no effect on the <code>nimCSO</code> behavior, but note that editing CSV with Excel in some countries (e.g., Italy) may casuse issues. The dataset should <em>not</em> contain any header. <strong>The dataset can contain any elements, as the one not present in the <code>elementOrder</code> will be ignored</strong> at the parsing stage. It will generally look like:</p>
+<p>We wanted to make creating the input dataset as simple and as cross-platform as possible, thus <strong>the dataset file should be plain text file containing one set of elements (in any order) per line separated by commas.</strong> You can use <code>.txt</code> or <code>.csv</code> file extensions interchangeably, with no effect on the <code>nimCSO</code> behavior, but note that editing CSV with Excel in some countries (e.g., Italy) may cause issues. The dataset should <em>not</em> contain any header. <strong>The dataset can contain any elements, as the one not present in the <code>elementOrder</code> will be ignored</strong> at the parsing stage. It will generally look like:</p>
 <pre>  <code class="language-csv">Al,Cr,Hf,Mo,Ni,Re,Ru,Si,Ta,Ti,W
 Al,Co,Cr,Cu,Fe,Ni,Ti
 Al,B,C,Co,Cr,Hf,Mo,Ni,Ta,Ti,W,Zr
@@ -187,35 +187,87 @@ Al,    Co,     Fe, Ni
 <p>The dataset provided by default with <code>nimCSO</code> comes from a snapshot of the ULTERA Database and lists elements in &quot;aggregated&quot; alloys, which means every entry corresponds to a unique HEA composition-processing-structure triplet (which has from one to several attached properties). The dataset access is currently limited, but once published, you will be able to obtain it (and newer versions) with Python code like this using the <code>pymongo</code> library:</p>
 <pre>  <code class="language-python"><div class="line"><div class="line-content"></div></div>  </code></pre>
 <h1>Installation</h1>
-<p>If you want to use nimCSO on your machine (local or remote), the best course of action is likely to install dependencies and clone the software so that you can get a ready-to-use setup you can also customize.You can do it fairly easily in just a couple minutes.</p>
-<p>First you need to install Nim <a href="https://nim-lang.org/">Nim</a> which on most Unix (Linux/MacOS) systems is as simple as using:</p>
+<p>If you want to use nimCSO on your machine (local or remote), the best course of action is likely to install dependencies and clone the software so that you can get a ready-to-use setup you can also customize. You can do it fairly easily in just a couple of minutes.</p>
+<h2>Nim (compiler)</h2>
+<p>First, you need to install <a href="https://nim-lang.org/">Nim</a> which on most <strong>Unix</strong> (Linux/MacOS) systems is very straightforward.</p>
 <ul>
 <li>
-<p><a href="https://docs.conda.io/en/latest/">  <strong>conda</strong></a> (or <code>mamba</code>) cross-platform package manager:</p>
-<pre>  <code class="language-cmd">conda install -c conda-forge nim
+<p>On <strong>MacOS</strong>, assuming you have <a href="https://brew.sh/">Homebrew</a> installed, simply:</p>
+<pre>  <code class="language-sh">brew install nim
 </code></pre>
 </li>
 <li>
-<p>your distribution&apos;s package manager, for instance on Ubuntu/Debian <strong>Linux</strong>:</p>
-<pre>  <code class="language-cmd">apt-get install nim
+<p>Using <strong>  <code>conda</code></strong>, <a href="https://docs.anaconda.com/miniconda/">  <code>miniconda</code></a>, <code>mamba</code>, or <a href="https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html">  <code>micromamba</code></a> cross-platform package manager:</p>
+<pre>  <code class="language-sh">conda install -c conda-forge nim
 </code></pre>
 </li>
 <li>
-<p>on <strong>MacOS</strong>, assuming you have <a href="https://brew.sh/">Homebrew</a> installed:</p>
-<pre>  <code class="language-cmd">brew install nim
-</code></pre>
+<p>On most <strong>Linux</strong> distributions, you should also be able to use your built-in package manager like <code>pacman</code>, <code>apt</code>, <code>yum</code>, or <code>rpm</code>; however, the default channel/repository, especially on enterprise systems, may have an unsupported version (<code>nim&lt;2.0</code>). While we <a href="https://github.com/amkrajewski/nimCSO/blob/main/.github/workflows/testingOnPush_Linux.yaml">do test <code>nimCSO</code> with <code>1.6</code> versions too</a>, your experience may be degraded, so you may want to update it or go with another option.</p>
 </li>
 <li>
-<p>on <strong>Windows</strong>, you may want to follow these <a href="https://nim-lang.org/install.html">installation instructions</a></p>
+<p>You can, of course, also build it yourself from <a href="https://github.com/nim-lang/Nim"><code>nim</code> source code</a>! It is relatively straightforward and fast compared to many other languages.</p>
 </li>
 </ul>
-<p>Then, you can use the boundeled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (package manager for Nim, similar to Rust&apos;s <em>crate</em> or Python&apos;s <em>pip</em>) to install two top-level dependencies:
-<a href="https://github.com/mratsim/Arraymancer">arraymancer</a>, which is a powerful N-dimensional array library, and <a href="https://nimyaml.org/index.html">yaml</a> which
-parses the configuration files. Its a single command:</p>
-<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">nimble</span> install  -y arraymancer yaml</div></div>  </code></pre>
+<p>On <strong>Windows</strong>, you may consider using <a href="https://learn.microsoft.com/en-us/windows/wsl/about">  <code>WSL</code></a>, i.e., Windows Subsystem for Linux, which is strongly recommended, interplays well with VS Code, and will let you act as if you were on Linux. If you need to use Windows directly, you can follow these <a href="https://nim-lang.org/install_windows.html">installation instructions</a>.</p>
+<h2>nimCSO</h2>
+<p>Then, you can use the bundled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (package manager for Nim, similar to Rust&apos;s <code>crate</code> or Python&apos;s <code>pip</code>) to install two top-level dependencies:</p>
+<ul>
+<li><a href="https://github.com/mratsim/Arraymancer">arraymancer</a>, which is a powerful N-dimensional array library, and</li>
+<li><a href="https://nimyaml.org/index.html">yaml</a> which parses the configuration files.</li>
+</ul>
+<p>It&apos;s a single command:</p>
+<pre>  <code class="language-sh">nimble install --depsOnly
+</code></pre>
+<p>or, explicitly:</p>
+<pre>  <code class="language-sh">nimble install -y arraymancer yaml
+</code></pre>
 <p>Finally, you can clone the repository and compile the library with:</p>
-<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">git</span> clone <span class="ide">https://github.com/amkrajewski/nimcso</span></div></div><div class="line"><div class="line-content"><span class="kwd">cd</span> nimcso</div></div><div class="line"><div class="line-content"><span class="kwd">nim</span> c -r -f -d:release <span class="ide">src/nimcso</span></div></div>  </code></pre>
-<p>which will compile the library and print out concise <code>help</code> message with available CLI options. And now, you are ready to use <code>nimCSO</code> :)</p>
+<pre>  <code class="language-sh">git clone https://github.com/amkrajewski/nimcso
+cd nimcso
+nim c -r -f -d:release src/nimcso
+</code></pre>
+<p>which will compile the library and print out concise <code>help</code> message with available CLI options.</p>
+<p>And now, you are ready to use <code>nimCSO</code> :)</p>
+<h2>Install Notes</h2>
+<ul>
+<li>
+<p>In general, <code>nimble</code> could give you a very similar experience to <code>pip</code> and allow you to install <code>nimCSO</code> from <a href="https://nimble.directory/pkg/nimcso"><code>nimble</code> index</a> (PyPI equivalent), without manual cloning and compilation. The reason above README undergoes such additional gymnastics and places the binary in the local <code>src</code> rather than some more general location, is that <code>nimCSO</code> is meant to be compiled with local YAML config files on a per-task basis, taking advantage of optimizations enabled by knowing task specifics. Thus, having it installed would, <em>I think</em>, confuse users and perhaps leave unnecessary files behind after task completion.</p>
+</li>
+<li>
+<p>If you must use <code>nim&lt;2.0</code> for any reason, you may want to manually install package versions known to work with <code>nim=1.6.x</code> using <code>nimble install -y yaml@1.1.0 arraymancer@0.7.32</code>.</p>
+</li>
+</ul>
+<h1>Contributing</h1>
+<h2>What to Contribute</h2>
+<ul>
+<li>
+<p>  <strong>We explicitly welcome unsolicited user feedback and feature requests submitted through GitHub Issues.</strong></p>
+</li>
+<li>
+<p>If you wish to contribute to the development of <code>nimCSO</code> you are very welcome to do so by forking the repository and creating a pull request. As of Summer 2024, we are actively developing the code and using it in two separate research projects, so we should get back to you within a week or two.</p>
+</li>
+<li>
+<p>We are particularly interested in:</p>
+<ul>
+<li><strong>Performance improvements</strong>, even if marginal.</li>
+<li>Additional <strong>I/O file format handling</strong>, like HDF5, especially on the input data side.</li>
+<li>Additional <strong>genetic algorithms</strong>, ideally, outperforming the current ones.</li>
+<li>Additional test databases and configurations. We would love to see some <strong>high entropy ceramics</strong>, <strong>glasses</strong>, and <strong>metallic glasses</strong> on the materials science side, <strong>complex microbial communities</strong> on the biology side, and <strong>polypharmacy-related data</strong> on the pharmaceutical side.</li>
+</ul>
+</li>
+<li>
+<p>We are also open to helping you run our code in non-profit or academic research cases! Please do not hesitate to contact us through the GitHub issues or <a href="mailto:ak@psu.edu">by email</a>.</p>
+</li>
+</ul>
+<h2>Rules for Contributing</h2>
+<ul>
+<li>
+<p>  <strong>We do not enforce any strict style convention for   <code>nimCSO</code> contributions, as long as code maintains high readability and overall quality.</strong></p>
+</li>
+<li>
+<p>If you are unsure on what style to use, consult <a href="https://nim-lang.org/docs/nep1.html"><code>nim</code> compiler style convention</a> and try to stick to it. In general, style conventions in <code>nim</code> language are a very tricky subject compared to most languages. It is explicitly designed to not have code style conventions, even on the basic level like naming, and makes programmers read code closer to how it will be parsed into AST. The result is that collaborative projects use camelCase in one file to define a function and then kebab-case in another one to call it. Surprisingly to some, <code>nim</code> programmers tend to cherish that and even the largest projects like <code>Arraymancer</code> allow it.</p>
+</li>
+</ul>
 <h1>Citing</h1>
 </document>
             
@@ -285,7 +337,7 @@ parses the configuration files. Its a single command:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-27T01:17:38Z
+        Builded at 2024-07-28T01:24:57Z
         </p>
       </div>
     </div>
