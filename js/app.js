@@ -33846,6 +33846,22 @@ const packages = [
     "web": "https://github.com/nirokay/holidapi"
   },
   {
+    "name": "brotli",
+    "url": "https://github.com/neroist/brotli",
+    "method": "git",
+    "tags": [
+      "brotli",
+      "compression",
+      "decompression",
+      "bindings",
+      "wrapper"
+    ],
+    "description": "Brotli compression & decompression for Nim",
+    "license": "MIT",
+    "web": "https://github.com/neroist/brotli",
+    "doc": "https://neroist.github.io/brotli"
+  },
+  {
     "name": "hannah",
     "url": "https://github.com/sainttttt/hannah",
     "method": "git",
@@ -33857,6 +33873,18 @@ const packages = [
     "description": "xxhash wrapper library for Nim",
     "license": "MIT",
     "web": "https://github.com/sainttttt/hannah"
+  },
+  {
+    "name": "batmon",
+    "url": "https://codeberg.org/pswilde/batmon",
+    "method": "git",
+    "tags": [
+      "battery",
+      "notification"
+    ],
+    "description": "A simple daemon to notify you about changed to your battery's status. ",
+    "license": "BSD-3",
+    "web": "https://codeberg.org/pswilde/batmon"
   }
 ]
 
