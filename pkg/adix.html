@@ -222,6 +222,10 @@ sum using Intel SIMD for nsort</p>
 <p><a href="https://c-blake.github.io/adix/adix/bitop.html">bitop</a>: re-impl std/bitops
 things to be more CT friendly</p>
 </li>
+<li>
+<p><a href="https://c-blake.github.io/adix/adix/topk.html">topk</a>: spends 2X the (small)
+space of <code>std/heapqueue</code>-based top-k stream algo to scale slightly better.</p>
+</li>
 </ul>
 <h1>A Word Of Caution</h1>
 <p>While sketches are popular, like merge sort (vs. radix sort), they often need
@@ -321,7 +325,7 @@ A.Dain Samples 1993 PhD thesis has some more.)</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-07-30T01:19:28Z
+        Builded at 2024-07-31T01:06:13Z
         </p>
       </div>
     </div>
