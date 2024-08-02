@@ -96,7 +96,7 @@
 standards for <a href="https://sr.ht/~bptato/chawan">Chawan</a>.</p>
 <h2>Minimal example</h2>
 <p>First, include it in your nimble file:</p>
-<pre>  <code>requires &quot;chagashi &gt;= 0.5.3&quot;
+<pre>  <code>requires &quot;chagashi &gt;= 0.5.4&quot;
 </code></pre>
 <p>Note: following code uses the (very) high-level interface, which is rather
 inefficient. Lower level interfaces are normally faster.</p>
@@ -127,9 +127,10 @@ single-byte encodings are not covered yet, and we do not have fuzzing either.</p
 <p>Q: Is it fast?</p>
 <p>A: Not really, I have done very little optimization because it&apos;s not necessary
 for my use case.</p>
-<p>To check whether it is fast enough for your needs, you can try something like</p>
-<pre>  <code>$ BENCH_FILE=my_test_file BENCH_CHARSET=SomeCharset BENCH_ITER=10000 make bench
-</code></pre>
+<p>Also, similarly to encoding_rs, Chagashi uses RLE compressed tables to reduce
+binary size. In particular, this makes encoding EUC-KR and GBK very slow, since
+it depends on a linear search. For decoding the same ranges, binary search is
+used, which should be fast enough although is still slower than a lookup table.</p>
 <p>If you need better performance, feel free to complain in the
 <a href="https://todo.sr.ht/~bptato/chawan">tickets</a> with a specific input and I may
 look into it. Patches are welcome, too.</p>
@@ -154,7 +155,9 @@ std/encodings.</p>
 <p>To the standard authors for writing a detailed, easy to implement specification.</p>
 <p>Chagashi&apos;s multibyte test files (test/data.tar.xz) were borrowed from Henri
 Sivonen&apos;s excellent <a href="https://github.com/hsivonen/encoding_rs">encoding_rs</a>
-library.</p>
+library. His <a href="https://hsivonen.fi/encoding_rs/">writeup</a> on compressing the
+encoding data was also very helpful, and Chagashi applies similar
+techniques.</p>
 <h2>License</h2>
 <p>Chagashi is dedicated to the public domain. See the UNLICENSE file for details.</p>
 </document>
@@ -225,7 +228,7 @@ library.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-01T01:25:49Z
+        Builded at 2024-08-02T01:19:08Z
         </p>
       </div>
     </div>
