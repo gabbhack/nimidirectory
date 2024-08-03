@@ -88,38 +88,39 @@
 <h2>Examples:</h2>
 <pre>  <code>import filesize
 
-# Small to large units.
-test &quot;convert#string in bytes to bytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;B&quot;) == &quot;1024 B&quot;
-
-test &quot;convert#string in bytes to kilobytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;KB&quot;) == &quot;1.02 KB&quot;
-
-test &quot;convert#string in bytes to megabytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;MB&quot;) == &quot;0.00 MB&quot;
-
-test &quot;convert#string in bytes to gigabytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;GB&quot;) == &quot;0.00 GB&quot;
-
-test &quot;convert#string in bytes to terabytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;TB&quot;) == &quot;0.00 TB&quot;
-
-test &quot;convert#string in bytes to petabytes&quot;:
-  check convert(&quot;1024 B&quot;, &quot;PB&quot;) == &quot;0.00 PB&quot;
-
-# Large to small units.
-test &quot;convert#string in terabytes to gigabytes&quot;:
-  check convert(&quot;8 TB&quot;, &quot;GB&quot;) == &quot;8000.00 GB&quot;
-
-test &quot;convert#string in gigabytes to megabytes&quot;:
-  check convert(&quot;2.048 GB&quot;, &quot;MB&quot;) == &quot;2048.00 MB&quot;
-
-test &quot;convert#string in terabytes to bytes&quot;:
-  check convert(&quot;2 TB&quot;, &quot;B&quot;) == &quot;2000000000000.00 B&quot;
-
-# Some real examples.
-test &quot;convert#string in megabytes to gigabytes&quot;:
-  check convert(&quot;211.1 MB&quot;, &quot;GB&quot;) == &quot;0.21 GB&quot;
+suite &quot;convert&quot;:
+  test &quot;same unit&quot;:
+    check convert(&quot;1024 B&quot;, &quot;B&quot;) == &quot;1024 B&quot;
+  
+  test &quot;bytes to larger units&quot;:
+    check convert(&quot;1024 B&quot;, &quot;KB&quot;) == &quot;1.02 KB&quot;
+    check convert(&quot;1024 B&quot;, &quot;MB&quot;) == &quot;0 MB&quot;
+    check convert(&quot;1024 B&quot;, &quot;GB&quot;) == &quot;0 GB&quot;
+  
+  test &quot;larger units to bytes&quot;:
+    check convert(&quot;1 KB&quot;, &quot;B&quot;) == &quot;1000 B&quot;
+    check convert(&quot;1 MB&quot;, &quot;B&quot;) == &quot;1000000 B&quot;      
+  
+  test &quot;between larger units&quot;:
+    check convert(&quot;1 GB&quot;, &quot;MB&quot;) == &quot;1000 MB&quot;
+    check convert(&quot;1.5 TB&quot;, &quot;GB&quot;) == &quot;1500 GB&quot;
+    check convert(&quot;1.78 PB&quot;, &quot;GB&quot;) == &quot;1780000 GB&quot;
+  
+  test &quot;very small results&quot;:
+    check convert(&quot;1 B&quot;, &quot;YB&quot;) == &quot;0 YB&quot;
+  
+  test &quot;very large results&quot;:
+    check convert(&quot;1 YB&quot;, &quot;B&quot;) == &quot;999999999999999983222784. B&quot;
+  
+  test &quot;invalid input&quot;:
+    expect ConversionError:
+      discard convert(&quot;invalid&quot;, &quot;B&quot;)
+    expect ConversionError:
+      discard convert(&quot;100&quot;, &quot;B&quot;)
+    expect ConversionError:
+      discard convert(&quot;100 X&quot;, &quot;B&quot;)
+    expect ConversionError:
+      discard convert(&quot;100 B&quot;, &quot;X&quot;)
 </code></pre>
 </document>
             
@@ -189,7 +190,7 @@ test &quot;convert#string in megabytes to gigabytes&quot;:
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-02T01:19:08Z
+        Builded at 2024-08-03T01:18:10Z
         </p>
       </div>
     </div>
