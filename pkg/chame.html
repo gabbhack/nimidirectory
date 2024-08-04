@@ -87,73 +87,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>Chame: an HTML5 parser library in Nim</h1>
-<h2>Usage</h2>
-<p>Include Chame in your project using either Nimble or as a git submodule.</p>
-<pre>  <code>requires &quot;chame &gt;= 1.0.1&quot;
-# optional, if you want support for charsets other than UTF-8
-requires &quot;chagashi &gt;= 0.5.3&quot;
-</code></pre>
-<p>Then, check the <a href="https://chawan.net/doc/chame/">documentation</a> for a
-description of the API.</p>
-<p>Note: only Nim 1.6.10+ is supported.</p>
-<h2>Features</h2>
-<ul>
-<li>Full compliance with the WHATWG HTML parsing standard</li>
-<li>Passes all tokenizer and tree builder tests in html5lib-tests (except for ones
-requiring JS)</li>
-<li>Includes a minimal DOM implementation</li>
-<li>No mandatory dependencies other than the Nim standard library</li>
-<li>Optional character encoding support (see <a href="chame/minidom_cs.nim">minidom_cs</a>)</li>
-<li>String interning support for tag and attribute names</li>
-<li>Support for chunked parsing</li>
-<li>document.write (no actual implementation here, but it&apos;s possible to implement
-it on top of Chame)</li>
-</ul>
-<h2>Manual</h2>
-<p>There is a manual available at <a href="doc/manual.md">doc/manual.md</a>.</p>
-<h2>To-do</h2>
-<p>At this point the library is complete. The only remaining tasks are
-optimization-related.</p>
-<p>Also, a small module for basic minidom utilities is planned.</p>
-<h2>Bugs, feedback, etc.</h2>
-<p>Feedback, complaints, etc. are accepted at
-<a href="https://todo.sr.ht/~bptato/chawan">SourceHut</a> or the Nim forum
-<a href="https://forum.nim-lang.org/t/10963">thread</a>.</p>
-<h2>FAQ</h2>
-<h3>Does Chame include a DOM, JavaScript, CSS, ...?</h3>
-<p>Chame just parses HTML and calls the callbacks supplied to it. JavaScript,
-DOM manipulation, etc. are technically outside the scope of this project.</p>
-<p>However, Chame includes a minimal DOM interface (intuitively named minidom)
-for demonstration and testing purposes. This only implements the very basics
-needed for the parser to function (and for the tests to pass), and does not
-have any convenience functions (like querySelector, getElementById, etc.)</p>
-<p>Please refer to the <a href="https://sr.ht/~bptato/chawan/">Chawan</a> web browser for
-an example of a complete DOM implementation that depends on Chame.</p>
-<p>Also see <a href="https://github.com/Niminem/CSS3Selectors/">CSS3Selectors</a>, a CSS
-selector library for Chame&apos;s minidom which allows you to run querySelector
-like you can in JS.</p>
-<p>If you implement a DOM library based on Chame, please notify me, so that I
-can redirect users to it in this section.</p>
-<h3>I read the manual, but it&apos;s too complex, I don&apos;t understand anything, help</h3>
-<p>Just call minidom.parseHTML on an std/stream.Stream object and forget about
-everything else. Chances are this is enough for whatever you want to do.</p>
-<h3>How do I implement speculative parsing?</h3>
-<p>No idea. Let me know if you figure something out.</p>
-<h3>How do you pronounce Chame?</h3>
-<p>It is an acronym of &quot;<strong>Cha</strong>wan HT<strong>M</strong>L (aitch-tee-e<strong>m-e</strong>l).&quot; Accordingly, it is
-pronounced as &quot;cha-meh.&quot;</p>
-<h2>Thanks</h2>
-<p><a href="https://serenityos.org/">SerenityOS</a>&apos;s HTML parser has been used as a
-reference when I found some parts of the specification unclear.</p>
-<p>Servo&apos;s HTML parser <a href="https://github.com/servo/html5ever">html5ever</a> has been
-the main inspiration for Chame&apos;s API.</p>
-<p>Finally, thanks to the standard writers for writing a very detailed
-specification of the HTML5 parsing algorithm. The bulk of Chame is a direct
-translation of this algorithm into Nim.</p>
-<h2>License</h2>
-<p>Chame is dedicated to the public domain. See the UNLICENSE file for details.</p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -221,7 +155,7 @@ translation of this algorithm into Nim.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-03T01:18:10Z
+        Builded at 2024-08-04T01:25:10Z
         </p>
       </div>
     </div>
