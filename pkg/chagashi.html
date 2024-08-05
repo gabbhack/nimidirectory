@@ -91,7 +91,76 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Chagashi: a Nim implementation of the WHATWG encoding standard</h1>
+<p>Chagashi is a Nim text encoding/decoding library in compliance with the WHATWG
+standards for <a href="https://sr.ht/~bptato/chawan">Chawan</a>.</p>
+<h2>Minimal example</h2>
+<p>First, include it in your nimble file:</p>
+<pre>  <code>requires &quot;chagashi &gt;= 0.5.4&quot;
+</code></pre>
+<p>Note: following code uses the (very) high-level interface, which is rather
+inefficient. Lower level interfaces are normally faster.</p>
+<pre>  <code class="language-Nim"><div class="line"><div class="line-content"><span class="com"># Makeshift iconv.</span></div></div><div class="line"><div class="line-content"><span class="com"># Usage: nim r whatever.nim -f fromCharset -t toCharset &lt;infile.txt &gt;outfile.txt</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">std</span><span class="op">/</span><span class="ide">os</span>, <span class="ide">chagashi</span><span class="op">/</span>[<span class="ide">encoder</span>, <span class="ide">decoder</span>, <span class="ide">charset</span>]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">fromCharset</span> <span class="op">=</span> <span class="ide">CHARSET_UTF_8</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">toCharset</span> <span class="op">=</span> <span class="ide">CHARSET_UTF_8</span></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">i</span> <span class="kwd">in</span> <span class="num">1.</span><span class="op">.</span><span class="ide">paramCount</span>():</div></div><div class="line"><div class="line-content">  <span class="kwd">case</span> <span class="ide">paramStr</span>(<span class="ide">i</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">of</span> <span class="str">&quot;-f&quot;</span>: <span class="ide">fromCharset</span> <span class="op">=</span> <span class="ide">getCharset</span>(<span class="ide">paramStr</span>(<span class="ide">i</span> <span class="op">+</span> <span class="num">1</span>))</div></div><div class="line"><div class="line-content">  <span class="kwd">of</span> <span class="str">&quot;-t&quot;</span>: <span class="ide">toCharset</span> <span class="op">=</span> <span class="ide">getCharset</span>(<span class="ide">paramStr</span>(<span class="ide">i</span> <span class="op">+</span> <span class="num">1</span>))</div></div><div class="line"><div class="line-content">  <span class="kwd">else</span>: <span class="ide">assert</span> <span class="ide">false</span>, <span class="str">&quot;wrong parameter&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">fromCharset</span> <span class="op">!=</span> <span class="ide">CHARSET_UNKNOWN</span> <span class="kwd">and</span> <span class="ide">toCharset</span> <span class="op">!=</span> <span class="ide">CHARSET_UNKNOWN</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">ins</span> <span class="op">=</span> <span class="ide">stdin</span><span class="op">.</span><span class="ide">readAll</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">insDecoded</span> <span class="op">=</span> <span class="ide">ins</span><span class="op">.</span><span class="ide">decodeAll</span>(<span class="ide">fromCharset</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">if</span> <span class="ide">toCharset</span> <span class="op">==</span> <span class="ide">CHARSET_UTF_8</span>: <span class="com"># insDecoded is already UTF-8, nothing to do</span></div></div><div class="line"><div class="line-content">  <span class="ide">stdout</span><span class="op">.</span><span class="ide">write</span>(<span class="ide">insDecoded</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">stdout</span><span class="op">.</span><span class="ide">write</span>(<span class="ide">insDecoded</span><span class="op">.</span><span class="ide">encodeAll</span>(<span class="ide">toCharset</span>))</div></div>  </code></pre>
+<h2>Q&amp;A</h2>
+<p>Q: What encodings does Chagashi support?</p>
+<p>A: All the ones you can find on
+<a href="https://encoding.spec.whatwg.org/">https://encoding.spec.whatwg.org/</a>, no
+more and no less.</p>
+<p>Q: What is the intermediate format?</p>
+<p>A: UTF-8, because it is the native encoding of Nim. In general, you can just
+take whatever non-UTF-8 string you want to decode, pass it to the decoder, and
+use the result immediately.</p>
+<p>Q: What API should I use?</p>
+<p>For decoding: the TextDecoderContext.decode() iterator provides a fairly
+high-level API that does no unnecessary copying, and I recommend using that
+where you can.</p>
+<p>You may also use <code>decodeAll</code> when performance is less of a concern and/or you
+need the output to be in a string, or reach to <code>decodercore</code> directly if you
+really need the best performance. (In the latter case I recommend you study the
+<code>decoder</code> module first, because it&apos;s very easy to get it wrong.)</p>
+<p>For encoding: sorry, at the moment you need to use <code>encodercore</code> or stick with
+the (non-optimal) <code>encodeAll</code>. I&apos;ll see if I can add an in-between API in the
+future.</p>
+<p>Q: Is it correct?</p>
+<p>A: To my knowledge, yes. However, testing is still somewhat inadequate: many
+single-byte encodings are not covered yet, and we do not have fuzzing either.</p>
+<p>Q: Is it fast?</p>
+<p>A: Not really, I have done very little optimization because it&apos;s not necessary
+for my use case.</p>
+<p>Also, similarly to encoding_rs, Chagashi uses RLE compressed tables to reduce
+binary size. In particular, this makes encoding EUC-KR and GBK very slow, since
+it depends on a linear search. For decoding the same ranges, binary search is
+used, which should be fast enough although is still slower than a lookup table.</p>
+<p>If you need better performance, feel free to complain in the
+<a href="https://todo.sr.ht/~bptato/chawan">tickets</a> with a specific input and I may
+look into it. Patches are welcome, too.</p>
+<p>Q: How do I decode UTF-8?</p>
+<p>A: Like any other character set. Obviously, it won&apos;t be &quot;decoded&quot;, just
+validated, because the target charset is UTF-8 as well.</p>
+<p>Previously, the API did not have a way to return views into the input data, so
+we had a separate UTF-8 validator API. This turned out to be very annoying to
+use, so the two APIs have been unified.</p>
+<p>Q: How do I encode UTF-8?</p>
+<p>A: You have to make sure that the UTF-8 you are passing to the encoder is at
+least valid <em>WTF-8</em>. The encoder will convert surrogate codepoints to
+replacement characters, but it <em>does not</em> validate the input byte stream.</p>
+<p>To validate your input, you can run <code>validateUtf8()</code> from <code>std/unicode</code>, or the
+aforementioned <code>TextValidatorUTF8.validate()</code>.</p>
+<p>Q: Why no UTF-16 encoder?</p>
+<p>A: It&apos;s not specified in the encoding standard, and I don&apos;t need one. Maybe try
+std/encodings.</p>
+<p>Q: Why replace your previous character decoding library?</p>
+<p>A: Because it didn&apos;t work.</p>
+<h2>Thanks</h2>
+<p>To the standard authors for writing a detailed, easy to implement specification.</p>
+<p>Chagashi&apos;s multibyte test files (test/data.tar.xz) were borrowed from Henri
+Sivonen&apos;s excellent <a href="https://github.com/hsivonen/encoding_rs">encoding_rs</a>
+library. His <a href="https://hsivonen.fi/encoding_rs/">writeup</a> on compressing the
+encoding data was also very helpful, and Chagashi applies similar
+techniques.</p>
+<h2>License</h2>
+<p>Chagashi is dedicated to the public domain. See the UNLICENSE file for details.</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -159,7 +228,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-04T01:25:10Z
+        Builded at 2024-08-05T01:21:16Z
         </p>
       </div>
     </div>

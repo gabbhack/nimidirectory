@@ -95,7 +95,83 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Monoucha: seamless Nim-QuickJS integration</h1>
+<p>Monoucha is a wrapper library to simplify the process of embedding the QuickJS
+JavaScript engine into Nim programs.</p>
+<h2>Quick start</h2>
+<p>Include Monoucha in your project using either Nimble or as a git submodule.</p>
+<pre>  <code>requires &quot;monoucha &gt;= 0.2.3&quot;
+</code></pre>
+<p>Then,</p>
+<ul>
+<li>There is a <a href="doc/manual.md">manual</a>. Please read the manual.</li>
+<li><a href="test/manual.nim">Examples</a> from the manual, organized as unit tests.</li>
+</ul>
+<h2>Example</h2>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Compile with nim c --mm:refc!</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">monoucha</span><span class="op">/</span><span class="ide">fromjs</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">monoucha</span><span class="op">/</span><span class="ide">javascript</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">results</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">MyGlobal</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    <span class="ide">console</span> {<span class="op">.</span><span class="ide">jsget</span><span class="op">.</span>}: <span class="ide">Console</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">Console</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">jsDestructor</span>(<span class="ide">Console</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">log</span>(<span class="ide">console</span>: <span class="ide">Console</span>; <span class="ide">s</span>: <span class="ide">string</span>) {<span class="op">.</span><span class="ide">jsfunc</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">s</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">main</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">global</span> <span class="op">=</span> <span class="ide">MyGlobal</span>(<span class="ide">console</span>: <span class="ide">Console</span>())</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">rt</span> <span class="op">=</span> <span class="ide">newJSRuntime</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">ctx</span> <span class="op">=</span> <span class="ide">rt</span><span class="op">.</span><span class="ide">newJSContext</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">registerType</span>(<span class="ide">MyGlobal</span>, <span class="ide">asglobal</span> <span class="op">=</span> <span class="ide">true</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">registerType</span>(<span class="ide">Console</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">setGlobal</span>(<span class="ide">global</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">const</span> <span class="ide">code</span> <span class="op">=</span> """
+console.log("Hello from Nim!");
+"Hello from JS!";
+"""</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">res</span> <span class="op">=</span> <span class="ide">ctx</span><span class="op">.</span><span class="ide">eval</span>(<span class="ide">code</span>, <span class="str">&quot;&lt;test&gt;&quot;</span>) <span class="com"># Hello from Nim!</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">fromJS</span>[<span class="ide">string</span>](<span class="ide">ctx</span>, <span class="ide">res</span>)<span class="op">.</span><span class="ide">get</span> <span class="com"># Hello from JS!</span></div></div><div class="line"><div class="line-content">  <span class="ide">JS_FreeValue</span>(<span class="ide">ctx</span>, <span class="ide">res</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">free</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">rt</span><span class="op">.</span><span class="ide">free</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">main</span>()</div></div>  </code></pre>
+<p>Above code does the following:</p>
+<ul>
+<li>Create a new QuickJS runtime &amp; a QuickJS context in that runtime</li>
+<li>Register the MyGlobal and Console types, and generate bindings for the
+<code>console</code> property of MyGlobal and the <code>log</code> function of Console</li>
+<li>Evaluate JS code in this context</li>
+<li>Convert the result of the evaluated JS code to a Nim string, and print it</li>
+<li>Free the result, then free the context</li>
+</ul>
+<h2>Warning</h2>
+<p>At the time of writing, Monoucha only works with refc. This means you have to
+put the following in your nim.cfg:</p>
+<pre>  <code>--mm:refc
+</code></pre>
+<p>If you do not do this, you will be rewarded with strange crashes as your program
+grows.</p>
+<h2>Dependencies</h2>
+<p>monoucha depends on the <a href="https://github.com/arnetheduck/nim-results.git">nim-results</a>
+library.</p>
+<p>QuickJS is already included in this repository; you do not need to install it
+separately.</p>
+<h2>Q&amp;A</h2>
+<ul>
+<li>Cool, so how do I use this thing?</li>
+</ul>
+<p>I&apos;m working on a <a href="doc/manual.md">manual</a>. Please read the manual.</p>
+<ul>
+<li>I&apos;m getting weird memory errors?</li>
+</ul>
+<p>You did not read the above instructions, you have to set --mm:refc.</p>
+<p>Monoucha does not (and never did) work with ORC, or other memory managers for
+that matter. You must use refc.</p>
+<ul>
+<li>I already have QuickJS, why are you not linking to my system library?</li>
+</ul>
+<p>Monoucha does not actually use stock QuickJS, but a fork that tracks upstream.
+This fork includes some GC hacks necessary for proper integration of the Nim and
+QuickJS runtimes.</p>
+<ul>
+<li>Can I compile Nim to JS and execute Nim from Nim?</li>
+</ul>
+<p>Possibilities are endless, but <a href="https://peterme.net/using-nimscript-as-a-configuration-language-embedding-nimscript-pt-1.html">this</a>
+looks like a better solution.</p>
+<ul>
+<li>Can I use Monoucha with <code>[insert JS engine]</code> instead of QuickJS?</li>
+</ul>
+<p>No. Feel free to fork and adapt it to whatever engine you want, but here we only
+support QuickJS.</p>
+<ul>
+<li>What <em>is</em> a monoucha?</li>
+</ul>
+<p>A kind of tea, from the town once called Monou. You pronounce it as mo-no-u-cha.</p>
+<p>Yes, it&apos;s a <a href="https://en.wikipedia.org/w/index.php?title=SpiderMonkey&amp;oldid=1214134789#History">pun</a>.</p>
+<h2>License</h2>
+<p>QuickJS was written by Fabrice Bellard and Charlie Gordon, and is distributed
+in this repository under the terms of the MIT license. See the
+<a href="monoucha/qjs/LICENSE">monoucha/qjs/LICENSE</a> file for details.</p>
+<p>Monoucha is released into the public domain. See the <a href="UNLICENSE">UNLICENSE</a> file
+for details.</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -163,7 +239,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-04T01:25:10Z
+        Builded at 2024-08-05T01:21:16Z
         </p>
       </div>
     </div>

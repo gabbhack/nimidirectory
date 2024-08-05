@@ -83,7 +83,105 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Nim lockfile generator</h1>
+<p>Generates Nix specific lockfiles for Nim packages.</p>
+<p>It puts your dependencies in the Nix store where they belong.</p>
+<p>This tool requires Nix to be available, specifically the <code>nix-prefetch-url</code> and <code>nix-prefetch-git</code> tools.</p>
+<h2>Nimble to Nix lockfile</h2>
+<pre>  <code class="language-sh">cd «Nim project with a Nimble file»
+nim_lk nimble-to-nix &gt; lock.json
+</code></pre>
+<p>Generate a lockfile containing Nix <a href="https://nixos.org/manual/nix/stable/glossary#gloss-fixed-output-derivation">FOD</a> store paths that can be converted to <code>nim.cfg</code> files.</p>
+<p>See the local <a href="./lock.json">lock.json</a> file as an example.</p>
+<p>The following expression takes a path to a lockfile and generates a Nim configuration file that adds each entry in the lockfile to the module search path via the <code>path:</code> option.</p>
+<pre>  <code class="language-nix">{ pkgs ? import &lt;nixpkgs&gt; { }, lockPath, excludes ? [ ] }:
+
+let
+  inherit (pkgs) lib;
+  buildPkgDir = depends:
+    let
+      fetchers = {
+        fetchzip = { url, sha256, ... }:
+          pkgs.fetchzip {
+            name = &quot;source&quot;;
+            inherit url sha256;
+          };
+        git = { fetchSubmodules, leaveDotGit, rev, sha256, url, ... }:
+          pkgs.fetchgit { inherit fetchSubmodules leaveDotGit rev sha256 url; };
+      };
+      srcDirs = map (attrs@{ method, srcDir, ... }:
+        let fod = fetchers.${method} attrs;
+        in if srcDir == &quot;&quot; then fod else &quot;${fod}/${srcDir}&quot;) depends;
+    in pkgs.runCommand &quot;nim.cfg&quot; {
+      outputs = [ &quot;out&quot; &quot;src&quot; ];
+      nativeBuildInputs = [ pkgs.xorg.lndir ];
+      passthru = { inherit depends srcDirs; };
+    } &apos;&apos;
+      pkgDir=$src/pkg
+      cat &lt;&lt; EOF &gt;&gt; $out
+      noNimblePath
+      path:&quot;$src&quot;
+      path:&quot;$pkgDir&quot;
+      EOF
+      mkdir -p &quot;$pkgDir&quot;
+      ${lib.strings.concatMapStrings (d: &apos;&apos;
+        lndir &quot;${d}&quot; &quot;$pkgDir&quot;
+      &apos;&apos;) srcDirs}
+    &apos;&apos;;
+in with builtins;
+lib.pipe lockPath [
+  readFile
+  fromJSON
+  (getAttr &quot;depends&quot;)
+  (filter ({ packages, ... }: !(any (pkg: elem pkg excludes) packages)))
+  buildPkgDir
+]
+</code></pre>
+<p>I manage all this with <a href="https://gittup.org/tup">Tup</a>.</p>
+<h3>Tuprules.tup</h3>
+<pre>  <code># Tuprules.tup
+
+# A Tup macro to create lock.json.
+!nim_lk = |&gt; nim_lk | jq --compact-output --sort-keys &gt; %o |&gt; lock.json
+
+# A Tup macro to build a symlink from the Nix store to nim.cfg.
+!nim_cfg = |&gt; nix build --file ./build-nim-cfg.nix --out-link %o --arg lockPath `pwd`/%f --arg excludes &apos;[$(NIM_LOCK_EXCLUDES)]&apos; |&gt; nim.cfg
+
+</code></pre>
+<h3>Tupfile</h3>
+<pre>  <code># Tupfile
+include_rules
+
+# Omit the foobar library from nim.cfg.
+NIM_LOCK_EXCLUDES += &quot;foobar&quot;
+
+# Generate lock.json.
+: |&gt; !nim_lk |&gt; | ./&lt;lock&gt;
+
+# Generate nim.cfg.
+: lock.json |&gt; !nim_cfg |&gt; | ./&lt;lock&gt;
+
+# Generate some build rules using JQ.
+run ./Tuprules.jq sbom.json
+</code></pre>
+<h3>Tuprules.jq</h3>
+<p>See ./<a href="./Tuprules.jq">Tuprules.jq</a> for an example JQ script that generates Tup build rules from an SBOM.</p>
+<h2>Nimble to CycloneDX SBOM</h2>
+<pre>  <code class="language-sh">cd «Nim project with a Nimble file»
+nim_lk nimble-to-sbom &gt; sbom.json
+</code></pre>
+<p>Generate a <a href="https://cyclonedx.org/">CycloneDX</a> <a href="https://cyclonedx.org/capabilities/sbom/">Software Bill of Materials</a> from a Nimble file.</p>
+<p>A generated SBOM describes the package that corresponds to a given Nimble file and lists its direct and transitive dependencies.
+The SBOM also contains a superset of the information in the Nix lockfile format, so the SBOM can also be used to generate Nim configuration files.</p>
+<p>See the local <a href="./sbom.json">sbom.json</a> file as an example.</p>
+<p>Nix can extract FOD paths from SBOMS in a similar manner to lockfiles.
+The <a href="./bom-to-nim-cfg.nix">bom-to-nim-cfg.nix</a> file demonstrates how to generate a Nim configuration that adds Nix store paths to the module lookup path.</p>
+<p>The SBOMs also contains sufficient information to build a Nix package. In some cases this may require additional dependency inputs. See <a href="./default.nix">default.nix</a> and <a href="./build-nim-sbom.nix">build-nim-sbom.nix</a> as an example.</p>
+<h2>Nimble emulation</h2>
+<p>Nimble is an interpreter that executes Nim code in <code>*.nimble</code> scripts and when that script sets some variables in the right way then you have a package description.</p>
+<p>This design is not even wrong as it allows packages to be described in arbitrary formats.</p>
+<p>The <a href="./nim_lk.nimble">nimble file</a> in this repository is a drop-in Nimble replacement for repositories that contain a <code>sbom.json</code> file.</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -151,7 +249,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-04T01:25:10Z
+        Builded at 2024-08-05T01:21:16Z
         </p>
       </div>
     </div>
