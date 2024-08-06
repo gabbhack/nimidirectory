@@ -95,7 +95,75 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>Stopwatch</h1>
+<p>This is a fork of rbmz&apos;s stopwatch: https://github.com/rbmz/stopwatch
+It adds features such as multiple starting &amp; stopping, lapping, and handy time
+measurement conversion utility functions.</p>
+<p>The offical repo can be found here:
+https://gitlab.com/define-private-public/stopwatch</p>
+<p>All other places should be considered mirrors, but I am willing to address
+issues on places like GitHub.  Please use the GitLab repo though if you can.</p>
+<h2>Documentation</h2>
+<p>All of the functions should be documented in the file <code>stopwatch.nim</code>.  At the
+top of the file are function prototypes.  Their definition and documentation is
+found after the deprecation markers.</p>
+<p>The Stopwatch is &quot;lap-based,&quot; meaning that it can make multiple measurements and
+store them.  So for instance, if you created a new Stopwatch, then call the
+<code>start()</code> and <code>stop()</code> methods twice (in that order).  It would have recorded
+two completed laps.  You can retrive the laps by using the <code>laps()</code> function or
+<code>lap()</code>.</p>
+<p>After calling <code>start()</code>, a lap begins.  You can query it&apos;s elapsed time by
+calling a function like <code>nsecs()</code> or <code>secs()</code> on the Stopwatch object; there
+exist other methods to get measurements in different time formats.</p>
+<p>There exist more functions than what is described here.  Read the documentation
+in <code>stopwatch.nim</code> to find out.  Some samples are at the end of this document.</p>
+<h2>Breaking Changes</h2>
+<p>Here is what has changed names:</p>
+<ul>
+<li><code>clock</code> -&gt; <code>Stopwatch</code></li>
+<li><code>nanoseconds</code> -&gt; <code>nsecs</code></li>
+<li><code>seconds</code> -&gt; <code>secs</code></li>
+</ul>
+<p>All of the fields in <code>Stopwatch</code> have been marked invisible.</p>
+<h2>Examples</h2>
+<p>Simple usage:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">stopwatch</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">sw</span> <span class="op">=</span> <span class="ide">stopwatch</span>()</div></div><div class="line"><div class="line-content"><span class="ide">sw</span><span class="op">.</span><span class="ide">start</span>()</div></div><div class="line"><div class="line-content"><span class="com"># ... Long computation time</span></div></div><div class="line"><div class="line-content"><span class="ide">sw</span><span class="op">.</span><span class="ide">stop</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">totalSeconds</span> <span class="op">=</span> <span class="ide">sw</span><span class="op">.</span><span class="ide">secs</span>  <span class="com"># Gets the time of the previous lap in this case</span></div></div>  </code></pre>
+<p>Using laps, record only the code you want to time:</p>
+<pre>  <code>import stopwatch
+from sequtils import map
+
+var sw = stopwatch()
+
+# We&apos;re operating on a large image...
+for y in countup(0, imgHeight - 1):
+  for x in countup(0, imgWidth -1 ):
+    sw.start()
+    # ... lengthy pixel operation
+    sw.stop()
+
+# Query an individual lap&apos;s time
+let firstPixelTime = sw.lap(0).msecs    # Gets time in milliseconds
+
+# Total time (all laps) in microseconds
+let micros = sw.totalUsecs
+
+# Get each lap&apos;s time into seconds from nanoseconds (as a seq[float])
+let lapsSecs = sw.laps.map(proc(x: int64): float = secs(x))
+</code></pre>
+<h2>JavaScript Target</h2>
+<p>This library does support the Nim compiler&apos;s experimental JavaScript target.
+Though note that it&apos;s experimental as well.  Unfortunatley, Nim&apos;s JS target
+doesn&apos;t really support 64 bit integers that well, the JS version only has
+millisecond level resolution.  I also had to remove some of the functions that
+used microseconds and nanoseconds.  Hopefully this will be imporoved in soon
+release.</p>
+<h2>Other Notes</h2>
+<p>While in development, rbmz and I noticed some issues with precision on non-Linux
+platforms.  The difference should be negligible for most of your use cases (e.g.
+measuring a download&apos;s time), but could be an issue if you&apos;re looking for
+precise nanosecond resolution an all three of the major platforms.  Contact me
+on the issue tracker if you have any ideas on how to improve this.</p>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -163,7 +231,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-05T01:21:16Z
+        Builded at 2024-08-06T01:19:52Z
         </p>
       </div>
     </div>
