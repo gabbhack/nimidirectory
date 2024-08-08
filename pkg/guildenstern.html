@@ -103,46 +103,11 @@
 <li>step 1: Install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a></li>
 <li>step 2: atlas use GuildenStern</li>
 </ul>
-<h2>Release notes, 7.1.0 (2024-06-10)</h2>
+<h2>Release notes, 7.2.0 (2024-08-07)</h2>
 <ul>
-<li>All threads are initialized when their server is started (instead of when they are first used), making the system more <a href="https://en.wikipedia.org/wiki/Fail-fast_system">fail-fast</a></li>
-<li>- is an accepted char in header field names</li>
-<li>WebSocketServer code clean-up: WebSocketContext removed; opcode not anymore visible to end users</li>
-<li>Minor fixes and improvements</li>
-</ul>
-<h2>Release notes, 7.0.0 (2024-06-01)</h2>
-<h3>StreamingServer has been merged to HttpServer</h3>
-<ul>
-<li><em>receiveInChunks</em> iterator renamed to <em>receiveStream</em></li>
-<li><em>maxrequestlength</em> renamed to <em>bufferlength</em></li>
-<li>newHttpServer does not anymore take <em>hascontent</em> parameter, but instead:</li>
-<li>newHttpServer takes <em>contenttype</em> parameter:
-<ul>
-<li><em>Compact</em> (the default mode): Equivalent to previous hasContent=true mode, where whole request body must fit into the buffer</li>
-<li><em>NoBody</em>: Equivalent to previous hasContent=false mode, for optimized handling of requests like GET that do not have a body</li>
-<li><em>Streaming</em>: Equivalent to previous StreamingServer, where you have to read the body yourself using the <em>receiveStream</em> iterator</li>
-</ul>
-</li>
-<li><em>startDownload-continueDownload-finishDownload</em> combo renamed to <em>replyStartChunked-replyContinueChunked-replyFinishChunked</em></li>
-</ul>
-<h3>Header processing streamlined</h3>
-<ul>
-<li><em>parseHeaders</em> and <em>parseAllHeaders</em> obsoleted</li>
-<li>newHttpServer takes <em>headerfields</em> parameter, listing header fields that you need</li>
-<li>in request handlers <em>http.headers</em> StringTableRef is automatically populated with needed header key-value pairs</li>
-</ul>
-<h3>New MultipartServer</h3>
-<ul>
-<li>handles <em>multipart/form-data</em> for you as neatly parsed</li>
-<li>operates in streaming manner, allowing huge uploads without blowing up RAM</li>
-</ul>
-<h3>Improvements to websockets</h3>
-<ul>
-<li>If you do not accept a connection (reply <em>false</em> in <em>upgradeCallback</em>), a HTTP 400 reply is now automatically sent before the socket is closed</li>
-<li>PONG is now automatically replied to PINGs, <em>sendPong</em> proc is removed</li>
-<li>default reply values changed, now <em>timeoutsecs</em> = 10, <em>sleepmillisecs</em> = 10</li>
-<li>if all in-flight receivers are blocking, now suspends for (<em>sleepmillisecs</em> * in-flight receiver count) milliseconds</li>
-<li>fixed <em>isMessage</em> bug</li>
+<li>Compatibility with ARM architecture</li>
+<li>Bug fix: getUri etc. in the new compact http server mode</li>
+<li>Bug fix: failed read in the new compact http server mode</li>
 </ul>
 </document>
             
@@ -212,7 +177,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-07T01:20:28Z
+        Builded at 2024-08-08T01:20:18Z
         </p>
       </div>
     </div>

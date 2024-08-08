@@ -189,7 +189,7 @@ Al,    Co,     Fe, Ni
 <h1>Installation</h1>
 <p>If you want to use nimCSO on your machine (local or remote), the best course of action is likely to install dependencies and clone the software so that you can get a ready-to-use setup you can also customize. You can do it fairly easily in just a couple of minutes.</p>
 <h2>Nim (compiler)</h2>
-<p>First, you need to install <a href="https://nim-lang.org/">Nim</a> which on most <strong>Unix</strong> (Linux/MacOS) systems is very straightforward.</p>
+<p>First, you need to install <a href="https://nim-lang.org/">Nim</a> language compiler which on most <strong>Unix</strong> (Linux/MacOS) systems is very straightforward.</p>
 <ul>
 <li>
 <p>On <strong>MacOS</strong>, assuming you have <a href="https://brew.sh/">Homebrew</a> installed, simply:</p>
@@ -210,7 +210,7 @@ Al,    Co,     Fe, Ni
 </ul>
 <p>On <strong>Windows</strong>, you may consider using <a href="https://learn.microsoft.com/en-us/windows/wsl/about">  <code>WSL</code></a>, i.e., Windows Subsystem for Linux, which is strongly recommended, interplays well with VS Code, and will let you act as if you were on Linux. If you need to use Windows directly, you can follow these <a href="https://nim-lang.org/install_windows.html">installation instructions</a>.</p>
 <h2>nimCSO</h2>
-<p>Then, you can use the bundled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (package manager for Nim, similar to Rust&apos;s <code>crate</code> or Python&apos;s <code>pip</code>) to install two top-level dependencies:</p>
+<p>Then, you can use the bundled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (package manager for Nim, similar to Rust&apos;s <code>crate</code> or Python&apos;s <code>pip</code>) to install two top-level <code>nim</code> dependencies:</p>
 <ul>
 <li><a href="https://github.com/mratsim/Arraymancer">arraymancer</a>, which is a powerful N-dimensional array library, and</li>
 <li><a href="https://nimyaml.org/index.html">yaml</a> which parses the configuration files.</li>
@@ -235,6 +235,12 @@ nim c -r -f -d:release src/nimcso
 </li>
 <li>
 <p>If you must use <code>nim&lt;2.0</code> for any reason, you may want to manually install package versions known to work with <code>nim=1.6.x</code> using <code>nimble install -y yaml@1.1.0 arraymancer@0.7.32</code>.</p>
+</li>
+<li>
+<p>You can use <code>nimble list -i</code> to verify that Nim packages were installed correctly.</p>
+</li>
+<li>
+<p>Please note that <code>nim</code> used by <code>nimCSO</code> is the <a href="https://nim-lang.org/">nim programming language</a>, not a <code>python</code> package. While <code>conda</code> will work perfectly on Unix systems, you cannot install it with <code>pip install nim</code>, as the <a href="https://pypi.org/project/nim/">  <code>nim</code></a> Python package on PyPI is an entirely different thing (an obscure interface to the Network Interface Monitor).</p>
 </li>
 </ul>
 <h1>Contributing</h1>
@@ -337,7 +343,7 @@ nim c -r -f -d:release src/nimcso
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-07T01:20:28Z
+        Builded at 2024-08-08T01:20:18Z
         </p>
       </div>
     </div>
