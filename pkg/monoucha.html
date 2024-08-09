@@ -100,26 +100,12 @@
 JavaScript engine into Nim programs.</p>
 <h2>Quick start</h2>
 <p>Include Monoucha in your project using either Nimble or as a git submodule.</p>
-<pre>  <code>requires &quot;monoucha &gt;= 0.2.3&quot;
+<pre>  <code>requires &quot;monoucha &gt;= 0.3.0&quot;
 </code></pre>
 <p>Then,</p>
 <ul>
 <li>There is a <a href="doc/manual.md">manual</a>. Please read the manual.</li>
 <li><a href="test/manual.nim">Examples</a> from the manual, organized as unit tests.</li>
-</ul>
-<h2>Example</h2>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Compile with nim c --mm:refc!</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">monoucha</span><span class="op">/</span><span class="ide">fromjs</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">monoucha</span><span class="op">/</span><span class="ide">javascript</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">results</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">MyGlobal</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    <span class="ide">console</span> {<span class="op">.</span><span class="ide">jsget</span><span class="op">.</span>}: <span class="ide">Console</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">Console</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">jsDestructor</span>(<span class="ide">Console</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">log</span>(<span class="ide">console</span>: <span class="ide">Console</span>; <span class="ide">s</span>: <span class="ide">string</span>) {<span class="op">.</span><span class="ide">jsfunc</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">s</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">main</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">global</span> <span class="op">=</span> <span class="ide">MyGlobal</span>(<span class="ide">console</span>: <span class="ide">Console</span>())</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">rt</span> <span class="op">=</span> <span class="ide">newJSRuntime</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">ctx</span> <span class="op">=</span> <span class="ide">rt</span><span class="op">.</span><span class="ide">newJSContext</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">registerType</span>(<span class="ide">MyGlobal</span>, <span class="ide">asglobal</span> <span class="op">=</span> <span class="ide">true</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">registerType</span>(<span class="ide">Console</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">setGlobal</span>(<span class="ide">global</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">const</span> <span class="ide">code</span> <span class="op">=</span> """
-console.log("Hello from Nim!");
-"Hello from JS!";
-"""</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">res</span> <span class="op">=</span> <span class="ide">ctx</span><span class="op">.</span><span class="ide">eval</span>(<span class="ide">code</span>, <span class="str">&quot;&lt;test&gt;&quot;</span>) <span class="com"># Hello from Nim!</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">fromJS</span>[<span class="ide">string</span>](<span class="ide">ctx</span>, <span class="ide">res</span>)<span class="op">.</span><span class="ide">get</span> <span class="com"># Hello from JS!</span></div></div><div class="line"><div class="line-content">  <span class="ide">JS_FreeValue</span>(<span class="ide">ctx</span>, <span class="ide">res</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">ctx</span><span class="op">.</span><span class="ide">free</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">rt</span><span class="op">.</span><span class="ide">free</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">main</span>()</div></div>  </code></pre>
-<p>Above code does the following:</p>
-<ul>
-<li>Create a new QuickJS runtime &amp; a QuickJS context in that runtime</li>
-<li>Register the MyGlobal and Console types, and generate bindings for the
-<code>console</code> property of MyGlobal and the <code>log</code> function of Console</li>
-<li>Evaluate JS code in this context</li>
-<li>Convert the result of the evaluated JS code to a Nim string, and print it</li>
-<li>Free the result, then free the context</li>
 </ul>
 <h2>Warning</h2>
 <p>At the time of writing, Monoucha only works with refc. This means you have to
@@ -239,7 +225,7 @@ for details.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-08T01:20:18Z
+        Builded at 2024-08-09T01:21:09Z
         </p>
       </div>
     </div>

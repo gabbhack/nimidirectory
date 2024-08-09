@@ -1,5 +1,18 @@
 const packages = [
   {
+    "name": "niqlite",
+    "url": "https://github.com/mentalonigiri/niqlite",
+    "method": "git",
+    "tags": [
+      "library",
+      "sqlite",
+      "fts5"
+    ],
+    "description": "sqlite wrapper with fts5 and cflags configuration for sqlite.c. Builds sqlite from source",
+    "license": "MIT",
+    "web": "https://github.com/mentalonigiri/niqlite"
+  },
+  {
     "name": "nimgo",
     "url": "https://github.com/Alogani/NimGo",
     "method": "git",
@@ -33885,6 +33898,20 @@ const packages = [
     "description": "A simple daemon to notify you about changed to your battery's status. ",
     "license": "BSD-3",
     "web": "https://codeberg.org/pswilde/batmon"
+  },
+  {
+    "name": "wayland_native",
+    "url": "https://git.sr.ht/~ehmry/wayland-nim",
+    "method": "git",
+    "tags": [
+      "client",
+      "cps",
+      "library",
+      "wayland"
+    ],
+    "description": "Native Wayland client library",
+    "license": "Unlicense",
+    "web": "https://git.sr.ht/~ehmry/wayland-nim"
   }
 ]
 
