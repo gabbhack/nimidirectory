@@ -12835,6 +12835,19 @@ const packages = [
     "license": "MIT",
     "web": "https://github.com/treeform/taggy"
   },
+ {
+    "name": "tabby",
+    "url": "https://github.com/treeform/tabby",
+    "method": "git",
+    "tags": [
+      "csv",
+      "tsv",
+      "excel"
+    ],
+    "description": "Fast CSV parser with hooks.",
+    "license": "MIT",
+    "web": "https://github.com/treeform/tabby"
+  },
   {
     "name": "xdo",
     "url": "https://github.com/juancarlospaco/nim-xdo",
@@ -33912,6 +33925,19 @@ const packages = [
     "description": "Native Wayland client library",
     "license": "Unlicense",
     "web": "https://git.sr.ht/~ehmry/wayland-nim"
+  },
+  {
+    "name": "nclap",
+    "url": "https://github.com/AinTEAsports/nclap",
+    "method": "git",
+    "tags": [
+      "cli",
+      "argument",
+      "parser"
+    ],
+    "description": "A simple clap-like command line argument parser written in Nim",
+    "license": "MIT",
+    "web": "https://github.com/AinTEAsports/nclap"
   }
 ]
 

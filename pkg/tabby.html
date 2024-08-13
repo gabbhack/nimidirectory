@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">tabby</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">csv</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">tsv</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">excel</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">Fast CSV parser with hooks.</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install tabby" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Tabby - Fast CSV parser with hooks.</h1>
+<p>  <code>nimble install tabby</code></p>
+<p>  <img src="https://github.com/treeform/tabby/workflows/Github%20Actions/badge.svg" style="max-width: 100%;" alt="Github Actions" /></p>
+<p>  <a href="https://treeform.github.io/tabby">API reference</a></p>
+<p>This library has no dependencies other than the Nim standard library.</p>
+<h2>About</h2>
+<p>This library parses <code>.csv</code> or <code>.tsv</code> files directly into Nim objects. This is different from how Nim&apos;s standard library <a href="https://nim-lang.org/docs/parsecsv.html">parsecsv</a> works which first parses them into an intermediate representation. This makes <code>tabby</code> generate fewer memory allocations.</p>
+<p>Tabby also has a simpler API and is easier to use with just two calls <code>fromCsv</code>/<code>toCsv</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">rows</span> <span class="op">=</span> <span class="ide">strData</span><span class="op">.</span><span class="ide">fromCsv</span>(<span class="ide">seq</span>[<span class="ide">RowObj</span>])</div></div>  </code></pre>
+<p>and back:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">rows</span><span class="op">.</span><span class="ide">toCsv</span>()</div></div>  </code></pre>
+<p>Tabby also supports arbitrary delimiters. Not only standard tab <code>\t</code> and <code>,</code> with linux <code>\n</code> and windows <code>\r\n</code> line endings, but any delimiter can be used. It&apos;s trivial to convert your data to and from any tabular format:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">strData</span><span class="op">.</span><span class="ide">fromCsv</span>(<span class="ide">seq</span>[<span class="ide">RowObj</span>], <span class="ide">separator</span> <span class="op">=</span> <span class="str">&quot;:&quot;</span>, <span class="ide">lineEnd</span> <span class="op">=</span> <span class="str">&quot;;&quot;</span>)</div></div>  </code></pre>
+<p>Tabby can also guess delimiters with <code>fromCsvGuess()</code> function.</p>
+<p>This library is similar to my other <a href="https://github.com/treeform/jsony">jsony</a> project that is for <code>json</code>, if you like <code>jsony</code> you should like <code>tabby</code>.</p>
+<h2>How to use</h2>
+<p>You need to have CSV strData:</p>
+<pre>  <code>word,count
+the,23135851162
+of,13151942776
+and,12997637966
+</code></pre>
+<p>And a regular Nim object to parse into to:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">type</span> <span class="ide">FreqRow</span> <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">  <span class="ide">word</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">  <span class="ide">count</span>: <span class="ide">int</span></div></div>  </code></pre>
+<p>Then simply read in the data:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">rows</span> <span class="op">=</span> <span class="ide">strData</span><span class="op">.</span><span class="ide">fromCsv</span>(<span class="ide">seq</span>[<span class="ide">FreqRow</span>])</div></div>  </code></pre>
+<p>Compare this single line with confusing but equivalent <code>std/parcecsv</code> code:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span></div></div><div class="line"><div class="line-content">  <span class="ide">rows</span>: <span class="ide">seq</span>[<span class="ide">FreqRow</span>]</div></div><div class="line"><div class="line-content">  <span class="ide">strm</span> <span class="op">=</span> <span class="ide">newStringStream</span>(<span class="ide">content</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">p</span>: <span class="ide">CsvParser</span></div></div><div class="line"><div class="line-content"><span class="ide">p</span><span class="op">.</span><span class="ide">open</span>(<span class="ide">strm</span>, <span class="str">&quot;tmp.csv&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">p</span><span class="op">.</span><span class="ide">readHeaderRow</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">while</span> <span class="ide">p</span><span class="op">.</span><span class="ide">readRow</span>():</div></div><div class="line"><div class="line-content">  <span class="ide">rows</span><span class="op">.</span><span class="ide">add</span> <span class="ide">FreqRow</span>(<span class="ide">word</span>: <span class="ide">p</span><span class="op">.</span><span class="ide">row</span>[<span class="num">0</span>], <span class="ide">count</span>: <span class="ide">parseInt</span>(<span class="ide">p</span><span class="op">.</span><span class="ide">row</span>[<span class="num">1</span>]))</div></div><div class="line"><div class="line-content"><span class="ide">p</span><span class="op">.</span><span class="ide">close</span>()</div></div>  </code></pre>
+<h2>Speed</h2>
+<p>Even though tabby does not allocate intermediate objects, it does use header and field re-ordering, and parse and dump hooks, which makes makes it speed close to <code>std/parcecsv</code> but with much simpler API.</p>
+<pre>  <code>name ............................... min time      avg time    std dv   runs
+tabby ............................ 134.951 ms    141.897 ms    ±7.301   x100
+parsecsv ......................... 129.861 ms    136.086 ms    ±7.026   x100
+</code></pre>
+<h2>Parse Hooks</h2>
+<p>Sometimes the data you get from a csv file is not quite in the format you are looking for. You can define your own <code>parseHook</code> function to parse any data.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">csvData</span> <span class="op">=</span> """
+country,budget
+US,$2000
+GB,$1000
+DE,$1000
+"""</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">Money</span> <span class="op">=</span> <span class="ide">uint64</span> <span class="com"># in cents</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">CountryMoney</span> <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    <span class="ide">country</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="ide">budget</span>: <span class="ide">Money</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">parseHook</span>(<span class="ide">p</span>: <span class="ide">ParseContext</span>, <span class="ide">v</span>: <span class="kwd">var</span> <span class="ide">Money</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">inc</span> <span class="ide">p</span><span class="op">.</span><span class="ide">i</span> <span class="com"># skip the $</span></div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">num</span>: <span class="ide">int</span></div></div><div class="line"><div class="line-content">  <span class="ide">p</span><span class="op">.</span><span class="ide">parseHook</span>(<span class="ide">num</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">v</span> <span class="op">=</span> <span class="ide">num</span><span class="op">.</span><span class="ide">uint64</span> <span class="op">*</span> <span class="num">100</span> <span class="com"># in cents</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">rows</span> <span class="op">=</span> <span class="ide">csvData</span><span class="op">.</span><span class="ide">fromCsv</span>(<span class="ide">seq</span>[<span class="ide">CountryMoney</span>])</div></div>  </code></pre>
+<h2>Dump Hooks</h2>
+<p>Just like with parse hooks, sometimes the format you want to write to a csv file is not quite the format your objects are. You can define your own <code>dumpHook</code> function to output your data in any format.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">dumpHook</span>(<span class="ide">d</span>: <span class="ide">DumpContext</span>, <span class="ide">v</span>: <span class="ide">Money</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="com"># read teh %</span></div></div><div class="line"><div class="line-content">  <span class="ide">d</span><span class="op">.</span><span class="ide">data</span><span class="op">.</span><span class="ide">add</span> <span class="str">&quot;$&quot;</span></div></div><div class="line"><div class="line-content">  <span class="ide">d</span><span class="op">.</span><span class="ide">data</span><span class="op">.</span><span class="ide">add</span> <span class="op">$</span>(<span class="ide">v</span> <span class="kwd">div</span> <span class="num">100</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">rows</span><span class="op">.</span><span class="ide">toCsv</span>()</div></div>  </code></pre>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/treeform/tabby">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-08-13T01:22:00Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
