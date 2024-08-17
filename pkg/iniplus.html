@@ -96,13 +96,15 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>iniplus</h1>
-<p>An INI parser written in Nim with support for arrays. It&apos;s intended to be as performant as std/parsecfg but with a couple of nice-to-have features.</p>
-<p>Documentation can be found <a href="https://penguinite.github.io/iniplus/">here</a>, you can also build it locally by running <code>nim doc --project src/iniplus.nim</code></p>
-<h2>Features</h2>
+<p>An INI parser written in Nim with support for arrays and tables. It&apos;s intended to be as performant as std/parsecfg but with a way nicer interface and design.</p>
+<p>Documentation can be found <a href="https://penguinite.github.io/iniplus/">here</a>, you can also build it locally by running <code>nim doc --project src/iniplus.nim</code> if you clone this repository</p>
+<h2>Features/Drawbacks</h2>
 <ol>
 <li>iniplus does not support triple quoted string literals or raw string literals like <code>std/parsecfg</code> does.</li>
 <li>iniplus does not support nesting of sections.</li>
-<li>iniplus supports arrays/sequences consisting of all supported data types.</li>
+<li>iniplus supports arrays/sequences consisting of all supported data types. (Except for tables)</li>
+<li>iniplus supports tables consistig of strings, integers or booleans. But it does <strong>not</strong> support nested tables or arrays inside tables.</li>
+<li>Mixing arrays and tables are a terrible idea. Don&apos;t do it.</li>
 </ol>
 <h2>Status</h2>
 <p>Everything has been implemented, here is a short list of all the available features we have:</p>
@@ -112,9 +114,10 @@
 <li>There are also functions to dump/convert a table into plain-text</li>
 <li>And there are functions to write data into a config table. (Not files)</li>
 </ol>
-<p>Please create a new issue if there are any bugs or anything. The config file parser is a bit strict and prone to crashing, so please report an issue if it unexpectedly crashes.</p>
+<p>Please create a new issue if there are any bugs or anything. The config file parser has been recently re-written and may have some edge cases that aren&apos;t yet accounted for, so please report an issue if it there is one.</p>
+<p>It shouldn&apos;t crash when encountering unknown data, but if it does, then please report it and thank you. This library <em>has</em> been rigorously tested and has a comprehensive</p>
 <h2>Copyright</h2>
-<p>Copyright (c) penguinite 2023 <a href="mailto:penguinite@tuta.io">penguinite@tuta.io</a>
+<p>Copyright (c) penguinite 2023-2024 <a href="mailto:penguinite@tuta.io">penguinite@tuta.io</a>
 Licensed under the BSD 3-Clause license.</p>
 </document>
             
@@ -184,7 +187,7 @@ Licensed under the BSD 3-Clause license.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-16T01:20:15Z
+        Builded at 2024-08-17T01:18:02Z
         </p>
       </div>
     </div>

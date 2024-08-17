@@ -118,8 +118,38 @@ $ ./example3 remove --no-log task &quot;use python&quot;
 Removing project use python
 </code></pre>
 <hr />
+<h2>Tips</h2>
+<h4>Customizing the help message</h4>
+<p>You can customize the parser help message:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">settings</span>: <span class="ide">HelpSettings</span> <span class="op">=</span> (</div></div><div class="line"><div class="line-content">    <span class="ide">tabstring</span>: <span class="str">&quot;│   &quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">prefix_pretab</span>: <span class="str">&quot;-&gt; &quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">prefix_posttab</span>: <span class="str">&quot;├─ &quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">prefix_posttab_last</span>: <span class="str">&quot;└─ &quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">surround_left</span>: <span class="str">&quot;{&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">surround_right</span>: <span class="str">&quot;}&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="ide">separator</span>: <span class="str">&quot;, &quot;</span>,</div></div><div class="line"><div class="line-content">)</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">p</span> <span class="op">=</span> <span class="ide">newParser</span>(<span class="str">&quot;customizing help message&quot;</span>, <span class="ide">settings</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">p</span><span class="op">.</span><span class="ide">addCommand</span>(<span class="str">&quot;add&quot;</span>, <span class="op">@</span>[<span class="ide">newCommand</span>(<span class="str">&quot;task&quot;</span>, <span class="op">@</span>[], <span class="str">&quot;adds a task&quot;</span>), <span class="ide">newCommand</span>(<span class="str">&quot;project&quot;</span>, <span class="op">@</span>[], <span class="str">&quot;adds a project&quot;</span>)], <span class="str">&quot;&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="op">.</span><span class="ide">addCommand</span>(<span class="str">&quot;remove&quot;</span>, <span class="op">@</span>[<span class="ide">newCommand</span>(<span class="str">&quot;task&quot;</span>, <span class="op">@</span>[<span class="ide">newFlag</span>(<span class="str">&quot;-n&quot;</span>, <span class="str">&quot;--no-log&quot;</span>, <span class="str">&quot;does not log the deletion&quot;</span>)], <span class="str">&quot;removes a task&quot;</span>), <span class="ide">newCommand</span>(<span class="str">&quot;project&quot;</span>, <span class="op">@</span>[], <span class="str">&quot;removes a project&quot;</span>)], <span class="str">&quot;&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="op">.</span><span class="ide">addCommand</span>(<span class="str">&quot;list&quot;</span>, <span class="op">@</span>[<span class="ide">newFlag</span>(<span class="str">&quot;-a&quot;</span>, <span class="str">&quot;--all&quot;</span>, <span class="str">&quot;show even hidden tasks/projects&quot;</span>)], <span class="str">&quot;listing tasks and projects&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="op">.</span><span class="ide">addFlag</span>(<span class="str">&quot;-o&quot;</span>, <span class="str">&quot;--output&quot;</span>, <span class="str">&quot;outputs the content to a file&quot;</span>, <span class="ide">true</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">args</span> <span class="op">=</span> <span class="ide">p</span><span class="op">.</span><span class="ide">parse</span>()</div></div>  </code></pre>
+<pre>  <code class="language-sh">$ ./program
+customizing help message
+-&gt; ├─ {add}
+-&gt; │   ├─ {task}                adds a task
+-&gt; │   └─ {project}             adds a project
+-&gt; ├─ {remove}
+-&gt; │   ├─ {task}                removes a task
+-&gt; │   │   └─ {-n, --no-log}            does not log the deletion
+-&gt; │   └─ {project}             removes a project
+-&gt; ├─ {list}            listing tasks and projects
+-&gt; │   └─ {-a, --all}           show even hidden tasks/projects
+-&gt; └─ {-o, --output}            outputs the content to a file
+</code></pre>
+<p>It might not be the most beautiful help message, but at least it covers every option that are availible
+for the moment.<br />
+Feel free to tinker with these to find the perfect combination</p>
+<h4>Compact short flags</h4>
+<p>You can use the <code>enforce_shortflag=true</code> in <code>newParser</code> to enforce flags short version to be at most 1 character long
+(for example <code>-a</code>, <code>-o</code>, but not <code>-type</code>)</p>
+<p>This will enable compacting short flags when parsing.
+For example, <code>./program -abc</code> will be expanded as <code>./program -a -b -c</code>
+<code>./program -abco=output_file</code> will be expanded as <code>./program -a -b -c -o=output_file</code></p>
+<p>By default this option is off, letting you have short flags as long as you want
+(not too long though, for example <code>-outputtoacertainfileaftercallingandthisflagisbecomingabittoolong</code> is a tiny bit too long)
+but will not enable compacting short flags (for example <code>./program -abc</code> will stay <code>./program -abc</code>)</p>
+<hr />
 <h2>Bugs and fixes:</h2>
-<p>If you encounter any bug, issue or suggestion, open an issue and I&apos;ll try to respond (or even better, make a PR)</p>
+<p>If you encounter any bug, issue or suggestion about anything, please open an issue or a PR</p>
 </document>
             
         </div>
@@ -188,7 +218,7 @@ Removing project use python
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-16T01:20:15Z
+        Builded at 2024-08-17T01:18:02Z
         </p>
       </div>
     </div>
