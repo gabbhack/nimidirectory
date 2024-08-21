@@ -108,7 +108,7 @@
 <li>Examples of Waku usage.</li>
 <li>Various tests of above.</li>
 </ul>
-<p>For more details see the <a href="waku/v2/README.md">source code</a></p>
+<p>For more details see the <a href="waku/README.md">source code</a></p>
 <h2>How to Build &amp; Run</h2>
 <p>These instructions are generic. For more detailed instructions, see the Waku source code above.</p>
 <h3>Prerequisites</h3>
@@ -142,7 +142,8 @@ Please refer to the <a href="https://github.com/waku-org/nwaku/blob/master/waku/
 <h3>Developing</h3>
 <h4>Nim Runtime</h4>
 <p>This repository is bundled with a Nim runtime that includes the necessary dependencies for the project.</p>
-<p>Before you can utilise the runtime you&apos;ll need to build the project, as detailed in a previous section. This will generate a <code>vendor</code> directory containing various dependencies, including the <code>nimbus-build-system</code> which has the bundled nim runtime.</p>
+<p>Before you can utilise the runtime you&apos;ll need to build the project, as detailed in a previous section.
+This will generate a <code>vendor</code> directory containing various dependencies, including the <code>nimbus-build-system</code> which has the bundled nim runtime.</p>
 <p>After successfully building the project, you may bring the bundled runtime into scope by running:</p>
 <pre>  <code class="language-bash">source env.sh
 </code></pre>
@@ -162,6 +163,16 @@ To support this make has a specific target:</p>
 <p>Binary will be created as <code>&lt;path to your test file.nim&gt;.bin</code> under the <code>build</code> directory .</p>
 <pre>  <code class="language-bash"># Build and run your test file separately
 make test/tests/common/test_enr_builder.nim
+</code></pre>
+<h2>Formatting</h2>
+<p>Nim files are expected to be formatted using the <a href="https://github.com/arnetheduck/nph">  <code>nph</code></a> version present in <code>vendor/nph</code>.</p>
+<p>You can easily format file with the <code>make nph/&lt;relative path to nim&gt; file</code> command.
+For example:</p>
+<pre>  <code>make nph/waku/waku_core.nim
+</code></pre>
+<p>A convenient git hook is provided to automatically format file at commit time.
+Run the following command to install it:</p>
+<pre>  <code class="language-shell">make install-nph
 </code></pre>
 <h3>Examples</h3>
 <p>Examples can be found in the examples folder.
@@ -245,7 +256,7 @@ This includes a fully featured chat example.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-20T01:19:59Z
+        Builded at 2024-08-21T01:20:21Z
         </p>
       </div>
     </div>
