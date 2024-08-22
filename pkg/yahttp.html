@@ -116,6 +116,8 @@
 <li><code>query</code> - request query params. Example: <code>{&quot;param1&quot;: &quot;val&quot;, &quot;param2&quot;: &quot;val2&quot;}</code></li>
 <li><code>encodeQueryParams</code> - parameters for <code>encodeQuery</code> function that encodes query params. <a href="https://nim-lang.org/docs/uri.html#encodeQuery%2CopenArray%5B%5D%2Cchar">More</a></li>
 <li><code>body</code> - request body as a string. Example: <code>&quot;{\&quot;key\&quot;: \&quot;value\&quot;}&quot;</code>. Is not available for <code>get</code>, <code>head</code> and <code>options</code> procedures</li>
+<li><code>files</code> - array of files to upload. Every file is a tuple of multipart name, file name, content type and content</li>
+<li><code>sreamingFiles</code> - array of files to stream from disc and upload. Every file is a tuple of multipart name and file path</li>
 <li><code>auth</code> - login and password for basic authorization. Example: <code>(&quot;login&quot;, &quot;password&quot;)</code></li>
 <li><code>timeout</code> - stop waiting for a response after a given number of milliseconds. <code>-1</code> for no timeout, which is default value</li>
 <li><code>ignoreSsl</code> - no certificate verification if <code>true</code></li>
@@ -220,7 +222,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-21T01:20:21Z
+        Builded at 2024-08-22T01:22:07Z
         </p>
       </div>
     </div>
