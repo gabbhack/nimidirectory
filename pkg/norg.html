@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">norg</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">backup</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">system-tools</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">borg</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">restic</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">A portable wrapper for borg backup and restic inspired by borgmatic.</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install norg" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Norg</h1>
+<p>A simple, portable, wrapper for the <a href="https://www.borgbackup.org">borg backup</a> and <a href="https://restic.net">restic</a> utilities written in Nim.</p>
+<!-- more -->
+<p>Inspired by <a href="https://torsion.org/borgmatic">Borgmatic</a></p>
+<h2>Usage</h2>
+<p>Norg uses a <code>toml</code> based config file for configuration. An example configuration would look like this:</p>
+<pre>  <code class="language-toml">source_directories = [
+    &quot;/home/me/Music&quot;,
+    &quot;/home/me/Pictures&quot;
+]
+[[repositories]]
+label = &quot;MyBorgRepo&quot;
+path = &quot;/my/backup/location&quot;
+
+[[repositories]]
+label = &quot;Another Respository at BorgBase&quot;
+path = &quot;ssh://1234abcd@1234abcd.repo.borgbase.com/./repo&quot;
+
+[encryption]
+encryption_passphrase = &quot;MyReallySecurePassword&quot;
+
+[actions]
+before_actions = [&quot;echo before actions&quot;]
+after_actions = [&quot;echo after actions&quot;, &quot;echo actions completed&quot;]
+before_backup = [&quot;echo before backup&quot;, &quot;date&quot;]
+after_backup = [&quot;echo after backup&quot;,&quot;echo backup completed&quot;]
+
+[uptimekuma]
+base_url = &quot;https://uptime.kuma.url/api/push/1234abcd&quot;
+states = [&quot;Success&quot;,&quot;Failure&quot;, &quot;Running&quot;]
+</code></pre>
+<p>You can then run the equivalent <code>borg</code> or <code>restic</code> command to init, create, list, mount and extract your backups.</p>
+<p>  <strong>Using BorgBackup</strong></p>
+<pre>  <code class="language-sh"># Init your repository
+norg -c myconfig.toml init
+
+# Backup your data
+norg -c myconfig.toml create
+
+# List Archives
+norg -c myconfig.toml list
+
+# Mount an Archive
+norg -c myconfig.toml mount -r MyBorgRepo -a pcname-2024-08-18T15:20:17773204 /home/me/mnt
+# Unmount an Archive
+norg -c myconfig.toml umount -r MyBorgRepo /home/me/mnt
+
+# Extract an Archive
+# You must be in an empty folder for this to work
+norg -c myconfig.toml extract -r MyBorgRepo -a pcname-2024-08-18T15:20:17773204
+ 
+# Or You must set the destination to an empty folder 
+norg -c myconfig.toml extract -r MyBorgRepo -a pcname-2024-08-18T15:20:17773204 --destination /tmp/my_extracted_archive
+
+# Prune all repos
+norg -c myconfig.toml prune
+# Or specify a particula repo
+norg -c myconfig.toml prune -r MyBorgRepo
+
+# Delete an Archive
+norg -c myconfig.toml delete -r MyBorgRepo -a pcname-2024-08-18T15:20:17773204
+</code></pre>
+<p><strong>Using Restic</strong> <em>New in v0.1.6</em><br />
+Add a repository with a <code>tool = &quot;restic&quot;</code> option.</p>
+<pre>  <code class="language-toml">[[repositories]]
+label = &quot;MyResticRepo&quot;
+path = &quot;/my/restic/backup/location&quot;
+tool = &quot;restic&quot;
+</code></pre>
+<p>Then run the appropriate commands</p>
+<pre>  <code class="language-sh"># Init your repository
+norg -c myconfig.toml init
+
+# Backup your data
+norg -c myconfig.toml backup
+
+# List Snapshots
+norg -c myconfig.toml snapshots
+
+# Mount a Repo
+norg -c myconfig.toml mount -r MyResticRepo /home/me/mnt
+
+# Restore an Archive (restore destination must be empty)
+norg -c myconfig.toml restore -a latest --destination /my/restore/location
+
+# Prune a repo
+norg -c myconfig.toml prune
+
+# Forget a Snapshot
+norg -c myconfig.toml forget -r MyBorgRepo -a a1b2c3d4
+</code></pre>
+<h3>Command line parameters</h3>
+<ul>
+<li><code>-c</code>, <code>--config</code>: The configuration file to use</li>
+<li><code>-r</code>, <code>--repository</code>: The repository to work on</li>
+<li><code>-a</code>, <code>--archive</code>: The Archive to operate on (snapshots for restic)</li>
+<li><code>-d</code>, <code>--destination</code>: When extracting/restoring, the destination for the extracted files</li>
+</ul>
+<h2>Build from Source</h2>
+<p>Download and build from source</p>
+<pre>  <code class="language-sh">git clone https://codeberg.org/pswilde/norgbackup
+cd norgbackup
+nimble install
+</code></pre>
+<p>or just install directly with <code>nimble</code></p>
+<pre>  <code class="language-sh">nimble install https://codeberg.org/pswilde/norgbackup
+</code></pre>
+<h2>System Support</h2>
+<p>Norg should work on any system that can compile <code>nim</code> code with <code>nimble</code>.
+Tested on:</p>
+<ul>
+<li>Arch Linux</li>
+<li>Debian Linux</li>
+<li>AlmaLinux</li>
+<li>FreeBSD</li>
+</ul>
+<p>But in general all Linux distributions and BSDs should work if borg and/or restic is installed.<br />
+Windows support (Restic only until Borg support in Windows is available) is planned with the only real issue being finding the restic executable. Should be an easy fix.</p>
+<h2>Naming. Why &quot;Norg&quot;?</h2>
+<p>Well, I don&apos;t know. I&apos;m a Star Trek fan so obviously I wanted to keep something
+in line with the <a href="https://memory-alpha.fandom.com/wiki/Borg">Borg pseudo-species</a> as the borg backup utility does.<br />
+Also, sometimes I feel my code has elements of inexperience but loads of potential... which reminded me of <a href="https://memory-alpha.fandom.com/wiki/Nog">Nog</a>.<br />
+So, simply put, <code>Norg</code> is an portmanteau of &quot;Borg&quot; and &quot;Nog&quot;.</p>
+<h2>Borg and Restic Notes</h2>
+<p>I love both Borg and Restic tools, they are both great and both have their pros and cons. As <a href="https://borgbase.com">BorgBase</a> has repos for both, I felt it only sensible to
+provide a tool that can use both.<br />
+Providing implementation for both means you could have duplicate backups using
+different tools which should provide a certain amount of protection over failures in
+a particular tool.
+Caution should be taken when using additional flags when you have repositories of
+both types in the same configuration file. I have tried to cater for some common flags
+that will be converted to the correct type for a particular tool, but this may not always be the case. If in any doubt, it is advised to use the <code>--repository</code> flag for any borg/restic specific flags so as not to cause one the other tool to fail.</p>
+<p>Some different yet similar commands should be converted to the correct type. A table below shows some of these:<br />
+| Borg Command | Restic Command             | Result                                     |
+| ---          | ---                        | ---                                        |
+| create       | backup                     | creates a backup                           |
+| list         | snapshots                  | lists archives/snapshots                   |
+| extract      | restore                    | restores/extracts a backup                 |
+| delete       | forget                     | removes a archive/snapshot                 |
+| prune        | forget (with --prune flag) | removes snapshots as per <code>--keep-*</code> config |</p>
+<p>You may specify either command and it will work with both except the <code>forget</code> command. This will only forget a single snapshot in restic.</p>
+<h2>Why create this when Borgmatic exists?</h2>
+<p><code>Borgmatic</code> is absolutely fantastic, and I love it dearly. I even implemented
+the <code>Uptime Kuma</code> hook that is in it. However, I got a little impatient waiting
+for the version that included the Uptime Kuma hook to arrive in various distributions
+package repositories so ended up building borgmatic from source on all computers.<br />
+This was a lengthy process, and borgmatic isn&apos;t very portable; it requires installation of numerous python packages (and the entire rust language in FreeBSD).<br />
+I wanted to make something that had to features I needed, in a single binary I
+could move around to whatever computer I needed it on.<br />
+Norg was the outcome of this.</p>
+<h2>Work in Progress</h2>
+<p>Norg is still very much a work in progress, so there will be bugs. Please raise
+and issue, or create a pull request for any issues and resolutions you may have.</p>
+<h2>Contact</h2>
+<p>For any issues, please raise an issue here. Otherwise, I can be contacted via
+the fediverse at <a href="https://notnull.space/@paul">@paul@notnull.space</a>.</p>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        AGPL-3.0-or-later
+                    </p>
+                
+
+                
+                    <p> <a href="https://codeberg.org/pswilde/norgbackup">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-08-24T01:19:19Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
