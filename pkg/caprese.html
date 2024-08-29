@@ -301,7 +301,7 @@ Although a bit tricky to use, WebSockets and web pages can also use the same url
 <h3>Publishing Static Files</h3>
 <p>Use <code>public:</code> block. All files in <code>importPath</code> are statically imported into the code at compile time. Specify the <code>importPath</code> as relative path like Nim&apos;s <code>import</code>, however, double quotes are necessary. The <code>getProjectPath()</code> is added internally to the <code>importPath</code>.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">routes</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">public</span>(<span class="ide">importPath</span> <span class="op">=</span> <span class="str">&quot;../public&quot;</span>)</div></div>  </code></pre>
-<p>Inside the <code>public:</code> block, <code>responce()</code> is used, which sends compressed files if the client allows to receive <em>Brotli</em> or <em>Deflate</em>. It also checks the <em>If-None-Match</em> header and return <em>304 Not Modified</em> if the file has not been changed.</p>
+<p>Inside the <code>public:</code> block, <code>response()</code> is used, which sends compressed files if the client allows to receive <em>Brotli</em> or <em>Deflate</em>. It also checks the <em>If-None-Match</em> header and return <em>304 Not Modified</em> if the file has not been changed.</p>
 <p>Custom handling such as changing the base URL.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">routes</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">public</span>(<span class="ide">importPath</span> <span class="op">=</span> <span class="str">&quot;../public&quot;</span>):</div></div><div class="line"><div class="line-content">      <span class="kwd">let</span> <span class="ide">retFile</span> <span class="op">=</span> <span class="ide">getFile</span>(<span class="str">&quot;/webroot&quot;</span> <span class="op">&amp;</span> <span class="ide">reqUrl</span>)</div></div><div class="line"><div class="line-content">      <span class="kwd">if</span> <span class="ide">retFile</span><span class="op">.</span><span class="ide">err</span> <span class="op">==</span> <span class="ide">FileContentSuccess</span>:</div></div><div class="line"><div class="line-content">        <span class="kwd">return</span> <span class="ide">response</span>(<span class="ide">retFile</span><span class="op">.</span><span class="ide">data</span>)</div></div>  </code></pre>
 <p>You can also create static content objects from static strings with <code>content()</code>. The content object has uncompressed, Deflate compressed, Brotli compressed, MIME type, SHA256 hash, and MD5 hash.</p>
@@ -458,7 +458,7 @@ chown -R caprese:caprese /path/to/certs
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-28T01:23:03Z
+        Builded at 2024-08-29T01:23:35Z
         </p>
       </div>
     </div>

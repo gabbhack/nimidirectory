@@ -114,12 +114,53 @@
 <p><strong>NIM</strong> sim<strong>PLEX</strong>: A concise high-performance scientific Nim library (with CLI and Python binding) providing samplings, uniform grids, traversal graphs, and more in compositional (simplex) spaces, where traditional methods designed for euclidean spaces fail or otherwise become impractical.</p>
 <p>Such spaces are considered when an entity can be split into a set of distinct components (a composition), and they play a critical role in many disciplines of science, engineering, and mathematics. For instance, in materials science, chemical composition refers to the way a material (or, more generally, matter) is split into distinct components, such as chemical elements, based on considerations such as fraction of atoms, occupied volume, or contributed mass. And in economics, portfolio composition may refer to how finite capital is split across assets, such as cash, equity instruments, real estate, and commodities, based on their monetary value.</p>
 <h2>Quick Start</h2>
-<p>If you have a GitHub account, you can get started with nimplex very quickly by just clicking the button below to launch a CodeSpaces environment with everything installed (per instructions in <a href="#reproducible-installation">Reproducible Installation</a> section) and ready to go! From there, you can either use the CLI tool (as explained in <a href="#cli">CLI</a> section) or import the library in Python (as explained in <a href="#usage-in-python">Usage in Python</a> section) and start using it right away. Of course, it also comes with a full Nim compiler and VSCode IDE extensions for Nim, so you can efortlessely modify/extend the source code and re-compile it if you wish.</p>
+<p>If you have a GitHub account, you can get started with <code>nimplex</code> very quickly by just clicking the button below to launch a CodeSpaces environment with everything installed (per instructions in <a href="#reproducible-installation">Reproducible Installation</a> section) and ready to go! From there, you can either use the CLI tool (as explained in <a href="#cli">CLI</a> section) or import the library in Python (as explained in <a href="#usage-in-python">Usage in Python</a> section) and start using it right away. Of course, it also comes with a full Nim compiler and VSCode IDE extensions for Nim, so you can efortlessely modify/extend the source code and re-compile it if you wish.</p>
 <p>  <a href="https://codespaces.new/amkrajewski/nimplex?quickstart=1">    <img src="https://github.com/codespaces/badge.svg" style="max-width: 100%;" alt="Open in GitHub Codespaces" />  </a></p>
 <h2>Installation</h2>
 <p>There are several <strong>easy</strong> ways to quickly get <em>nimplex</em> up and running on your system. The choice depends primarily on your preffered way of interacting with the library (CLI, Nim, or Python) and your system configuration.</p>
+<h3>Reproducible Installation (recommended)</h3>
+<p>The recommended way is compiling the library yourself, which may sound scary but is fairly easily and the whole process should not take more than a couple of minutes.</p>
+<h4>Nim (compiler)</h4>
+<p>First, you need to install <a href="https://nim-lang.org/">Nim</a> language compiler which on most <strong>Unix</strong> (Linux/MacOS) systems is very straightforward.</p>
+<ul>
+<li>
+<p>On <strong>MacOS</strong>, assuming you have <a href="https://brew.sh/">Homebrew</a> installed, simply:</p>
+<pre>  <code class="language-sh">brew install nim
+</code></pre>
+</li>
+<li>
+<p>Using <strong>  <code>conda</code></strong>, <a href="https://docs.anaconda.com/miniconda/">  <code>miniconda</code></a>, <code>mamba</code>, or <a href="https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html">  <code>micromamba</code></a> cross-platform package manager:</p>
+<pre>  <code class="language-sh">conda install -c conda-forge nim
+</code></pre>
+</li>
+<li>
+<p>On most <strong>Linux</strong> distributions, you should also be able to use your built-in package manager like <code>pacman</code>, <code>apt</code>, <code>yum</code>, or <code>rpm</code>; however, the default channel/repository, especially on enterprise systems, may have an unsupported version (<code>nim&lt;2.0</code>). While we <a href="https://github.com/amkrajewski/nimCSO/blob/main/.github/workflows/testingOnPush_Linux.yaml">do test <code>nimCSO</code> with <code>1.6</code> versions too</a>, your experience may be degraded, so you may want to update it or go with another option.</p>
+</li>
+<li>
+<p>You can, of course, also build it yourself from <a href="https://github.com/nim-lang/Nim"><code>nim</code> source code</a>! It is relatively straightforward and fast compared to many other languages.</p>
+</li>
+</ul>
+<p>On <strong>Windows</strong>, you may consider using <a href="https://learn.microsoft.com/en-us/windows/wsl/about">  <code>WSL</code></a>, i.e., Windows Subsystem for Linux, which is strongly recommended, interplays well with VS Code, and will let you act as if you were on Linux. If you need to use Windows directly, you can follow these <a href="https://nim-lang.org/install_windows.html">installation instructions</a>.</p>
+<h4>  <code>nimplex</code></h4>
+<p>Then, you can use the bundled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (package manager for Nim, similar to Rust&apos;s <code>crate</code> or Python&apos;s <code>pip</code>) to install two top-level <code>nim</code> dependencies:</p>
+<ul>
+<li><a href="https://github.com/mratsim/Arraymancer">  <code>arraymancer</code></a>, which is a powerful N-dimensional array library</li>
+<li><a href="https://github.com/yglukhov/nimpy">  <code>nimpy</code></a> which helps with the Python bindings.</li>
+</ul>
+<p>It&apos;s a single command:</p>
+<pre>  <code class="language-sh">nimble install --depsOnly
+</code></pre>
+<p>or, explicitly:</p>
+<pre>  <code class="language-sh">nimble install -y arraymancer nimpy
+</code></pre>
+<p>Finally, you can clone the repository and compile <code>nimplex</code> with:</p>
+<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">git</span> clone <span class="ide">https://github.com/amkrajewski/nimplex</span></div></div><div class="line"><div class="line-content"><span class="kwd">cd</span> nimplex</div></div><div class="line"><div class="line-content"><span class="kwd">nim</span> c -r -d:release <span class="ide">nimplex.nim</span> --benchmark</div></div>  </code></pre>
+<p>which will compile the library and run a few benchmarks to make sure everything runs smoothly. You should then see a compiled binary file <code>nimplex</code> in the current directory which exposes the CLI tool.</p>
+<p>If you want to use the <strong>Python bindings</strong>, you can now compile the library with slightly different flags (<em>depending on your system configuration</em>) like so for Linux/MacOS:</p>
+<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">nim</span> c --d:release --threads:on --app:lib <span class="ide">--out:nimplex.so</span> nimplex</div></div>  </code></pre>
+<p>and you should see a compiled library file <code>nimplex.so</code> in the current directory which can be immediately imported and used in Python as explained later. For Windows and other platforms, consult <a href="https://github.com/yglukhov/nimpy">  <code>nimpy</code></a> documentation on what flags and formats should be used.</p>
 <h3>Pre-Compiled Binaries (quick but not recommended)</h3>
-<p>If you happen to be on one of the common systems (for which we auto-compile the binaries) and you do not need to modify anything in the source code, you can simply download the latest release from the <a href="https://github.com/amkrajewski/nimplex">nimplex GitHub repository</a>
+<p>If you happen to be on one of the common systems (for which we auto-compile the binaries) and you do not need to modify anything in the source code, there is a good chance you can simply download the latest release from the <a href="https://github.com/amkrajewski/nimplex">nimplex GitHub repository</a>
 and run the executable (<em>nimplex</em> / <em>nimplex.exe</em>) or Python library (<em>nimplex.so</em> / <em>nimplex.pyd</em>) directly just by placing it in your working directory and using it as:</p>
 <ol>
 <li>An <strong>interactive command line interface (CLI) tool</strong>, which will guide you through how to use it if you run it without any arguments like so (on Linux/MacOS):
@@ -129,7 +170,7 @@ or with a concise configuration defining the task type and parameters (explained
 <pre>  <code class="language-cmd">./nimplex -c IFP 3 10
 </code></pre>
 </li>
-<li>An <strong>compiled Python library</strong>, which you can import and use in your Python code like so:
+<li>An <strong>compiled Python library for Unix</strong>, which you can import and use in your Python code like so:
 <pre>  <code class="language-python">import nimplex
 </code></pre>
 and immediately use the functions provided by the library, as described in <a href="#usage-in-python">Usage in Python</a>:
@@ -137,34 +178,6 @@ and immediately use the functions provided by the library, as described in <a hr
 </code></pre>
 </li>
 </ol>
-<h3>Reproducible Installation (recommended)</h3>
-<p>If the above doesn&apos;t work for you, or you want to modify the source code, you can compile the library yourself fairly easily in a couple minutes.
-The only requirement is to have <a href="https://nim-lang.org/">Nim</a> installed on your system
-(<a href="https://nim-lang.org/install.html">Installation Instructions</a>) which can be done with a single command on most Unix (Linux/MacOS) systems:</p>
-<ul>
-<li>with your distribution&apos;s package manager, for instance on Ubuntu/Debian <strong>Linux</strong>:
-<pre>  <code class="language-cmd">apt-get install nim
-</code></pre>
-</li>
-<li>on <strong>MacOS</strong>, assuming you have <a href="https://brew.sh/">Homebrew</a> installed:
-<pre>  <code class="language-cmd">brew install nim
-</code></pre>
-</li>
-<li>using <a href="https://docs.conda.io/en/latest/">  <strong>conda</strong></a> cross-platform package manager:
-<pre>  <code class="language-cmd">conda install -c conda-forge nim
-</code></pre>
-</li>
-</ul>
-<p>Then, you can use the boundeled <a href="https://github.com/nim-lang/nimble">Nimble</a> tool (pip-like package manager for Nim) to install two top-level dependencies:
-<a href="https://github.com/mratsim/Arraymancer">arraymancer</a>, which is a powerful N-dimensional array library, and <a href="https://github.com/yglukhov/nimpy">nimpy</a> which
-helps with the Python bindings. You can do it with a single command:</p>
-<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">nimble</span> install  -y arraymancer nimpy</div></div>  </code></pre>
-<p>Finally, you can clone the repository and compile the library with:</p>
-<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">git</span> clone <span class="ide">https://github.com/amkrajewski/nimplex</span></div></div><div class="line"><div class="line-content"><span class="kwd">cd</span> nimplex</div></div><div class="line"><div class="line-content"><span class="kwd">nim</span> c -r -d:release <span class="ide">nimplex.nim</span> --benchmark</div></div>  </code></pre>
-<p>which will compile the library and run a few benchmarks to make sure everything runs smoothly. You should then see a compiled binary file <code>nimplex</code> in the current directory which exposes the CLI tool.</p>
-<p>If you want to use the <strong>Python bindings</strong>, you can compile the library with slightly different flags (depending on your system configuration) like so for Linux/MacOS:</p>
-<pre>  <code class="language-cmd"><div class="line"><div class="line-content"><span class="kwd">nim</span> c --d:release --threads:on --app:lib <span class="ide">--out:nimplex.so</span> nimplex</div></div>  </code></pre>
-<p>and you should see a compiled library file <code>nimplex.so</code> in the current directory which can be immediately imported and used in Python.</p>
 <h2>Capabilities</h2>
 <p><em>  <strong>Note:</strong></em> Full technical discussion of methods and motivations is provided in the manuscript. The sections below are meant to provide a concise overview of the library&apos;s capabilities.</p>
 <p>The library provides a growing number of methods specific to compositional (simplex) spaces:</p>
@@ -326,7 +339,7 @@ compare performance across implementations (<code>simplex_graph(3, 1000)</code> 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-08-28T01:23:03Z
+        Builded at 2024-08-29T01:23:35Z
         </p>
       </div>
     </div>
