@@ -230,6 +230,8 @@ If SSL is not required, it is recommended set to <em>None</em>. This will enable
 <h4>URL path handling using Regular expression</h4>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">get</span> re"/([a-z]+)(\d+)":</div></div><div class="line"><div class="line-content">      <span class="ide">send</span>(<span class="ide">sanitizeHtml</span>(<span class="ide">matches</span>[<span class="num">0</span>] <span class="op">&amp;</span> <span class="str">&quot;|&quot;</span> <span class="op">&amp;</span> <span class="ide">matches</span>[<span class="num">1</span>])<span class="op">.</span><span class="ide">addHeader</span>())</div></div>  </code></pre>
 <p>Considering efficiency, other methods may be better.</p>
+<h4>URL path handling using special tag</h4>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">get</span> <span class="str">&quot;/user/:username&quot;</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">send</span>(<span class="ide">sanitizeHtml</span>(<span class="ide">username</span>)<span class="op">.</span><span class="ide">addHeader</span>())</div></div>  </code></pre>
 <h4>404 Not Found</h4>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">routes</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">get</span> <span class="str">&quot;/&quot;</span>:</div></div><div class="line"><div class="line-content">      <span class="op">...</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">urlText</span> <span class="op">=</span> <span class="ide">sanitizeHtml</span>(<span class="ide">reqUrl</span>)</div></div><div class="line"><div class="line-content">    <span class="ide">send</span>(fmt"Not Found: {urlText}"<span class="op">.</span><span class="ide">addDocType</span>()<span class="op">.</span><span class="ide">addHeader</span>(<span class="ide">Status404</span>))</div></div>  </code></pre>
 <h4>Multiple ports for SSL website and no SSL website</h4>
@@ -458,7 +460,7 @@ chown -R caprese:caprese /path/to/certs
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-02T01:25:34Z
+        Builded at 2024-09-03T01:23:09Z
         </p>
       </div>
     </div>
