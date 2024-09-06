@@ -95,11 +95,9 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><p>  <img src="https://publiccdn.albassort.com/nimPGP/images/logo.png" style="max-width: 100%;" alt="nimPGP Logo" /></p>
-<h1>NIMPGP</h1>
-<p>Read the docs here: https://publiccdn.albassort.com/nimPGP/releases/latest/docs/nimPGP.html</p>
-<p>Self-Hosted git: https://gogs.albassort.com/albassort/nimPGP</p>
-<h2>Gitlab Git: https://gitlab.com/IAlbassort/nimPGP</h2>
+                <document><h1>NIMPGP</h1>
+<p>Read the docs here: https://albassort.github.io/CDN/nimpgp/1.0.5/docs/nimPGP.html</p>
+<hr />
 <h1>What is nimPGP</h1>
 <p>nimPGP is a pgp utility which uses <strong>Sequoia PGP</strong> on the backend. It allows for simple and idiomatic ways to utilize pgp in your code.
 It supports both parsing and generation of the following asymmetric algorithms on the primary keys and the subkeys in infinite configurations</p>
@@ -204,7 +202,7 @@ of Sequoia. This is okay for everyday use but is not fit for, say, security anal
 <p>Any security issues affecting Sequoia affects you. These tools are not so different from the tools they provide that they are likely to pose a security risk.</p>
 <hr />
 <h1>Memory</h1>
-<p><img src="https://publiccdn.albassort.com/nimPGP/images/memory.png" style="max-width: 100%;" alt="nimPGP memory diagram" />(This diagram shows how memory is read and written.)</p>
+<p><img src="https://albassort.github.io/CDN/nimpgp/memory.png" style="max-width: 100%;" alt="nimPGP memory diagram" />(This diagram shows how memory is read and written.)</p>
 <p>On the backend, memory ownership and management operates on the following core principles. These principles prevents memory leaks, and simplify operations:</p>
 <ol>
 <li>Pointers provided in parameters are NOT mutable. All data returned to Nim must transfer directly in the return value.</li>
@@ -213,7 +211,7 @@ of Sequoia. This is okay for everyday use but is not fit for, say, security anal
 <li>Manual allocation of data can only occur in Rust if the function does not return an error. All <code>malloc</code> calls must happen directly before <code>return</code> is called</li>
 <li>After the Rust function returns, before an exception can be raised from its <code>error_code</code>, all manually managed Nim pointers must be <code>deallocated</code>. This means that because of rule 4, no data leak will occur.</li>
 <li>Thus, no manually allocated pointers will be exposed to the end user
-<img src="https://publiccdn.albassort.com/nimPGP/images/memory-flow.png" style="max-width: 100%;" alt="memory-flow" /></li>
+<img src="https://albassort.github.io/CDN/nimpgp/memory-flow.png" style="max-width: 100%;" alt="memory-flow" /></li>
 </ol>
 <p>(This diagram shows the order of operations to ensure memory safety.)</p>
 <hr />
@@ -224,7 +222,7 @@ of Sequoia. This is okay for everyday use but is not fit for, say, security anal
 <h2>Compile from source (recommended!):
 <code>sh #   This assumes this is an initial install nimble install nimPGP  #   Pay attention to the version installed, this assumes there is no prior versions cd ~/.nimble/pkgs2/nimPGP* #   Assuming you&apos;re on a debian derived-os #   As of pre-release it runs:  #   sudo apt install clang cargo llvm pkg-config nettle-dev -y ./scripts/install-deps-apt.sh #   compiles and links the .so to /usr/lib and the headers to /usr/include ./scripts/link.sh</code>
 Download precompiled (linux-x86 only!)
-<code>sh sudo apt install clang cargo llvm pkg-config nettle-dev -y #   Uses my private servers sudo curl https://publiccdn.albassort.com/nimPGP/releases/latest/libnimPGP.so &gt; /usr/lib/libnimPGP.so sudo curl https://publiccdn.albassort.com/nimPGP/releases/latest/nimPGP.h &gt; /usr/lib/nimPGP.h nimble install nimPGP </code></h2>
+<code>sh sudo apt install clang cargo llvm pkg-config nettle-dev -y sudo curl https://albassort.github.io/CDN/nimpgp/1.0.5/lib/libnimPGP.so &gt; /usr/lib/libnimPGP.so sudo curl https://albassort.github.io/CDN/nimpgp/1.0.5/lib/nimPGP.h &gt; /usr/include/nimPGP.h nimble install nimPGP </code></h2>
 <h1>Versioning</h1>
 <p>Versions are split into 3 numbers separated by <code>.</code>, for example, 1.0.0.</p>
 <p>The leftmost number represents the current feature-set, and increments when new functionality is added.</p>
@@ -384,7 +382,7 @@ U7/5GSElliLyzT1FYyqbihkbAlJsx7m9W0b8kiP62tsLbPrlPtgftiDMvxc=
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-05T01:24:29Z
+        Builded at 2024-09-06T01:24:19Z
         </p>
       </div>
     </div>
