@@ -141,10 +141,13 @@ debugging messages</p>
 <pre>  <code>nim c -r -d:hyperxDebug client.nim
 </code></pre>
 <h2>Notes</h2>
+<h3>Why?</h3>
+<p>Http/2 supports high concurrency over a single connection through stream multiplexing.</p>
+<p>Http/1 can only compete by enabling <a href="https://en.wikipedia.org/wiki/HTTP_pipelining">pipelining</a>, which is what most http/1 benchmarks do. But web-browsers do not enable it, and you may not want to enable it for good reasons. It produces <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">head of line blocking</a> at the application level.</p>
 <h3>Serving http/1 and http/3 traffic</h3>
-<p>You may use a reverse proxy such a <a href="https://github.com/caddyserver/caddy">Caddy</a> or a cloud offering such as AWS ALB for this. There are many ways to enumerate them all, but basically look for a service that can receive http/1, 2, 3 traffic and forward it as http/2.</p>
+<p>You may use a reverse proxy such a <a href="https://github.com/caddyserver/caddy">Caddy</a> or a cloud offering such as AWS ALB for this. Look for a service that can receive http/1, 2, 3 traffic and forward it as http/2.</p>
 <h3>Data streaming</h3>
-<p>Both server and client support data streaming. See the examples.</p>
+<p>Both server and client support data streaming. The <a href="https://github.com/nitely/nim-hyperx/blob/master/examples/dataStream.nim">data stream example</a> shows how to transfer 1GB of total data with minimal memory usage. Increasing the data size won&apos;t increase the memory usage.</p>
 <h3>Backpressure</h3>
 <p>Backpressure is based on the http2 spec flow-control. The amount of data a connection can process at a time is bounded by the flow-control window size. The initial window size is set to 256KB. Not calling recv in time will buffer up to window size of data.</p>
 <p>The window size can be set using the <code>hyperxWindowSize</code> define. For example <code>-d:hyperxWindowSize:65536</code> will set the size to the http/2 spec default of 64KB. Setting a window smaller than 64KB is not well supported.</p>
@@ -154,7 +157,7 @@ debugging messages</p>
 <p>Web-browsers only support half-duplex streaming <a href="https://github.com/whatwg/fetch/issues/1254">for whatever reason</a>, though.</p>
 <p>If you need to support web-browsers it gets tricky for some use cases, as you need to do two fetches, one to stream the request, one to stream the response, and something like an ID in the URL so the server can associate both streams.</p>
 <h3>Benchmarks</h3>
-<p>The CI runs h2load on it, but it only starts a single server instance. Proper bench-marking would start a server per CPU, and run a few combinations of load. To save you the trip, the CI results show around 30K requests/s.</p>
+<p>The CI runs h2load on it, but it only starts a single server instance. Proper benchmarking would start a server per CPU, and run a few combinations of load. To save you the trip, the CI results show around 30K requests/s.</p>
 <h3>Related libs</h3>
 <ul>
 <li>  <a href="https://github.com/nitely/nim-grpc">nim-grpc</a></li>
@@ -229,7 +232,7 @@ debugging messages</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-06T01:24:19Z
+        Builded at 2024-09-07T01:22:49Z
         </p>
       </div>
     </div>

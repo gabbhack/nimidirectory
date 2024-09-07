@@ -107,8 +107,10 @@ is..uncommon at best.):</p>
 <pre>  <code>apt install nim  #(https://nim-lang.org/ has other options)
 nimble install lc
 </code></pre>
-<p>though the Nim experience can sometimes have fairly rough-hewn edges.  You may
-even get interesting 2-level sort-colorized listings from (etc/lc has details):</p>
+<p>though the Nim experience can sometimes have fairly rough-hewn edges.
+Worst case you can just build the nim compiler from source in a large
+one-liner that takes a minute or two.<a href="%60git">^2</a></p>
+<p>One maybe interesting 2-level sort-colorized listing (etc/lc has details) is:</p>
 <pre>  <code>~/.nimble/bin/lc -oDd /dev
 </code></pre>
 <h1>What <code>lc</code> is Not</h1>
@@ -213,7 +215,7 @@ a misspelled word bolded inside an elsewise colorized source code comment.  <cod
 simply explicitly models this structure to try to enable better allocation by
 end users over more dimensions than just 2 (misspelling, comment) due to diverse
 file types.  Most briefly, <code>lc</code> aids &quot;aligning&quot; rendered output traits with
-classified input traits.<a href="Operationally,">^2</a></p>
+classified input traits.<a href="Operationally,">^3</a></p>
 <h1>Configurability</h1>
 <p>As for the bread and butter of file listing, many things that are hard-coded in
 other file listers are fully user-defined in <code>lc</code>, like a concept of dot files.
@@ -290,6 +292,12 @@ not unthinkable, though unlikely to be a popular default style.  Hard-coding Git
 support seems popular these days.  I don&apos;t do that yet.  I&apos;m not sure I want a
 direct dependency, but you may be able to hack something together.</p>
 <p>may need <code>PATH</code>|<code>MANPATH</code> changes.  Or <code>man -l path/to/lc.1</code> can work.</p>
+<p>clone https://github.com/nim-lang/Nim;
+git clone https://github.com/c-blake/cligen;
+git clone https://github.com/c-blake/lc;
+cd Nim; sh build_all.sh;
+cd ../lc; ../Nim/bin/nim c -d=danger -p=../cligen lc;
+cp -pr configs/cb0 $HOME/.config/lc; ./lc`</p>
 <p>users just pick small integer labels for kinds aka series
 of order-dependent tests aka classes.  The first passing kind test within a
 dimension wins that dimension.  To aid debugging kind assignments you can do
@@ -364,7 +372,7 @@ before all dot regular files, but it is obviously much more general.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-06T01:24:19Z
+        Builded at 2024-09-07T01:22:49Z
         </p>
       </div>
     </div>
