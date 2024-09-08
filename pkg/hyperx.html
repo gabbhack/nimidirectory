@@ -145,7 +145,7 @@ debugging messages</p>
 <p>Http/2 supports high concurrency over a single connection through stream multiplexing.</p>
 <p>Http/1 can only compete by enabling <a href="https://en.wikipedia.org/wiki/HTTP_pipelining">pipelining</a>, which is what most http/1 benchmarks do. But web-browsers do not enable it, and you may not want to enable it for good reasons. It produces <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">head of line blocking</a> at the application level.</p>
 <h3>Serving http/1 and http/3 traffic</h3>
-<p>You may use a reverse proxy such a <a href="https://github.com/caddyserver/caddy">Caddy</a> or a cloud offering such as AWS ALB for this. Look for a service that can receive http/1, 2, 3 traffic and forward it as http/2.</p>
+<p>You may use a reverse proxy such as <a href="https://github.com/caddyserver/caddy">Caddy</a> or a cloud offering such as AWS ALB for this. Look for a service that can receive http/1, 2, 3 traffic and forward it as http/2 to hyperx.</p>
 <h3>Data streaming</h3>
 <p>Both server and client support data streaming. The <a href="https://github.com/nitely/nim-hyperx/blob/master/examples/dataStream.nim">data stream example</a> shows how to transfer 1GB of total data with minimal memory usage. Increasing the data size won&apos;t increase the memory usage.</p>
 <h3>Backpressure</h3>
@@ -232,7 +232,7 @@ debugging messages</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-07T01:22:49Z
+        Builded at 2024-09-08T01:37:05Z
         </p>
       </div>
     </div>
