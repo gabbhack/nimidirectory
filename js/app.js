@@ -34025,6 +34025,18 @@ const packages = [
     "description": "A nimble package for improving your Nim code",
     "license": "MIT",
     "web": "https://github.com/glassesneo/seiryu"
+  },
+  {
+    "name": "spellua",
+    "url": "https://github.com/glassesneo/spellua",
+    "method": "git",
+    "tags": [
+      "lua",
+      "metaprogramming"
+    ],
+    "description": "A high level LuaJIT bindings for Nim",
+    "license": "MIT",
+    "web": "https://github.com/glassesneo/spellua"
   }
 ]
 

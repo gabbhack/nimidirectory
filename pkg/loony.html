@@ -160,13 +160,23 @@ These can be imported with <code>import loony/ward</code>. The documentation is 
 tests and further documentation are to follow when time allows.</p>
 <h2>Documentation</h2>
 <p>  <a href="https://nim-works.github.io/loony/loony.html">The full API documentation is kept up-to-date on GitHub.</a></p>
-<p>  <a href="https://nim-works.github.io/loony/loony/ward.html">The API documentation for the Ward submodule is found here.</a></p>
+<p><a href="https://nim-works.github.io/loony/loony/ward.html">  <del>The API documentation for the Ward submodule is found here.</del></a> <del>*Wards are untested and are unlikely to remain in the library*</del></p>
 <h4>Memory Safety &amp; Cache Coherence</h4>
 <p>Loony&apos;s standard <code>push</code> and <code>pop</code> operations offer cache coherency by using
 primitives such as <code>atomic_thread_fence</code> to ensure a CPU&apos;s store buffer is
 committed on the push operation and read on the pop operation; this is a
 higher-cost primitive. You can use <code>unsafePush</code> and <code>unsafePop</code> to manipulate
 a <code>LoonyQueue</code> without regard to cache coherency for ultimate performance.</p>
+<p>The LoonyQueue itself is padded across cachelines, and by default, the slots
+are read and written to in a cyclic fashion over cachelines to reduce false
+sharing.</p>
+<pre>  <code>Visual representation of rotating index
+
+| 64 bytes | 64 bytes | 64 bytes |...
+| 0------- | 1------- | 2------- |...
+| -63------| -64------| -65------|...
+|--127-----|--128-----|--129-----|...
+</code></pre>
 <h3>Debugging</h3>
 <p>Pass <code>--d:loonyDebug</code> in compilation or with a config nimscript to use debug
 procedures and templates.</p>
@@ -178,8 +188,18 @@ write on an atomic counter which does marginally effect performance!</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">debugNodeCounter</span>:</div></div><div class="line"><div class="line-content">  <span class="com"># Put things onto the queue an off the queue here! At the</span></div></div><div class="line"><div class="line-content">  <span class="com"># end of the template, if the number of nodes you started</span></div></div><div class="line"><div class="line-content">  <span class="com"># with does not equal the number of nodes you finished</span></div></div><div class="line"><div class="line-content">  <span class="com"># the block with, it will print information that is useful</span></div></div><div class="line"><div class="line-content">  <span class="com"># to finding the source of the leak! This template will not</span></div></div><div class="line"><div class="line-content">  <span class="com"># do anything if loonyDebug is off.</span></div></div><div class="line"><div class="line-content">  <span class="kwd">discard</span></div></div>  </code></pre>
 <h3>Compiler Flags</h3>
 <p>We recommend against changing these values unless you know what you are doing. The suggested max alignment is 16 to achieve drastically higher contention capacities. Compilation will fail if your alignment does not fit the slot count index.</p>
-<p><code>-d:loonyNodeAlignment=11</code> - Adjust node alignment to increase/decrease contention capacity
-<code>-d:loonySlotCount=1024</code> - Adjust the number of slots in each node</p>
+<p><code>-d:loonyNodeAlignment=11</code> - Adjust node alignment to increase/decrease contention capacity</p>
+<p><code>-d:loonySlotCount=1024</code> - Adjust the number of slots in each node</p>
+<p><code>-d:loonyDebug=false</code> - Toggle debug counters and templates, see
+<a href="#debugging">debugging</a>. False by default.</p>
+<p><code>-d:loonyRotate=true</code> - Toggle the index for the slots of
+loony queue to be read over cacheline bounds in a cyclic
+manner. True by default.</p>
+<blockquote>
+<p>While loonyRotate is enabled, the slot count must be a
+power of 2. Error messages will indicate whether this
+is a cause of compilation failure.</p>
+</blockquote>
 <h2>What are Continuations?</h2>
 <p>If you&apos;ve somehow missed the next big thing for nim; see <a href="https://github.com/nim-works/cps">CPS</a></p>
 </document>
@@ -250,7 +270,7 @@ write on an atomic counter which does marginally effect performance!</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-08T01:37:05Z
+        Builded at 2024-09-09T01:26:37Z
         </p>
       </div>
     </div>
