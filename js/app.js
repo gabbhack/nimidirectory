@@ -12849,7 +12849,7 @@ const packages = [
     "license": "MIT",
     "web": "https://github.com/treeform/taggy"
   },
- {
+  {
     "name": "tabby",
     "url": "https://github.com/treeform/tabby",
     "method": "git",
@@ -34037,6 +34037,17 @@ const packages = [
     "description": "A high level LuaJIT bindings for Nim",
     "license": "MIT",
     "web": "https://github.com/glassesneo/spellua"
+  },
+  {
+    "name": "ipv4utils",
+    "url": "https://github.com/TelegramXPlus/ipv4utils",
+    "method": "git",
+    "tags": [
+      "networking"
+    ],
+    "description": "Simple library to work with IPv4 addresses. Made for fun for everyone.",
+    "license": "MIT",
+    "web": "https://github.com/TelegramXPlus/ipv4utils"
   }
 ]
 

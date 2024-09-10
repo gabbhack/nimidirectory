@@ -99,65 +99,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><blockquote>
-<p>Prophet Muhammad asked his companions, “Do you know who is the strongest person?” His companions replied, “The one who is able to wrestle others down.” The Prophet responded, “No, it is the one who is able to control their anger&quot;.</p>
-</blockquote>
-<h1>Introduction</h1>
-<p><code>emath</code> is library that provides functionality to parse/evaluate math experssions.</p>
-<h2>Flow</h2>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">parsing</span>          <span class="ide">evaluating</span>          </div></div><div class="line"><div class="line-content"><span class="ide">string</span>  <span class="ide">─────────►</span>  <span class="ide">AST</span> <span class="ide">────────────►</span>  <span class="ide">number</span></div></div>  </code></pre>
-<h2>Usage</h2>
-<p>the API functions should be used in this way:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;1 + sin(PI)&quot;</span><span class="op">.</span><span class="ide">parse</span><span class="op">.</span><span class="ide">eval</span></div></div>  </code></pre>
-<p>there is another form of <code>eval</code> function which also takes variable-lookup and function-lookup tables.</p>
-<h2>Documentation</h2>
-<p>for more information see documentations <a href="https://hamidb80.github.io/emath/">here</a>.</p>
-<h2>Advantages</h2>
-<p>parsing the expression to the actual AST, gives you the power and flexibility to do whatever processings you want with that. for example you may want to remove unnecessary parentheses around the values.</p>
-<h2>Inspiration</h2>
-<p>I discovered <code>tree-sitter</code> some times ago, and I watched a video on youtube about it in which the author explained some form of <code>LR</code> parsers as the base of his library.</p>
-<p>Honestly despite searching on the internet about it, I couldn&apos;t understand much, but I could guess what it&apos;s doing by the very simple example that he provided about <code>LR</code> parsers and the generated codes from <code>tree-sitter</code> library.</p>
-<h2>Implementation</h2>
-<p>First, the lexer groups the raw exression (which is given as an <code>string</code>) to tokens. Tokens are one of these 6 types, either a <code>number</code> or an ident (like <code>var</code>) or <code>operator</code> or <code>(</code> or <code>)</code> or <code>,</code>.</p>
-<p>Then the lexer passes tokens one-by-one to the parser. The parser is the <em>heart</em> of the library, it first creates an AST with an empty parenthesis as its child, then it increamentally updates that. the generated AST could be consisted of some simple Nodes like <strong>literals</strong> (like <code>1.2</code>) and <strong>variable names</strong> (like <code>PI</code>) or some compound nodes like <strong>parentheses</strong> <code>()</code> (which must contain only 1 sub node) or a <strong>function call</strong> which is consists of the caller name and its arguments, and <strong>prefix</strong> which has an operator and a node, and <strong>infix</strong> which has a operator and 2 sub nodes.</p>
-<h3>Time complexity</h3>
-<p>as parser increamentally iterates over tokens and updates the AST, it should have <code>O(n)</code> time complexity.</p>
-<h3>Example</h3>
-<p>  <strong>NOTEs:</strong></p>
-<ul>
-<li>the nesting means it&apos;s inside of the upper node.</li>
-<li>I keep track of focused nodes with <code>#n</code> in the codes. it&apos;s actually a stack that contains nodes with index of <code>n-1</code>.</li>
-</ul>
-<p>Imagine you have <code>1 + 2 * 3 ^ 4 &lt; 5</code> as the expression, your initial node is a parentheses.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com"># 1</span></div></div>  </code></pre>
-<p>The first token is number <code>1</code>. we simply add the number to the upper parenthesis:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Lit</span> <span class="num">1</span> <span class="com">#2</span></div></div>  </code></pre>
-<p>Obviosly if you hit a number or a open/closed parentheses instead of an operator after a number, it would be an invalid token.</p>
-<p>The next token is operator <code>+</code>. we are going to transfrom the tree:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span></div></div>  </code></pre>
-<p>Notice that a complete infix has 2 nodes, but here it has given one, we expect that it would be completed in next iteratations.</p>
-<p>The next token is number <code>2</code>. we add <code>2</code> to the infix <code>+</code> to have a complete infix.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">2</span> <span class="com">#3</span></div></div>  </code></pre>
-<p>The next token is operator <code>*</code>. which has higher priority over <code>+</code> operator and we should apply it to our tree:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">*</span> <span class="com">#3</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">2</span></div></div>  </code></pre>
-<p>The next token is number <code>3</code>.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">*</span> <span class="com">#3</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">2</span> </div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">3</span> <span class="com">#4</span></div></div>  </code></pre>
-<p>The next token is operator <code>^</code>. which has higher priority over <code>*</code>:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">*</span> <span class="com">#3</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">2</span> </div></div><div class="line"><div class="line-content">            <span class="ide">Infix</span> <span class="op">^</span> <span class="com">#4</span></div></div><div class="line"><div class="line-content">                <span class="ide">Lit</span> <span class="num">3</span></div></div>  </code></pre>
-<p>The next token is number <code>4</code>.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">+</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">*</span> <span class="com">#3</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">2</span> </div></div><div class="line"><div class="line-content">            <span class="ide">Infix</span> <span class="op">^</span> <span class="com">#4</span></div></div><div class="line"><div class="line-content">                <span class="ide">Lit</span> <span class="num">3</span></div></div><div class="line"><div class="line-content">                <span class="ide">Lit</span> <span class="num">4</span> <span class="com">#5</span></div></div>  </code></pre>
-<p>The next token is operator <code>&lt;</code>. which has lower priority than <code>^</code>. we actually go up from the last node (literal <code>4</code>) until we hit a lower priority operator or we hit a wrapper (parenthesis or a function call). so here we add the infix on top.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">&lt;</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">+</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">            <span class="ide">Infix</span> <span class="op">*</span></div></div><div class="line"><div class="line-content">                <span class="ide">Lit</span> <span class="num">2</span> </div></div><div class="line"><div class="line-content">                <span class="ide">Infix</span> <span class="op">^</span></div></div><div class="line"><div class="line-content">                    <span class="ide">Lit</span> <span class="num">3</span></div></div><div class="line"><div class="line-content">                    <span class="ide">Lit</span> <span class="num">4</span></div></div>  </code></pre>
-<p>the next token is number <code>5</code>.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">Par</span> <span class="com">#1</span></div></div><div class="line"><div class="line-content">    <span class="ide">Infix</span> <span class="op">&lt;</span> <span class="com">#2</span></div></div><div class="line"><div class="line-content">        <span class="ide">Infix</span> <span class="op">+</span></div></div><div class="line"><div class="line-content">            <span class="ide">Lit</span> <span class="num">1</span> </div></div><div class="line"><div class="line-content">            <span class="ide">Infix</span> <span class="op">*</span></div></div><div class="line"><div class="line-content">                <span class="ide">Lit</span> <span class="num">2</span> </div></div><div class="line"><div class="line-content">                <span class="ide">Infix</span> <span class="op">^</span></div></div><div class="line"><div class="line-content">                    <span class="ide">Lit</span> <span class="num">3</span></div></div><div class="line"><div class="line-content">                    <span class="ide">Lit</span> <span class="num">4</span></div></div><div class="line"><div class="line-content">        <span class="ide">Lit</span> <span class="num">5</span> <span class="com">#3</span></div></div>  </code></pre>
-<p>We made our correct AST! I didn&apos;t convered a lot of things like prefixes and function calls, but they are not that much hard to think of.</p>
-<h2>Similar Projects</h2>
-<ul>
-<li>  <a href="https://github.com/nocturn9x/nimkalc">nimkalc</a></li>
-<li>  <a href="https://github.com/Yardanico/nim-mathexpr/">mathexpr</a></li>
-<li>  <a href="https://github.com/brentp/kexpr-nim">kexpr</a></li>
-</ul>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -225,7 +167,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-09T01:26:37Z
+        Builded at 2024-09-10T01:25:39Z
         </p>
       </div>
     </div>

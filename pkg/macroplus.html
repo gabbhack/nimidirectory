@@ -95,53 +95,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h2>Purpose</h2>
-<p>  <strong>you may worked with AST and:</strong></p>
-<ul>
-<li>sometimes you forgot the order of child nodes</li>
-<li>sometimes you found your simple macro so complex to maintain</li>
-<li>sometimes you wish there was a simpler solution</li>
-</ul>
-<p>well, that&apos;s the purpose of this repo
-we provide some additional functionalities to work with AST simpler</p>
-<h2>Examples</h2>
-<p>this examples may change your mind to use this library or may not
-but I found them reasonable</p>
-<h3>e.g. 1</h3>
-<p>imagine we have a AST representation of a a <code>proc</code> definition</p>
-<p>code:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">myProc</span>(<span class="ide">arg1</span>: <span class="ide">bool</span>, <span class="ide">arg2</span>: <span class="ide">int</span> <span class="op">=</span> <span class="num">4</span>): <span class="ide">bool</span> {<span class="op">.</span><span class="ide">pragm1</span>, <span class="ide">pragma2</span><span class="op">.</span>}<span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">discard</span></div></div>  </code></pre>
-<p>AST repr:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">ProcDef</span></div></div><div class="line"><div class="line-content">  <span class="ide">Ident</span> <span class="str">&quot;myProc&quot;</span></div></div><div class="line"><div class="line-content">  <span class="ide">Empty</span></div></div><div class="line"><div class="line-content">  <span class="ide">Empty</span></div></div><div class="line"><div class="line-content">  <span class="ide">FormalParams</span></div></div><div class="line"><div class="line-content">    <span class="ide">Ident</span> <span class="str">&quot;bool&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">IdentDefs</span></div></div><div class="line"><div class="line-content">      <span class="ide">Ident</span> <span class="str">&quot;arg1&quot;</span></div></div><div class="line"><div class="line-content">      <span class="ide">Ident</span> <span class="str">&quot;bool&quot;</span></div></div><div class="line"><div class="line-content">      <span class="ide">Empty</span></div></div><div class="line"><div class="line-content">    <span class="ide">IdentDefs</span></div></div><div class="line"><div class="line-content">      <span class="ide">Ident</span> <span class="str">&quot;arg2&quot;</span></div></div><div class="line"><div class="line-content">      <span class="ide">Ident</span> <span class="str">&quot;int&quot;</span></div></div><div class="line"><div class="line-content">      <span class="ide">IntLit</span> <span class="num">4</span></div></div><div class="line"><div class="line-content">  <span class="ide">Pragma</span></div></div><div class="line"><div class="line-content">    <span class="ide">Ident</span> <span class="str">&quot;pragm1&quot;</span></div></div><div class="line"><div class="line-content">    <span class="ide">Ident</span> <span class="str">&quot;pragma2&quot;</span></div></div><div class="line"><div class="line-content">  <span class="ide">Empty</span></div></div><div class="line"><div class="line-content">  <span class="ide">StmtList</span></div></div><div class="line"><div class="line-content">    <span class="ide">DiscardStmt</span></div></div><div class="line"><div class="line-content">      <span class="ide">Empty</span></div></div>  </code></pre>
-<p>without having the corresponding AST representation you [may] forgot the postion of proc name, return type, argumnets, pragma ,... to write this:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">macro</span> <span class="ide">myMacro</span>(<span class="ide">body</span>: <span class="ide">untyped</span>): <span class="ide">untyped</span><span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">returnType</span> <span class="op">=</span> <span class="ide">body</span>[<span class="num">3</span>][<span class="num">0</span>]</div></div>  </code></pre>
-<p>but with <code>macroplus</code> you don&apos;t need to remember such things:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">returnType</span> <span class="op">=</span> <span class="ide">body</span><span class="op">.</span><span class="ide">RoutineReturnType</span></div></div>  </code></pre>
-<p>here <code>RoutineReturnType</code> is just a template</p>
-<p>or imagine you wanna get arguments</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">args</span> <span class="op">=</span> <span class="ide">body</span><span class="op">.</span><span class="ide">RoutineArguments</span></div></div>  </code></pre>
-<p>and  you wanna iterate over them. instead of writing this:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">arg</span> <span class="kwd">in</span> <span class="ide">args</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">arg</span>[<span class="num">0</span>]<span class="op">.</span><span class="ide">strVal</span> <span class="op">==</span> <span class="str">&quot;something&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="ide">arg</span>[<span class="num">2</span>]<span class="op">.</span><span class="ide">strval</span> <span class="op">==</span> <span class="op">...:</span></div></div><div class="line"><div class="line-content">      <span class="op">...</span></div></div>  </code></pre>
-<p>you could write</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">arg</span> <span class="kwd">in</span> <span class="ide">args</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">arg</span>[<span class="ide">IdentDefName</span>]<span class="op">.</span><span class="ide">strVal</span> <span class="op">==</span> <span class="str">&quot;something&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="ide">arg</span>[<span class="ide">IdentDefDefaultVal</span>] <span class="op">==</span> <span class="op">...:</span></div></div><div class="line"><div class="line-content">    <span class="op">...</span></div></div>  </code></pre>
-<p>isn&apos;t it more readable and understandable?</p>
-<h2>Features</h2>
-<h3>Intuitive Indexing</h3>
-<p>assume <code>node</code> is type of <code>NimNode</code></p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">node</span>[<span class="ide">callArgs</span>][<span class="num">0</span>] <span class="com"># expensive and bad</span></div></div><div class="line"><div class="line-content"><span class="ide">node</span>[<span class="ide">callArgs</span>[<span class="num">0</span>]] <span class="com"># cheap and good</span></div></div><div class="line"><div class="line-content"><span class="ide">node</span>[<span class="ide">callArgs</span>[<span class="op">^</span><span class="num">1</span>]] <span class="com"># yes even backwards indexes</span></div></div>  </code></pre>
-<h2>Change Logs</h2>
-<h3><code>0.2.0</code> -&gt; <code>0.2.1</code></h3>
-<ul>
-<li>add <code>rchildren</code> iterator</li>
-</ul>
-<h3><code>0.1.x</code> -&gt; <code>0.2.0</code></h3>
-<ul>
-<li>add intuitive indexing</li>
-</ul>
-<h2>Comparision to <code>macroutils</code></h2>
-<p><a href="https://github.com/PMunch/macroutils">macroutils</a> has more features along with enhancing readability, like <em>&quot;pattern matching&quot;</em>/<em>&quot;traversing AST&quot;</em>/<em>&quot;advanced code quoting&quot;</em>/<em>&quot;typed NimNodes&quot;</em> which can be really helpful.</p>
-<p>when dealing with AST, most of the times I found myself writing specific functionalities for my edge cases which <code>macroutils</code> cannot cover. so I made this library that contains just small and tiny utilities.</p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -209,7 +163,7 @@ but I found them reasonable</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-09T01:26:37Z
+        Builded at 2024-09-10T01:25:39Z
         </p>
       </div>
     </div>

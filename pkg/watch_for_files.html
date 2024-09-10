@@ -91,28 +91,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>About</h1>
-<p>this is a cross-platform file watcher with database
-it means you can save into DB the lastest files modification times
-this special feature allows you to avoid unnecessary operations</p>
-<h1>How To use</h1>
-<p>let&apos;s take a look at the defination of the main proc <code>goWatch</code></p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">goWatch</span><span class="op">*</span>(</div></div><div class="line"><div class="line-content">  <span class="ide">folder</span>: <span class="ide">string</span>, </div></div><div class="line"><div class="line-content">  <span class="ide">tunnel</span>: <span class="kwd">ptr</span> <span class="ide">Channel</span>[<span class="ide">ChangeFeed</span>], </div></div><div class="line"><div class="line-content">  <span class="ide">active</span>: <span class="kwd">ptr</span> <span class="ide">bool</span>,</div></div><div class="line"><div class="line-content">  <span class="ide">timeInterval</span>: <span class="ide">int</span>, </div></div><div class="line"><div class="line-content">  <span class="ide">dbPath</span>: <span class="ide">string</span> <span class="op">=</span> <span class="str">&quot;&quot;</span>, </div></div><div class="line"><div class="line-content">  <span class="ide">save</span>: <span class="ide">bool</span> <span class="op">=</span> <span class="ide">false</span></div></div><div class="line"><div class="line-content">)</div></div>  </code></pre>
-<ul>
-<li><code>folder</code>: path to folder you wanna watch files changes, the program will watch file changes in any depths in that folder</li>
-<li><code>tunnel</code>: a ptr to channel: changes will be sent to this channel</li>
-<li><code>active</code>: a ptr to a bool: determines whether the worker [the file watcher] should continue to work or not</li>
-<li><code>timeInterval</code>: the delay between every check</li>
-<li><code>dbPath</code>: the database path</li>
-<li><code>save</code>: a boolean that indicates whether the files modifications state should be saved after every check or not</li>
-</ul>
-<p><strong>Note</strong>: if you specify <code>dbPath</code> and the file exists there, the saved state is going to be restored before the first check</p>
-<hr />
-<p>the changes that will be sent to the channel are <code>tuple</code>s of path &amp; change_kind</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">ChangeFeedVariants</span><span class="op">*</span> <span class="op">=</span> <span class="kwd">enum</span></div></div><div class="line"><div class="line-content">    <span class="ide">CFCreate</span>, <span class="ide">CFEdit</span>, <span class="ide">CFDelete</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">ChangeFeed</span><span class="op">*</span> <span class="op">=</span> <span class="kwd">tuple</span></div></div><div class="line"><div class="line-content">    <span class="ide">path</span>: <span class="ide">string</span></div></div><div class="line"><div class="line-content">    <span class="ide">kind</span>: <span class="ide">ChangeFeedVariants</span></div></div>  </code></pre>
-<hr />
-<p>you can find the example of usage in <code>tests/test.nim</code></p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -180,7 +159,7 @@ this special feature allows you to avoid unnecessary operations</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-09T01:26:37Z
+        Builded at 2024-09-10T01:25:39Z
         </p>
       </div>
     </div>

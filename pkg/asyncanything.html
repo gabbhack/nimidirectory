@@ -87,19 +87,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>make anything async with <code>AsyncAnything</code>!</h1>
-<p>imagine you have a heavy function in the main Event-Loop</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">AssumeItsHugeAmountOfWork</span>(<span class="ide">a</span>: <span class="ide">int</span>): <span class="ide">int</span><span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">sleep</span> <span class="num">1000</span> <span class="op">*</span> <span class="num">10</span></div></div><div class="line"><div class="line-content">  <span class="kwd">return</span> <span class="ide">a</span> <span class="op">+</span> <span class="num">1</span></div></div>  </code></pre>
-<p>with this small library you can pass it to another thread and fake it as a async function! Wow you&apos;re a genius!</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">b</span> <span class="op">=</span> <span class="ide">goAsync</span> <span class="ide">AssumeItsHugeAmountOfWork</span>()</div></div><div class="line"><div class="line-content"><span class="com"># or</span></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">b</span> <span class="op">=</span> <span class="op">|&gt;</span><span class="ide">AssumeItsHugeAmountOfWork</span>()</div></div>  </code></pre>
-<p>the idea is that you pass it to another thread and you check it every <code>timeout</code> milliseconds.
-you can pass the <code>timeout</code> like this:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">b</span> <span class="op">=</span> <span class="ide">goAsync</span>(<span class="ide">AssumeItsHugeAmountOfWork</span>(), <span class="num">100</span>)</div></div>  </code></pre>
-<p>but by default it&apos;s value is <code>fakeAsyncTimeout</code> which is <code>100</code>.
-you can also change it&apos;s value at the compile time with <code>-d:fakeAsyncTimeout=&lt;N&gt;</code> to your ideal timeout [ here <code>&lt;N&gt;</code> is an integer ]</p>
-<h2>limitations</h2>
-<p>there are some limitation when you want to run a non-return closure <code>proc</code>.</p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -167,7 +155,7 @@ you can also change it&apos;s value at the compile time with <code>-d:fakeAsyncT
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-09T01:26:37Z
+        Builded at 2024-09-10T01:25:39Z
         </p>
       </div>
     </div>

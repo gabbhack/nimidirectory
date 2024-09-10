@@ -87,34 +87,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h2>About</h2>
-<p>comment any code that you don&apos;t wanna see,
-the code will be uncommented at the compile time!</p>
-<h2>Philosophy:</h2>
-<p>probably sometimes you faced with something like this:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">admin_page</span>(<span class="op">...</span>)<span class="op">=</span></div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content">  <span class="ide">logger</span><span class="op">.</span><span class="ide">info</span> fmt"user {...} logged in"</div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">logger</span><span class="op">.</span><span class="ide">info</span> fmt"user {...} uploaded a virus"</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="kwd">try</span>:</div></div><div class="line"><div class="line-content">    <span class="op">...</span></div></div><div class="line"><div class="line-content">  <span class="kwd">except</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">logger</span><span class="op">.</span><span class="ide">debug</span> fmt"user {...} wanted to do ... but failed because of {getCurrentErrorMsg()}"</div></div>  </code></pre>
-<p>as you can see, there may be a lot of lines that <em>just logs</em> what happens in the system, this might distract you from the <strong>actual logic</strong>.</p>
-<p>what if you could <strong>comment</strong> that lines of codes [<em>well the point is the commented codes become less distractive, thanks to the syntax-highlighting</em>], and more focus on the <strong>actual logic</strong>?</p>
-<p>well thanks to the powerful macro system [and me ofcourse 😎] you can do this!</p>
-<h2>Usage</h2>
-<p>NOTE: use <code>##</code> and not <code>#</code> for target comments</p>
-<h3>static prefix</h3>
-<ul>
-<li>usage: <code>{.uncomment.}</code></li>
-</ul>
-<p>set <code>uncommentPrefix</code> constant using <code>-d:uncommentPrefix=&quot;!! &quot;</code>.
-the default value is <code>&quot;&gt;&gt; &quot;</code>.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">your_Very_Special_Proc</span>(<span class="op">...</span>){<span class="op">.</span><span class="ide">uncomment</span><span class="op">.</span>}<span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="com">## &gt;&gt; echo &quot;hey!&quot;</span></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content">  <span class="com">## &gt;&gt; echo &quot;hey again!&quot;</span></div></div>  </code></pre>
-<h3>custom prefix for every proc</h3>
-<ul>
-<li>usage: <code>{.uncommentWith: &quot;...&quot;.}</code></li>
-</ul>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">your_Very_Special_Proc</span>(<span class="op">...</span>){<span class="op">.</span><span class="ide">uncommentWith</span>: <span class="str">&quot;!! &quot;</span><span class="op">.</span>}<span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="com">## !! echo &quot;hey!&quot;</span></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content">  <span class="com">## &gt;&gt; echo &quot;won&apos;t be uncommented&quot;</span></div></div>  </code></pre>
-<h3>?? prefix for debug builds</h3>
-<p>When the <code>??</code> prefix is used, the operators
-will not be uncommented in <strong>release</strong> and <strong>danger</strong> builds.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">your_proc_with_release_flag</span>(<span class="op">...</span>) {<span class="op">.</span><span class="ide">uncomment</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="com">## &gt;&gt; echo &quot;hey!&quot;</span></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content">  <span class="com">## ?? echo &quot;won&apos;t be uncommented&quot;</span></div></div>  </code></pre>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -182,7 +155,7 @@ will not be uncommented in <strong>release</strong> and <strong>danger</strong> 
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-09T01:26:37Z
+        Builded at 2024-09-10T01:25:39Z
         </p>
       </div>
     </div>
