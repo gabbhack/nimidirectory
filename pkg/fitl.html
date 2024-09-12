@@ -268,7 +268,9 @@ in a non-Gaussian raw distribution of residuals.</p>
 <p>So, if you are using linear regression the least you should do is check for the
 main departures with <code>fitl --gof</code> and <code>--acf</code>.  For aid in interpretation, the
 statistical significance of autocorrelation function is also reported.  (Rank
-autocorrelation is not yet done but would not take much convincing!)</p>
+autocorrelation can be more robust to wild points and mutual information more
+robust to non-linear dependences and one should also test residuals for non-
+stationarity to test the full IID assumption, but these are all still TODOs!)</p>
 <p>Ideally, if you are not in an automated setting, you should visually inspect
 residuals with <code>fitl --resids</code>.</p>
 <h2>..And Features Automatical (with apologies to the Modern Major General...):</h2>
@@ -371,7 +373,7 @@ validation might perform better for &quot;true out of sample&quot;. }</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-11T01:24:33Z
+        Builded at 2024-09-12T01:25:06Z
         </p>
       </div>
     </div>
