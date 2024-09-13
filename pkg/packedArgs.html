@@ -95,7 +95,36 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
+                <document><h1>packedArgs!</h1>
+<h2>The Problem</h2>
+<blockquote>
+<p>Note: Channels are designed for the Thread type. They are unstable when used with spawn
+:: <a href="https://nim-lang.org/docs/channels_builtin.html">Nim doc for channles</a></p>
+</blockquote>
+<blockquote>
+<p>the problem is that spawn can block and programms that use channels usually assume that it cannot block :: <a href="https://discord.com/channels/371759389889003530/371759389889003532/814439926380494878">Araq on discord channel</a></p>
+</blockquote>
+<p>So this brings us to <a href="https://nim-lang.org/docs/threads.html#createThread%2CThread%5Bvoid%5D%2Cproc%29">  <code>createThread</code></a>.
+But the bad thing about <code>createThread</code> is that you can&apos;t pass multiply arguments for your <code>proc</code>. you have to pack them (arguments) inside a <code>tuple</code>/<code>object</code>, ... and then pass it.</p>
+<h2>The Solution</h2>
+<p>this library aims to eliminite this limitation via <code>packedArgs</code> macro. this macro creates a duplicated proc that has packed parameters [as a <code>tuple</code>].</p>
+<p>Assume you have a proc named <code>myProc</code> like this and you apply <code>packedArgs</code> to it:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">myProc</span>(<span class="ide">a</span>, <span class="ide">b</span> <span class="op">=</span> <span class="num">1</span>; <span class="ide">c</span>: <span class="ide">bool</span>): <span class="ide">string</span> {<span class="op">.</span><span class="ide">packedArgs</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div>  </code></pre>
+<p>  <strong>the generated code will be:</strong></p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">myProc</span>(<span class="ide">a</span>, <span class="ide">b</span> <span class="op">=</span> <span class="num">1</span>; <span class="ide">c</span>: <span class="ide">bool</span>): <span class="ide">string</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="op">...</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">type</span> <span class="ide">MyProcArgs</span> <span class="op">=</span> <span class="kwd">tuple</span>[<span class="ide">a</span>, <span class="ide">b</span>: <span class="ide">typeof</span> <span class="num">1</span>, <span class="ide">c</span>: <span class="ide">bool</span>]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">toMyProcArgs</span>(<span class="ide">a</span>, <span class="ide">b</span> <span class="op">=</span> <span class="num">1</span>; <span class="ide">c</span>: <span class="ide">bool</span>): <span class="ide">MyProcArgs</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  (<span class="ide">a</span>, <span class="ide">b</span>, <span class="ide">c</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">myProcPacked</span>(<span class="ide">args</span>: <span class="ide">MyProcArgs</span>): <span class="ide">string</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">myProc</span>(<span class="ide">args</span><span class="op">.</span><span class="ide">a</span>, <span class="ide">args</span><span class="op">.</span><span class="ide">b</span>, <span class="ide">args</span><span class="op">.</span><span class="ide">c</span>)</div></div>  </code></pre>
+<p><strong>usage</strong>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">myProcPacked</span>(<span class="ide">toMyProcArgs</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="ide">true</span>)) <span class="com"># same as myProc(1, 2, true)</span></div></div>  </code></pre>
+<p>or there is macro <code>genPackedArgsFor</code> to use after routine declaration.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">macro</span> <span class="ide">genPackedArgsFor</span>(<span class="ide">routineIdent</span>: <span class="ide">typed</span>, <span class="ide">exported</span>: <span class="kwd">static</span>[<span class="ide">bool</span>]): <span class="ide">untyped</span></div></div>  </code></pre>
+<p><strong>usage</strong>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">work</span>(<span class="ide">something</span>: <span class="ide">bool</span>): <span class="ide">float</span> <span class="op">=</span> <span class="kwd">discard</span></div></div><div class="line"><div class="line-content"><span class="ide">genPackedArgsFor</span>(<span class="ide">work</span>, <span class="ide">true</span>)</div></div>  </code></pre>
+<p>Becuase this is a little trickier, use <code>unpackArgs</code> when it&apos;s possible.</p>
+<h2>Features</h2>
+<ul>
+<li>[x] <strong>export</strong>: if the proc exported itself, the generated <code>type</code>/<code>proc</code>s are exported too</li>
+<li>[x] <strong>generics</strong>: nothing new, see <code>tests</code>/<code>test.nim</code> to make sure</li>
+</ul>
+</document>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -163,7 +192,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-12T01:25:06Z
+        Builded at 2024-09-13T01:25:21Z
         </p>
       </div>
     </div>

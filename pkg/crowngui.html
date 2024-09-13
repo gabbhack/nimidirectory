@@ -91,9 +91,7 @@
 <p>Web Technologies based Crossplatform GUI Framework</p>
 <p>It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and webview2 on Windows</p>
 <p>crowngui contains managed code only, no native code.</p>
-<p>crowngui provide CLI tool for bundling application easier.</p>
-<p>CLI tool:<br />
-<a href="https://github.com/bung87/crowncli">crowncli</a>.</p>
+<p>crowngui uses <a href="https://github.com/nimpacker/nimpacker">nimpacker</a> for bundling application easier.</p>
 <h2>Architecture</h2>
 <h3>how bindProcs works?</h3>
 <p>figure generated via asciiflow</p>
@@ -124,10 +122,10 @@
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">crowngui</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">when</span> <span class="ide">isMainModule</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">const</span>   </div></div><div class="line"><div class="line-content">    <span class="ide">cssDark</span> <span class="op">=</span> staticRead"assets/dark.css"<span class="op">.</span><span class="ide">strip</span><span class="op">.</span><span class="ide">unindent</span><span class="op">.</span><span class="ide">cstring</span></div></div><div class="line"><div class="line-content">    <span class="ide">cssLight</span> <span class="op">=</span> staticRead"assets/light.css"<span class="op">.</span><span class="ide">strip</span><span class="op">.</span><span class="ide">unindent</span><span class="op">.</span><span class="ide">cstring</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">app</span> <span class="op">=</span> <span class="ide">newApplication</span>( <span class="ide">staticRead</span>(<span class="str">&quot;assets/demo.html&quot;</span>) )</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">theme</span> <span class="op">=</span> <span class="kwd">if</span> <span class="str">&quot;--light-theme&quot;</span> <span class="kwd">in</span> <span class="ide">commandLineParams</span>(): <span class="ide">cssLight</span> <span class="kwd">else</span>: <span class="ide">cssDark</span></div></div><div class="line"><div class="line-content">  <span class="ide">app</span><span class="op">.</span><span class="ide">css</span>(<span class="ide">theme</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">app</span><span class="op">.</span><span class="ide">run</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">app</span><span class="op">.</span><span class="ide">exit</span>()</div></div>  </code></pre>
 <p>Your project <code>.nimble</code> file</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">bin</span>           <span class="op">=</span> <span class="op">@</span>[<span class="str">&quot;yourexecutable&quot;</span>]</div></div>  </code></pre>
-<p><code>crowncli</code> will bundle your executable to <code>exe</code> on windows, <code>.app</code> on mac</p>
+<p><code>nimpacker</code> will bundle your executable to <code>exe</code> on windows, <code>.app</code> on mac</p>
 <p>Your project root can have <code>&quot;logo.png&quot;</code> which will generate as icon of application.</p>
 <h3>CLI usage</h3>
-<p>  <code>crowncli [build,run] --help</code></p>
+<p>  <code>nimpacker [build,run] --help</code></p>
 <pre>  <code>Usage:
   [build,run] [required&amp;optional-params] [flags: string...]
 Options:
@@ -140,13 +138,11 @@ Options:
 <h2>Examples</h2>
 <p><a href="https://github.com/bung87/crown_excel">crown_excel</a> excel viewer</p>
 <p><a href="https://github.com/bung87/gamode">gamode</a> windows optimization tool for game</p>
-<h2>Prerequires</h2>
-<p><code>rcedit</code> for windows exe icon on non-windows platform requires <code>wine</code></p>
 <h2>Development</h2>
 <p>run<br />
-<code>crowncli run --target macos</code></p>
+<code>nimpacker run --target macos</code></p>
 <p>build<br />
-<code>crowncli build --target macos</code></p>
+<code>nimpacker build --target macos</code></p>
 <h2>Cross compilation for Windows</h2>
 <p>To cross compile for Windows from Linux or macOS using the MinGW-w64 toolchain:</p>
 <p>  <code>nim c -d:mingw myproject.nim</code></p>
@@ -227,7 +223,7 @@ OSX: brew install mingw-w64
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-12T01:25:06Z
+        Builded at 2024-09-13T01:25:21Z
         </p>
       </div>
     </div>
