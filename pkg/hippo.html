@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">hippo</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">cuda</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">hip</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">gpu</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">HIP / CUDA programming library for Nim.</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install hippo" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Hippo</h1>
+<img src="tests/hip/julia.png" style="max-width: 100%;" />
+A Julia Set fractal generated with HIP
+<ul>
+<li>  <a href="https://monofuel.github.io/hippo/">Documentation</a></li>
+</ul>
+<h2>Minimal HIP Example</h2>
+<ul>
+<li>IMPORTANT: requires at least nim 2.1.9 for gpu usage, and must compile with <code>nim cpp</code>
+<ul>
+<li>nim 2.1.9 added <code>--cc:nvcc</code> and <code>--cc:hipcc</code></li>
+<li><code>nim cpp</code> is required for both HIP and CUDA.</li>
+</ul>
+</li>
+</ul>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">hippo</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">addKernel</span><span class="op">*</span>(<span class="ide">a</span>, <span class="ide">b</span>: <span class="ide">cint</span>; <span class="ide">c</span>: <span class="kwd">ptr</span>[<span class="ide">cint</span>]) {<span class="op">.</span><span class="ide">hippoGlobal</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">c</span>[] <span class="op">=</span> <span class="ide">a</span> <span class="op">+</span> <span class="ide">b</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span></div></div><div class="line"><div class="line-content">  <span class="ide">c</span>: <span class="ide">int32</span></div></div><div class="line"><div class="line-content">  <span class="ide">dev_c</span> <span class="op">=</span> <span class="ide">hippoMalloc</span>(<span class="ide">sizeof</span>(<span class="ide">int32</span>))</div></div><div class="line"><div class="line-content"><span class="ide">hippoLaunchKernel</span>(<span class="ide">addKernel</span>,<span class="ide">args</span> <span class="op">=</span> (<span class="num">2</span>,<span class="num">7</span>,<span class="ide">dev_c</span><span class="op">.</span><span class="ide">p</span>))</div></div><div class="line"><div class="line-content"><span class="ide">hippoMemcpy</span>(<span class="kwd">addr</span> <span class="ide">c</span>, <span class="ide">dev_c</span>, <span class="ide">sizeof</span>(<span class="ide">int32</span>), <span class="ide">hipMemcpyDeviceToHost</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="str">&quot;2 + 7 = &quot;</span>, <span class="ide">c</span></div></div>  </code></pre>
+<h2>Functions</h2>
+<ul>
+<li>There are 3 sets of function prefixes.</li>
+<li><code>hippo*</code> prefixed functions are friendly nim interfaces for either HIP or CUDA
+<ul>
+<li>This is the recommended way to use this library, as it is the most nim-like</li>
+<li>These functions check for errors and raise them as exceptions</li>
+</ul>
+</li>
+<li><code>hip*</code> prefixed functions are the raw HIP C++ functions</li>
+<li><code>cuda*</code> prefixed functions are the raw CUDA C functions</li>
+</ul>
+<h2>Pragmas</h2>
+<ul>
+<li>all pragmas are prefixed with <code>hippo</code> and can be used for hip or cuda to assign attributes like <code>__global__</code> or <code>__shared__</code></li>
+</ul>
+<p>basic kernel example:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">add</span>(<span class="ide">a</span>,<span class="ide">b</span>: <span class="ide">int</span>; <span class="ide">c</span>: <span class="kwd">ptr</span>[<span class="ide">int</span>]): {<span class="op">.</span><span class="ide">hippoGlobal</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">c</span>[] <span class="op">=</span> <span class="ide">a</span> <span class="op">+</span> <span class="ide">b</span></div></div>  </code></pre>
+<h2>Notes</h2>
+<ul>
+<li>
+<p>work in progress!</p>
+</li>
+<li>
+<p>very basic kernels work that use block/thread indices</p>
+</li>
+<li>
+<p>shared memory works</p>
+</li>
+<li>
+<p>there are examples for several different targets in the examples directory.</p>
+</li>
+<li>
+<p>building for HIP requires that <code>hipcc</code> is in your PATH</p>
+</li>
+<li>
+<p><a href="examples/vector_sum_hippo.nims">vector_sum_cuda.nims</a> example .nims for building with hipcc</p>
+</li>
+<li>
+<p><a href="examples/vector_sum_cuda.nims">vector_sum_hippo.nims</a> example .nims for building with nvcc for cuda</p>
+</li>
+<li>
+<p><a href="examples/vector_sum_hip_nvidia.nims">vector_sum_hip_nvidia.nims</a> example .nims for building with hipcc with the cuda backend</p>
+<ul>
+<li>tell nim that you want the &apos;nvcc&apos; compiler settings to get the right arguments, but swap out the compiler executable for hipcc</li>
+<li>you might also need to have HIP_PLATFORM=nvidia set in your environment</li>
+</ul>
+</li>
+<li>
+<p><a href="examples/vector_sum_cpu.nims">vector_sum_cpu.nims</a> example .nims for building with the HIP-CPU backend (no hipcc required)</p>
+</li>
+<li>
+<p>HIP-CPU is supported with the <code>-d:HippoRuntime=HIP_CPU</code> flag</p>
+<ul>
+<li>note: you need to pull the HIP-CPU git submodule to use this feature</li>
+<li>does not require hipcc. works with gcc.</li>
+<li>you can write kernels and test them on cpu with echos and breakpoints and everything!</li>
+</ul>
+</li>
+<li>
+<p>hippo <em>requires</em> that you use cpp. it will not work with c</p>
+<ul>
+<li>  <code>nim cpp -r tests/hip/vector_sum.nim</code></li>
+<li>The HIP Runtime is a C++ library, and so is the CUDA Runtime. As such, we can&apos;t do anything about this.</li>
+<li>You can make separate projects for the C and C++ parts and link them together. (I have not tested this yet, would love examples if you do this!)</li>
+</ul>
+</li>
+</ul>
+<h2>Motivation</h2>
+<ul>
+<li>
+<p>I want GPU compute (HIP / CUDA) to be a first-class citizen in Nim.</p>
+</li>
+<li>
+<p>This library is built around using HIP, which supports compiling for both AMD and NVIDIA GPUs.</p>
+<ul>
+<li>for CUDA, hipcc is basically a wrapper around <code>nvcc</code>.</li>
+</ul>
+</li>
+<li>
+<p>examples for each platform can be found in the <a href="examples/">examples directory</a></p>
+<ul>
+<li>assuming the hipcc compiler is in your PATH, you can run the example with <code>nim cpp -r vector_sum.nim</code></li>
+</ul>
+</li>
+</ul>
+<h2>Compiling</h2>
+<ul>
+<li>
+<p>by default, hipcc will build for the GPU detected in your system.</p>
+</li>
+<li>
+<p>If you need to build for various GPUs, you can use <code>--passC:&quot;--offload-arch=gfx1100&quot;</code> to specify the GPU target</p>
+<ul>
+<li>for example, to build for a 7900 xtx, you would use <code>--passC:&quot;--offload-arch=gfx1100&quot;</code></li>
+<li>for a radeon w7500, you would use <code>--passC:&quot;--offload-arch=gfx1102&quot;</code></li>
+<li>for a geforce 1650 ti, you would use <code>--passC:&quot;--gpu-architecture=sm_75&quot;</code>
+<ul>
+<li>You also have to set the <code>HIP_PLATFORM=nvidia</code> environment variable to build for nvidia GPUs if you don&apos;t have an nvidia GPU in your system</li>
+<li>hipcc will pick nvcc by default if you have nvcc but do not have the amd rocm stack installed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>If you want to build for CPU with <code>-d:&quot;HippoRuntime:HIP_CPU&quot;</code>, you must have intel tbb libraries installed. <code>yum install -y tbb-devel</code></p>
+</li>
+</ul>
+<h3>Required flags for HIP</h3>
+<ul>
+<li>You must compile with nim cpp for c++</li>
+<li>Please refer to the <a href="examples/">examples</a> for the nim compiler settings needed for each target</li>
+</ul>
+<h3>Optional flags</h3>
+<ul>
+<li><code>-d:HippoRuntime=HIP</code> (default) (requires hipcc)
+<ul>
+<li>If you want to build HIP for nvidia, you might need to set the environment variable <code>HIP_PLATFORM=nvidia</code> as well</li>
+</ul>
+</li>
+<li><code>-d:HippoRuntime=HIP_CPU</code> for cpu-only usage (does not require hipcc)
+<ul>
+<li>you must pull the HIP-CPU submodule to use this feature</li>
+</ul>
+</li>
+<li><code>-d:HippoRuntime=CUDA</code> (requires nvcc)</li>
+</ul>
+<h2>Testing</h2>
+<ul>
+<li><code>nimble test</code> to run CPU-only test with HIP_CPU
+<ul>
+<li>This is what is currently ran on Github CI</li>
+</ul>
+</li>
+<li><code>nimble test_amd</code> to compile with hipcc and run on your AMD GPU</li>
+<li><code>nimble test_cuda</code> to compile with nvcc and run on your NVIDIA GPU</li>
+</ul>
+<h2>Feature todo list</h2>
+<ul>
+<li>[x] support c++ attributes like <code>__global__</code>, <code>__device__</code></li>
+<li>[x] support kernel execution syntax <code>&lt;&lt;&lt;1,1&gt;&gt;&gt;</code> somehow</li>
+<li>[x] figure out how to handle built-ins like block/thread indices</li>
+<li>[x] Add a compiler option to use <a href="https://github.com/ROCm/HIP-CPU">HIP-CPU</a> to run HIP code on the CPU
+<ul>
+<li>will be useful for debugging and testing</li>
+<li>also useful for running on systems without a GPU</li>
+</ul>
+</li>
+<li>[x] helper functions to make hip/cuda calls more nim-y</li>
+<li>[x] setup automated testing build for HIP</li>
+<li>[x] setup automated testing with hip-cpu</li>
+<li>[x] support <code>__shared__</code> w/ a dot product test</li>
+<li>[x] add pictures to project</li>
+<li>[ ] Ensure that every example from the book &quot;CUDA by Example&quot; can be run with this library
+<ul>
+<li>[x] chapter 4 vector + julia set</li>
+<li>[x] chapter 5 shared memory + thread syncing dot product</li>
+<li>[ ] chapter 6 constant memory + events</li>
+<li>[ ] chapter 7 texture memory (this API changed in recent cuda, might skip)</li>
+<li>[ ] chapter 8 graphics interoperability with <a href="https://github.com/treeform/boxy/blob/master/examples/basic_glut.nim">boxy</a></li>
+<li>[ ] chapter 9 atomics</li>
+<li>[ ] chapter 10 streams</li>
+<li>[ ] chapter 11 multi-gpu</li>
+<li>[ ] Advanced Atomics</li>
+</ul>
+</li>
+<li>[ ] setup CI runners for both nvidia &amp; amd GPUs for testing binaries</li>
+</ul>
+<h2>Stretch goals</h2>
+<ul>
+<li>[ ] Test with <a href="https://github.com/CHIP-SPV/chipStar">chipStar</a> verify it can run with openCL</li>
+<li>[ ] Figure out some way to get this to work with WEBGPU</li>
+</ul>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://monofuel.github.io/hippo/">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-09-14T01:24:07Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>

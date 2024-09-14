@@ -143,7 +143,10 @@
    2.741 ms    2.825 ms  ±0.039  x1000 encode 1000 strings (std/base64)
 </code></pre>
 <h1>Real-World Usage</h1>
-<p>This library was initially bound to Nim for <a href="https://github.com/ferus-web/bali">bali</a>, a JavaScript engine written in Nim. It&apos;ll hopefully soon fully replace <code>std/base64</code> from the entirity of the Ferus&apos; web engine&apos;s stack.</p>
+<ul>
+<li><a href="https://github.com/ferus-web/bali">bali</a>, a JavaScript engine written in Nim</li>
+</ul>
+<p>This will hopefully soon fully replace <code>std/base64</code> from the entirity of the Ferus&apos; web engine&apos;s stack.</p>
 <h1>Usage (Base64)</h1>
 <p>The API is almost the same as <code>std/base64</code>.</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">simdutf</span><span class="op">/</span><span class="ide">base64</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">i</span>, <span class="ide">name</span> <span class="kwd">in</span> [</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Joseph&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Andreas&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;James&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Thomas&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Monika&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Prateek&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Ahmad&quot;</span>,</div></div><div class="line"><div class="line-content">    <span class="str">&quot;Anton&quot;</span>,</div></div><div class="line"><div class="line-content">]:</div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">name</span><span class="op">.</span><span class="ide">encode</span>(<span class="ide">urlSafe</span> <span class="op">=</span> (<span class="ide">i</span> <span class="kwd">mod</span> <span class="num">2</span>) <span class="op">==</span> <span class="num">0</span>) <span class="com"># We support URL safe encoding too</span></div></div>  </code></pre>
@@ -218,7 +221,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-13T01:25:21Z
+        Builded at 2024-09-14T01:24:07Z
         </p>
       </div>
     </div>
