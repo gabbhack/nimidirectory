@@ -393,6 +393,7 @@ template and therefore can be included.</p>
 <p>This way you create reusable template blocks to use all over your webpage.</p>
 <p>(Since Nimja 0.9.0) If you import other templates, make sure to use the <code>baseDir</code> param with
 <code>tmpls</code>, <code>tmplf</code>, <code>compileTemplateString</code> and <code>compileTemplateFile</code>.</p>
+<p>(Since Nimja 0.10.0) You can also use the <a href="#template-fragments">template fragment</a> feature.</p>
 <p>partials/_user.nimja:</p>
 <pre>  <code class="language-twig">&lt;div class=&quot;col-3&quot;&gt;
   &lt;h2&gt;{{user.name}}&lt;/h2&gt;
@@ -413,6 +414,7 @@ template and therefore can be included.</p>
 <p>a child template can extend a master template.
 So that placeholder blocks in the master are filled
 with content from the child.</p>
+<p>Basically the rendered template chooses its &quot;sourrounding&quot; template.</p>
 <p>(Since Nimja 0.9.0) If you extend other templates, make sure to use the <code>baseDir</code> param with
 <code>tmpls</code>, <code>tmplf</code>, <code>compileTemplateString</code> and <code>compileTemplateFile</code>.</p>
 <p>partials/_master.nimja</p>
@@ -548,6 +550,90 @@ To fix this you can annotate them with &quot;-&quot;:</p>
 <pre>  <code class="language-html">###############
 &lt;li&gt;FOO&lt;/li&gt;
 ###############
+</code></pre>
+<h1>Template Fragments</h1>
+<p>(Since Nimja 0.10.0)</p>
+<p>All the render procs (<code>tmpls</code>, <code>tmplf</code>, <code>compileTemplateString</code> and <code>compileTemplateFile</code>).
+Have a parameter <code>blockToRender</code>.</p>
+<pre>  <code>proc render(): string =
+    compileTemplateStr(&quot;not rendered{% block foo %}foo{% endblock %}&quot;, 
+        blockToRender = &quot;foo&quot;, baseDir = getScriptDir())
+
+tmpls(&quot;not rendered{% block foo %}foo{% endblock %}&quot;, blockToRender = &quot;foo&quot;, baseDir = getScriptDir())
+
+
+proc render(): string =
+    compileTemplateFile(&quot;template.nimja&quot;, 
+        blockToRender = &quot;foo&quot;, baseDir = getScriptDir())
+
+tmplf(&quot;template.nimja&quot;, blockToRender = &quot;foo&quot;, baseDir = getScriptDir())
+
+</code></pre>
+<p>If set only this block of a larger template is rendered.</p>
+<p>Imagine this example where we use htmx:</p>
+<p>page.nimja</p>
+<pre>  <code class="language-twig">&lt;html&gt;
+    &lt;header&gt;
+        &lt;script src=&quot;https://unpkg.com/htmx.org@2.0.2&quot;&gt;&lt;/script&gt;
+    &lt;/header&gt;
+    &lt;body&gt;
+        {% block content %}
+            &lt;h1&gt;Hello&lt;/h1&gt;
+            {% block button %}
+              &lt;div id=&quot;buttons&quot;&gt;
+                &lt;button hx-post=&quot;/clicked/up&quot; hx-target=&quot;#buttons&quot; hx-swap=&quot;outerHTML&quot; {% if button == 10%}disabled{% endif %} &gt;
+                  UP Click Me {{button}}
+                &lt;/button&gt;
+                {%- if button == 10%}you klicked enough!!{% endif -%}
+              &lt;/div&gt;
+            {% endblock %}
+        {% endblock %}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>When you render the whole page, everything is rendered.
+Good for the first visit of the site.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">tmplf</span>(<span class="str">&quot;page.nimja&quot;</span>, <span class="ide">baseDir</span> <span class="op">=</span> <span class="ide">getScriptDir</span>())</div></div>  </code></pre>
+<p>When you later want to update the button with htmx, you need only the &quot;block button&quot;</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">tmplf</span>(<span class="str">&quot;page.nimja&quot;</span>, <span class="ide">blockToRender</span> <span class="op">=</span> <span class="str">&quot;button&quot;</span> <span class="ide">baseDir</span> <span class="op">=</span> <span class="ide">getScriptDir</span>())</div></div>  </code></pre>
+<p>then only this part is rendered:</p>
+<pre>  <code class="language-twig">{% block button %}
+  &lt;div id=&quot;buttons&quot;&gt;
+    &lt;button hx-post=&quot;/clicked/up&quot; hx-target=&quot;#buttons&quot; hx-swap=&quot;outerHTML&quot; {% if button == 10%}disabled{% endif %} &gt;
+      UP Click Me {{button}}
+    &lt;/button&gt;
+    {%- if button == 10%}you klicked enough!!{% endif -%}
+  &lt;/div&gt;
+{% endblock %} 
+</code></pre>
+<p>You can also use this to get rid of some of your partials templates.
+For example, with this you can combine partials and extended templates:</p>
+<p>user.nimja</p>
+<pre>  <code class="language-twig">{% extends partials/_base.nimja %}
+{% block content %}
+    Information about the user.
+
+    {% block user %}
+        &lt;div id=&quot;user&quot;&gt;
+            {{user.firstName}}
+            {{user.lastName}}
+        &lt;/div&gt;
+    {% endblock %}
+
+    also visit &lt;a href=&quot;/users/&quot;&gt;other user&lt;/a&gt;!
+{% endblock %}
+</code></pre>
+<p>So a &quot;users detail page&quot; would render the whole thing.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">tmplf</span>(<span class="str">&quot;user.nimja&quot;</span>, <span class="ide">baseDir</span> <span class="op">=</span> <span class="ide">getScriptDir</span>())</div></div>  </code></pre>
+<p>But if you want to display a user somewhere else, you can just render the <code>user</code> block:</p>
+<p>userlist.nimja</p>
+<pre>  <code class="language-twig">&lt;ul&gt;
+    {% for user in db.getUsers %}
+        &lt;li&gt;
+            {% importnimja &quot;user.nimja&quot; &quot;user&quot; %}
+        &lt;/li&gt;
+    {% endfor %}
+&lt;/ul&gt;
 </code></pre>
 <h1>Nimjautils</h1>
 <p>The optional <code>nimjautils</code> module, implements some convenient procedures.</p>
@@ -760,6 +846,12 @@ nim c -d:dumpNwtMacro -r yourfile.nim # &lt;-- dump generated Nim macros
 </ul>
 <h2>DONE</h2>
 <ul>
+<li>0.10.0
+<ul>
+<li>Possible Breaking Change.</li>
+<li><a href="#template-fragments">Template fragments</a> (good for htmx); Render specific blocks from a template all procs (<code>tmpls</code>, <code>tmplf</code>, <code>compileTemplateString</code> and <code>compileTemplateFile</code>) got a &quot;blockToRender&quot; parameter, when set, only the given block is rendered.</li>
+</ul>
+</li>
 <li>0.9.0
 <ul>
 <li>BREAKING CHANGE!</li>
@@ -875,7 +967,7 @@ But its neccesary if you plan to import your nimja template code into other code
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-15T01:40:41Z
+        Builded at 2024-09-21T01:25:18Z
         </p>
       </div>
     </div>

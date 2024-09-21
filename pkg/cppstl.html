@@ -88,7 +88,7 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>Nim bindings for the C++ STL</h1>
-<p>  <img src="https://github.com/Clonkk/nim-cppstl/actions/workflows/ci.yml/badge.svg" style="max-width: 100%;" alt="workflow" />  <img src="https://github.com/Clonkk/nim-cppstl/actions/workflows/docs.yml/badge.svg" style="max-width: 100%;" alt="workflow" /></p>
+<p>  <img src="https://github.com/Clonkk/nim-cppstl/actions/workflows/ci.yml/badge.svg" style="max-width: 100%;" alt="workflow" />  <img src="https://github.com/Clonkk/nim-cppstl/actions/workflows/doctest.yml/badge.svg" style="max-width: 100%;" alt="workflow" /></p>
 <h2>Introduction</h2>
 <p>This library is a Nim wrapper for C++ Standard Template Library (STL) class.
 <strong>This library is obviously only compatible with the C++ backend</strong></p>
@@ -105,7 +105,7 @@
 requires &quot;cppstl&quot;
 </code></pre>
 <h2>Limitations</h2>
-<p><code>cppstl</code> currently wraps :</p>
+<h4><code>cppstl</code> currently wraps :</h4>
 <ul>
 <li>
 <p>  <code>std::string</code></p>
@@ -130,6 +130,21 @@ requires &quot;cppstl&quot;
 </ul>
 </li>
 </ul>
+<h4>Avoid using wrapped STL objects in top-level Nim scope.</h4>
+<p>Most of the times it works on Nim 1.x but leads to both compile-time and runtime errors on 2.x.
+So instantiate them in subroutines only to ensure portability between 1.x and 2.x.</p>
+<p>I.e this usecase is not recommended:</p>
+<pre>  <code>when isMainModule:
+  var vec = initCppVector[int]()
+  vec.pushBack(20)
+</code></pre>
+<p>Use this one instead:</p>
+<pre>  <code>when isMainModule:
+  proc foo = 
+    var vec = initCppVector[int]()
+    vec.pushBack(20)
+  foo()
+</code></pre>
 <h2>Contributions</h2>
 <p>All contributions are welcome!</p>
 <p>If there is a missing function or class, that you need, don&apos;t be shy to open an issue or a PR.</p>
@@ -212,7 +227,7 @@ requires &quot;cppstl&quot;
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-15T01:40:41Z
+        Builded at 2024-09-21T01:25:18Z
         </p>
       </div>
     </div>

@@ -34077,6 +34077,38 @@ const packages = [
     "description": "HIP / CUDA programming library for Nim.",
     "license": "MIT",
     "web": "https://monofuel.github.io/hippo/"
+  },
+  {
+    "name": "fenstim",
+    "url": "https://github.com/CardealRusso/fenstim",
+    "method": "git",
+    "tags": [
+      "gui",
+      "desktop-app",
+      "minimal"
+    ],
+    "description": "The most minimal cross-platform GUI library - in Nim.",
+    "license": "MIT",
+    "web": "https://github.com/CardealRusso/fenstim"
+  },
+  {
+    "name": "newt",
+    "url": "https://github.com/navid-m/newt",
+    "method": "git",
+    "tags": [
+      "youtube",
+      "media",
+      "downloader",
+      "download",
+      "scraper",
+      "api",
+      "library",
+      "pytube",
+      "youtube-dl"
+    ],
+    "description": "Youtube downloader library and CLI.",
+    "license": "GPLv3",
+    "web": "https://github.com/navid-m/newt"
   }
 ]
 

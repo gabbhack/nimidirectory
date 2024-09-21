@@ -165,19 +165,19 @@ Nim version and fix the generators accordingly</li>
 <li>Run <code>nimble gen_tests</code> to update all test data to current
 unicode version. The tests for a new unicode version run
 against the previous unicode version.</li>
-<li>Run tests and fix all failing tests. This should
+<li>Run <code>nimble test</code> and fix all failing tests. This should
 require just temporarily commenting out
 all checks for missing unicode points.</li>
 <li>Overwrite <code>./gen/UCD</code> data with
-<a href="http://unicode.org/Public/UCD/latest/ucd/UCD.zip">latest unicode UCD</a>.</li>
+<a href="https://unicode.org/Public/UCD/latest/ucd/UCD.zip">latest unicode UCD</a>.</li>
 <li>Run <code>nimble gen</code> to generate the new data.</li>
-<li>Run tests. Add checks for missing unicode points back.
+<li>Run <code>nimble test</code>. Add checks for missing unicode points back.
 A handful of unicode points may have change its data, check
 the unicode changelog page, make sure they are correct and skip them.</li>
 <li>Note: starting Unicode 15 they added multiple @missing lines
 which breaks the assumption of a default prop for missing CPs
 and these lines need to be parsed (see DerivedBidiClass for example).
-So if they add this to more files, the data gen need fixing.
+So if they add this to more files, the data gen needs fixing.
 Look for lines containing <code># @missing</code> with a range other than <code>0000..10FFFF</code>. See <a href="https://www.unicode.org/reports/tr44/tr44-30.html#Missing_Conventions">Missing_Conventions</a></li>
 </ul>
 <h2>Tests</h2>
@@ -264,7 +264,7 @@ issue or a PR.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-15T01:40:41Z
+        Builded at 2024-09-21T01:25:18Z
         </p>
       </div>
     </div>

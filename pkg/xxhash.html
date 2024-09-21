@@ -88,9 +88,53 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>xxhash.nim</h1>
-<p>xxhash wrapper for Nim</p>
+<p><strong>xxhash wrapper for Nim</strong>
+This is a wrapper for the <code>xxhash</code> hashing library in Nim, which provides fast, non-cryptographic hashing for various use cases such as file integrity checks, data storage, and more.</p>
+<h2>Features</h2>
+<ul>
+<li>Supports <code>XXH32</code>, <code>XXH64</code>, and <code>XXH128</code> hashing algorithms.</li>
+<li>Designed to work seamlessly with the Nim language.</li>
+<li>Efficient and fast hashing suitable for performance-sensitive applications.</li>
+</ul>
+<h2>Installation</h2>
+<p>To use <code>xxhash.nim</code>, install the library using Nimble:</p>
+<pre>  <code class="language-shell">nimble install xxhash
+</code></pre>
+<p>Alternatively, you can clone the repository from the official source and add it to your project manually.</p>
+<h2>Basic Usage</h2>
+<p>Below is a simple example of how to use the <code>xxhash</code> library in a Nim project.</p>
+<h3>Importing the Module</h3>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">xxhash</span></div></div>  </code></pre>
+<h3>Hashing a String</h3>
+<p>To compute a 32-bit hash of a string using <code>XXH32</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">hash32</span> <span class="op">=</span> <span class="ide">XXH32</span>(<span class="str">&quot;Hello, world!&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">hash32</span></div></div>  </code></pre>
+<p>To compute a 64-bit hash using <code>XXH64</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">hash64</span> <span class="op">=</span> <span class="ide">XXH64</span>(<span class="str">&quot;Hello, world!&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">hash64</span></div></div>  </code></pre>
+<p>For larger data or more security, use <code>XXH128</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">hash128</span> <span class="op">=</span> <span class="ide">XXH3_128bits</span>(<span class="str">&quot;Hello, world!&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">hash128</span></div></div>  </code></pre>
+<h3>Hashing a File</h3>
+<p>To hash a file, you can use:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">os</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">fileContent</span> <span class="op">=</span> <span class="ide">readFile</span>(<span class="str">&quot;path/to/file&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">fileHash</span> <span class="op">=</span> <span class="ide">XXH64</span>(<span class="ide">fileContent</span>)</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">fileHash</span></div></div>  </code></pre>
+<h3>Streaming Hash Computation</h3>
+<p>For large files or streams, the xxhash library provides stateful hashing that allows hashing in chunks. Here&apos;s an example using <code>XXH64</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">state</span> <span class="op">=</span> <span class="ide">newXxh64</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Process in chunks</span></div></div><div class="line"><div class="line-content"><span class="ide">state</span><span class="op">.</span><span class="ide">update</span>(<span class="str">&quot;Hello, &quot;</span>)</div></div><div class="line"><div class="line-content"><span class="ide">state</span><span class="op">.</span><span class="ide">update</span>(<span class="str">&quot;world!&quot;</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">finalHash</span> <span class="op">=</span> <span class="ide">state</span><span class="op">.</span><span class="ide">digest</span>()</div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">finalHash</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Important: Free the state after use in Nim 1.x.x</span></div></div><div class="line"><div class="line-content"><span class="ide">state</span><span class="op">.</span><span class="ide">free</span>()</div></div>  </code></pre>
+<h2>Note for Nim version 1.x.x</h2>
+<p>In Nim versions older than 2.0.0, you should manually call <code>state.free()</code> to deallocate resources because Nim does not automatically call destructors (<code>=destroy</code>). This step is crucial to avoid memory leaks when using the stateful API.</p>
+<h2>Performance Considerations</h2>
+<ul>
+<li><code>xxhash</code> is designed to be very fast and is optimized for bulk data processing.</li>
+<li><code>XXH128</code> is slightly slower but provides more robust hashing for larger datasets.</li>
+</ul>
+<h2>Additional Information</h2>
+<p>This wrapper supports both 32-bit and 64-bit systems, ensuring compatibility across various platforms.</p>
 <h2>Credits</h2>
-<p>This module uses <a href="https://github.com/rockcavera">@rockcavera</a>&apos;s <a href="https://github.com/rockcavera/nim-nint128">nint128</a> for XXH128 computation</p>
+<ul>
+<li>This module utilizes <a href="https://github.com/rockcavera">@rockcavera</a>&apos;s <a href="https://github.com/rockcavera/nim-nint128">  <code>nint128</code></a> for XXH128 computation.</li>
+</ul>
+<h2>License</h2>
+<p>This project is distributed under the MIT License.</p>
+<hr />
+<p>  <em>This README was generated by   <a href="https://openai.com/chatgpt">ChatGPT</a>.</em></p>
 </document>
             
         </div>
@@ -159,7 +203,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-15T01:40:41Z
+        Builded at 2024-09-21T01:25:18Z
         </p>
       </div>
     </div>
