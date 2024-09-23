@@ -92,6 +92,16 @@
 <p>Requires only Xlibs (libX11, libcxb, libXau, libXdmcp) on Linux. No additional requirements for Windows (gdi32) or MAC (Cocoa)</p>
 <h1>Credits</h1>
 <p>Project done in collaboration with @ElegantBeef and @morturo at https://forum.nim-lang.org/t/12504</p>
+<h1>Implementation status</h1>
+<ul>
+<li>[x] Minimal 24-bit RGB framebuffer.</li>
+<li>[x] Application lifecycle and system events are all handled automatically.</li>
+<li>[x] Simple polling API without a need for callbacks or multithreading (like Arduino/Processing).</li>
+<li>[x] Cross-platform keyboard events (keycodes).</li>
+<li>[x] Cross-platform mouse events (X/Y + mouse click).</li>
+<li>[x] Cross-platform timers to have a stable FPS rate. (builtin)</li>
+<li>[ ] Cross-platform audio playback (WinMM, CoreAudio, ALSA). <a href="https://github.com/CardealRusso/fenstim/issues/1">#1</a></li>
+</ul>
 <h1>Examples</h1>
 <p>Opens a 60fps 800x600 window, draws a red square and exits when pressing the Escape key:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># examples/red_square.nim</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">fenstim</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">app</span> <span class="op">=</span> <span class="ide">init</span>(<span class="ide">Fenster</span>, <span class="str">&quot;Red square with fenstim&quot;</span>, <span class="num">800</span>, <span class="num">600</span>, <span class="num">60</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">while</span> <span class="ide">app</span><span class="op">.</span><span class="ide">loop</span> <span class="kwd">and</span> <span class="ide">app</span><span class="op">.</span><span class="ide">keys</span>[<span class="num">27</span>] <span class="op">==</span> <span class="num">0</span>:</div></div><div class="line"><div class="line-content">  <span class="kwd">for</span> <span class="ide">x</span> <span class="kwd">in</span> <span class="num">350</span> <span class="op">..</span> <span class="num">450</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">for</span> <span class="ide">y</span> <span class="kwd">in</span> <span class="num">250</span> <span class="op">..</span> <span class="num">350</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">app</span>[<span class="ide">x</span>, <span class="ide">y</span>] <span class="op">=</span> <span class="num">0xFF0000</span></div></div>  </code></pre>
@@ -165,7 +175,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-22T01:41:00Z
+        Builded at 2024-09-23T01:36:07Z
         </p>
       </div>
     </div>
