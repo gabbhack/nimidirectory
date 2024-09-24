@@ -154,15 +154,7 @@ EOF
 </code></pre>
 <h2>Configuration Options</h2>
 <ul>
-<li><code>nim.projectMapping</code> - configure how <code>nimsuggest</code> should be started. Here it is sample configuration for <code>VScode</code>. We don&apos;t want <code>nimlangserver</code> to start <code>nimsuggest</code> for each file and this configuration will allow configuring pair <code>projectFile</code>/<code>fileRegex</code> so when one of the regexp in the list matches current file
-then <code>nimls</code> will use <code>root</code> to start <code>nimsuggest</code>. In case there are no matches <code>nimlangserver</code> will try to guess the most suitable project root.</li>
-<li><code>nim.timeout</code> - the request timeout in ms after which <code>nimlangserver</code> will restart the language server. If not specified the default is 2 minutes.</li>
-<li><code>nim.nimsuggestPath</code> - the path to the <code>nimsuggest</code>. The default is <code>&quot;nimsuggest&quot;</code>.</li>
-<li><code>nim.autoCheckFile</code> - check the file on the fly</li>
-<li><code>nim.autoCheckProject</code> - check the project after saving the file</li>
-<li><code>nim.autoRestart</code> - auto restart once in case of <code>nimsuggest</code> crash. Note that
-the server won&apos;t restart if there weren&apos;t any successful calls after the last
-restart.</li>
+<li><code>nim.projectMapping</code> - configure how <code>nimsuggest</code> should be started. Here it is sample configuration for <code>VScode</code>. We don&apos;t want <code>nimlangserver</code> to start <code>nimsuggest</code> for each file and this configuration will allow configuring pair <code>projectFile</code>/<code>fileRegex</code> so when one of the regexp in the list matches current file then <code>nimls</code> will use <code>root</code> to start <code>nimsuggest</code>. In case there are no matches <code>nimlangserver</code> will try to guess the most suitable project root.</li>
 </ul>
 <pre>  <code class="language-json">{
     &quot;nim.projectMapping&quot;: [{
@@ -176,17 +168,44 @@ restart.</li>
     }]
 }
 </code></pre>
+<p>Note when in a nimble project, <code>nimble</code> will drive the entry points for <code>nimsuggest</code>.</p>
+<ul>
+<li><code>nim.timeout</code> - the request timeout in ms after which <code>nimlangserver</code> will restart the language server. If not specified the default is 2 minutes.</li>
+<li><code>nim.nimsuggestPath</code> - the path to the <code>nimsuggest</code>. The default is <code>&quot;nimsuggest&quot;</code>.</li>
+<li><code>nim.autoCheckFile</code> - check the file on the fly</li>
+<li><code>nim.autoCheckProject</code> - check the project after saving the file</li>
+<li><code>nim.autoRestart</code> - auto restart once in case of <code>nimsuggest</code> crash. Note that
+the server won&apos;t restart if there weren&apos;t any successful calls after the last
+restart.</li>
+<li><code>nim.workingDirectoryMapping</code> - configure the working directory for specific projects.</li>
+<li><code>nim.checkOnSave</code> - check the file on save.</li>
+<li><code>nim.logNimsuggest</code> - enable logging for <code>nimsuggest</code>.</li>
+<li><code>nim.inlayHints</code> - configure inlay hints.</li>
+<li><code>nim.notificationVerbosity</code> - configure the verbosity of notifications. Can be set to <code>&quot;none&quot;</code>, <code>&quot;error&quot;</code>, <code>&quot;warning&quot;</code>, or <code>&quot;info&quot;</code>.</li>
+<li><code>nim.formatOnSave</code> - format the file on save. Requires <code>nph</code> to be available in the PATH.</li>
+</ul>
 <h2>Features</h2>
 <p><code>nimlangserver</code> supports the following LSP features:</p>
 <ul>
+<li>Initialize</li>
 <li>Completions</li>
 <li>Hover</li>
 <li>Goto definition</li>
+<li>Goto declaration</li>
+<li>Goto type definition</li>
 <li>Document symbols</li>
 <li>Find references</li>
-<li>Workspace symbols</li>
+<li>Code actions</li>
+<li>Prepare rename</li>
 <li>Rename symbols</li>
 <li>Inlay hints</li>
+<li>Signature help</li>
+<li>Document formatting (Requires <code>nph</code> to be available in the PATH.)</li>
+<li>Execute command</li>
+<li>Workspace symbols</li>
+<li>Document highlight</li>
+<li>Shutdown</li>
+<li>Exit</li>
 </ul>
 <p>You can install <code>nimlangserver</code> using the instructions for your text editor below:</p>
 <h3>Extension methods</h3>
@@ -250,6 +269,13 @@ config:</li>
 </ul>
 <pre>  <code class="language-elisp">(add-hook &apos;nim-mode-hook #&apos;lsp)
 </code></pre>
+<h2>Transport</h2>
+<p><code>nimlangserver</code> supports two transport modes:</p>
+<ul>
+<li>stdio</li>
+<li>socket</li>
+</ul>
+<p>To use socket mode, start <code>nimlangserver</code> with the <code>--socket</code> flag. You can set the port using the <code>--port</code> flag. If you don&apos;t specify the port, <code>nimlangserver</code> will automatically find an open port and print it in the console.</p>
 <h2>Related Projects</h2>
 <ul>
 <li>
@@ -331,7 +357,7 @@ crashes more gracefully.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-23T01:36:07Z
+        Builded at 2024-09-24T01:36:41Z
         </p>
       </div>
     </div>

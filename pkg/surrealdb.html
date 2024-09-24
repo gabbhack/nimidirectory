@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">surrealdb</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">surrealdb</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">database</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">surrealql</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">driver</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">sql</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">nosql</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">websocket</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">SurrealDB driver for Nim</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install surrealdb" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>SurrealDB.nim</h1>
+<p>An unofficial SurrealDB driver for Nim.</p>
+<blockquote>
+<p>[!WARNING]
+This is a very early version - things are barely tested and are subject to change.</p>
+</blockquote>
+<h2>⚒️ Current development status</h2>
+<p>Currently, the CBOR protocol is being implemented, which will lead to:</p>
+<ul>
+<li>Improved performance</li>
+<li>Support for easier ways to specify query parameters with specific types of values</li>
+<li>Support for receiving responses that contain type information</li>
+</ul>
+<p>This will change the API of the library drastically.</p>
+<p>You can follow the development of this library on:</p>
+<ul>
+<li>  <a href="https://www.youtube.com/playlist?list=PL5AVzKSngnt-vUzv1ykgY8mToNWsMYdcG">YouTube livestreams</a></li>
+<li>  <a href="https://www.twitch.tv/xkontitech">Twitch</a></li>
+</ul>
+<h2>Insstalllation</h2>
+<p>You can install this library using Nimble:</p>
+<pre>  <code class="language-bash">nimble install surrealdb
+</code></pre>
+<p>or by adding it to your <code>nimble</code> file:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;surrealdb &gt;= 0.1.0&quot;</span></div></div>  </code></pre>
+<h2>▶️ Usage example</h2>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">surrealdb</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">main</span>() {<span class="op">.</span><span class="ide">async</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="com"># Connect to SurrealDB</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">surreal</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">newSurrealDbConnection</span>(<span class="ide">ws</span>:<span class="op">//</span><span class="ide">localhost</span>:<span class="num">1234</span><span class="op">/</span><span class="ide">rpc</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># Disconnect from SurrealDB afterwards</span></div></div><div class="line"><div class="line-content">    <span class="kwd">defer</span>: <span class="ide">surreal</span><span class="op">.</span><span class="ide">disconnect</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># Switch to the test database</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">ns</span> <span class="op">=</span> <span class="str">&quot;test&quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">db</span> <span class="op">=</span> <span class="str">&quot;test&quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">useResponse</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">surreal</span><span class="op">.</span><span class="ide">use</span>(<span class="ide">ns</span>, <span class="ide">db</span>)</div></div><div class="line"><div class="line-content">    <span class="com"># Responses allow to call `.isOk` to check if the request was successful</span></div></div><div class="line"><div class="line-content">    <span class="ide">assert</span> <span class="ide">useResponse</span><span class="op">.</span><span class="ide">isOk</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># Sign in as root user</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">signinResponse</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">surreal</span><span class="op">.</span><span class="ide">signin</span>(<span class="str">&quot;rootuser&quot;</span>, <span class="str">&quot;somepassword&quot;</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="kwd">not</span> <span class="ide">signinResponse</span><span class="op">.</span><span class="ide">isOk</span>:</div></div><div class="line"><div class="line-content">        <span class="com"># You can also access the error message if the database returned an error</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Signin error: &quot;</span>, <span class="ide">signinResponse</span><span class="op">.</span><span class="ide">error</span><span class="op">.</span><span class="ide">message</span></div></div><div class="line"><div class="line-content">        <span class="ide">quit</span>(<span class="num">1</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># Query the database</span></div></div><div class="line"><div class="line-content">    <span class="com"># The `surql` string literal creates a distinct string of type `SurQL`</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">queryResponse</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">surreal</span><span class="op">.</span><span class="ide">query</span>(surql"SELECT * FROM users")</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="ide">queryResponse</span><span class="op">.</span><span class="ide">isOk</span>:</div></div><div class="line"><div class="line-content">        <span class="com"># Print out the result</span></div></div><div class="line"><div class="line-content">        <span class="com"># The `ok` field contains the result of the query</span></div></div><div class="line"><div class="line-content">        <span class="com"># The results is a JSON array with a result-per-query</span></div></div><div class="line"><div class="line-content">        <span class="ide">echo</span> <span class="str">&quot;Query result: &quot;</span>, <span class="ide">queryResponse</span><span class="op">.</span><span class="ide">ok</span>[<span class="num">0</span>][<span class="str">&quot;result&quot;</span>]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># The `rc` string literal creates a new RecordID object</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">selectResponse</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">surreal</span><span class="op">.</span><span class="ide">select</span>(rc"users:12345")</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="com"># The `tb` string literal creates a new TableName object</span></div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">tableResponse</span> <span class="op">=</span> <span class="ide">await</span> <span class="ide">surreal</span><span class="op">.</span><span class="ide">select</span>(tb"users")</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">waitFor</span> <span class="ide">main</span>()</div></div>  </code></pre>
+<h2>✅ Support for RPC JSON methods</h2>
+<p>This is a list of methods implemented methods that take <code>JsonNode</code> or strings as inputs and return <code>JsonNode</code> as output. No <em>smart</em> deserialization etc:</p>
+<ul>
+<li>[x] <code>use</code> method</li>
+<li>[x] <code>info</code> method</li>
+<li>[x] <code>version</code> method</li>
+<li>[x] <code>signup</code> method</li>
+<li>[x] <code>signin</code> method</li>
+<li>[x] <code>authenticate</code> method</li>
+<li>[x] <code>invalidate</code> method</li>
+<li>[x] <code>let</code> method</li>
+<li>[x] <code>unset</code> method</li>
+<li>[x] <code>query</code> method</li>
+<li>[x] <code>select</code> method</li>
+<li>[x] <code>create</code> method</li>
+<li>[x] <code>insert</code> method</li>
+<li>[x] <code>update</code> method</li>
+<li>[x] <code>upsert</code> method</li>
+<li>[x] <code>relate</code> method</li>
+<li>[x] <code>merge</code> method</li>
+<li>[x] <code>delete</code> method</li>
+<li>[x] <code>run</code> method</li>
+</ul>
+<p>The following methods will be implemented after the CBOR-based RPC is implemented:</p>
+<ul>
+<li>[ ] <code>live</code> method</li>
+<li>[ ] <code>kill</code> method</li>
+<li>[ ] <code>patch</code> method</li>
+<li>[ ] <code>qraphql</code> method</li>
+<li>[ ] <code>queryRaw</code> method</li>
+</ul>
+<h2>⏳ Next steps</h2>
+<ul>
+<li>[ ] <strong>Use CBOR instead of JSON for RPC requests</strong> (in progress)</li>
+<li>[ ] Automatic marshalling of SurrealDB types to/from Nim types</li>
+<li>[ ] Various helpers for dealing with returned data</li>
+<li>[ ] Automated testing via GitHub Actions that run SurrealDB in docker containers</li>
+</ul>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/Xkonti/surrealdb.nim">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-09-24T01:36:41Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>
