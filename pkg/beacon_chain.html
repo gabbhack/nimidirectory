@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">beacon_chain</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">ethereum</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">An efficient Ethereum beacon chain client</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install beacon_chain" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Nimbus Eth2 (Beacon Chain)</h1>
+<p><a href="https://github.com/status-im/nimbus-eth2/actions/workflows/ci.yml?query=branch%3Astable">  <img src="https://github.com/status-im/nimbus-eth2/actions/workflows/ci.yml/badge.svg?branch=stable" style="max-width: 100%;" alt="Github Actions CI" /></a>
+<a href="https://opensource.org/licenses/Apache-2.0">  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" style="max-width: 100%;" alt="License: Apache" /></a>
+<a href="https://opensource.org/licenses/MIT">  <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="max-width: 100%;" alt="License: MIT" /></a></p>
+<p><a href="https://discord.gg/XRxWahP">  <img src="https://img.shields.io/badge/discord-nimbus-orange.svg" style="max-width: 100%;" alt="Discord: Nimbus" /></a>
+<a href="https://join.status.im/nimbus-general">  <img src="https://img.shields.io/badge/status-nimbus--general-orange.svg" style="max-width: 100%;" alt="Status: #nimbus-general" /></a>
+<a href="https://www.gitpoap.io/gh/status-im/nimbus-eth2">  <img src="https://public-api.gitpoap.io/v1/repo/status-im/nimbus-eth2/badge" style="max-width: 100%;" alt="gitpoap badge" /></a></p>
+<p>Nimbus-eth2 is an extremely efficient consensus layer (eth2) client implementation. While it&apos;s optimised for embedded systems and resource-restricted devices -- including Raspberry Pis, its low resource usage also makes it an excellent choice for any server or desktop (where it simply takes up fewer resources).</p>
+<!--  START doctoc generated TOC please keep comment here to allow auto update  -->
+<!--  DON&apos;T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE  -->
+<ul>
+<li>  <a href="#documentation">Documentation</a></li>
+<li>  <a href="#related-projects">Related projects</a></li>
+<li>  <a href="#donations">Donations</a></li>
+<li>  <a href="#branch-guide">Branch guide</a></li>
+<li>  <a href="#developer-resources">Developer resources</a></li>
+<li>  <a href="#tooling-and-utilities">Tooling and utilities</a></li>
+<li><a href="#for-researchers">For researchers</a>
+<ul>
+<li>  <a href="#block-simulation">Block simulation</a></li>
+<li>  <a href="#local-network-simulation">Local network simulation</a></li>
+<li>  <a href="#visualising-simulation-metrics">Visualising simulation metrics</a></li>
+<li>  <a href="#ci-setup">CI setup</a></li>
+</ul>
+</li>
+<li>  <a href="#license">License</a></li>
+</ul>
+<!--  END doctoc generated TOC please keep comment here to allow auto update  -->
+<h2>Documentation</h2>
+<p>You can find the information you need to run a beacon node and operate as a validator in <a href="https://nimbus.guide/">The Book</a>.</p>
+<p>The <a href="https://nimbus.guide/quick-start.html">Quickstart</a> in particular will help you quickly connect to either mainnet or the Prater testnet.</p>
+<h2>Quickly test your tooling against Nimbus</h2>
+<p>The <a href="https://nimbus.guide/rest-api.html">Nimbus REST api</a> is now available from:</p>
+<ul>
+<li>http://unstable.mainnet.beacon-api.nimbus.team/</li>
+<li>http://testing.mainnet.beacon-api.nimbus.team/</li>
+<li>http://unstable.sepolia.beacon-api.nimbus.team/</li>
+<li>http://testing.holesky.beacon-api.nimbus.team/</li>
+<li>http://unstable.holesky.beacon-api.nimbus.team/</li>
+</ul>
+<p>Note that right now these are very much unstable testing instances. They may be unresponsive at times - so <strong>please do not rely on them for validating</strong>. We may also disable them at any time.</p>
+<h2>Migrate from another client</h2>
+<p>This <a href="https://nimbus.guide/migration.html">guide</a> will take you through the basics of how to migrate to Nimbus from another client. See <a href="https://nimbus.guide/migration-options.html">here</a> for advanced options.</p>
+<h2>Related projects</h2>
+<ul>
+<li><a href="https://github.com/status-im/nimbus-eth1/">status-im/nimbus-eth1</a>: Nimbus for Ethereum 1</li>
+<li><a href="https://github.com/ethereum/consensus-specs/tree/v1.3.0/#stable-specifications">ethereum/consensus-specs</a>: Consensus specification that this project implements</li>
+</ul>
+<p>You can check where the beacon chain fits in the Ethereum ecosystem in our Two-Point-Oh series: https://our.status.im/tag/two-point-oh/</p>
+<h2>Donations</h2>
+<p>If you&apos;d like to contribute to Nimbus development, our donation address is <a href="https://etherscan.io/address/0x70E47C843E0F6ab0991A3189c28F2957eb6d3842">  <code>0x70E47C843E0F6ab0991A3189c28F2957eb6d3842</code></a></p>
+<h2>Branch guide</h2>
+<ul>
+<li><code>stable</code> - latest stable release - <strong>this branch is recommended for most users</strong></li>
+<li><code>testing</code> - pre-release branch with features and bugfixes slated for the next stable release - this branch is suitable for use on testnets and for adventurous users that want to live on the edge.</li>
+<li><code>unstable</code> - main development branch against which PR&apos;s are merged - if you want to contribute to Nimbus, start here.</li>
+</ul>
+<h2>Developer resources</h2>
+<p>To get started with developing Nimbus itself, see the <a href="https://nimbus.guide/developers.html">developer handbook</a>.</p>
+<h2>Tooling and utilities</h2>
+<p>We provide several tools to interact with ETH2 and the data in the beacon chain:</p>
+<ul>
+<li><a href="ncli/ncli.nim">ncli</a> - command line tool with pretty printers, SSZ decoders, state transition helpers to interact with Eth2 data structures and functions</li>
+<li><a href="ncli/ncli_db.nim">ncli_db</a> - command line tool to perform surgery on the Nimbus sqlite database</li>
+<li><a href="https://github.com/status-im/nimbus-eth2/tree/master/multinet">multinet</a> - a set of scripts to build and run several Eth2 clients locally</li>
+</ul>
+<h2>For researchers</h2>
+<h3>Block simulation</h3>
+<p>The block simulator can quickly run the Beacon chain state transition function in isolation. The simulation runs without networking and without slot time delays.</p>
+<pre>  <code class="language-bash"># build and run the block simulator, then display its help (&quot;-d:release&quot; speeds it
+# up substantially, allowing the simulation of longer runs in reasonable time)
+make NIMFLAGS=&quot;-d:release&quot; block_sim
+build/block_sim --help
+</code></pre>
+<h3>Local network simulation</h3>
+<p>The local network simulation will create a full peer-to-peer network of beacon nodes and validators on a single machine, and run the beacon chain in real time.
+Parameters such as shard, validator counts, and data folders can be set in as environment variables before launching the simulation.</p>
+<pre>  <code class="language-bash"># Clear data files from your last run and start the simulation with a new genesis block:
+make VALIDATORS=192 NUM_NODES=6 USER_NODES=1 local-testnet-minimal
+
+# In another terminal, get a shell with the right environment variables set:
+./env.sh bash
+
+# In the above example, the network is prepared for 7 beacon nodes but one of
+# them is not started by default (`USER_NODES`) - this is useful to test
+# catching up to the consensus. The following command will start the missing node.
+./tests/simulation/run_node.sh 0 # (or the index (0-based) of the missing node)
+
+# Running a separate node allows you to test sync as well as see what the action
+# looks like from a single nodes&apos; perspective.
+</code></pre>
+<p>By default, validators will be split in half between beacon node and validator
+client processes (50/50), communicating through the
+<a href="https://ethereum.github.io/beacon-APIs/#/ValidatorRequiredApi">common validator API</a>
+(for example with <code>192</code> validators and <code>6</code> nodes you will roughly end up with 6
+beacon node and 6 validator client processes, where each of them will handle 16
+validators), but if you don&apos;t want to use external validator clients and instead
+want to have all the validators handled by the beacon nodes you may use
+<code>USE_VC=0</code> as an additional argument to <code>make local-testnet-minimal</code>.</p>
+<p>  <em>Alternatively, fire up our   <a href="https://our.status.im/setting-up-a-local-vagrant-environment-for-nim-development/">experimental Vagrant instance with Nim pre-installed</a> and give us your feedback about the process!</em></p>
+<h3>Visualising simulation metrics</h3>
+<!--  TODO: Is this up to date?  -->
+<p>The <a href="https://github.com/status-im/nimbus/#metric-visualisation">generic instructions from the Nimbus repo</a> apply here as well.</p>
+<p>Specific steps:</p>
+<pre>  <code class="language-bash"># This will generate the Prometheus config on the fly, based on the number of nodes:
+make REMOTE_VALIDATORS_COUNT=192 NUM_NODES=6 USER_NODES=0 local-testnet-minimal
+
+# In another terminal tab, after the sim started:
+cd tests/simulation/prometheus
+prometheus
+</code></pre>
+<p>The dashboard you need to import in Grafana is <code>grafana/beacon_nodes_Grafana_dashboard.json</code>.</p>
+<p>  <img src="./media/monitoring.png" style="max-width: 100%;" alt="monitoring dashboard" /></p>
+<h3>CI setup</h3>
+<p>Local testnets run for 4 epochs each, to test finalization. That happens only on Jenkins Linux hosts, and their logs are available for download as artifacts, from the job&apos;s page. Don&apos;t expect these artifacts to be kept more than a day after the corresponding branch is deleted.</p>
+<p>  <img src="./media/jenkins_artifacts.png" style="max-width: 100%;" alt="Jenkins artifacts" /></p>
+<h2>License</h2>
+<p>Licensed and distributed under either of</p>
+<ul>
+<li>MIT license: <a href="LICENSE-MIT">LICENSE-MIT</a> or https://opensource.org/licenses/MIT</li>
+</ul>
+<p>or</p>
+<ul>
+<li>Apache License, Version 2.0: <a href="LICENSE-APACHEv2">LICENSE-APACHEv2</a> or https://www.apache.org/licenses/LICENSE-2.0</li>
+</ul>
+<p>at your option. These files may not be copied, modified, or distributed except according to those terms.</p>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        Apache License 2.0
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/status-im/nimbus-eth2">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2024-09-25T01:37:30Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>

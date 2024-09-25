@@ -55,22 +55,30 @@
 <div class="content">
   <div class="container">
     <div class="container pt-10">
-        <h3 class="mb-3 fw-bold display-6 pt-4">eth_keys</h3>
+        <h3 class="mb-3 fw-bold display-6 pt-4">minilru</h3>
         <p class="tags">
             
                 <span class="tag">
-                    <button class="btn-tag pkg-btn-tag">deprecated</button></a>
+                    <button class="btn-tag pkg-btn-tag">cache</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">lru</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">data structure</button></a>
                 </span>
             
         </p>
         
-            <p class="pkg-desc">A deprecated reimplementation in pure Nim of eth-keys, the common API for Ethereum key operations (now part of the 'eth' package).</p>
+            <p class="pkg-desc">Minim(al/ized) LRU cache</p>
         
         <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
             alt="Copy on clipboard">
             <i class="fa fa-copy"></i>
         </a>
-        <input id="cmd" onclick="this.select();" value="nimble install eth_keys" readonly="">
+        <input id="cmd" onclick="this.select();" value="nimble install minilru" readonly="">
         <br>
         <small style="font-size: 0.8rem;">Need help? Read <a
                 href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
@@ -79,28 +87,57 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>eth_keys</h1>
-<h1>MOVED TO https://github.com/status-im/nim-eth</h1>
-<p><a href="https://travis-ci.org/status-im/nim-eth-keys">  <img src="https://img.shields.io/travis/status-im/nim-eth-keys/master.svg?label=Linux%20/%20macOS" style="max-width: 100%;" alt="Build Status (Travis)" title="Linux/macOS build status (Travis)" /></a>
-<a href="https://ci.appveyor.com/project/nimbus/nim-eth-keys">  <img src="https://img.shields.io/appveyor/ci/nimbus/nim-eth-keys/master.svg?label=Windows" style="max-width: 100%;" alt="Windows build status (Appveyor)" title="Windows build status (Appveyor)" /></a>
-<a href="https://opensource.org/licenses/Apache-2.0">  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" style="max-width: 100%;" alt="License: Apache" /></a>
-<a href="https://opensource.org/licenses/MIT">  <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="max-width: 100%;" alt="License: MIT" /></a>
-<img src="https://img.shields.io/badge/stability-experimental-orange.svg" style="max-width: 100%;" alt="Stability: experimental" /></p>
-<p>This library is a Nim re-implementation of <a href="https://github.com/ethereum/eth-keys">eth-keys</a>: the common API for working with Ethereum&apos;s public and private keys, signatures, and addresses.</p>
-<p>By default, Nim eth-keys uses Bitcoin&apos;s <a href="https://github.com/bitcoin-core/secp256k1">libsecp256k1</a> as a backend. Make sure libsecp256k1 is available on your system.</p>
-<p>An experimental pure Nim backend (Warning ⚠: do not use in production) is available with the compilation switch <code>-d:backend_native</code></p>
-<h2>Installation</h2>
-<p>nimble install https://github.com/status-im/nim-eth-keys/blob/master/eth_keys.nimble</p>
-<h2>License</h2>
-<p>Licensed and distributed under either of</p>
+                <document><h1>minilru</h1>
+<p>Efficient implementation of classic LRU cache with a tightly packed
+doubly-linked list and robin-hood style hash table.</p>
+<h2>Usage</h2>
+<p>In <code>.nimble</code>:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;minilru&quot;</span></div></div>  </code></pre>
+<p>In code:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># Create cache that holds up to 2 items</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">lru</span> <span class="op">=</span> <span class="ide">LruCache</span>[<span class="ide">int</span>, <span class="ide">int</span>]<span class="op">.</span><span class="ide">init</span>(<span class="num">2</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">lru</span><span class="op">.</span><span class="ide">put</span>(<span class="num">10</span>, <span class="num">10</span>)</div></div><div class="line"><div class="line-content"><span class="ide">lru</span><span class="op">.</span><span class="ide">put</span>(<span class="num">20</span>, <span class="num">20</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">lru</span><span class="op">.</span><span class="ide">get</span>(<span class="num">10</span>) <span class="op">==</span> <span class="ide">Opt</span><span class="op">.</span><span class="ide">some</span>(<span class="num">10</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">lru</span><span class="op">.</span><span class="ide">put</span>(<span class="num">30</span>, <span class="num">30</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># 10 was more recent</span></div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">lru</span><span class="op">.</span><span class="ide">get</span>(<span class="num">20</span>)<span class="op">.</span><span class="ide">isNone</span>()</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Allow capacity to grow to 3 items if needed</span></div></div><div class="line"><div class="line-content"><span class="ide">lru</span><span class="op">.</span><span class="ide">capacity</span> <span class="op">=</span> <span class="num">3</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">lru</span><span class="op">.</span><span class="ide">put</span>(<span class="num">40</span>, <span class="num">40</span>) <span class="com"># Evicts 20</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">lru</span><span class="op">.</span><span class="ide">get</span>(<span class="num">20</span>)<span class="op">.</span><span class="ide">isNone</span>()</div></div>  </code></pre>
+<h2>Features</h2>
 <ul>
-<li>MIT license: <a href="LICENSE-MIT">LICENSE-MIT</a> or http://opensource.org/licenses/MIT</li>
-</ul>
-<p>or</p>
+<li>Low overhead (~18-20 bytes) and no separate allocation per entry</li>
+<li>Single copy of key and value</li>
+<li>Heterogenous lookup
 <ul>
-<li>Apache License, Version 2.0, (<a href="LICENSE-APACHEv2">LICENSE-APACHEv2</a> or http://www.apache.org/licenses/LICENSE-2.0)</li>
+<li>Different type can be used for lookup as long as <code>==</code> and <code>hash</code> is implemented and equal</li>
 </ul>
-<p>at your option. This file may not be copied, modified, or distributed except according to those terms.</p>
+</li>
+<li>No exceptions</li>
+</ul>
+<h2>Implementation notes</h2>
+<p>The list links, keys and values are stored in a contiguous <code>seq</code> with
+links being <code>uint32</code> indices - as a consequence, capacity is capped at
+2**32 entries even on 64-bit platforms.</p>
+<p>The table similarly maps hashes to indices resulting in a tight packing
+for the buckets and low memory overhead. Robin-hood open addressing is
+used for resolving collisions.</p>
+<p>Overhead at roughly 18-20 bytes per item in addition to storage for key
+and value - <code>8</code> for the linked list and <code>(8/0.8 + rounding)</code> for hash
+buckets.</p>
+<p>Items are moved to the front on access and add and evicted from the back
+when full.</p>
+<p>The table supports heterogenous lookups, ie using a different key type
+than is assigned to the table. When doing so, the types must be
+comparable for both equality (<code>==</code>) and hash (<code>hash</code>).</p>
+<p>Robin-hood hashing:</p>
+<ul>
+<li>https://cs.uwaterloo.ca/research/tr/1986/CS-86-14.pdf</li>
+<li>https://codecapsule.com/2013/11/11/robin-hood-hashing/</li>
+<li>https://programming.guide/robin-hood-hashing.html</li>
+</ul>
+<p>The layout of the LRU node list was inspired by:</p>
+<ul>
+<li>https://github.com/phuslu/lru</li>
+<li>https://github.com/goossaert/hashmap</li>
+</ul>
+<h2>Other LRU implementations</h2>
+<ul>
+<li>  <a href="https://github.com/jackhftang/lrucache.nim">lrucache.nim</a></li>
+<li>  <a href="https://github.com/PMunch/nim-cache">nim-cache</a></li>
+<li>  <a href="https://github.com/status-im/nim-stew/blob/master/stew/keyed_queue.nim">stew/keyed_queue</a></li>
+</ul>
 </document>
             
         </div>
@@ -109,12 +146,12 @@
                 
                     <p>
                         <strong>Licence:</strong>
-                        Apache License 2.0
+                        MIT
                     </p>
                 
 
                 
-                    <p> <a href="https://github.com/status-im/nim-eth-keys">Project website</a> </p>
+                    <p> <a href="https://github.com/status-im/nim-minilru">Project website</a> </p>
                 
 
                 
@@ -169,7 +206,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-24T01:36:41Z
+        Builded at 2024-09-25T01:37:30Z
         </p>
       </div>
     </div>
