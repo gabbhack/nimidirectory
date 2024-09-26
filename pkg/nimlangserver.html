@@ -94,6 +94,20 @@
                 <document><h1>Nim Language Server</h1>
 <p>Nim Language Server, or <code>nimlangserver</code>, is a language server for Nim.</p>
 <h2>Installation</h2>
+<p><strong>IMPORTANT</strong> you might want to use latest build of the <code>nimlangserver</code> and/or build it from source.</p>
+<p><code>nimlangserver</code> requires <code>nimble &gt;= 0.16.1</code></p>
+<h3>Installing binaries</h3>
+<p><em>NB:</em> <code>nimlangserver</code> requires <code>nimsuggest</code> version that supports <code>--v3</code>:</p>
+<ul>
+<li><code>devel</code> containing <a href="https://github.com/nim-lang/Nim/pull/19826">19826</a></li>
+<li>1.6+ containing <a href="https://github.com/nim-lang/Nim/pull/19892">19892</a></li>
+</ul>
+<p>You can install the latest release into <code>$HOME/.nimble/bin</code> using e.g.:</p>
+<pre>  <code class="language-sh">nimble install nimlangserver
+</code></pre>
+<h3>From Source</h3>
+<pre>  <code class="language-bash">nimble build
+</code></pre>
 <h3>VSCode</h3>
 <ul>
 <li><a href="https://github.com/nim-lang/vscode-nim">vscode-nim</a> has support for <code>nimlangserver</code>. Follow the instructions at:
@@ -139,19 +153,6 @@ EOF
 }
 </code></pre>
 <p>Of course, change the configuration to your liking. You might also want to read <code>coc.nvim</code> documentation to setup key bindings, autocompletion and so on.</p>
-<p><strong>IMPORTANT</strong> you might want to use latest build of the <code>nimlangserver</code> and/or build it from source.</p>
-<h3>Installing binaries</h3>
-<p><em>NB:</em> <code>nimlangserver</code> requires <code>nimsuggest</code> version that supports <code>--v3</code>:</p>
-<ul>
-<li><code>devel</code> containing <a href="https://github.com/nim-lang/Nim/pull/19826">19826</a></li>
-<li>1.6+ containing <a href="https://github.com/nim-lang/Nim/pull/19892">19892</a></li>
-</ul>
-<p>You can install the latest release into <code>$HOME/.nimble/bin</code> using e.g.:</p>
-<pre>  <code class="language-sh">nimble install nimlangserver
-</code></pre>
-<h3>From Source</h3>
-<pre>  <code class="language-bash">nimble build
-</code></pre>
 <h2>Configuration Options</h2>
 <ul>
 <li><code>nim.projectMapping</code> - configure how <code>nimsuggest</code> should be started. Here it is sample configuration for <code>VScode</code>. We don&apos;t want <code>nimlangserver</code> to start <code>nimsuggest</code> for each file and this configuration will allow configuring pair <code>projectFile</code>/<code>fileRegex</code> so when one of the regexp in the list matches current file then <code>nimls</code> will use <code>root</code> to start <code>nimsuggest</code>. In case there are no matches <code>nimlangserver</code> will try to guess the most suitable project root.</li>
@@ -357,7 +358,7 @@ crashes more gracefully.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-25T01:37:30Z
+        Builded at 2024-09-26T01:35:35Z
         </p>
       </div>
     </div>
