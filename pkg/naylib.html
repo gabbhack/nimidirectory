@@ -125,17 +125,18 @@ To compile and run an example: <code>nim c -r -d:release example.nim</code></p>
 <p>Naylib introduces several improvements and changes compared to the original Raylib.
 For a comprehensive overview of these changes, including memory management, naming
 conventions, and API improvements, please refer to our
-<a href="changes_overview.md">Changes Overview</a> document.</p>
+<a href="manual/changes_overview.md">Changes Overview</a> document.</p>
 <h2>Advanced Usage</h2>
 <p>For detailed instructions on advanced topics, please refer to our
-<a href="advanced_usage.md">Advanced Usage Guide</a>.</p>
+<a href="manual/advanced_usage.md">Advanced Usage Guide</a>.</p>
 <p>Here are quick links to some important sections:</p>
 <ul>
-<li><a href="advanced_usage.md#important-usage-tips">Important Usage Tips</a> - Learn how to properly call <code>closeWindow</code> and other crucial tips</li>
-<li><a href="advanced_usage.md#building-for-the-web-webassembly">Building for the Web (WebAssembly)</a> - Instructions for compiling your project for web browsers</li>
-<li><a href="advanced_usage.md#building-for-android">Building for Android</a> - Step-by-step guide for Android development</li>
-<li><a href="advanced_usage.md#raylib-functions-to-nim-alternatives">Raylib Functions to Nim Alternatives</a> - Find Nim equivalents for raylib functions</li>
+<li><a href="manual/advanced_usage.md#important-usage-tips">Important Usage Tips</a> - Learn how to properly call <code>closeWindow</code> and other crucial tips</li>
+<li><a href="manual/advanced_usage.md#building-for-the-web-webassembly">Building for the Web (WebAssembly)</a> - Instructions for compiling your project for web browsers</li>
+<li><a href="manual/advanced_usage.md#building-for-android">Building for Android</a> - Step-by-step guide for Android development</li>
+<li><a href="manual/alternatives_table.rst">Raylib Functions to Nim Alternatives</a> - Find Nim equivalents for raylib functions</li>
 </ul>
+<p>Check out the wrapper&apos;s <a href="manual/config_guide.md">Configuration Guide</a> for detailed information on how to use and contribute to naylib-wrapper.</p>
 <h2>Platform Support</h2>
 <table>
 <thead>
@@ -184,12 +185,14 @@ conventions, and API improvements, please refer to our
 </ul>
 <h3>CI Status</h3>
 <p>  <a href="https://github.com/planetis-m/naylib/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/naylib/ci.yml?branch=main&amp;label=Native%20%26%20WebAssembly%20CI" style="max-width: 100%;" alt="Native &amp; WebAssembly CI" />  </a></p>
-<p>  <a href="https://github.com/planetis-m/raylib-game-template/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/raylib-game-template/ci.yml?branch=master&amp;label=Android%20CI" style="max-width: 100%;" alt="Android CI" />  </a></p>
+<p>  <a href="https://github.com/planetis-m/naylib-game-template/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/naylib-game-template/ci.yml?branch=master&amp;label=Android%20CI" style="max-width: 100%;" alt="Android CI" />  </a></p>
+<p>  <a href="https://github.com/planetis-m/raylib-examples/actions/workflows/ci.yml">    <img src="https://img.shields.io/github/actions/workflow/status/planetis-m/raylib-examples/ci.yml?branch=main&amp;label=Examples%20CI" style="max-width: 100%;" alt="Examples CI" />  </a></p>
 <h2>Alternative Game Development Libraries</h2>
 <p>While we believe that Naylib provides a great option for game development with Nim, we understand
 that it may not be the perfect fit for everyone. Here are some noteworthy alternatives:</p>
 <ul>
 <li><a href="https://github.com/jmgomez/NimForUE">NimForUE</a>: Plugin for Unreal Engine 5</li>
+<li><a href="https://github.com/amnr/nsdl3">nsdl3</a>: High level SDL 3 wrapper</li>
 <li><a href="https://github.com/floooh/sokol-nim">sokol-nim</a>: Auto-generated bindings for sokol headers</li>
 <li><a href="https://github.com/godot-nim/gdextcore">gdextcore</a>: Godot 4.x bindings</li>
 <li><a href="https://github.com/pragmagic/godot-nim">godot-nim</a>: Godot 3 bindings</li>
@@ -208,7 +211,7 @@ the <a href="LICENSE-RAYLIB">zlib</a> license.</p>
 <h2>Contact</h2>
 <p>For support and discussions, join us on Discord:</p>
 <ul>
-<li>Nim server (#gamedev): <a href="https://discord.gg/ByYHrPUY">discord.gg/ByYHrPUY</a></li>
+<li>Nim server (#gamedev): <a href="https://discord.gg/nim">discord.gg/nim</a></li>
 <li>Raylib server (#raylib-nim): <a href="https://discord.gg/raylib">discord.gg/raylib</a></li>
 </ul>
 </document>
@@ -279,7 +282,7 @@ the <a href="LICENSE-RAYLIB">zlib</a> license.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

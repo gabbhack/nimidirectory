@@ -109,7 +109,7 @@
 <li>Various tests of above.</li>
 </ul>
 <p>For more details see the <a href="waku/README.md">source code</a></p>
-<h2>How to Build &amp; Run</h2>
+<h2>How to Build &amp; Run ( Linux, MacOS &amp; WSL )</h2>
 <p>These instructions are generic. For more detailed instructions, see the Waku source code above.</p>
 <h3>Prerequisites</h3>
 <p>The standard developer tools, including a C compiler, GNU Make, Bash, and Git. More information on these installations can be found <a href="https://docs.waku.org/guides/nwaku/build-source#install-dependencies">here</a>.</p>
@@ -139,6 +139,15 @@ Please refer to the <a href="https://github.com/waku-org/nwaku/blob/master/waku/
 <h4>Issues</h4>
 <h5>WSL</h5>
 <p>If you encounter difficulties building the project on WSL, consider placing the project within WSL&apos;s filesystem, avoiding the <code>/mnt/</code> directory.</p>
+<h3>How to Build &amp; Run ( Windows )</h3>
+<p>Note: This is a work in progress. The current setup procedure is as follows:
+Goal: Get rid of windows specific procedures and make the build process the same as linux/macos.</p>
+<p>The current setup procedure is as follows:</p>
+<ol>
+<li>Clone the repository and checkout master branch</li>
+<li>Ensure prerequisites are installed (Make, GCC, MSYS2/MinGW)</li>
+<li>Run scripts/windows_setup.sh</li>
+</ol>
 <h3>Developing</h3>
 <h4>Nim Runtime</h4>
 <p>This repository is bundled with a Nim runtime that includes the necessary dependencies for the project.</p>
@@ -256,7 +265,7 @@ This includes a fully featured chat example.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

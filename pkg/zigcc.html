@@ -108,6 +108,9 @@ Both are wrappers for calling zig:</p>
 <p>build linux executables from windows:</p>
 <pre>  <code>nim c --cc:clang --clang.exe=&quot;zigcc.cmd&quot; --clang.linkerexe=&quot;zigcc.cmd&quot; --passc:&quot;-target x86_64-linux-gnu&quot; --passl:&quot;-target x86_64-linux-gnu&quot; --forceBuild:on --os:linux --opt:speed  --out:hellolinux hello.nim
 </code></pre>
+<p>build windows executables from linux:</p>
+<pre>  <code>nim c --cc:clang --clang.exe=&quot;zigcc&quot; --clang.linkerexe=&quot;zigcc&quot; --passc:&quot;-target x86_64-windows&quot; --passl:&quot;-target x86_64-windows&quot; --forceBuild:on --os:windows --opt:speed foo.nim
+</code></pre>
 </document>
             
         </div>
@@ -176,7 +179,7 @@ Both are wrappers for calling zig:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

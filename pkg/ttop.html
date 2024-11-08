@@ -146,7 +146,7 @@
 <h3>Arch/AUR</h3>
 <pre>  <code class="language-bash">yay -S ttop             # enables systemd.timers automatically
 </code></pre>
-<h3>Static binary</h3>
+<h3>Static binary (x86-64)</h3>
 <pre>  <code class="language-bash">curl -LO https://github.com/inv2004/ttop/releases/latest/download/ttop \
 &amp;&amp; chmod +x ttop
 </code></pre>
@@ -181,6 +181,8 @@ cmd = &quot;$HOME/.local/bin/tel.sh&quot;
 <li>if you need it</li>
 </ul>
 <pre>  <code class="language-toml"># light = false            # set true for light term (default = false)
+
+# refresh_timeout = 1000   # TUI refresh timeout
 
 # docker = &quot;/var/run/docker.sock&quot;   # docker&apos;s socket path
 
@@ -290,7 +292,7 @@ echo &quot;$TEXT&quot; | curl --ssl-reqd \
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

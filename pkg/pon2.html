@@ -99,10 +99,10 @@ and <a href="https://vc.sega.jp/3ds/nazopuyo/">Nazo Puyo</a>.</p>
 problem.</p>
 </li>
 <li>
-<p><a href="https://24ik.github.io/pon2/gui?editor&amp;kind=n&amp;mode=e&amp;field=t-&amp;pairs&amp;req-kind=0&amp;req-color=0">GUI Application</a>: GUI simulator for Puyo Puyo and Nazo Puyo.</p>
+<p><a href="https://24ik.github.io/pon2/?kind=n&amp;mode=e&amp;field=t-&amp;pairs&amp;req-kind=0&amp;req-color=0">IDE</a>: IDE for Puyo Puyo and Nazo Puyo.</p>
 </li>
 <li>
-<p><a href="https://24ik.github.io/pon2/marathon">Marathon</a>: Search for pairs sequence and play a marathon mode.</p>
+<p><a href="https://24ik.github.io/pon2/marathon/">Marathon</a>: Search for pairs sequence and play a marathon mode.</p>
 </li>
 </ul>
 <p>Not supported now:</p>
@@ -114,11 +114,9 @@ problem.</p>
 <p>Note that now I am working hard on CUI and web-GUI development, and the
 native-GUI application is beta version.</p>
 <h2>Installation</h2>
-<h3>Downloading Binary</h3>
-<p>You can get the binary at the
-<a href="https://github.com/24ik/pon2/releases/latest">latest release</a>.
-Note that the built binary may not work on macOS due to the limitation of
-<a href="https://github.com/simonkrauter/NiGui">NiGui</a>.</p>
+<h3>Downloading Built Binary</h3>
+<p>You can get the built binary at the
+<a href="https://github.com/24ik/pon2/releases/latest">latest release</a>.</p>
 <h3>Manual Installation</h3>
 <pre>  <code class="language-shell">nimble install pon2 -p:-d:danger
 </code></pre>
@@ -126,25 +124,22 @@ Note that the built binary may not work on macOS due to the limitation of
 <pre>  <code class="language-shell">nimble install pon2 -p:-d:danger -p:-d:pon2.avx2=&lt;bool&gt; -p:-d:pon2.bmi2=&lt;bool&gt;
 </code></pre>
 <h2>Usage</h2>
+<h3>CLI or Native Application</h3>
+<p>Run <code>pon2 -h</code>.</p>
+<h3>Web Application</h3>
 <p>See the documentations:</p>
 <ul>
-<li>  <a href="./docs/solve.md">Solver</a></li>
-<li>  <a href="./docs/generate.md">Generator</a></li>
-<li>  <a href="./docs/permute.md">Permuter</a></li>
-<li>  <a href="./docs/gui.md">GUI Application</a></li>
+<li>  <a href="https://24ik.github.io/pon2/docs/simulator/">Simulator</a></li>
 </ul>
 <h2>For Developers</h2>
+<p>It is necessary to place the <code>assets</code> directory to the one specified by
+<code>-d:pon2.assets.native</code> or <code>-d:pon2.assets.web</code>.</p>
 <h3>Known Issues</h3>
 <ul>
-<li>On Windows, the followings does not work:
-<ul>
-<li>cpp and JS backend</li>
-<li>AVX2</li>
-</ul>
-</li>
+<li>AVX2 only works on Linux.</li>
 </ul>
 <h3>API Usage</h3>
-<p>See the <a href="https://24ik.github.io/pon2/docs/pon2.html">API documentation</a>.</p>
+<p>See the <a href="https://24ik.github.io/pon2/docs/">API documentation</a>.</p>
 <h3>Running Tests</h3>
 <pre>  <code class="language-shell">nimble test
 </code></pre>
@@ -162,6 +157,7 @@ Note that the built binary may not work on macOS due to the limitation of
 <p>Please work on a new branch and then submit a PR for the <code>main</code> branch.</p>
 <h2>License</h2>
 <p>Apache-2.0</p>
+<p>See <a href="./LICENSE">LICENSE</a> and <a href="./NOTICE">NOTICE</a> for details.</p>
 </document>
             
         </div>
@@ -230,7 +226,7 @@ Note that the built binary may not work on macOS due to the limitation of
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

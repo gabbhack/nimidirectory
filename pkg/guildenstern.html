@@ -84,17 +84,14 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>GuildenStern</h1>
-<p>Modular multithreading HTTP/1.1 + WebSocket server framework</p>
+<p>Modular multithreading HTTP/1.1 + WebSocket upstream server framework</p>
 <h2>Example</h2>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># nim r --d:release --d:threadsafe thisexample</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cgi</span>, <span class="ide">guildenstern</span><span class="op">/</span>[<span class="ide">dispatcher</span>, <span class="ide">httpserver</span>]</div></div><div class="line"><div class="line-content">     </div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handleGet</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;method: &quot;</span>, <span class="ide">getMethod</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;uri: &quot;</span>, <span class="ide">getUri</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">isUri</span>(<span class="str">&quot;/favicon.ico&quot;</span>): <span class="ide">reply</span>(<span class="ide">Http204</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">let</span> <span class="ide">html</span> <span class="op">=</span> """
       <!doctype html><title>GuildenStern Example</title><body>
       <form action="http://localhost:5051" method="post" accept-charset="utf-8">
       <input name="say" value="Hi"><button>Send"""</div></div><div class="line"><div class="line-content">    <span class="ide">reply</span>(<span class="ide">html</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">handlePost</span>() <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;client said: &quot;</span>, <span class="ide">readData</span>(<span class="ide">getBody</span>())<span class="op">.</span><span class="ide">getOrDefault</span>(<span class="str">&quot;say&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">reply</span>(<span class="ide">Http303</span>, [<span class="str">&quot;location: &quot;</span> <span class="op">&amp;</span> <span class="ide">http</span><span class="op">.</span><span class="ide">headers</span><span class="op">.</span><span class="ide">getOrDefault</span>(<span class="str">&quot;origin&quot;</span>)])</div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">getserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handleGet</span>, <span class="ide">contenttype</span> <span class="op">=</span> <span class="ide">NoBody</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">let</span> <span class="ide">postserver</span> <span class="op">=</span> <span class="ide">newHttpServer</span>(<span class="ide">handlePost</span>, <span class="ide">loglevel</span> <span class="op">=</span> <span class="ide">INFO</span>, <span class="ide">headerfields</span> <span class="op">=</span> [<span class="str">&quot;origin&quot;</span>])</div></div><div class="line"><div class="line-content"><span class="ide">getserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5050</span>)</div></div><div class="line"><div class="line-content"><span class="ide">postserver</span><span class="op">.</span><span class="ide">start</span>(<span class="num">5051</span>, <span class="ide">threadpoolsize</span> <span class="op">=</span> <span class="num">20</span>, <span class="ide">maxactivethreadcount</span> <span class="op">=</span> <span class="num">10</span>)</div></div><div class="line"><div class="line-content"><span class="ide">joinThreads</span>(<span class="ide">getserver</span><span class="op">.</span><span class="ide">thread</span>, <span class="ide">postserver</span><span class="op">.</span><span class="ide">thread</span>)</div></div>  </code></pre>
 <h2>Documentation</h2>
-<h3>7.x.x series:</h3>
 <p>https://olliniinivaara.github.io/GuildenStern/7/theindex.html</p>
-<h3>6.1.0:</h3>
-<p>https://olliniinivaara.github.io/GuildenStern/6.1.0/index.html</p>
 <h2>Installation</h2>
 <h3>POSIXy OSs (Linux, BSD, MacOS):</h3>
 <p>atlas use GuildenStern</p>
@@ -103,11 +100,11 @@
 <li>step 1: Install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a></li>
 <li>step 2: atlas use GuildenStern</li>
 </ul>
-<h2>Release notes, 7.2.0 (2024-08-07)</h2>
+<h2>Release notes, 7.2.1 (2024-11-05)</h2>
 <ul>
-<li>Compatibility with ARM architecture</li>
-<li>Bug fix: getUri etc. in the new compact http server mode</li>
-<li>Bug fix: failed read in the new compact http server mode</li>
+<li>Compatibility with Nim version 2.2.0</li>
+<li>Support removed for 6.x series, please upgrade now</li>
+<li>Fixed &quot;Compile error: type mismatch: got &apos;int64&apos; for [...]&quot;</li>
 </ul>
 </document>
             
@@ -177,7 +174,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

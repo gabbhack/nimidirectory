@@ -128,8 +128,8 @@ Language | C | Lua | Nim  |
 <h3>Prerequisites</h3>
 <ul>
 <li>Playdate SDK</li>
-<li>Nim 1.6.10+ (check with <code>nim -v</code>, untested with 2.0+) (<a href="https://marketplace.visualstudio.com/items?itemName=nimsaem.nimvscode">recommended extension for VSCode</a>)</li>
-<li>Nimble 0.13.1 (check with <code>nimble -v</code>)</li>
+<li>Nim 2+ (<a href="https://marketplace.visualstudio.com/items?itemName=NimLang.nimlang">recommended extension for VSCode</a>)</li>
+<li>Nimble 0.14.2+ (check with <code>nimble -v</code>)</li>
 <li><code>PLAYDATE_SDK_PATH</code> environment variable</li>
 <li><a href="https://sdk.play.date/Inside%20Playdate%20with%20C.html#_prerequisites">SDK Prerequisites</a> based on OS, and <a href="https://code.visualstudio.com/docs/cpp/config-mingw">MinGW on Windows</a>.</li>
 </ul>
@@ -159,7 +159,7 @@ echo &apos;include playdate/build/config&apos; &gt; config.nims;
 <ol start="4">
 <li>Finally, run this command to setup the structure of the project, which prepares your application to be compiled and bundled correctly:</li>
 </ol>
-<pre>  <code>nimble setup
+<pre>  <code>nimble configure
 </code></pre>
 <h2>Usage</h2>
 <p>If you haven&apos;t done it already, install the package:</p>
@@ -199,7 +199,7 @@ There are two ways you can use Nim and Lua in the same project:</p>
 <hr />
 <p>This project is a work in progress, here&apos;s what is missing right now:</p>
 <ul>
-<li>various playdate.sound funcionalities (but FilePlayer and SamplePlayer are available)</li>
+<li>various playdate.sound funcionalities (but FilePlayer, SamplePlayer and SoundSequence are available)</li>
 <li>playdate.json, but you can use Nim std/json, which is very convenient</li>
 <li>advanced playdate.lua features, but basic Lua interop is available</li>
 <li>playdate.scoreboards, undocumented even in the official C API docs</li>
@@ -272,7 +272,7 @@ There are two ways you can use Nim and Lua in the same project:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

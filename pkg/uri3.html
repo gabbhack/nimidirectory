@@ -93,7 +93,7 @@ and the &quot;<a href="https://github.com/codeinthehole/purl">purl</a>&quot; Pyt
 <h1>Examples</h1>
 <p>Working with path and path segments:</p>
 <pre>  <code>    # Parse a URI.
-    var uri : Uri3 = parseURI3(&quot;http://www.examplesite.com/path/to/location&quot;)
+    var uri : Uri3 = parseUri3(&quot;http://www.examplesite.com/path/to/location&quot;)
     echo(uri.getPath()) # &quot;/path/to/location&quot;
 
     # Append a path segment.
@@ -120,7 +120,7 @@ and the &quot;<a href="https://github.com/codeinthehole/purl">purl</a>&quot; Pyt
 </code></pre>
 <p>Working with queries:</p>
 <pre>  <code>    # Parse a URI.
-    var uri : Uri3 = parseURI3(&quot;http://www.examplesite.com/index.html?ex1=hello&amp;ex2=world&quot;)
+    var uri : Uri3 = parseUri3(&quot;http://www.examplesite.com/index.html?ex1=hello&amp;ex2=world&quot;)
 
     # Get all queries.
     var queries : seq[seq[string]] = uri.getQueries()
@@ -160,7 +160,7 @@ and the &quot;<a href="https://github.com/codeinthehole/purl">purl</a>&quot; Pyt
 </code></pre>
 <p>Other examples:</p>
 <pre>  <code>    # Parse a URI.
-    var uri : Uri3 = parseURI3(&quot;http://www.examplesite.com/path/to/location&quot;)
+    var uri : Uri3 = parseUri3(&quot;http://www.examplesite.com/path/to/location&quot;)
 
     # Convert the URI to a string representation.
     var toString : string = $uri.
@@ -256,7 +256,7 @@ and the &quot;<a href="https://github.com/codeinthehole/purl">purl</a>&quot; Pyt
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

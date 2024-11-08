@@ -141,9 +141,9 @@ better served by just hacking <code>LC_THEME</code> into <code>git diff</code>, 
 fun micro-project. ;-) }</p>
 <p>After writing it, a secondary motivation emerged.  The core difflib part of this
 package is ~100x faster than the Python impl.  Applied to highlighting, this
-yields a useful trait.  Since <code>hldiff</code> is typically 2-7x faster than <code>git log -p</code>, if you have &gt;=1.5 free CPU cores (a common case for me) then <code>git log -p | hldiff</code> should take <em>no more real time</em> than <code>git log -p</code> (which can take an
-annoyingly long time itself).  I found no other package with a similar &quot;no extra
-time&quot; trait.</p>
+yields a useful trait.  Since <code>hldiff</code> is typically 2-7x faster than unadorned
+<code>git log -p</code>, if you have &gt;=1.5 free CPU cores (common for me) then <code>git log -p | hldiff</code> takes <em>no more real time</em> than <code>git log -p</code> (which can take a long
+time itself).  I found no other package with a similar &quot;no extra time&quot; trait.</p>
 <p>Assuming 2 free CPU cores, such a program would need to be no more than 2x
 slower than <code>hldiff</code>.  E.g., Perl <code>diff-so-fancy</code> is 9..12x slower.  Meanwhile
 <code>hldiff</code> is 17-33x faster than Rust https://github.com/da-x/delta program which
@@ -173,7 +173,7 @@ highlights of substitution hunks.  For the above 3 e.g.s times become 3.5,
 <p>First compile it (<code>git clone &lt;CLIGEN&gt;</code>, <code>git clone &lt;THIS&gt;</code>, and then
 <code>nim c --path:to/cligen --gc:orc -d:danger hldiff</code>.  Alternatively, you can
 <code>nimble install hldiff</code>).  A profile-guided optimization (PGO) build is a
-user-exercise but only about 10% faster in this case.</p>
+user-exercise but only about 10% faster in my testing.</p>
 <p>Then to <code>$HOME/.config/hg/hgrc</code> add</p>
 <pre>  <code>[pager]
 pager = hldiff|less -R
@@ -187,7 +187,8 @@ pager = hldiff|less -R
 repository, I get:</p>
 <pre>  <code class="language-sh">diff -u a b | hldiff
 </code></pre>
-<p>producing <a href="egOut.png">this output</a>.</p>
+<p>producing this output:</p>
+<p>  <img src="https://raw.githubusercontent.com/c-blake/hldiff/master/egOut.png" style="max-width: 100%;" alt="screenshot" /></p>
 <p>You will also want to <code>cp example.cf $HOME/.config/hldiff</code> and edit it to your
 liking.  ANSI SGR escape names are the usual suspects from <code>cligen/humanUt.nim</code>:</p>
 <pre>  <code>plain, bold, italic, underline, blink, inverse, struck, NONE,
@@ -195,7 +196,7 @@ black, red, green, yellow, blue, purple, cyan, white;
 UPPERCASE =&gt;HIGH intensity; &quot;on_&quot; prefix =&gt; BACKGROUND color
 256-color attrs are [fb][0..23] for FORE/BACK grey scl &amp; [fb]RGB
 a 6x6x6 color cube; each [RGB] is on [0,5].
-xterm/st/kitty/alacrity true color: [fb]HHHHHH (usual RGB order).
+xterm/st/kitty/alacritty true color: [fb]HHHHHH (usual RGB order).
 </code></pre>
 </document>
             
@@ -265,7 +266,7 @@ xterm/st/kitty/alacrity true color: [fb]HHHHHH (usual RGB order).
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

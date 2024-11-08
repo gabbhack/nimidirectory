@@ -96,8 +96,9 @@
         <div class="col-8 box rounded p-3" id="readme-section">
             
                 <document><h1>Monoucha: seamless Nim-QuickJS integration</h1>
-<p>Monoucha is a wrapper library to simplify the process of embedding the QuickJS
-JavaScript engine into Nim programs.</p>
+<p>Monoucha is a wrapper library to simplify the process of embedding the
+<a href="https://github.com/quickjs-ng/quickjs">QuickJS-NG</a> JavaScript engine into Nim
+programs.</p>
 <h2>Quick start</h2>
 <p>Include Monoucha in your project using either Nimble or as a git submodule.</p>
 <pre>  <code>requires &quot;monoucha&quot;
@@ -117,7 +118,7 @@ grows.</p>
 <h2>Dependencies</h2>
 <p>monoucha depends on the <a href="https://github.com/arnetheduck/nim-results.git">nim-results</a>
 library.</p>
-<p>QuickJS is already included in this repository; you do not need to install it
+<p>QuickJS-NG is already included in this repository; you do not need to install it
 separately.</p>
 <h2>Q&amp;A</h2>
 <ul>
@@ -130,12 +131,15 @@ separately.</p>
 <p>You did not read the above instructions, you have to set --mm:refc.</p>
 <p>Monoucha does not (and never did) work with ORC, or other memory managers for
 that matter. You must use refc.</p>
+<p>(If you are still experiencing issues, please open a ticket
+<a href="https://todo.sr.ht/~bptato/chawan/">here</a> and I&apos;ll look into it.)</p>
 <ul>
-<li>I already have QuickJS, why are you not linking to my system library?</li>
+<li>I already have QuickJS-NG, why are you not linking to my system library?</li>
 </ul>
-<p>Monoucha does not actually use stock QuickJS, but a fork that tracks upstream.
-This fork includes some GC hacks necessary for proper integration of the Nim and
-QuickJS runtimes.</p>
+<p>Monoucha does not actually use stock QuickJS-NG, but a fork that tracks
+upstream.</p>
+<p>This fork includes some GC modifications necessary for the synchronization
+of the Nim and QuickJS runtimes.</p>
 <ul>
 <li>Can I compile Nim to JS and execute Nim from Nim?</li>
 </ul>
@@ -152,9 +156,10 @@ support QuickJS.</p>
 <p>A kind of tea, from the town once called Monou. You pronounce it as mo-no-u-cha.</p>
 <p>Yes, it&apos;s a <a href="https://en.wikipedia.org/w/index.php?title=SpiderMonkey&amp;oldid=1214134789#History">pun</a>.</p>
 <h2>License</h2>
-<p>QuickJS was written by Fabrice Bellard and Charlie Gordon, and is distributed
-in this repository under the terms of the MIT license. See the
-<a href="monoucha/qjs/LICENSE">monoucha/qjs/LICENSE</a> file for details.</p>
+<p>QuickJS was written by Fabrice Bellard and Charlie Gordon, and is maintained as
+QuickJS-NG by Ben Noordhuis and Saúl Ibarra Corretgé.</p>
+<p>QuickJS-NG is distributed in this repository under the terms of the MIT
+license. See the <a href="monoucha/qjs/LICENSE">monoucha/qjs/LICENSE</a> file for details.</p>
 <p>Monoucha is released into the public domain. See the <a href="UNLICENSE">UNLICENSE</a> file
 for details.</p>
 </document>
@@ -225,7 +230,7 @@ for details.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

@@ -133,10 +133,13 @@ yet another file lister?  What&apos;s the point?  Well, <code>lc</code></p>
 <ul>
 <li>
 <p>is clearly factored into independent actions and very configurable with good
-CLI ergonomics (unique prefixes good enough, spellcheck, etc.)</p>
+CLI ergonomics (unique prefixes good enough, spellcheck, built-in aliasing
+system for user styles (option packages, really), etc.)</p>
 </li>
 <li>
-<p>supports <em>  <strong>multi-level sorting</strong></em> for many forward/reverse attributes</p>
+<p>supports <em>  <strong>multi-level sorting</strong></em> for many forward/reverse attributes (NOTE
+longest/shortest file extensions are one BUT foo-nums-with-&apos;.&apos;s...tar.gz type
+names with internal field structure make certain sorts ill-posed.)<a href="E.g.">^3</a></p>
 </li>
 <li>
 <p>supports arbitrary assignment of &quot;<em>  <strong>file kind order</strong></em>&quot; for use in sorting
@@ -215,7 +218,7 @@ a misspelled word bolded inside an elsewise colorized source code comment.  <cod
 simply explicitly models this structure to try to enable better allocation by
 end users over more dimensions than just 2 (misspelling, comment) due to diverse
 file types.  Most briefly, <code>lc</code> aids &quot;aligning&quot; rendered output traits with
-classified input traits.<a href="Operationally,">^3</a></p>
+classified input traits.<a href="Operationally,">^4</a></p>
 <h1>Configurability</h1>
 <p>As for the bread and butter of file listing, many things that are hard-coded in
 other file listers are fully user-defined in <code>lc</code>, like a concept of dot files.
@@ -298,6 +301,14 @@ git clone https://github.com/c-blake/lc;
 cd Nim; sh build_all.sh;
 cd ../lc; ../Nim/bin/nim c -d=danger -p=../cligen lc;
 cp -pr configs/cb0 $HOME/.config/lc; ./lc`</p>
+<p>if you have a dir with foo-1.2.3.tar.gz foo-2.1.0.tar.xz then you may
+want to sort by the longest &quot;extension&quot; (E) while if you have a file set like in
+https://github.com/c-blake/lc/issues/5 then you probably want to sort by the
+shortest extension (e).  You can pick one default and then dump a <code>.lc</code> &quot;tweak
+file&quot; into whichever is the other kind of directory to change the sort.  Since
+directories like <code>/usr/lib64/</code> may be unwritable (so no <code>.lc</code> can be put),
+<code>--extra</code> has a mode to reference a &quot;shadow file tree&quot; for such so that every
+user on a system can have their own per-file-subtree tweaks.</p>
 <p>users just pick small integer labels for kinds aka series
 of order-dependent tests aka classes.  The first passing kind test within a
 dimension wins that dimension.  To aid debugging kind assignments you can do
@@ -372,7 +383,7 @@ before all dot regular files, but it is obviously much more general.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

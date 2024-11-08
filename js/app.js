@@ -34058,6 +34058,84 @@ const packages = [
     "description": "Ollama API client library.",
     "license": "MIT",
     "web": "https://monofuel.github.io/llama_leap/"
+  },
+  {
+    "name": "manta",
+    "url": "https://github.com/metagn/manta",
+    "method": "git",
+    "tags": [
+      "array",
+      "length",
+      "runtime",
+      "seq",
+      "destructor",
+      "arc",
+      "orc"
+    ],
+    "description": "runtime array types with destructors",
+    "license": "MIT",
+    "web": "https://github.com/metagn/manta"
+  },
+  {
+    "name": "nimutils",
+    "url": "https://github.com/GeK2K/nimutils",
+    "method": "git",
+    "tags": [
+      "util",
+      "date",
+      "intersection",
+      "easter"
+    ],
+    "description": " some useful tools for programming with Nim",
+    "license": "MIT",
+    "web": "https://github.com/GeK2K/nimutils"
+  },
+  {
+    "name": "buju",
+    "url": "https://github.com/haoyu234/buju",
+    "method": "git",
+    "tags": [
+      "layout",
+      "ui",
+      "ux",
+      "gui"
+    ],
+    "description": "buju (布局) is a simple layout engine, based on layout.h",
+    "license": "MIT",
+    "web": "https://github.com/haoyu234/buju"
+  },
+  {
+    "name": "froth",
+    "url": "https://github.com/metagn/froth",
+    "method": "git",
+    "tags": [
+      "pointer",
+      "taggedpointer",
+      "pointertag",
+      "library",
+      "memory",
+      "optimization"
+    ],
+    "description": "tagged pointer types with destructors",
+    "license": "MIT",
+    "web": "https://github.com/metagn/froth"
+  },
+  {
+    "name": "crossdb",
+    "url": "https://github.com/openpeeps/crossdb-nim",
+    "method": "git",
+    "tags": [
+      "database",
+      "sql",
+      "imdb",
+      "embedded-db",
+      "crossdb",
+      "rdbms",
+      "in-memory"
+    ],
+    "description": "CrossDB Driver for Nim",
+    "license": "MIT",
+    "web": "https://github.com/openpeeps/crossdb-nim"
   }
 ]
 

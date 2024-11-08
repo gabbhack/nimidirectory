@@ -233,7 +233,7 @@ arguments must be parsable as <code>int</code> with whitespace stripped, e.g. <c
 <p>More general user semantics for argument validation (required-ness, length,
 &quot;sub-parsing&quot;, etc.) can be done like
 <a href="https://github.com/c-blake/cligen/blob/master/test/UserError.nim">UserError.nim</a>.</p>
-<h3>Custom Parameter Types or Parsing</h3>
+<h3>Custom Parameter Types, Parsing, Or Default Renders</h3>
 <p>While <code>cligen/argcvt</code> supports basic Nim types, the parsing/printing system is
 <em>extensible</em> via in-<code>dispatch</code> scope <code>argParse</code> &amp; <code>argHelp</code> overloads for types.
 A simple example:</p>
@@ -245,8 +245,9 @@ this can be used to parse the same Nim type differently (based on the name),
 detect when CLusers alter parameters from defaults, count uses, etc.</p>
 <p>This same mechanism can <em>  <strong>override existing</strong></em> <code>cligen/argcvt</code> parser/helpers
 if the built-ins are not what you want.  Consulting <code>cligen/argcvt</code> for examples
-is a good idea.  Ambitious CLauthors can re-define <em>all</em> conversions by creating
-their own private <code>cligen/argcvt.nim</code> in their project directories.</p>
+is a good idea.  E.g., <a href="test/FancyRepeats.nim">test/FancyRepeats.nim</a> shows how
+to change <code>argParse</code> and/or <code>argHelp</code> for <code>int</code>.  <em>All</em> conversions can be
+overridden to taste this way (or even the whole <code>cligen/argcvt.nim</code> module).</p>
 <h3>Subcommands, dispatch to object init</h3>
 <p><code>dispatchMulti</code> lets you expose two or more procs with subcommands a la <code>git</code> or
 <code>nimble</code>. Each <code>[]</code> list in <code>dispatchMulti</code> is the argument list for each
@@ -304,7 +305,8 @@ merge <code>${CMD_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}}/CMD</code> (with Ni
 <p><code>cligen</code> programs look for <code>${XDG_CONFIG_HOME:-$HOME/.config}/cligen</code>, e.g.
 <a href="https://github.com/c-blake/cligen/wiki/Example-Config-File">~/.config/cligen/config</a>
 which allows command-line end users to tweak colors, layout, syntax, and usage
-help templates.</p>
+help templates and generally set things that command authors can also alter
+defaults for in the global <a href="cligen.nim#L28C1-L56C1">  <code>cligen.clCfg</code></a>.</p>
 <h3>Restrictions</h3>
 <ol>
 <li>
@@ -395,7 +397,7 @@ their own right.  I also try to mention breaking changes &amp; new features in
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>

@@ -431,6 +431,35 @@ file name the output file name and the word “skip” or “replace”.</p>
 <p>Or you can run the utf8tests.bin file through your decoder and post
 the resulting file to the artifacts directory.</p>
 <p>If you find a bug or something is wrong, please file an issue.</p>
+<h1>Build</h1>
+<p>Requirements:</p>
+<ul>
+<li>git</li>
+<li>docker</li>
+</ul>
+<p>Download the project using git clone.</p>
+<pre>  <code>mkdir ~/code/utf8tests
+cd ~/code/utf8tests
+git clone git@github.com:flenniken/utf8tests.git
+</code></pre>
+<p>Build a docker development environment. The first run builds the image
+and the second one creates the container and runs it.</p>
+<pre>  <code>./devenv run debian
+./devenv run debian
+</code></pre>
+<p>Build the nim compiler.</p>
+<pre>  <code>cd ~/Nim
+./build_all.sh
+nim -v
+</code></pre>
+<p>Build the utf8tests project:</p>
+<pre>  <code>cd ~/utf8tests
+n b
+n test
+</code></pre>
+<p>You can delete the development container and image with the delete command:</p>
+<pre>  <code>./devenv delete debian
+</code></pre>
 </document>
             
         </div>
@@ -499,7 +528,7 @@ the resulting file to the artifacts directory.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-09-27T01:36:12Z
+        Builded at 2024-11-08T01:35:21Z
         </p>
       </div>
     </div>
