@@ -271,10 +271,11 @@ has the same keyword parameters as the most salient features of <code>dispatch</
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">dispatch</span> <span class="ide">fun</span>, <span class="ide">short</span><span class="op">=</span>{<span class="str">&quot;bar&quot;</span> : 'r'}</div></div>  </code></pre>
 <p>If you&apos;d like to define <code>short</code> or <code>help</code> parameters outside of a <code>dispatch</code>
 call, you need an explicit conversion to a <code>Table</code> symbol:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cligen</span></div></div><div class="line"><div class="line-content"><span class="kwd">from</span> <span class="ide">std</span><span class="op">/</span><span class="ide">tables</span> <span class="kwd">import</span> <span class="ide">toTable</span></div></div><div class="line"><div class="line-content"><span class="kwd">const</span></div></div><div class="line"><div class="line-content">  <span class="ide">Help</span>  <span class="op">=</span> { <span class="str">&quot;foo&quot;</span>: <span class="str">&quot;the beginning&quot;</span>, <span class="str">&quot;bar&quot;</span>: <span class="str">&quot;the rate&quot;</span> }<span class="op">.</span><span class="ide">toTable</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">Short</span> <span class="op">=</span> { <span class="str">&quot;foo&quot;</span>: 'f', <span class="str">&quot;bar&quot;</span>: 'r'}<span class="op">.</span><span class="ide">toTable</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">fun</span>(<span class="ide">foo</span> <span class="op">=</span> <span class="num">1</span>, <span class="ide">bar</span> <span class="op">=</span> <span class="num">2</span>, <span class="ide">baz</span> <span class="op">=</span> <span class="str">&quot;hi&quot;</span>) <span class="op">=</span> <span class="kwd">discard</span></div></div><div class="line"><div class="line-content"><span class="ide">dispatch</span>(<span class="ide">fun</span>, <span class="ide">help</span> <span class="op">=</span> <span class="ide">Help</span>, <span class="ide">short</span> <span class="op">=</span> <span class="ide">Short</span>)</div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">cligen</span>; <span class="ide">clCfg</span><span class="op">.</span><span class="ide">longPfxOk</span> <span class="op">=</span> <span class="ide">false</span>  <span class="com"># {.define(cgCfgNone).}..</span></div></div><div class="line"><div class="line-content"><span class="kwd">from</span> <span class="ide">std</span><span class="op">/</span><span class="ide">tables</span> <span class="kwd">import</span> <span class="ide">toTable</span>          <span class="com">#..blocks syntax config</span></div></div><div class="line"><div class="line-content"><span class="kwd">const</span></div></div><div class="line"><div class="line-content">  <span class="ide">Help</span>  <span class="op">=</span> { <span class="str">&quot;foo&quot;</span>: <span class="str">&quot;the beginning&quot;</span>, <span class="str">&quot;bar&quot;</span>: <span class="str">&quot;the rate&quot;</span> }<span class="op">.</span><span class="ide">toTable</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">Short</span> <span class="op">=</span> { <span class="str">&quot;foo&quot;</span>: 'f', <span class="str">&quot;bar&quot;</span>: 'r'}<span class="op">.</span><span class="ide">toTable</span>()</div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">fun</span>(<span class="ide">foo</span> <span class="op">=</span> <span class="num">1</span>, <span class="ide">bar</span> <span class="op">=</span> <span class="num">2</span>, <span class="ide">baz</span> <span class="op">=</span> <span class="str">&quot;hi&quot;</span>) <span class="op">=</span> <span class="kwd">discard</span></div></div><div class="line"><div class="line-content"><span class="ide">dispatch</span>(<span class="ide">fun</span>, <span class="ide">help</span> <span class="op">=</span> <span class="ide">Help</span>, <span class="ide">short</span> <span class="op">=</span> <span class="ide">Short</span>)</div></div>  </code></pre>
 <p>With that <code>&quot;bar&quot;</code> gets <code>&apos;r&apos;</code> while <code>&quot;baz&quot;</code> gets <code>&apos;b&apos;</code> as short options.  To
 suppress a long option getting <em>any</em> short option, specify a short key <code>&apos;\0&apos;</code>.
-To suppress <em>all</em> short options, give <code>short</code> a key of <code>&quot;&quot;</code>.</p>
+To suppress <em>all</em> short options, give <code>short</code> a key of <code>&quot;&quot;</code>.  Making <code>longPfxOk</code>
+false instead of the default <code>true</code> means CLusers must say <code>--foo</code>, not <code>--fo</code>.</p>
 <p>To suppress API parameters in the CLI, pass <code>suppress = @[&quot;apiParam&quot;, ...]</code>.
 (For object init, &quot;ALL AFTER field&quot; stops fieldPairs iteration.)  To suppress
 presence only in help messages use <code>help={&quot;apiParam&quot;: &quot;CLIGEN-NOHELP&quot;}</code>.  Pass
@@ -302,11 +303,13 @@ config file and/or <code>$CMD</code> environment variable, then you can redefine
 <p>You can <code>include cligen/mergeCfgEnv</code> between <code>import cligen</code> &amp; <code>dispatch</code> to
 merge <code>${CMD_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}}/CMD</code> (with Nim stdlib&apos;s
 <code>parsecfg</code> module) and then <code>$CMD</code> with <code>parseCmdLine</code> as above.</p>
-<p><code>cligen</code> programs look for <code>${XDG_CONFIG_HOME:-$HOME/.config}/cligen</code>, e.g.
+<p>Unless <code>cgCfgNone</code> is defined, <code>cligen</code> programs look for
+<code>${XDG_CONFIG_HOME:-$HOME/.config}/cligen</code>, e.g.
 <a href="https://github.com/c-blake/cligen/wiki/Example-Config-File">~/.config/cligen/config</a>
 which allows command-line end users to tweak colors, layout, syntax, and usage
-help templates and generally set things that command authors can also alter
-defaults for in the global <a href="cligen.nim#L28C1-L56C1">  <code>cligen.clCfg</code></a>.</p>
+help templates and generally set things that command authors can also <a href="https://github.com/c-blake/cligen#common-overrides-program-exit-config-fileenvironment-vars">alter
+defaults for</a>
+in the global <a href="cligen.nim#L28C1-L56C1">  <code>cligen.clCfg</code></a>.</p>
 <h3>Restrictions</h3>
 <ol>
 <li>
@@ -397,7 +400,7 @@ their own right.  I also try to mention breaking changes &amp; new features in
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-08T01:35:21Z
+        Builded at 2024-11-09T01:25:44Z
         </p>
       </div>
     </div>

@@ -156,8 +156,8 @@
 <li>No reserved words or keywords - look for them as hard as you can; there are absolutely none</li>
 </ul>
 <pre>  <code class="language-red">factorial: function [n][
-    if? n &gt; 0 -&gt; n * factorial n-1
-    else 	  -&gt; 1
+    switch n &gt; 0 -&gt; n * factorial n-1
+                 -&gt; 1
 ] 
 
 loop 1..19 [x]-&gt;
@@ -366,7 +366,7 @@ SOFTWARE.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-08T01:35:21Z
+        Builded at 2024-11-09T01:25:44Z
         </p>
       </div>
     </div>
