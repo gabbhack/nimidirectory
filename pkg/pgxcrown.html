@@ -87,39 +87,53 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>pgxcrown</h1>
+                <document><h1>Pgxcrown</h1>
 <p>Build Postgres Extensions in Nim.</p>
+<h1>Requisites</h1>
+<ul>
+<li>Postgres with CLI tools installed and running locally</li>
+<li>Nim</li>
+</ul>
 <h2>Usage</h2>
+<h3>Install</h3>
+<pre>  <code class="language-bash">nimble install
+</code></pre>
 <h3>Create a pgxcrown project</h3>
-<pre>  <code class="language-bash">
-# this command will create your project structure
-
-pgxtool create-project test
-
+<ul>
+<li>This command will create your project structure:</li>
+</ul>
+<pre>  <code class="language-bash">pgxtool create-project test
 </code></pre>
 <h3>Write your code into main.nim</h3>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">add_one</span>(<span class="ide">a</span>: <span class="ide">int</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">a</span> <span class="op">+</span> <span class="num">1</span></div></div>  </code></pre>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">add_one</span><span class="op">*</span>(<span class="ide">a</span>: <span class="ide">int</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">a</span> <span class="op">+</span> <span class="num">1</span></div></div>  </code></pre>
 <h3>Build a dynamic library</h3>
-<pre>  <code class="language-bash">
-pgxtool build-extension test
-
-cp *.so $(pg_config --pkglibdir)
+<pre>  <code class="language-bash">pgxtool build-extension test
 </code></pre>
+<p>Linux:</p>
+<pre>  <code class="language-bash">cp *.so $(pg_config --pkglibdir)
+</code></pre>
+<p>Windows:</p>
+<ul>
+<li>Windows may not add all Postgres CLI tools to PATH by default(?)</li>
+<li>Locate <code>pg_config.exe</code> in the folders <code>&quot;C:\Program Files\PostgreSQL\&quot;</code>.</li>
+<li>Run it in a terminal like so <code>pg_config.exe --pkglibdir</code> to get the pkglibdir path.</li>
+<li>See <code>pgconfigFinder()</code> function source code as hint.</li>
+<li>Check if you have development header files (&quot;postgres.h&quot;, &quot;spi.h&quot;, &quot;analyze.h&quot;, &quot;elog.h&quot;).</li>
+</ul>
 <h3>Call your library function from Postgresql</h3>
-<pre>  <code class="language-sql"># Enter into psql and create a function to wrap your library function
-# omit library extension.
+<pre>  <code class="language-sql">-- Enter into psql and create a function to wrap your library function
+-- omit library extension.
 
 create function function_name(params) return data_type as
 &apos;{libname}&apos;, &apos;{function}&apos;
 language c strict;
 
-#Example
+-- Example
 create function nim_add_one(integer) return integer as
 &apos;libadd_one&apos;, &apos;pgx_add_one&apos;
 language c strict;
 
 select nim_add_one(10); # -&gt; 11
-
 </code></pre>
 <h2>Contributing</h2>
 <p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
@@ -194,7 +208,7 @@ select nim_add_one(10); # -&gt; 11
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-12T01:26:52Z
+        Builded at 2024-11-13T01:36:10Z
         </p>
       </div>
     </div>
