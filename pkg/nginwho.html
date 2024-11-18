@@ -92,11 +92,12 @@
  <img src="https://github.com/pouriyajamshidi/nginwho/blob/master/artwork/nginwho.jpeg?raw=true" style="max-width: 100%;" width="700" alt="nginwho" />
 </div>
 <hr />
-<p><strong>nginwho</strong> is a lightweight, efficient and extremely fast program offering three main features at its core:</p>
+<p><strong>nginwho</strong> is a lightweight, efficient and extremely fast program offering:</p>
 <ol>
-<li><strong>nginx</strong> log parser: Stores nginx logs into a <strong>sqlite3</strong> database for further analysis and actions</li>
-<li>Restore <strong>Cloudflare</strong> original visitor IP: Continuously parses <strong>Cloudflare CIDRs</strong> (<code>IPv4</code> and <code>IPv6</code>) through their <strong>API</strong>s so that nginx can leverage it to restore the original IP address of visitors</li>
-<li><strong>Block</strong> untrusted requests: Uses <strong>nftables</strong> to block HTTP and HTTPS requests coming from unknown IP addresses</li>
+<li><a href="#nginx-log-parser">nginx log parser</a>: Stores nginx logs into a <strong>sqlite3</strong> database for further analysis and actions</li>
+<li><a href="#restore-cloudflare-original-visitor-ip">Restore Cloudflare</a> original visitor IP: Continuously parses <strong>Cloudflare CIDRs</strong> (<code>IPv4</code> and <code>IPv6</code>) through their <strong>API</strong>s so that nginx can leverage it to restore the original IP address of visitors</li>
+<li><a href="#block-untrusted-requests">Block untrusted</a> requests using <strong>nftables</strong> to prevent HTTP and HTTPS requests coming from unknown IP addresses</li>
+<li><a href="#reporting">Reporting</a> on gathered data such as top visited URLs through a TUI</li>
 </ol>
 <p>Table of contents:</p>
 <ul>
@@ -109,12 +110,18 @@
 <li>  <a href="#nginx-log-parser">nginx Log Parser</a></li>
 <li>  <a href="#restore-cloudflare-original-visitor-ip">Restore Cloudflare Original Visitor IP</a></li>
 <li>  <a href="#block-untrusted-requests">Block Untrusted Requests</a></li>
+<li>  <a href="#reporting">Reporting</a></li>
+<li>  <a href="#migrating-v1-database-to-v2">Migrating v1 database to v2</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h2>Usage</h2>
+<blockquote>
+<p>[!IMPORTANT]
+If you have been a user since version 1, please check out <a href="#migrating-v1-database-to-v2">this section</a> to migrate your database scheme to version 2.</p>
+</blockquote>
 <ol>
 <li>
 <p>Download <strong>nginwho</strong> from this URL:</p>
@@ -137,15 +144,19 @@ sudo cp nginwho /usr/local/bin
  # If you want to omit a certain referrer from being logged (replace thegraynode.io with your domain):
  nginwho --logPath:/var/log/nginx/access.log \
          --dbPath:/var/log/nginwho.db \
-         --omit-referrer:thegraynode.io
+         --omitReferrer:thegraynode.io
 
  # If you want to get real IP addresses of the visitors coming from Cloudflare:
  nginwho --logPath:/var/log/nginx/access.log \
          --dbPath:/var/log/nginwho.db \
-         --omit-referrer:thegraynode.io \
-         --show-real-ips:true
+         --showRealIps:true
 </code></pre>
 </li>
+</ol>
+<blockquote>
+<p>Please note that you can mix these flags. They operate independently.</p>
+</blockquote>
+<ol>
 <li>
 <p>Optionally, use the <a href="https://github.com/pouriyajamshidi/nginwho/blob/master/nginwho.service">accompanying systemd</a> to run <strong>nginwho</strong> as a service in the background and for the it to survive system reboots:</p>
 <pre>  <code class="language-bash">sudo cp nginwho.service /etc/systemd/system/nginwho.service
@@ -161,90 +172,73 @@ sudo systemctl start nginwho.service
   --dbPath,               : Path to SQLite database to log reports (default: /var/log/nginwho.db)
   --logPath,              : Path to nginx access logs (default: /var/log/nginx/access.log)
   --interval              : Refresh interval in seconds (default: 10)
-  --omit-referrer         : Omit a specific referrer from being logged (default: none)
-  --analyze-nginx-logs    : Whether to analyze nginx logs or not. (default: true)
-  --show-real-ips         : Show real IP of visitors by getting Cloudflare CIDRs to include in nginx config.
+  --omitReferrer          : Omit a specific referrer from being logged (default: none)
+  --showRealIps           : Show real IP of visitors by getting Cloudflare CIDRs to include in nginx config.
                             Self-updates every six hours (default: false)
-  --block-untrusted-cidrs : Block untrusted IP addresses using nftables. Only allows Cloudflare CIDRs (default: false)
+  --blockUntrustedCidrs   : Block untrusted IP addresses using nftables. Only allows Cloudflare CIDRs (default: false)
+  --processNginxLogs      : Process nginx logs (default: true)
+  --report                : Enter report mode and query the database for statistics
+
+  --migrateV1ToV2Db       : Migrate V1 database to V2 and exit (default: false).
+                            Use with &apos;--v1DbPath&apos; and &apos;--v2DbPath&apos; flags
+  --v1DbPath              : Path and name of the V1 database (e.g: /var/log/nginwho_v1.db)
+  --v2DbPath              : Path and name of the V2 database (e.g: /var/log/nginwho.db)
+
 </code></pre>
 <h2>How it works</h2>
 <p>Let&apos;s see how nginwho works in a somewhat detailed yet short fashion.</p>
 <h3>nginx Log Parser</h3>
-<p>For the first and default feature, <strong>nginwho</strong> reads <code>nginx</code> logs from <code>/var/log/nginx/access.log</code> and stores the parsed results in a <strong>sqlite3</strong> database located in <code>/var/log/nginwho.db</code> unless overridden by the <a href="#flags">available flags</a>.</p>
+<p><strong>nginwho</strong> by default reads <code>nginx</code> logs from <code>/var/log/nginx/access.log</code> and stores the parsed results in a <strong>sqlite3</strong> database located in <code>/var/log/nginwho.db</code> unless overridden by the <a href="#flags">available flags</a>.</p>
 <blockquote>
 <p>[!WARNING]
-nginwho only supports the default nginx log format for now</p>
+nginwho only supports the default nginx log format or any application that logs in the same format for now</p>
 </blockquote>
-<p>The table name inside the <code>nginwho.db</code> database is also named <code>ngiwho</code> and here is the schema of it:</p>
-<pre>  <code class="language-text">sqlite&gt; PRAGMA table_info(nginwho);
-+-----+-------------------+---------+---------+------------+----+
-| cid |       name        |  type   | notnull | dflt_value | pk |
-+-----+-------------------+---------+---------+------------+----+
-| 0   | id                | INTEGER | 0       |            | 1  |
-| 1   | date              | TEXT    | 1       |            | 0  |
-| 2   | remoteIP          | TEXT    | 1       |            | 0  |
-| 3   | httpMethod        | TEXT    | 1       |            | 0  |
-| 4   | requestURI        | TEXT    | 1       |            | 0  |
-| 5   | statusCode        | TEXT    | 1       |            | 0  |
-| 6   | responseSize      | TEXT    | 1       |            | 0  |
-| 7   | referrer          | TEXT    | 1       |            | 0  |
-| 8   | userAgent         | TEXT    | 1       |            | 0  |
-| 9   | nonStandard       | TEXT    | 0       |            | 0  |
-| 10  | remoteUser        | TEXT    | 1       |            | 0  |
-| 11  | authenticatedUser | TEXT    | 1       |            | 0  |
-+-----+-------------------+---------+---------+------------+----+
-</code></pre>
-<p>If you want to see the top 30 visited URIs of your server, then you could:</p>
-<ol>
-<li>
-<p>Run <code>sqlite3</code>&apos;s shell:</p>
-<pre>  <code class="language-bash">sqlite3 --readonly --table /var/log/nginwho.db
-</code></pre>
-</li>
-<li>
-<p>run a <strong>SQL</strong> query like:</p>
-<pre>  <code class="language-sql">SELECT requestURI, count(*) as visits
-FROM nginwho
-GROUP BY requestURI
-ORDER BY visits DESC
-LIMIT 30;
-</code></pre>
-</li>
-</ol>
-<p>This will give you a nice table with your top 30 visited URIs.</p>
 <h3>Restore Cloudflare Original Visitor IP</h3>
-<p>The second feature, <code>--show-real-ips</code> flag fetches <strong>Cloudflare CIDRs</strong> (<code>IPv4</code> and <code>IPv6</code>) every <em>six hours</em> through their <strong>API</strong>s and writes the result to a file located in <code>/etc/nginx/nginwho</code>.</p>
+<p>The second feature, <code>--showRealIps</code> flag fetches <strong>Cloudflare CIDRs</strong> (<code>IPv4</code> and <code>IPv6</code>) every <em>six hours</em> through their <strong>API</strong>s and writes the result to a file named <code>nginwho</code> located in <code>/etc/nginx/</code>.</p>
 <p>It is worthwhile to mention that <strong>nginwho</strong> leverages the <code>etag</code> field in Cloudflare&apos;s API response, so, if the newly fetched <code>etag</code> is the same as the current one, the <code>/etc/nginx/nginwho</code> file will not be overwritten.</p>
 <p>If the <code>/etc/nginx/nginwho</code> file has changed or this is a fresh run, <strong>nginwho</strong> schedules the <strong>nginx</strong> service to be soft reloaded (<code>nginx -s reload</code>) at 3 AM.</p>
 <blockquote>
 <p>[!IMPORTANT]
-The <code>--show-real-ips</code> flag requires <strong>root privileges</strong>.</p>
+The <code>--showRealIps</code> flag requires <strong>root privileges</strong>.</p>
 </blockquote>
-<p>For <code>--show-real-ips</code> flag to work, you need to alter your nginx configuration add this line:</p>
+<p>For <code>--showRealIps</code> flag to work, you need to alter your <strong>nginx</strong> configuration add this line to include the generated configuration inside the <code>/etc/nginx/nginwho</code> file:</p>
 <pre>  <code class="language-text">include /etc/nginx/nginwho;
 </code></pre>
 <p>So that nginx knows how to restore original visitor IP addresses.</p>
 <h3>Block Untrusted Requests</h3>
 <p>The third feature, <code>--block-untrusted-cidrs</code> flag periodically gets Cloudflare CIDRs, either through:</p>
 <ol>
-<li>Cloudflare APIs when used in conjunction with <code>--show-real-ips</code> flag</li>
-<li>or the <code>/etc/nginx/nginwho</code> file when the <code>--show-real-ips</code> flag is not specified</li>
+<li>Cloudflare APIs when used in conjunction with <code>--showRealIps</code> flag</li>
+<li>or the <code>/etc/nginx/nginwho</code> file when the <code>--showRealIps</code> flag is not specified</li>
 </ol>
-<p>The fetched CIDRs will be checked against your existing <strong>nftables</strong> rules and if necessary, the required rules will be created and added through <em>nftables JSON API</em>.</p>
+<p>The fetched CIDRs will be checked against your existing <strong>nftables</strong> rules and if necessary, the required rules will be created and added through <em>nftable&apos;s JSON API</em>.</p>
 <p>There will be a bunch of tests and pre-checks done before applying any policies. These checks include:</p>
 <ol>
-<li>Existence of Cloudflare IPv4 CIDRs nftables Set (<code>Cloudflare_IPv4</code>)</li>
-<li>Existence of Cloudflare IPv6 CIDRs nftables Set (<code>Cloudflare_IPv6</code>)</li>
+<li>Existence of Cloudflare IPv4 CIDRs nftables <em>Set</em> (<code>Cloudflare_IPv4</code>)</li>
+<li>Existence of Cloudflare IPv6 CIDRs nftables <em>Set</em> (<code>Cloudflare_IPv6</code>)</li>
 <li>Existence of nftables <code>nginwho</code> chain (<code>prerouting</code> hook)</li>
 <li>Existence of nftables <code>input</code> chain</li>
 <li>Existence of <strong>drop</strong> policy inside <code>nginwho</code> chain for untrusted IP addresses on port <strong>80</strong> and <strong>443</strong></li>
 <li>Existence of <strong>accept</strong> policy inside <code>input</code> chain for trusted IP addresses on port <strong>80</strong> and <strong>443</strong></li>
 </ol>
-<p><strong>nginwho</strong> only creates the necessary changes for <strong>nftables</strong>, if no changes are required, no action will be taken. For instance, if a CIDR gets added or removed, only that part of <strong>nftables</strong> configuration will be changed and the rest remain unchanged.</p>
+<p><strong>nginwho</strong> only creates the necessary changes. Otherwise, no actions will be taken. For instance, if a CIDR gets added or removed, only that part of <strong>nftables</strong> configuration will be changed and the rest remain unchanged.</p>
 <blockquote>
 <p>[!IMPORTANT]
 Since playing with <strong>nftables</strong> could result in blocking yourself out, <strong>nginwho</strong> requires you to have some basic policies in place, in specific, having an <code>inet filter</code> table. If you do not have it, <strong>nginwho</strong> will detect that and shows you how to create one.</p>
 </blockquote>
+<h3>Reporting</h3>
+<p>Running <strong>nginwho</strong> with the <code>--report</code> flag will launch a TUI, providing some options (top visited URLs, top visiting IP addresses, etc.) that you can select and specify how many records to be queried.</p>
+<pre>  <code class="language-bash">nginwho --report --dbPath:/var/log/nginwho.db
+</code></pre>
+<h3>Migrating v1 database to v2</h3>
+<p>Running the command below will first check your database for any errors and, if it detects any, will output what recovery command should be run. If everything is fine, it will read out the data from your source database, convert and write the data to version 2 so that nginwho can continue working as intended.</p>
+<blockquote>
+<p>Also, please be noted to change the database file names according to your setup.</p>
+</blockquote>
+<pre>  <code class="language-bash">nginwho --migrateV1ToV2:true \
+        --v1DbPath:nginwho_v1.db \
+        --v2DbPath:nginwho.db \
+</code></pre>
 </document>
             
         </div>
@@ -313,7 +307,7 @@ Since playing with <strong>nftables</strong> could result in blocking yourself o
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-17T01:45:50Z
+        Builded at 2024-11-18T01:43:54Z
         </p>
       </div>
     </div>
