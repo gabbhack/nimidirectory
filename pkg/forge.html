@@ -123,12 +123,12 @@ Future versions may use an automated/isolated <code>zig</code> installation.</p>
 likely run from the root directory of a <code>nim</code> project with a <code>&lt;project&gt;.nimble</code></p>
 <p>You can either specify all commands on the CLI or use a config file.</p>
 <p>Example:</p>
-<pre>  <code class="language-sh">forge release -t x86_64-linux-musl -t x86_64-macos-none --bin src/forge.nim
+<pre>  <code class="language-sh">forge release --target,=x86_64-linux-musl,x86_64-macos-none --bin src/forge.nim
 </code></pre>
 <p>Result:</p>
 <pre>  <code>dist
 ├── forge-v2023.1001-x86_64-linux-musl
-│   └── forge
+│   └── forge
 └── forge-v2023.1001-x86_64-macos-none
     └── forge
 </code></pre>
@@ -245,7 +245,7 @@ nimble c --cpu:amd64 --os:Linux --cc:clang --clang.exe=&apos;forgecc&apos; --cla
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-18T01:43:54Z
+        Builded at 2024-11-19T01:41:55Z
         </p>
       </div>
     </div>
