@@ -34198,6 +34198,19 @@ const packages = [
     "description": "Hot reloading for development of applications in Nim",
     "license": "GPLv3",
     "web": "https://github.com/navid-m/fox"
+  },
+  {
+    "name": "twim",
+    "url": "https://github.com/aspiring-aster/twim",
+    "method": "git",
+    "tags": [
+      "library",
+      "development",
+      "twitter"
+    ],
+    "description": "A X(Formally known as Twitter) API wrapper library for Nim",
+    "license": "MIT",
+    "web": "https://aspiring-aster.github.io/twim/"
   }
 ]
 
