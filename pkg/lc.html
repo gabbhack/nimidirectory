@@ -113,6 +113,7 @@ one-liner that takes a minute or two.<a href="%60git">^2</a></p>
 <p>One maybe interesting 2-level sort-colorized listing (etc/lc has details) is:</p>
 <pre>  <code>~/.nimble/bin/lc -oDd /dev
 </code></pre>
+<p>If you like <code>lc</code>, you may also like <a href="https://github.com/c-blake/procs">  <code>procs</code></a>.</p>
 <h1>What <code>lc</code> is Not</h1>
 <p>This program is not and never will be a drop-in replacement for <code>ls</code> at the CLI
 option compatibility level.  <code>ls</code> is a poorly factored mishmash of selection,
@@ -132,7 +133,7 @@ not so fast &amp; very large directories are usually ill-advised.</p>
 yet another file lister?  What&apos;s the point?  Well, <code>lc</code></p>
 <ul>
 <li>
-<p>is clearly factored into independent actions and very configurable with good
+<p>is <em>  <strong>clearly factored</strong></em> &amp; <a href="#configurability">very configurable</a> with good
 CLI ergonomics (unique prefixes good enough, spellcheck, built-in aliasing
 system for user styles (option packages, really), etc.)</p>
 </li>
@@ -147,8 +148,9 @@ names with internal field structure make certain sorts ill-posed.)<a href="E.g."
 directories precede regular files)</p>
 </li>
 <li>
-<p>supports a kind/type-<strong>vector</strong> for multi-dimensional reasoning, including
-text attribute layers and an &quot;icon vector&quot; (for utf8 &quot;icons&quot;, anyway)</p>
+<p>supports <a href="#vector-typemulti-dimensionalityattribute-layers">kind/type-<strong>vectors</strong> for
+multi-dimensional</a> ideas,
+including text attribute layers and &quot;icon vectors&quot; (for utf8 &quot;icons&quot;, anyway)</p>
 </li>
 <li>
 <p>supports from <em>  <strong>nanosecond file times</strong></em> to <em>  <strong>very</strong></em> abbreviated ages</p>
@@ -160,7 +162,8 @@ text attribute layers and an &quot;icon vector&quot; (for utf8 &quot;icons&quot;
 <p>can emit &quot;hyperlink&quot; escape codes to make entries clickable in some terminals</p>
 </li>
 <li>
-<p>supports file/user/group/link target <em>  <strong>abbreviation</strong></em> via <code>-mNum</code>, etc.</p>
+<p>supports file/user/group/link target <em>  <strong>abbreviation</strong></em> <a href="#automatic-abbreviations">via <code>-mNum</code>,
+etc.</a></p>
 </li>
 <li>
 <p>supports &quot;<em>  <strong>local tweak files</strong></em>&quot; - extra config options in a local <code>.lc</code>
@@ -383,7 +386,7 @@ before all dot regular files, but it is obviously much more general.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-24T01:47:15Z
+        Builded at 2024-11-25T01:43:37Z
         </p>
       </div>
     </div>

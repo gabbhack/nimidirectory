@@ -34213,6 +34213,36 @@ const packages = [
     "web": "https://aspiring-aster.github.io/twim/"
   },
   {
+    "name": "temple",
+    "url": "https://github.com/penguinite/temple.git",
+    "method": "git",
+    "tags": [
+      "library",
+      "template",
+      "templating",
+      "web"
+    ],
+    "description": "A templating library for run-time templating with support for simple conditionals and attributes.",
+    "license": "BSD-3-Clause",
+    "web": "https://github.com/penguinite/temple.git"
+  },
+  {
+    "name": "blend2d",
+    "url": "https://github.com/openpeeps/blend2d-nim",
+    "method": "git",
+    "tags": [
+      "graphics",
+      "2d",
+      "blend2d",
+      "2d-graphics",
+      "rasterization",
+      "vector"
+    ],
+    "description": "Blend2D for Nim language",
+    "license": "MIT",
+    "web": "https://github.com/openpeeps/blend2d-nim"
+  },
+  {
     "name": "bestfetch",
     "url": "https://gitlab.com/Maxb0tbeep/bestfetch",
     "method": "git",
