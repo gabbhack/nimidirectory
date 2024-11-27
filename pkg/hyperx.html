@@ -147,9 +147,9 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
 <p>There is built-in backpressure based on bounded queues for the rest of non-data frames.</p>
 <h3>Using http/2 in place of WebSockets</h3>
 <p>Http/2 allows full-duplex data communication over a single stream. If you plan to only ever use this client and server, you won&apos;t need websockets.</p>
-<p>On web-browsers, only <a href="https://caniuse.com/mdn-api_request_request_request_body_readablestream">chrome</a> has support for streaming, and it&apos;s only <a href="https://github.com/whatwg/fetch/issues/1254">half-duplex</a>. So, you need two streams, one for sending, and one for receiving.</p>
+<p>However, web-browsers do not support full-duplex streaming. So http/2 cannot be used in place of websockets there.</p>
 <h3>Benchmarks</h3>
-<p>The CI runs h2load on it, but it only starts a single server instance. Proper benchmarking would start a server per CPU, and run a few combinations of load. To save you the trip, the CI results show around 30K requests/s.</p>
+<p>The CI runs h2load on it, but it only starts a single server instance. Proper benchmarking would start a server per CPU, and run a few combinations of load. See <a href="https://github.com/nitely/nim-hyperx/issues/5#issuecomment-2480527542">issue #5</a>.</p>
 <p>Also try:</p>
 <ul>
 <li>release: <code>-d:release</code> always compile in release mode.</li>
@@ -158,7 +158,7 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
 <li>localServer.nim: it will respond &quot;hello world&quot; or any data it receives. You may want to tweak it to not send any data.</li>
 <li>start a server instance per CPU and use <code>taskset</code> to set the process CPU affinity.</li>
 <li>make sure the bench tool is hitting all server instances, not just one.</li>
-<li>using <a href="https://github.com/yglukhov/yasync">yasync</a> shows higher throughput and lower latency see <a href="https://github.com/nitely/nim-hyperx/issues/5#issuecomment-2480527542">issue #5</a>.</li>
+<li>using <a href="https://github.com/yglukhov/yasync">yasync</a> shows higher throughput and lower latency.</li>
 </ul>
 <h3>ORC</h3>
 <p>Nim&apos;s stdlib async creates cycles, and the ORC cycle collector does not run often enough. If you want to use orc, you&apos;ll need to call <code>GC_runOrc()</code> at some point, for example on client close or stream close. Related <a href="https://github.com/nim-lang/Nim/issues/21631">nim issue</a>. <code>--mm:refc</code> does not have this issue.</p>
@@ -236,7 +236,7 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-26T01:42:18Z
+        Builded at 2024-11-27T01:43:52Z
         </p>
       </div>
     </div>
