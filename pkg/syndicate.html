@@ -136,6 +136,9 @@ Says = &lt;Says @who string @what string&gt;.
 </code></pre>
 <h3>  <a href="https://git.syndicate-lang.org/ehmry/syndicate_utils">syndicate_utils</a></h3>
 <h2>Tracing</h2>
+<p>Tracing is enabled at compile-time by default, unless disabled with <code>--define:traceSyndicate=false</code>.
+Tracing is not active at runtime unless the <code>$SYNDICATE_TRACE_FILE</code> environmental variable is set.
+Tracing is currently not available for solo5.</p>
 <p>  <a href="./tests/test_timers.trace.svg">    <img src="./tests/test_timers.trace.svg" style="max-width: 100%;" alt="trace" />  </a></p>
 <p>There is an experimental tool for converting Syndicate traces to the <a href="https://graphviz.org/">Graphviz</a> dot format at <a href="src/syndicate/private/trace_to_dot.nim">trace-to-dot</a>.
 It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-protocols/src/branch/main/schemas/trace.prs">traces</a> from other Syndicate implementations.</p>
@@ -210,7 +213,7 @@ It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-l
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-11-30T01:40:48Z
+        Builded at 2024-12-01T01:58:00Z
         </p>
       </div>
     </div>
