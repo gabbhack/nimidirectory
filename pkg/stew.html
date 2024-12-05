@@ -130,17 +130,20 @@ broken out into separate repositories.</p>
 <p>Libraries are documented either in-module or on a separate README in their
 respective folders</p>
 <ul>
+<li><code>arraybuf</code> - <code>array</code>-based fixed-capacity dynamic-length buffer</li>
 <li><code>arrayops</code> - small helpers and operations on <code>array</code>/<code>openArray</code></li>
 <li><code>assign2</code> - fast assignments (unlike the <code>=</code> operator in nim which is very slow)</li>
 <li><code>bitops2</code> - an updated version of <code>bitops.nim</code>, filling in gaps in original code</li>
 <li><code>byteutils</code> - utilities that make working with the Nim <code>byte</code> type convenient</li>
 <li><code>endians2</code> - utilities for converting to and from little / big endian integers</li>
+<li><code>io2</code> - I/O without exceptions</li>
 <li><code>leb128</code> - utilities for working with LEB128-based formats (such as the varint style found in protobuf)</li>
 <li><code>objects</code> - get an object&apos;s base type at runtime, as a string</li>
 <li><code>ptrops</code> - pointer arithmetic utilities</li>
 <li><code>result</code> - moved to <a href="https://github.com/arnetheduck/nim-results/">nim-results</a></li>
 <li><code>shims</code> - backports of nim <code>devel</code> code to the stable version that Status is using</li>
 <li><code>sequtils2</code> - extensions to the <code>sequtils</code> module for working conveniently with <code>seq</code></li>
+<li><code>staticfor</code> - compile-time loop unrolling</li>
 </ul>
 <h2>Layout</h2>
 <p><code>stew</code> modules are made to be fairly independent of each other, but generally
@@ -171,14 +174,34 @@ welcome patches.</p>
 <p>You can create multiple versions of your code using the following pattern:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">when</span> (<span class="ide">NimMajor</span>,<span class="ide">NimMinor</span>,<span class="ide">NimPatch</span>) <span class="op">&gt;=</span> (<span class="num">0</span>,<span class="num">19</span>,<span class="num">9</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">discard</span></div></div><div class="line"><div class="line-content"><span class="kwd">elif</span> (<span class="ide">NimMajor</span>,<span class="ide">NimMinor</span>,<span class="ide">NimPatch</span>) <span class="op">&gt;=</span> (<span class="num">0</span>,<span class="num">19</span>,<span class="num">0</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">discard</span></div></div><div class="line"><div class="line-content"><span class="kwd">else</span></div></div><div class="line"><div class="line-content">  {<span class="op">.</span><span class="ide">fatal</span>: <span class="str">&quot;unsupported nim version&quot;</span>}</div></div>  </code></pre>
 <h2>Using stew in your project</h2>
-<p>We do not recommend using this library as a normal <code>nimble</code> dependency - there
-are no versioned releases and we will not maintain API/ABI stability. Instead,
-make sure you pin your dependency to a specific git hash (for example using a
-submodule) or copy the file to your project instead.</p>
+<p><code>stew</code>, due to its experimental nature, does <strong>not</strong> have a stable API/ABI and
+features may be changed or removed. Releases are done on a case-by-case basis
+for when some specific project needs them - open an issue if you need one!</p>
+<p>When making a release, we will strive to update the <code>minor</code> version whenever a
+major component is removed or changed and the <code>patch</code> version if changes are
+mostly additive, but due to the nature of the library being a collection of
+smaller libraries, these guidelines may be streched at times.</p>
+<p>It is not expected that the library will reach a <code>1.0</code> release. Instead, mature
+code will be <a href="https://github.com/status-im/nim-stew/commit/2cf408b9609fc3e6c238ddbd90ab31802e650212">graduated</a>
+into independent libraries that can follow a regular release schedule.</p>
+<ul>
+<li>libraries that depend on <code>stew</code> should specify the lowest possible required
+version (<code>stew &gt;= 0.2</code>) that contain the necessary features that they use -
+this may be lower than latest released version. An upper bound
+(<code>stew &gt;= 0.2 &amp; &lt;0.3</code>) or caret versions (<code>stew ^0.2</code>) may be used but it is
+not recommended since this will make your library harder to compose with other
+libraries that depend on <code>stew</code>.</li>
+<li>applications that depend on stew directly or indirectly should specify a
+commit ( <code>stew#abc...</code>) or a specific version (<code>stew == 0.2.3</code>) - this ensures
+the application will continue to work irrespective of stew updates</li>
+<li>alternatively, you can just copy the relevant files of stew into your project
+or use a submodule - this approach maximises composability since each consumer
+of stew no longer has to restrict the specific version for other consumers</li>
+</ul>
 <p>Typically, you will import either a top-level library or drill down into its
 submodules:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">stew</span><span class="op">/</span><span class="ide">bitops2</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">stew</span><span class="op">/</span><span class="ide">ranges</span><span class="op">/</span><span class="ide">bitranges</span></div></div>  </code></pre>
-<p>:warning: No API/ABI stability - pick a commit and stick with it :warning:</p>
+<p>:warning: No API/ABI stability - in applications, pick a commit and stick with it :warning:</p>
 <h2>Contributing to stew</h2>
 <p>We welcome contributions to stew - in particular:</p>
 <ul>
@@ -263,7 +286,7 @@ submodules:</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-04T01:45:58Z
+        Builded at 2024-12-05T01:45:39Z
         </p>
       </div>
     </div>

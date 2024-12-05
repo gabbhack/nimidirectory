@@ -87,29 +87,31 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>Stint (Stack-based multiprecision integers)</h1>
+                <document><h1>Stint (Stack-based arbitrary precision integers)</h1>
 <p><a href="https://opensource.org/licenses/Apache-2.0">  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" style="max-width: 100%;" alt="License: Apache" /></a>
 <a href="https://opensource.org/licenses/MIT">  <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="max-width: 100%;" alt="License: MIT" /></a>
 <img src="https://img.shields.io/badge/stability-experimental-orange.svg" style="max-width: 100%;" alt="Stability: experimental" /><img src="https://github.com/status-im/nim-stint/workflows/CI/badge.svg" style="max-width: 100%;" alt="Github action" /></p>
-<p>A fast and portable stack-based multi-precision integer library in pure Nim</p>
-<p>Main focus:</p>
+<p><code>stint</code> provides efficient and convenient N-bit integers for Nim, for arbitrary
+sizes of <code>N</code> decided at compile time with an interface similar to to
+<code>int64</code>/<code>uint64</code>.</p>
+<p>In addition to basic integer operations, <code>stint</code> also contains primtives for
+modular arithmetic, endian conversion, basic I/O, bit twiddling etc.</p>
+<p><code>stint</code> integers, like their <code>intXX</code>/<code>uintXX</code> counterpart in Nim are stack-based
+values, meaning that they are naturally allocation-free and have value-based
+semantics.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">stint</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">func</span> <span class="ide">addmul</span>(<span class="ide">a</span>, <span class="ide">b</span>, <span class="ide">c</span>: <span class="ide">UInt256</span>): <span class="ide">UInt256</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">a</span> <span class="op">*</span> <span class="ide">b</span> <span class="op">+</span> <span class="ide">c</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">echo</span> <span class="ide">addmul</span>(u256"100000000000000000000000000000", u256"1", u256"2")</div></div>  </code></pre>
+<h2>Priorities</h2>
 <ul>
 <li>Portability
 <ul>
-<li>32 and 64 bit arch</li>
-<li>ARM for usage on mobile phones</li>
+<li>32 and 64 bit</li>
+<li>ARM/x86/x86_64 extensively tested</li>
 <li>Additionally RISC-V and MIPS for open hardware and low power IoT devices.</li>
 </ul>
 </li>
 <li>Speed, library is carefully tuned to produce the best assembly given the current compilers.
-However, the library itself does not resort to assembly for portability.</li>
+However, the library itself does not require assembly for portability.</li>
 <li>No heap/dynamic allocation</li>
-<li>Ethereum applications
-<ul>
-<li>Uint256/Int256 for Ethereum Virtual Machine usage.</li>
-<li>Uint2048 for Ethereum Bloom filters</li>
-</ul>
-</li>
 <li>Ease of use:
 <ul>
 <li>Use traditional <code>+</code>, <code>-</code>, <code>+=</code>, etc operators like on native types</li>
@@ -118,6 +120,17 @@ However, the library itself does not resort to assembly for portability.</li>
 <li>converting to and from decimal strings</li>
 </ul>
 </li>
+</ul>
+<p>Non-priorities include:</p>
+<ul>
+<li>constant-time operation (not suitable for certain kinds of cryptography out of the box)</li>
+<li>runtime precision</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="https://github.com/mratsim/constantine">constantine</a> - modular arithmetic and elliptic curve operations focusing on cryptography and constant-time implementation</li>
+<li><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2472.pdf">N2472</a> - <code>_ExtInt(N)</code> - native arbitrary precision integers for C</li>
+<li><a href="https://github.com/status-im/nim-stew/">stew</a> - helpers and utilities for ordinary Nim integers (<code>endians2</code>, <code>bitops2</code> etc)</li>
 </ul>
 <h2>License</h2>
 <p>Licensed and distributed under either of</p>
@@ -197,7 +210,7 @@ However, the library itself does not resort to assembly for portability.</li>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-04T01:45:58Z
+        Builded at 2024-12-05T01:45:39Z
         </p>
       </div>
     </div>

@@ -89,6 +89,7 @@
             
                 <document><h1>Pgxcrown</h1>
 <p>Build Postgres Extensions in Nim.</p>
+<p>  <img src="banner.jpg" style="max-width: 100%;" alt="" /></p>
 <h1>Requisites</h1>
 <ul>
 <li>Postgres with CLI tools installed and running locally</li>
@@ -119,6 +120,7 @@
 <li>Run it in a terminal like so <code>pg_config.exe --pkglibdir</code> to get the pkglibdir path.</li>
 <li>See <code>pgconfigFinder()</code> function source code as hint.</li>
 <li>Check if you have development header files (&quot;postgres.h&quot;, &quot;spi.h&quot;, &quot;analyze.h&quot;, &quot;elog.h&quot;).</li>
+<li>  <a href="https://github.com/luisacosta828/pgxcrown/blob/master/.github/workflows/build.yml#L22">See Windows CI builds for more.</a></li>
 </ul>
 <h3>Call your library function from Postgresql</h3>
 <pre>  <code class="language-sql">-- Enter into psql and create a function to wrap your library function
@@ -208,7 +210,7 @@ select nim_add_one(10); # -&gt; 11
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-04T01:45:58Z
+        Builded at 2024-12-05T01:45:39Z
         </p>
       </div>
     </div>
