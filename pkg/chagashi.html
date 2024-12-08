@@ -96,7 +96,7 @@
 standards for <a href="https://sr.ht/~bptato/chawan">Chawan</a>.</p>
 <h2>Minimal example</h2>
 <p>First, include it in your nimble file:</p>
-<pre>  <code>requires &quot;chagashi &gt;= 0.5.5&quot;
+<pre>  <code>requires &quot;chagashi&quot;
 </code></pre>
 <p>Note: following code uses the (very) high-level interface, which is rather
 inefficient. Lower level interfaces are normally faster.</p>
@@ -127,10 +127,6 @@ single-byte encodings are not covered yet, and we do not have fuzzing either.</p
 <p>Q: Is it fast?</p>
 <p>A: Not really, I have done very little optimization because it&apos;s not necessary
 for my use case.</p>
-<p>Also, similarly to encoding_rs, Chagashi uses RLE compressed tables to reduce
-binary size. In particular, this makes encoding EUC-KR and GBK very slow, since
-it depends on a linear search. For decoding the same ranges, binary search is
-used, which should be fast enough although is still slower than a lookup table.</p>
 <p>If you need better performance, feel free to complain in the
 <a href="https://todo.sr.ht/~bptato/chawan">tickets</a> with a specific input and I may
 look into it. Patches are welcome, too.</p>
@@ -228,7 +224,7 @@ techniques.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-07T01:43:35Z
+        Builded at 2024-12-08T01:51:59Z
         </p>
       </div>
     </div>
