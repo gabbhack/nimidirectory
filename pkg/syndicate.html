@@ -105,30 +105,7 @@
 </blockquote>
 <p>The Syndicate library provides a code-generator and DSL for writing idiomatic Nim within the excution flow of the Syndicated Actor Model. The library allows for structured conversations with other programs and other languages. It can be used to implement distributed systems but also makes it possible to create dynamically reconfigurable programs using a process controller and a configuration conversation.</p>
 <h2>The Preserves Data Language</h2>
-<p><a href="https://preserves.gitlab.io/preserves/">Preserves</a> is a data model and serialization format that is used to represent data in Syndicate conversations. The Preserves model features the familar boolean, integer, float, string, sequence, dictionaries, and set types. Less familar to Nim are the symbol and record types. The symbol is a string that is elevated for use in type comparisions and the record is a labelled (usually by symbol) collection of fields.</p>
-<p>The textual representation isn&apos;t necessary to study before using Preserves because the Preserves model is a subset of Nim types and a code-generator is available to convert Preserves schemas to Nim modules.</p>
-<h3>Preserves schema</h3>
-<p><a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-protocols/src/commit/ca92d99c524d99b6d3be04a0ba5383ec5a65b550/schemas/simpleChatProtocol.prs">Here</a> is an example schema for a chat protocol:</p>
-<pre>  <code>; Present is a record with symbol &quot;Present&quot; as record label
-; and one string field referred to as &quot;username&quot;.
-Present = &lt;Present @username string&gt;.
-
-; Says is a record with symbol &quot;Says&quot; as record label
-; and two fields referred to as &quot;who&quot; and &quot;what&quot;.
-Says = &lt;Says @who string @what string&gt;.
-</code></pre>
-<h3>Code Generation</h3>
-<p>The <a href="">preserves_schema_nim</a> utility would generate the following module for the preceding schema:</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">Says</span><span class="op">*</span> {<span class="op">.</span><span class="ide">preservesRecord</span>: <span class="str">&quot;Says&quot;</span><span class="op">.</span>} <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    `<span class="ide">who</span>`<span class="op">*:</span> <span class="ide">string</span></div></div><div class="line"><div class="line-content">    `<span class="ide">what</span>`<span class="op">*:</span> <span class="ide">string</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">Present</span><span class="op">*</span> {<span class="op">.</span><span class="ide">preservesRecord</span>: <span class="str">&quot;Present&quot;</span><span class="op">.</span>} <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    `<span class="ide">username</span>`<span class="op">*:</span> <span class="ide">string</span></div></div>  </code></pre>
-<p>There are two types corresponding to the two records defined in the schema. The <code>preservesRecord</code> pragma allows for a lossless conversion between the Nim type system and Preserves records.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span></div></div><div class="line"><div class="line-content">  <span class="ide">present</span> <span class="op">=</span> <span class="ide">Present</span>(<span class="ide">username</span>: <span class="str">&quot;Judy&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">pr</span> <span class="op">=</span> <span class="ide">present</span><span class="op">.</span><span class="ide">toPreserve</span>()</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="op">$</span><span class="ide">pr</span> <span class="op">==</span> """<Present "Judy">"""</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">present</span><span class="op">.</span><span class="ide">fromPreserve</span>(<span class="ide">pr</span>) <span class="op">==</span> <span class="ide">true</span></div></div>  </code></pre>
-<h2>The Syndicate DSL</h2>
-<p>The Syndicate DSL can be entered using <code>runActor</code> which calls a Nim body with a <a href="https://synit.org/book/glossary.html#dataspace">dataspace</a> <a href="https://synit.org/book/glossary.html#reference">Ref</a> and a <a href="https://synit.org/book/glossary.html#turn">turn</a>. The <code>Ref</code> is something that we can observe and publish assertions at, and a <code>Turn</code> is special type for temporal scoping and transactional semantics. Assertions can be published using the <code>Assertion</code> or equivalent <code>Preserve[Ref]</code> type, but using Nim types is preferred because they can be reliably consistent with schema.</p>
-<h3>Publish</h3>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">runActor</span>(<span class="str">&quot;main&quot;</span>) <span class="kwd">do</span> (<span class="ide">turn</span>: <span class="ide">Turn</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">dataspace</span> <span class="op">=</span> <span class="ide">newDataspace</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">presenceHandle</span> <span class="op">=</span> <span class="ide">publish</span>(<span class="ide">turn</span>, <span class="ide">dataspace</span>, <span class="ide">Present</span>(<span class="ide">username</span>: <span class="str">&quot;Judy&quot;</span>))</div></div><div class="line"><div class="line-content">    <span class="com"># publish &lt;Present &quot;Judy&quot;&gt; to the dataspace</span></div></div><div class="line"><div class="line-content">    <span class="com"># the assertion can be later retracted by handle</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">message</span>(<span class="ide">turn</span>, <span class="ide">dataspace</span>, <span class="ide">Says</span>(<span class="ide">who</span>: <span class="str">&quot;Judy&quot;</span>, <span class="ide">what</span>: <span class="str">&quot;greetings&quot;</span>))</div></div>  </code></pre>
-<h3>React</h3>
-<p>We can react to assertions and messages within dataspaces using <a href="https://synit.org/book/glossary.html#dataspace-pattern">patterns</a>. Patterns are constructed using a Nim type and the <code>?</code> operator. Again a Nim type is used rather than a raw Preserves for schema consistency.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">runActor</span>(<span class="str">&quot;main&quot;</span>) <span class="kwd">do</span> (<span class="ide">turn</span>: <span class="ide">Turn</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">dataspace</span> <span class="op">=</span> <span class="ide">newDataspace</span>()</div></div><div class="line"><div class="line-content">  <span class="ide">during</span>(<span class="ide">turn</span>, <span class="ide">dataspace</span>, <span class="op">?</span><span class="ide">Present</span>) <span class="kwd">do</span> (<span class="ide">who</span>: <span class="ide">string</span>):</div></div><div class="line"><div class="line-content">    <span class="com"># This body is active when the ?Present pattern is matched.</span></div></div><div class="line"><div class="line-content">    <span class="com"># The Present type contains two atomic values that can be matched</span></div></div><div class="line"><div class="line-content">    <span class="com"># within Syndicate model, and the Nim `during` macro matches those</span></div></div><div class="line"><div class="line-content">    <span class="com"># values to the types of the `do` handler.</span></div></div><div class="line"><div class="line-content">    <span class="ide">stderr</span><span class="op">.</span><span class="ide">writeLine</span>(<span class="str">&quot;&lt;&quot;</span>, <span class="ide">who</span>, <span class="str">&quot; joined&gt;&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">do</span>:</div></div><div class="line"><div class="line-content">    <span class="com"># This body is active when the match is retracted</span></div></div><div class="line"><div class="line-content">    <span class="ide">stderr</span><span class="op">.</span><span class="ide">writeLine</span>(<span class="str">&quot;&lt;&quot;</span>, <span class="ide">who</span>, <span class="str">&quot; left&gt;&quot;</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">onMessage</span>(<span class="ide">turn</span>, <span class="ide">dataspace</span>, <span class="op">?</span><span class="ide">Says</span>) <span class="kwd">do</span> (<span class="ide">who</span>: <span class="ide">string</span>, <span class="ide">what</span>: <span class="ide">string</span>):</div></div><div class="line"><div class="line-content">    <span class="com"># messages are one-shot assertions and can also be matched</span></div></div><div class="line"><div class="line-content">    <span class="ide">stderr</span><span class="op">.</span><span class="ide">writeLine</span>(<span class="ide">who</span>, <span class="str">&quot;: &quot;</span>, <span class="ide">what</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">onMessage</span>(<span class="ide">turn</span>, <span class="ide">dataspace</span>, <span class="ide">Says</span> <span class="op">?</span> {<span class="num">0</span>: <span class="ide">grab</span>(), <span class="num">1</span>: <span class="ide">drop</span>()}) <span class="kwd">do</span> (<span class="ide">who</span>: <span class="ide">string</span>):</div></div><div class="line"><div class="line-content">    <span class="com"># patterns can also be selectively constructed</span></div></div><div class="line"><div class="line-content">    <span class="ide">stderr</span><span class="op">.</span><span class="ide">writeLine</span>(<span class="str">&quot;&lt;&quot;</span>, <span class="ide">who</span>, <span class="str">&quot; says something&gt;&quot;</span>)</div></div>  </code></pre>
+<p><a href="https://preserves.dev/">Preserves</a> is foundational to Syndicate and likewise is the <a href="https://git.syndicate-lang.org/ehmry/preserves-nim">Nim Preserves</a> library foundation to this Syndicate implementation. When familiarizing yourself with the code here you will need to reference the documentation of that library as well.</p>
 <h2>Examples</h2>
 <h3>  <a href="./tests/test_chat.nim">test_chat</a></h3>
 <p>Simple chat demo that is compatible with <a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-py/src/branch/main/chat.py">chat.py</a>.</p>
@@ -142,6 +119,49 @@ Tracing is currently not available for solo5.</p>
 <p>  <a href="./tests/test_timers.trace.svg">    <img src="./tests/test_timers.trace.svg" style="max-width: 100%;" alt="trace" />  </a></p>
 <p>There is an experimental tool for converting Syndicate traces to the <a href="https://graphviz.org/">Graphviz</a> dot format at <a href="src/syndicate/private/trace_to_dot.nim">trace-to-dot</a>.
 It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-protocols/src/branch/main/schemas/trace.prs">traces</a> from other Syndicate implementations.</p>
+<h2>Recommendations</h2>
+<p>The following are the authors recommendations for using this library and interoperating with external Syndicate components. If you find they differ from Tony Garnock-Jones recommendations, take Tony&apos;s recommendations instead.</p>
+<h3>Speak the gatekeeper protocol to expose local entities</h3>
+<p>When providing a service do not expose that service on the initial capability exposed to peers. Require that peers use the <a href="https://synit.org/book/protocols/syndicate/gatekeeper.html">gatekeeper protocol</a> to resolve service instead. Require the gatekeeper protocol regardless if the peer or transport is &quot;trusted&quot;.</p>
+<p>Some lines of reasoning leading to this method:</p>
+<ul>
+<li>Components can multiplex services over a single protocol session.</li>
+<li>Clients can &quot;step though&quot; relays directly into a service provided by your component using the standard gatekeeper routing mechanism.</li>
+<li>Failure or success of service negotiation is made explicit.</li>
+</ul>
+<p>Furthermore, if a service requires dataspace semantics, provide clients with a dataspace that is local to the service. The reasoning being:</p>
+<ul>
+<li>Local assertions to local dataspaces only create transport traffic during observation by a peer.</li>
+<li>A capability to a local service asserted to a peer can be asserted back to a different service hosted in the same daemon, in which case traffic between the service entities short circuits and becomes local traffic within a daemon (unless the client has amended caveats to a capability).</li>
+</ul>
+<p>Example of using the gatekeeper protocol within a Syndicate server configuration:</p>
+<pre>  <code># When the foobar service is required…
+? &lt;require-service &lt;service foobar ?detail&gt;&gt;
+[
+  # Require the foobard daemon…
+  &lt;require-service &lt;daemon foobard&gt;&gt;
+  ? &lt;service-object &lt;daemon foobard&gt; ?obj&gt;
+  [
+    # Resolve the service using the gatekeeper protocol and announce the capability
+    # using a &lt;service-object &lt;service foobar …&gt; …&gt; assertion.
+    let ?rewriter = &lt;* $config [ &lt;rewrite ?resp &lt;service-object &lt;service foobar $detail&gt; $resp&gt;&gt; ]&gt;
+    $obj &lt;resolve &lt;$label $detail&gt; $rewriter&gt;
+  ]
+]
+</code></pre>
+<p>Example of a stacked sturdyref route:</p>
+<pre>  <code>&lt;route
+    [&lt;tcp &quot;example.net&quot; 1024&gt;]
+    &lt;ref {oid: examples, sig: #[W1gClLD8dJDFt_NTYqd4xA]}&gt;
+    &lt;example-service { turbo-mode-enable: #t }&gt;
+    &lt;ref {oid: service-internals, sig: #[8SQ3tSe9r2dNwCnxd-pVvw]}&gt;
+  &gt;
+</code></pre>
+<h3>Actors and Facets</h3>
+<ul>
+<li>Do not share data between actors, use communication instead. Assume that other actors are running on other CPU cores.</li>
+<li>Facets are cheaper than actors. Share data between facets within an actor.</li>
+</ul>
 <hr />
 <p>This work has been supported by the <a href="https://nlnet.nl/">NLnet Foundation</a> and the European Commission&apos;s <a href="https://www.ngi.eu/">Next Generation Internet programme</a>. The <a href="https://syndicate-lang.org/projects/2021/system-layer/">Syndicate Actor Model</a> through the <a href="https://nlnet.nl/PET/">NGI Zero PET</a> program and this library as a part of the <a href="https://eris.codeberg.page/">ERIS project</a> through <a href="https://nlnet.nl/assure/">NGI Assure</a>.</p>
 <p>  <a href="https://nlnet.nl/">    <img src="./nlnet.svg" style="max-width: 100%;" alt="NLnet" />  </a></p>
@@ -213,7 +233,7 @@ It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-l
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-09T01:48:36Z
+        Builded at 2024-12-10T01:47:03Z
         </p>
       </div>
     </div>

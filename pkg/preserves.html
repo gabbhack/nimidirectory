@@ -91,11 +91,27 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>Preserves</h1>
-<p>Nim implementation of the <a href="https://preserves.dev/">Preserves data language</a>.</p>
+                <document><h1>The Preserves Data Language</h1>
+<p><a href="https://preserves.gitlab.io/preserves/">Preserves</a> is a data model and serialization format. The Preserves model features the familiar boolean, integer, float, string, sequence, dictionaries, and set types. Less familiar to Nim are the symbol and record types. The symbol is a string that is elevated for use in type comparisons and the record is a labelled (usually by symbol) collection of fields.</p>
+<p>The textual representation isn&apos;t necessary to study before using Preserves because the Preserves model is a subset of Nim types and a code-generator is available to convert Preserves schemas to Nim modules.</p>
 <p>If you don&apos;t know why you need Preserves, see the <a href="https://git.syndicate-lang.org/ehmry/syndicate-nim">Syndicate library</a>.</p>
+<h2>Preserves schema</h2>
+<p><a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-protocols/src/commit/ca92d99c524d99b6d3be04a0ba5383ec5a65b550/schemas/simpleChatProtocol.prs">Here</a> is an example schema for a chat protocol:</p>
+<pre>  <code>; Present is a record with symbol &quot;Present&quot; as record label
+; and one string field referred to as &quot;username&quot;.
+Present = &lt;Present @username string&gt;.
+
+; Says is a record with symbol &quot;Says&quot; as record label
+; and two fields referred to as &quot;who&quot; and &quot;what&quot;.
+Says = &lt;Says @who string @what string&gt;.
+</code></pre>
+<h3>Code Generation</h3>
+<p>The <a href="./src/preserves/preserves_schema_nim.nim">preserves-schema-nim</a> utility would generate the following module for the preceding schema:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">Says</span><span class="op">*</span> {<span class="op">.</span><span class="ide">preservesRecord</span>: <span class="str">&quot;Says&quot;</span><span class="op">.</span>} <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    `<span class="ide">who</span>`<span class="op">*:</span> <span class="ide">string</span></div></div><div class="line"><div class="line-content">    `<span class="ide">what</span>`<span class="op">*:</span> <span class="ide">string</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">Present</span><span class="op">*</span> {<span class="op">.</span><span class="ide">preservesRecord</span>: <span class="str">&quot;Present&quot;</span><span class="op">.</span>} <span class="op">=</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    `<span class="ide">username</span>`<span class="op">*:</span> <span class="ide">string</span></div></div>  </code></pre>
+<p>There are two types corresponding to the two records defined in the schema. The <code>preservesRecord</code> pragma allows for a lossless conversion between the Nim type system and Preserves records.</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">var</span></div></div><div class="line"><div class="line-content">  <span class="ide">present</span> <span class="op">=</span> <span class="ide">Present</span>(<span class="ide">username</span>: <span class="str">&quot;Judy&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">pr</span> <span class="op">=</span> <span class="ide">present</span><span class="op">.</span><span class="ide">toPreserve</span>()</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="op">$</span><span class="ide">pr</span> <span class="op">==</span> """<Present "Judy">"""</div></div><div class="line"><div class="line-content"><span class="ide">assert</span> <span class="ide">present</span><span class="op">.</span><span class="ide">fromPreserve</span>(<span class="ide">pr</span>) <span class="op">==</span> <span class="ide">true</span></div></div>  </code></pre>
 <h2>Library</h2>
-<p>To parse or produce Preserves one should write a <a href="https://preserves.dev/preserves-schema.html">schema</a> and generate a Nim module using the <a href="./src/preserves/preserves_schema_nim.nim">preserves_schema_nim</a> utility. This module will contain Nim types corresponding to schema definitions. The <code>toPreserve</code> and<code>fromPreserve</code> routines will convert Nim types to and from Preserves. The <code>decodePreserves</code>, <code>parsePreserves</code>, <code>encode</code>, and <code>$</code> routines will convert <code>Preserve</code> objects to and from binary and textual encoding.</p>
+<p>To parse or produce Preserves one should write a <a href="https://preserves.dev/preserves-schema.html">schema</a> and generate a Nim module using the <a href="./src/preserves/preserves_schema_nim.nim">preserves-schema-nim</a> utility. This module will contain Nim types corresponding to schema definitions. The <code>toPreserve</code> and<code>fromPreserve</code> routines will convert Nim types to and from Preserves. The <code>decodePreserves</code>, <code>parsePreserves</code>, <code>encode</code>, and <code>$</code> routines will convert <code>Preserve</code> objects to and from binary and textual encoding.</p>
 <p>To debug the <code>toPreserves</code> and <code>fromPreserves</code> routines compile with <code>-d:tracePreserves</code>.</p>
 <h2>Utilities</h2>
 <ul>
@@ -177,7 +193,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-09T01:48:36Z
+        Builded at 2024-12-10T01:47:03Z
         </p>
       </div>
     </div>
