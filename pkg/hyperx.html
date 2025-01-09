@@ -162,6 +162,7 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
 </ul>
 <h3>ORC</h3>
 <p>Nim&apos;s stdlib async creates cycles, and the ORC cycle collector does not run often enough. If you want to use orc, you&apos;ll need to call <code>GC_runOrc()</code> at some point, for example on client close or stream close. Related <a href="https://github.com/nim-lang/Nim/issues/21631">nim issue</a>. <code>--mm:refc</code> does not have this issue.</p>
+<p>This has been fixed in devel, and next Nim 2.2.1 release.</p>
 <h3>Related libs</h3>
 <ul>
 <li>  <a href="https://github.com/nitely/nim-grpc">nim-grpc</a></li>
@@ -236,7 +237,7 @@ This library supports HTTP/2 only. Not HTTP/1, nor HTTP/3.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

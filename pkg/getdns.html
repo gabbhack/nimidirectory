@@ -88,6 +88,9 @@
 <blockquote>
 <p>getdns is a modern asynchronous DNS API. It implements DNS entry points from a design developed and vetted by application developers, in an API specification. The open source C implementation of getdns is developed and maintained in collaboration by NLnet Labs, Sinodun and No Mountain Software.</p>
 </blockquote>
+<h2>Event loop</h2>
+<p>The only event loop implemented is for <a href="https://github.com/alaviss/nim-sys">pkg/sys/ioqueue</a>.
+Import it with <code>pkg/getdns/events_sys</code> and call <code>set_sys_ioqueue_base</code> on each getdns <code>Context</code>.</p>
 </document>
             
         </div>
@@ -156,7 +159,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

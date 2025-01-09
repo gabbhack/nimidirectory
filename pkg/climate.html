@@ -90,6 +90,7 @@
                 <document><h1>Climate</h1>
 <p><strong>Climate</strong> is a library to create CLIs. It&apos;s your CLI mate 😜</p>
 <p>It allows you to think in high-level abstractions like commands and subcommands instead of parsers and tokens.</p>
+<p>  <a href="https://moigagoo.github.io/climate/theindex.html">API docs index →</a></p>
 <h1>Installation</h1>
 <p>Install Climate with Nimble:</p>
 <pre>  <code>$ nimble install -y climate
@@ -97,12 +98,15 @@
 <p>or add it to your .nimble file:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;climate&quot;</span></div></div>  </code></pre>
 <h1>Usage</h1>
-<p>Defining CLIs with Climate is easy. There are just three terms you need to know: route, handler, and context.</p>
+<p>To create CLIs with Climate, you need to learn only three terms: <strong>route</strong>, <strong>handler</strong>, and <strong>context</strong>.</p>
+<h2>Route</h2>
 <p><strong>Route</strong> is a unique sequence of words that correspond to a CLI command. For example, in git-flow, <code>flow release start</code> is a route.</p>
+<h2>Handler</h2>
 <p><strong>Handler</strong> is a Nim proc invoked when the command is called by the user. It accepts a <code>Context</code> object and returns an <code>int</code>.</p>
+<h2>Context</h2>
 <p><strong>Context</strong> is an object that holds the values for the arguments and options from the command line.</p>
 <p>Context has a <code>cmdArguments</code> sequence and <code>cmdOptions</code> table.</p>
-<h2>Example</h2>
+<h1>Example</h1>
 <p>Here&apos;s a fake git implemented with Climate:</p>
 <ol>
 <li>Define routes:</li>
@@ -117,22 +121,22 @@
 </ol>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="com"># git.nim</span></div></div><div class="line"><div class="line-content"><span class="ide">quit</span> <span class="ide">parseCommands</span>(<span class="ide">commands</span>)</div></div>  </code></pre>
 <p>See the complete example in <code>demo</code> folder.</p>
-<h2>Sugar</h2>
+<h1>Sugar</h1>
 <p>To make it easier to work with arguments and options, Climate offers <code>arg(Context)</code>, <code>args(Context)</code>, and <code>opt(Context)</code> templates in <code>climate/sugar</code> module.</p>
-<ul>
-<li><code>arg</code> checks that the command has been invoked with exactly one argument and captures its value; if the command was invoked with zero or more than one arguments, the fallback code is executed:</li>
-</ul>
+<h2>  <code>arg</code></h2>
+<p><code>arg</code> checks that the command has been invoked with exactly one argument and captures its value; if the command was invoked with zero or more than one arguments, the fallback code is executed:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">start</span><span class="op">*</span>(<span class="ide">context</span>: <span class="ide">Context</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">arg</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">stdout</span><span class="op">.</span><span class="ide">write</span> fmt"Starting release {arg}..."</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;done!&quot;</span></div></div><div class="line"><div class="line-content">  <span class="kwd">do</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Release name is mandatory&quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> <span class="num">1</span></div></div>  </code></pre>
-<ul>
-<li><code>args</code> checks that the command has been invoked with at least one argument and captures the values of the passed arguments; if the command was invoked with no arguments, the fallback code is executed:</li>
-</ul>
+<h2>  <code>args</code></h2>
+<p><code>args</code> checks that the command has been invoked with at least one argument and captures the values of the passed arguments; if the command was invoked with no arguments, the fallback code is executed:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">add</span><span class="op">*</span>(<span class="ide">context</span>: <span class="ide">Context</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">args</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">for</span> <span class="ide">filename</span> <span class="kwd">in</span> <span class="ide">args</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">echo</span> <span class="str">&quot;Adding &quot;</span> <span class="op">&amp;</span> <span class="ide">filename</span></div></div><div class="line"><div class="line-content">  <span class="kwd">do</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;No filename provided&quot;</span></div></div><div class="line"><div class="line-content">    <span class="kwd">return</span> <span class="num">1</span></div></div>  </code></pre>
-<ul>
-<li><code>opt</code> checks if the command has been invoked with a certain option defined by its short and long names and captures its value:</li>
-</ul>
+<h2>  <code>opt</code></h2>
+<p><code>opt</code> checks if the command has been invoked with a certain option defined by its short or long name and captures its value:</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">root</span><span class="op">*</span>(<span class="ide">context</span>: <span class="ide">Context</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">opt</span> <span class="str">&quot;version&quot;</span>, <span class="str">&quot;&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Version 1.0.0&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">opt</span> <span class="str">&quot;help&quot;</span>, <span class="str">&quot;h&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Usage: ...&quot;</span></div></div>  </code></pre>
+<h2>  <code>flag</code></h2>
+<p><code>flag</code> checks if the command has been invoked with a certain flag, i.e. an option without a value, defined by its short or long name:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">root</span><span class="op">*</span>(<span class="ide">context</span>: <span class="ide">Context</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">opt</span> <span class="str">&quot;version&quot;</span>, <span class="str">&quot;&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Version 1.0.0&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">context</span><span class="op">.</span><span class="ide">opt</span> <span class="str">&quot;help&quot;</span>, <span class="str">&quot;h&quot;</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="str">&quot;Usage: ...&quot;</span></div></div>  </code></pre>
 <h2>Supersugar</h2>
-<p>To make it even sweeter, combine <code>std/with</code> with <code>climate/sugar</code>:</p>
+<p>To make it even sweeter, use <code>std/with</code>:</p>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">root</span><span class="op">*</span>(<span class="ide">context</span>: <span class="ide">Context</span>): <span class="ide">int</span> <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="str">&quot;Welcome to FakeGit!&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">with</span> <span class="ide">context</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">opt</span> <span class="str">&quot;version&quot;</span>, <span class="str">&quot;&quot;</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">echo</span> <span class="str">&quot;Version 1.0.0&quot;</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">    <span class="ide">opt</span> <span class="str">&quot;help&quot;</span>, <span class="str">&quot;h&quot;</span>:</div></div><div class="line"><div class="line-content">      <span class="ide">echo</span> <span class="str">&quot;Usage: ...&quot;</span></div></div>  </code></pre>
 </document>
             
@@ -202,7 +206,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

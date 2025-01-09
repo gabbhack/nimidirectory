@@ -102,31 +102,22 @@
                 <document><h1>SQLiteral</h1>
 <p>A high level SQLite API for Nim</p>
 <p>Supports multi-threading, prepared statements, proper typing,
-zero-copy data paths, debugging, JSON, optimizing, backups, and more...</p>
+zero-copy data paths, debugging, optimizing, backups, and more...</p>
 <h2>Documentation</h2>
 <p>http://olliNiinivaara.github.io/SQLiteral/</p>
-<h2>Installation</h2>
-<p>  <code>atlas use sqliteral</code></p>
-<h2>4.0.0 Release notes (2023-08-19)</h2>
+<h2>5.0.0 Release notes (2024-12-22)</h2>
 <ul>
-<li>Compatibility with Nim 2</li>
-<li>Single-threaded mode is not supported anymore (breaking change)</li>
-<li>Avoid crashing from trying to get filesize of in-memory database in about</li>
-<li>Unlimited amount of threads supported</li>
-<li>New finalizeStatements proc (semi-breaking change)</li>
-<li>New interrupt proc</li>
-<li>Various minor performance and other fixes</li>
-</ul>
-<h2>4.0.1 Release notes (2024-10-28)</h2>
-<ul>
-<li>Compatibility with Nim 2.2</li>
-<li>Dark mode support in docs</li>
-<li>Threaded JSON example uses malebolgia instead of threadpools</li>
-<li>Nim 1.x is not supported anymore, please upgrade now</li>
+<li>statements from more than one enum list can be used</li>
+<li>a statement is prepared automatically on first use</li>
+<li>all used statements are finalized automatically on close</li>
+<li>only the Nim default memory managers (ARC and ORC family) are supported</li>
+<li>errors that are not sqlite errors are logged with error code 10000</li>
+<li>failing to close raises an SQLError</li>
+<li>json_extract, json_patch, json_valid, and json_tree procs removed as too high level (esp. now that multiple statement lists are supported)</li>
 </ul>
 <h2>Example</h2>
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">sqliteral</span></div></div><div class="line"><div class="line-content"><span class="kwd">const</span> <span class="ide">Schema</span> <span class="op">=</span> <span class="str">&quot;CREATE TABLE IF NOT EXISTS Example(string TEXT NOT NULL)&quot;</span></div></div><div class="line"><div class="line-content"><span class="kwd">type</span> <span class="ide">SqlStatements</span> <span class="op">=</span> <span class="kwd">enum</span></div></div><div class="line"><div class="line-content">  <span class="ide">Upsert</span> <span class="op">=</span> """INSERT INTO Example(rowid, string) VALUES(1, ?)
-   ON CONFLICT(rowid) DO UPDATE SET string = ?"""</div></div><div class="line"><div class="line-content">  <span class="ide">SelectAll</span> <span class="op">=</span> <span class="str">&quot;SELECT string FROM Example&quot;</span></div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">db</span>: <span class="ide">SQLiteral</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">operate</span>(<span class="ide">i</span>: <span class="ide">string</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">view</span>: <span class="ide">DbValue</span> <span class="op">=</span> <span class="ide">i</span><span class="op">.</span><span class="ide">toDb</span>(<span class="num">3</span>, <span class="num">7</span>) <span class="com"># zero-copy view into string</span></div></div><div class="line"><div class="line-content">  <span class="ide">db</span><span class="op">.</span><span class="ide">transaction</span>: <span class="ide">db</span><span class="op">.</span><span class="ide">exec</span>(<span class="ide">Upsert</span>, <span class="ide">view</span>, <span class="ide">view</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">for</span> <span class="ide">row</span> <span class="kwd">in</span> <span class="ide">db</span><span class="op">.</span><span class="ide">rows</span>(<span class="ide">SelectAll</span>): <span class="ide">echo</span> <span class="ide">row</span><span class="op">.</span><span class="ide">getCString</span>(<span class="num">0</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">db</span><span class="op">.</span><span class="ide">openDatabase</span>(<span class="str">&quot;example.db&quot;</span>, <span class="ide">Schema</span>)</div></div><div class="line"><div class="line-content"><span class="ide">db</span><span class="op">.</span><span class="ide">prepareStatements</span>(<span class="ide">SqlStatements</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">input</span> <span class="op">=</span> <span class="str">&quot;012INPUT89&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">operate</span>(<span class="ide">input</span>)</div></div><div class="line"><div class="line-content"><span class="ide">db</span><span class="op">.</span><span class="ide">close</span>()</div></div>  </code></pre>
+   ON CONFLICT(rowid) DO UPDATE SET string = ?"""</div></div><div class="line"><div class="line-content">  <span class="ide">SelectAll</span> <span class="op">=</span> <span class="str">&quot;SELECT string FROM Example&quot;</span>  </div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">db</span>: <span class="ide">SQLiteral</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">operate</span>(<span class="ide">i</span>: <span class="ide">string</span>) <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">view</span>: <span class="ide">DbValue</span> <span class="op">=</span> <span class="ide">i</span><span class="op">.</span><span class="ide">toDb</span>(<span class="num">3</span>, <span class="num">7</span>) <span class="com"># zero-copy view into string</span></div></div><div class="line"><div class="line-content">  <span class="ide">db</span><span class="op">.</span><span class="ide">transaction</span>: <span class="ide">db</span><span class="op">.</span><span class="ide">exec</span>(<span class="ide">Upsert</span>, <span class="ide">view</span>, <span class="ide">view</span>)</div></div><div class="line"><div class="line-content">  <span class="kwd">for</span> <span class="ide">row</span> <span class="kwd">in</span> <span class="ide">db</span><span class="op">.</span><span class="ide">rows</span>(<span class="ide">SelectAll</span>): <span class="ide">echo</span> <span class="ide">row</span><span class="op">.</span><span class="ide">getCString</span>(<span class="num">0</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">db</span><span class="op">.</span><span class="ide">openDatabase</span>(<span class="str">&quot;example.db&quot;</span>, <span class="ide">Schema</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">var</span> <span class="ide">input</span> <span class="op">=</span> <span class="str">&quot;012INPUT89&quot;</span></div></div><div class="line"><div class="line-content"><span class="ide">operate</span>(<span class="ide">input</span>)</div></div><div class="line"><div class="line-content"><span class="ide">db</span><span class="op">.</span><span class="ide">close</span>()</div></div>  </code></pre>
 </document>
             
         </div>
@@ -195,7 +186,7 @@ zero-copy data paths, debugging, JSON, optimizing, backups, and more...</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

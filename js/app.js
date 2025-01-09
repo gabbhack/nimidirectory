@@ -1,5 +1,19 @@
 const packages = [
   {
+    "name": "tejina",
+    "url": "https://github.com/bctnry/tejina",
+    "method": "git",
+    "tags": [
+      "web",
+      "http",
+      "framework",
+      "template"
+    ],
+    "description": "Minimal web framework for Nim",
+    "license": "MIT",
+    "web": "https://github.com/bctnry/tejina"
+  },
+  {
     "name": "envmw",
     "url": "https://pf4sh.eu/git/pulux/envmw",
     "method": "git",
@@ -17367,6 +17381,22 @@ const packages = [
     "web": "https://github.com/planetis-m/jsonpak"
   },
   {
+    "name": "computesim",
+    "url": "https://github.com/planetis-m/compute-sim",
+    "method": "git",
+    "tags": [
+      "gpu-simulation",
+      "compute-shaders",
+      "gpgpu-computing",
+      "multithreading",
+      "parallelism",
+      "threads"
+    ],
+    "description": "Learn and understand compute shader operations and control flow.",
+    "license": "MIT",
+    "web": "https://github.com/planetis-m/compute-sim"
+  },
+  {
     "name": "golden",
     "url": "https://github.com/disruptek/golden",
     "method": "git",
@@ -17927,6 +17957,24 @@ const packages = [
     "description": "Wrapper for Heng Li's kseq",
     "license": "MIT",
     "web": "https://github.com/andreas-wilm/nimreadfq"
+  },
+  {
+    "name": "readfx",
+    "url": "https://github.com/quadram-institute-bioscience/readfx",
+    "method": "git",
+    "tags": [
+      "fasta",
+      "fastq",
+      "fastx",
+      "seqfu",
+      "bioinformatics",
+      "parser",
+      "kseq",
+      "readfq"
+    ],
+    "description": "FASTX parser for SeqFu (klib)",
+    "license": "MIT",
+    "web": "https://github.com/quadram-institute-bioscience/readfx"
   },
   {
     "name": "googlesearch",
@@ -19029,6 +19077,19 @@ const packages = [
     "description": "Unicode text segmentation tr29",
     "license": "MIT",
     "web": "https://github.com/nitely/nim-segmentation"
+  },
+  {
+    "name": "silerovad",
+    "url": "https://github.com/nitely/nim-silero-vad",
+    "method": "git",
+    "tags": [
+      "vad",
+      "voice",
+      "audio"
+    ],
+    "description": "Silero VAD Voice Activity Detection",
+    "license": "MIT",
+    "web": "https://github.com/nitely/nim-silero-vad"
   },
   {
     "name": "anonimongo",
@@ -34258,6 +34319,86 @@ const packages = [
     "description": "a customizable, beautiful, and blazing fast system fetch",
     "license": "GPLv3",
     "web": "https://gitlab.com/Maxb0tbeep/bestfetch"
+  },
+  {
+    "name": "flame",
+    "url": "https://github.com/navid-m/flame",
+    "method": "git",
+    "tags": [
+      "music",
+      "audio",
+      "synth",
+      "synthesizer",
+      "sequencer"
+    ],
+    "description": "High level audio synthesis and sequencing library",
+    "license": "GPLv3",
+    "web": "https://github.com/navid-m/flame"
+  },
+  {
+    "name": "derichekde",
+    "url": "https://github.com/chancyk/deriche-kde",
+    "method": "git",
+    "tags": [
+      "kde",
+      "density",
+      "kernel",
+      "estimation",
+      "deriche",
+      "plot"
+    ],
+    "description": "Fast KDE implementation in pure Nim using linear binning and Deriche approximation",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "NimBTC",
+    "url": "https://git.dog/Caroline/NimBTC",
+    "method": "git",
+    "tags": [
+      "Crypto", "BTC", "Bitcoin"
+    ],
+    "description": "A BTC RPC Wrapper for Nim",
+    "license": "MIT"
+  },
+  {
+    "name": "gdext",
+    "url": "https://github.com/godot-nim/gdext-nim",
+    "method": "git",
+    "tags": [
+      "godot",
+      "godot4",
+      "gdextension",
+      "game"
+    ],
+    "description": "Nim for Godot GDExtension. A pure library and a CLI tool.",
+    "license": "MIT",
+    "web": "https://github.com/godot-nim/gdext-nim"
+  },
+  {
+    "name": "yubikey_otp",
+    "url": "https://github.com/ThomasTJdev/nim_yubikey_otp",
+    "method": "git",
+    "tags": [
+      "yubikey",
+      "otp"
+    ],
+    "description": "Simple validator and utils for Yubikey OTP",
+    "license": "MIT",
+    "web": "https://github.com/ThomasTJdev/nim_yubikey_otp"
+  },
+  {
+    "name": "serverly",
+    "url": "https://github.com/roger-padrell/serverly",
+    "method": "git",
+    "tags": [
+      "serverly",
+      "http",
+      "server",
+      "serving"
+    ],
+    "description": "HTTP serving made eazy",
+    "license": "MIT",
+    "web":"https://roger-padrell.github.io/serverly/"
   }
 ]
 

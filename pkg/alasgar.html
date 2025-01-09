@@ -104,11 +104,12 @@
 <p>alasgar is a pure nim game engine based on OpenGL. The main reason to start developing a new game engine, was to learn graphics programming (first challenge) using nim programming language (second challenge). You can write the whole game logic and also shaders in nim. It supports a few platforms including mobile, web, and desktop. It performs well in the performance tests. It is the journey of a backend/system developer through graphics/game programming.</p>
 <h1>Platforms</h1>
 <ul>
-<li>Linux</li>
-<li>Windows</li>
-<li>Android</li>
-<li>WebAssembly</li>
-<li>Mac (work in progress)</li>
+<li>FreeBSD (tested on 14.0, probably works also on NetBSD and OpenBSD also)</li>
+<li>Linux (tested on various distros like void and arch)</li>
+<li>Windows (tested on Windows 11)</li>
+<li>Android (tested on some old samsung devices)</li>
+<li>WebAssembly (tested on firefox and chrome)</li>
+<li>macOS (tested on macOS Ventura)</li>
 <li>iOS (not supoorted)</li>
 </ul>
 <h2>Experimental game engine</h2>
@@ -245,7 +246,7 @@ I used the chroma library to manipulate colors, it is a great library, <a href="
 <pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">    <span class="ide">Scene</span><span class="op">*</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">        <span class="com">## Background color, default is black</span></div></div><div class="line"><div class="line-content">        <span class="ide">background</span><span class="op">*:</span> <span class="ide">Color</span></div></div><div class="line"><div class="line-content">        <span class="com">## Ambient color which will affect all objects in the scene when lighting, default is black that means no effect</span></div></div><div class="line"><div class="line-content">        <span class="ide">ambient</span><span class="op">*:</span> <span class="ide">Color</span></div></div><div class="line"><div class="line-content">        <span class="com">## Fog density, default is 0</span></div></div><div class="line"><div class="line-content">        <span class="ide">fogDensity</span><span class="op">*:</span> <span class="ide">float32</span></div></div><div class="line"><div class="line-content">        <span class="com">## Minimum fog distance to apply fog effect, default is 0</span></div></div><div class="line"><div class="line-content">        <span class="ide">fogMinDistance</span><span class="op">*:</span> <span class="ide">float32</span></div></div><div class="line"><div class="line-content">        <span class="ide">environmentMap</span><span class="op">*:</span> <span class="ide">Texture</span></div></div><div class="line"><div class="line-content">        <span class="ide">environmentIntensity</span><span class="op">*:</span> <span class="ide">float32</span></div></div><div class="line"><div class="line-content">        <span class="ide">environmentBlurrity</span><span class="op">*:</span> <span class="ide">float32</span></div></div>  </code></pre>
 <h1>Dependencies</h1>
 <h2>vmath, chroma, and nimx</h2>
-<p>In the newer version of nim I had issue with compiling nim to GLSL using vmath, I removed it and provided a minimal implementation. Chroma is still a dependency. I also removed dependencies and also remaining build scripts that I borrow it from nimx. Some configs and sample projects will be provided to show how to import the application to android and webassembly.</p>
+<p>In the newer version of nim I had issue with compiling nim to GLSL because of vmath dependency, I removed it and provided a minimal implementation. Chroma is still a dependency. I also removed most of the dependencies and also all remaining build scripts that I borrow it from nimx. Some configs and sample projects will be provided to show how to import the application to android and webassembly.</p>
 </document>
             
         </div>
@@ -314,7 +315,7 @@ I used the chroma library to manipulate colors, it is a great library, <a href="
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

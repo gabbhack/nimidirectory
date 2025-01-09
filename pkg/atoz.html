@@ -91,26 +91,7 @@
     <div class="container row pt-4" id="pkg-content">
         <div class="col-8 box rounded p-3" id="readme-section">
             
-                <document><h1>atoz</h1>
-<p>Amazon Web Services (AWS) APIs in Nim</p>
-<h2>Supported APIs</h2>
-<p><a href="https://github.com/disruptek/atoz/tree/master/src/atoz">Sadly, only the 220 most popular AWS APIs are supported at this time.</a> :cry:</p>
-<h2>Example</h2>
-<p>Your import statement names the APIs you want to use and the versions of same,
-ie. release dates without any hyphens.</p>
-<p>For signing purposes, set your <code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>, and
-<code>AWS_REGION</code> environmental variables.</p>
-<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">asyncdispatch</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">httpclient</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">httpcore</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">atoz</span><span class="op">/</span><span class="ide">sqs_20121105</span> <span class="com"># ie. SQS release version 2012-11-05</span></div></div><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">atoz</span><span class="op">/</span><span class="ide">sns_20100331</span> <span class="com"># ie. SNS release version 2010-03-31</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span></div></div><div class="line"><div class="line-content">  <span class="com"># the call() gets arguments you might expect; they have sensible</span></div></div><div class="line"><div class="line-content">  <span class="com"># defaults depending upon the call, the API, whether they are</span></div></div><div class="line"><div class="line-content">  <span class="com"># required, what their types are, whether we can infer a default...</span></div></div><div class="line"><div class="line-content">  <span class="ide">myQueues</span> <span class="op">=</span> <span class="ide">getListQueues</span><span class="op">.</span><span class="ide">call</span>(<span class="ide">QueueNamePrefix</span><span class="op">=</span><span class="str">&quot;production_&quot;</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">for</span> <span class="ide">response</span> <span class="kwd">in</span> <span class="ide">myQueues</span><span class="op">.</span><span class="ide">retried</span>(<span class="ide">tries</span><span class="op">=</span><span class="num">3</span>):</div></div><div class="line"><div class="line-content">  <span class="kwd">if</span> <span class="ide">response</span><span class="op">.</span><span class="ide">code</span><span class="op">.</span><span class="ide">is2xx</span>:</div></div><div class="line"><div class="line-content">    <span class="ide">echo</span> <span class="ide">waitfor</span> <span class="ide">response</span><span class="op">.</span><span class="ide">body</span></div></div><div class="line"><div class="line-content">    <span class="kwd">break</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="kwd">let</span></div></div><div class="line"><div class="line-content">  <span class="com"># you can usually override the API version, even to use a later</span></div></div><div class="line"><div class="line-content">  <span class="com"># version than the one you imported.  but, y&apos;know, why would you?</span></div></div><div class="line"><div class="line-content">  <span class="ide">myTopics</span> <span class="op">=</span> <span class="ide">getListTopics</span><span class="op">.</span><span class="ide">call</span>(<span class="ide">Version</span><span class="op">=</span><span class="str">&quot;1969-12-31&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">response</span> <span class="op">=</span> <span class="ide">waitfor</span> <span class="ide">myTopics</span><span class="op">.</span><span class="ide">retry</span>(<span class="ide">tries</span><span class="op">=</span><span class="num">3</span>)</div></div><div class="line"><div class="line-content"><span class="kwd">if</span> <span class="ide">response</span><span class="op">.</span><span class="ide">code</span><span class="op">.</span><span class="ide">is2xx</span>:</div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">waitfor</span> <span class="ide">response</span><span class="op">.</span><span class="ide">body</span></div></div>  </code></pre>
-<h2>Details</h2>
-<p>This project is based almost entirely upon the following:</p>
-<ul>
-<li>OpenAPI Code Generator https://github.com/disruptek/openapi</li>
-<li>Amazon Web Services Signature Version 4 https://github.com/disruptek/sigv4</li>
-</ul>
-<p>Patches welcome!</p>
-<h2>License</h2>
-<p>MIT</p>
-</document>
+                <p class="no-readme"><i>The package README is not present or from an unsupported forge.</i></p>
             
         </div>
         <div class="col-3" id="meta-section">
@@ -178,7 +159,7 @@ ie. release dates without any hyphens.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

@@ -112,6 +112,21 @@
 <pre>  <code class="language-sh">SYNDICATE_ROUTE=&apos;&lt;route [&lt;unix &quot;/run/user/1000/dataspace&quot;&gt;] [&lt;ref {oid: &quot;syndicate&quot; sig: #x&quot;69ca300c1dbfa08fba692102dd82311a&quot;}&gt;]&gt;&apos; nim c -r tests/test_chat.nim --user:fnord
 </code></pre>
 <h3>  <a href="https://git.syndicate-lang.org/ehmry/syndicate_utils">syndicate_utils</a></h3>
+<h2>Drivers</h2>
+<p>This SAM implementation includes protocol drivers that may be instantiated from a library or as a standalone component.</p>
+<p>For drivers that require additional dependencies see <a href="https://git.syndicate-lang.org/ehmry/syndicate_utils">syndicate_utils</a>.</p>
+<h3>HTTP</h3>
+<p>HTTP server and client. HTTPS is not supported.</p>
+<ul>
+<li>  <a href="./schema/http_driver.prs">http_driver.prs</a></li>
+<li>  <a href="./src/syndicate/drivers/http_driver.nim">http_driver.nim</a></li>
+</ul>
+<h3>Subprocess</h3>
+<p>Execute UNIX subprocesses and exchange data over stdio using messages.</p>
+<ul>
+<li>  <a href="./schema/subprocesses.prs">subprocesses.prs</a></li>
+<li>  <a href="./src/syndicate/drivers/subprocesses.nim">subprocesses.nim</a></li>
+</ul>
 <h2>Tracing</h2>
 <p>Tracing is enabled at compile-time by default, unless disabled with <code>--define:traceSyndicate=false</code>.
 Tracing is not active at runtime unless the <code>$SYNDICATE_TRACE_FILE</code> environmental variable is set.
@@ -162,6 +177,11 @@ It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-l
 <li>Do not share data between actors, use communication instead. Assume that other actors are running on other CPU cores.</li>
 <li>Facets are cheaper than actors. Share data between facets within an actor.</li>
 </ul>
+<h3>Observations of Observations</h3>
+<p>Services can react to clients by observing observations or using <code>&lt;q …&gt;</code> and <code>&lt;a …&gt;</code> assertions from the <a href="https://git.syndicate-lang.org/syndicate-lang/syndicate-protocols/src/branch/main/schemas/rpc.prs">RPC protocol</a>.
+Use both.
+Observe observations and react to them by locally asserting <code>&lt;q …&gt;</code> and responding to the observer using data collected from the corresponding local <code>&lt;a …&gt;</code>.
+This allows errors in either case to be observed via <code>&lt;a _ &lt;error ?&gt;&gt;</code>.</p>
 <hr />
 <p>This work has been supported by the <a href="https://nlnet.nl/">NLnet Foundation</a> and the European Commission&apos;s <a href="https://www.ngi.eu/">Next Generation Internet programme</a>. The <a href="https://syndicate-lang.org/projects/2021/system-layer/">Syndicate Actor Model</a> through the <a href="https://nlnet.nl/PET/">NGI Zero PET</a> program and this library as a part of the <a href="https://eris.codeberg.page/">ERIS project</a> through <a href="https://nlnet.nl/assure/">NGI Assure</a>.</p>
 <p>  <a href="https://nlnet.nl/">    <img src="./nlnet.svg" style="max-width: 100%;" alt="NLnet" />  </a></p>
@@ -233,7 +253,7 @@ It should be compatible with <a href="https://git.syndicate-lang.org/syndicate-l
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

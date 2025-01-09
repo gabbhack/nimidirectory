@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nim Package Directory</title>
+  <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="New and updated Nim packages" href="https://nimble.directory/packages.xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlite.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a href="/" class="logo fw-500 display-1 text-black text-decoration-none navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          <a href="https://nim-lang.org/" class="nav-link">What's Nim?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/about.html" class="nav-link">What's Nimble?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="https://github.com/nim-lang/packages/" class="nav-link">Publish your package</a>
+        </li>
+        <!-- TODO: replace with something different -->
+        <li class="nav-item ms-3">
+          <a class="nav-link" href="https://www.youtube.com/channel/UCDAYn_VFt0VisL5-1a5Dk7Q/">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="nav-link theme-switcher-btn" id="darkmode" onclick="toggle_dark_mode()" href="#">
+            <span id="light-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span id="dark-mode-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="container">
+    <div class="container pt-10">
+        <h3 class="mb-3 fw-bold display-6 pt-4">tejina</h3>
+        <p class="tags">
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">web</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">http</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">framework</button></a>
+                </span>
+            
+                <span class="tag">
+                    <button class="btn-tag pkg-btn-tag">template</button></a>
+                </span>
+            
+        </p>
+        
+            <p class="pkg-desc">Minimal web framework for Nim</p>
+        
+        <a title="Copy" onclick="document.querySelector('#cmd').select();document.execCommand('copy');"
+            alt="Copy on clipboard">
+            <i class="fa fa-copy"></i>
+        </a>
+        <input id="cmd" onclick="this.select();" value="nimble install tejina" readonly="">
+        <br>
+        <small style="font-size: 0.8rem;">Need help? Read <a
+                href="https://github.com/nim-lang/nimble#creating-packages">Nimble</a></small>
+    </div>
+
+    <div class="container row pt-4" id="pkg-content">
+        <div class="col-8 box rounded p-3" id="readme-section">
+            
+                <document><h1>Tejina</h1>
+<p>  <img src="./logo.png" style="max-width: 100%;" alt="Tejina logo" /></p>
+<p><strong>手品</strong> (てじな; Tejina): Magic trick; sleight of hand</p>
+<p>Minimal web framework for Nim.</p>
+<p>Note that this is intended to work with <code>std/asynchttpserver</code>.</p>
+<h2>Install</h2>
+<p>Tejina is very small and is originally designed to be directly incorporate into
+the codebase. You can directly copy the two files in the <code>src/tejina</code> folder to
+the location of your choice. You can also download this project and use
+<code>nimble install</code>.</p>
+<h2>Quick start</h2>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="kwd">import</span> <span class="ide">tejina</span><span class="op">/</span>[<span class="ide">dispatch</span>, <span class="ide">templates</span>]</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="com"># Things that you&apos;re going to need while handling the requests, e.g. database</span></div></div><div class="line"><div class="line-content"><span class="com"># connections and configs.</span></div></div><div class="line"><div class="line-content"><span class="kwd">type</span></div></div><div class="line"><div class="line-content">  <span class="ide">Context</span><span class="op">*</span> <span class="op">=</span> <span class="kwd">ref</span> <span class="kwd">object</span></div></div><div class="line"><div class="line-content">    <span class="ide">someField</span><span class="op">*:</span> <span class="ide">string</span> </div></div><div class="line"><div class="line-content">    </div></div><div class="line"><div class="line-content"><span class="com"># Define routes here.</span></div></div><div class="line"><div class="line-content"><span class="ide">GET</span> <span class="str">&quot;/route1&quot;</span>:</div></div><div class="line"><div class="line-content">  <span class="com"># Loads file &quot;mytemplate.html&quot; (path relative to the residing directory of</span></div></div><div class="line"><div class="line-content">  <span class="com"># the current source file), evaluates it and stores the result in the</span></div></div><div class="line"><div class="line-content">  <span class="com"># variable `results` as a string. For example, `expandTemplate(xyz, &quot;blah&quot;)`</span></div></div><div class="line"><div class="line-content">  <span class="com"># will stores the result in the variable `xyz`.</span></div></div><div class="line"><div class="line-content">  <span class="ide">expandTemplate</span>(<span class="ide">results</span>, <span class="str">&quot;mytemplate.html&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">await</span> <span class="ide">req</span><span class="op">.</span><span class="ide">respond</span>(<span class="ide">Http200</span>, <span class="ide">results</span>,</div></div><div class="line"><div class="line-content">                    {<span class="str">&quot;Content-Type&quot;</span>: <span class="str">&quot;text/html;charset=utf-8&quot;</span>}<span class="op">.</span><span class="ide">newHttpHeaders</span>())</div></div><div class="line"><div class="line-content">                    </div></div><div class="line"><div class="line-content"><span class="ide">FALLBACK</span> <span class="str">&quot;/route1&quot;</span>:</div></div><div class="line"><div class="line-content">  <span class="com"># This handles all the other methods on route &quot;/route1&quot; that&apos;s not defined.</span></div></div><div class="line"><div class="line-content">  <span class="com"># Tejina returns an HTTP 501 error for undefined methods by default, but in case</span></div></div><div class="line"><div class="line-content">  <span class="com"># you want to handle this yourself, you can use `FALLBACK`.</span></div></div><div class="line"><div class="line-content">  <span class="ide">await</span> <span class="ide">req</span><span class="op">.</span><span class="ide">respond</span>(<span class="ide">Http404</span>, <span class="str">&quot;&quot;</span>, <span class="kwd">nil</span>)</div></div><div class="line"><div class="line-content">                    </div></div><div class="line"><div class="line-content"><span class="com"># You can use variables in routes. Variables are surrounded by curly brackets.</span></div></div><div class="line"><div class="line-content"><span class="ide">GET</span> <span class="str">&quot;/route2/{id}&quot;</span>:</div></div><div class="line"><div class="line-content">  <span class="com"># You can use `args[&quot;id&quot;]` to access the matched values.</span></div></div><div class="line"><div class="line-content">  <span class="com"># `args` is a `StringTableRef`, defined in `std/strtabs`.</span></div></div><div class="line"><div class="line-content">  <span class="ide">expandTemplate</span>(<span class="ide">results</span>, <span class="str">&quot;mytemplate2.html&quot;</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">await</span> <span class="ide">req</span><span class="op">.</span><span class="ide">respond</span>(<span class="ide">Http200</span>, <span class="ide">results</span>,</div></div><div class="line"><div class="line-content">                    {<span class="str">&quot;Content-Type&quot;</span>: <span class="str">&quot;text/html;charset=utf-8&quot;</span>}<span class="op">.</span><span class="ide">newHttpHeaders</span>())</div></div><div class="line"><div class="line-content">    </div></div><div class="line"><div class="line-content"><span class="com"># Then, set up asynchttpserver:</span></div></div><div class="line"><div class="line-content"><span class="kwd">proc</span> <span class="ide">serveHTTP</span><span class="op">*</span>() {<span class="op">.</span><span class="ide">async</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">  <span class="kwd">var</span> <span class="ide">server</span> <span class="op">=</span> <span class="ide">newAsyncHttpServer</span>()</div></div><div class="line"><div class="line-content">  <span class="kwd">let</span> <span class="ide">context</span> <span class="op">=</span> <span class="ide">Context</span>(<span class="ide">test</span>: <span class="str">&quot;blah&quot;</span>)</div></div><div class="line"><div class="line-content">  </div></div><div class="line"><div class="line-content">  <span class="com"># This part is very important.</span></div></div><div class="line"><div class="line-content">  <span class="com"># Whatever variables bound in this scope is available in the routes, but</span></div></div><div class="line"><div class="line-content">  <span class="com"># `acceptRequest` only accepts a procedure taking only one argument of type</span></div></div><div class="line"><div class="line-content">  <span class="com"># `Request`, thus if you want to have other variables you&apos;ll have to do</span></div></div><div class="line"><div class="line-content">  <span class="com"># this kind of manoeuvre. The variable `args` (used for the variables in</span></div></div><div class="line"><div class="line-content">  <span class="com"># the routes), however, is always available, since it&apos;s directly inserted</span></div></div><div class="line"><div class="line-content">  <span class="com"># with macros.</span></div></div><div class="line"><div class="line-content">  <span class="kwd">proc</span> <span class="ide">cb</span>(<span class="ide">req</span>: <span class="ide">Request</span>) {<span class="op">.</span><span class="ide">async</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">    <span class="com"># As explained above, all declared routes can use the value of `context`</span></div></div><div class="line"><div class="line-content">    <span class="com"># through the id `ctx`.</span></div></div><div class="line"><div class="line-content">    <span class="ide">await</span> (<span class="kwd">proc</span> (<span class="ide">req</span>: <span class="ide">Request</span>, <span class="ide">ctx</span>: <span class="ide">Context</span>) {<span class="op">.</span><span class="ide">async</span><span class="op">.</span>} <span class="op">=</span></div></div><div class="line"><div class="line-content">             <span class="com"># By doing this, all paths that start with &quot;/static&quot; would be</span></div></div><div class="line"><div class="line-content">             <span class="com"># handled by Tejina&apos;s static directory handler, which replaces</span></div></div><div class="line"><div class="line-content">             <span class="com"># &quot;/static&quot; with &quot;./static-assets&quot;. Both of these arguments can</span></div></div><div class="line"><div class="line-content">             <span class="com"># be freely customized. But please note that if you choose to</span></div></div><div class="line"><div class="line-content">             <span class="com"># have a relative path for the second argument, that relative</span></div></div><div class="line"><div class="line-content">             <span class="com"># path would be resolved using the current working directory</span></div></div><div class="line"><div class="line-content">             <span class="com"># as the base (so if your CWD is &quot;/var/www/html/some-domain&quot;</span></div></div><div class="line"><div class="line-content">             <span class="com"># this would become &quot;/var/www/html/some-domain/static-assets&quot;).</span></div></div><div class="line"><div class="line-content">             <span class="com"># It&apos;s recommended to use an absolute path here if you need</span></div></div><div class="line"><div class="line-content">             <span class="com"># to make sure it would truly resolve at the place where you want.</span></div></div><div class="line"><div class="line-content">             <span class="com"># This would handle paths like &quot;/static&quot; (resolving to</span></div></div><div class="line"><div class="line-content">             <span class="com"># &quot;./static-assets&quot;), &quot;/static/&quot; (resolving to &quot;./static-assets/&quot;),</span></div></div><div class="line"><div class="line-content">             <span class="com"># &quot;/static/*&quot; (resolving to &quot;./static-assets/*&quot;) but not</span></div></div><div class="line"><div class="line-content">             <span class="com"># &quot;/static*&quot; (e.g. &quot;/staticblah&quot;).</span></div></div><div class="line"><div class="line-content">             <span class="ide">req</span><span class="op">.</span><span class="ide">serveStatic</span>(<span class="str">&quot;/static&quot;</span>, <span class="str">&quot;./static-assets&quot;</span>)</div></div><div class="line"><div class="line-content">             </div></div><div class="line"><div class="line-content">             <span class="com"># Use `dispatchAllRoute(req)` to expand all the route definitions</span></div></div><div class="line"><div class="line-content">             <span class="com"># so far into statements that do the dispatch for you which you</span></div></div><div class="line"><div class="line-content">             <span class="com"># would have to write manually originally.</span></div></div><div class="line"><div class="line-content">             <span class="ide">dispatchAllRoute</span>(<span class="ide">req</span>)</div></div><div class="line"><div class="line-content">             </div></div><div class="line"><div class="line-content">             <span class="com"># It&apos;s recommended to have this as a &quot;catch-all&quot;.</span></div></div><div class="line"><div class="line-content">             <span class="ide">req</span><span class="op">.</span><span class="ide">respond</span>(<span class="ide">Http404</span>, <span class="str">&quot;&quot;</span>, <span class="kwd">nil</span>))(<span class="ide">req</span>, <span class="ide">context</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content">  <span class="ide">server</span><span class="op">.</span><span class="ide">listen</span>(<span class="num">9000.</span><span class="ide">Port</span>)</div></div><div class="line"><div class="line-content">  <span class="ide">echo</span> <span class="ide">server</span><span class="op">.</span><span class="ide">getPort</span>()<span class="op">.</span><span class="ide">uint16</span></div></div><div class="line"><div class="line-content">  <span class="kwd">while</span> <span class="ide">true</span>:</div></div><div class="line"><div class="line-content">    <span class="kwd">if</span> <span class="ide">server</span><span class="op">.</span><span class="ide">shouldAcceptRequest</span>():</div></div><div class="line"><div class="line-content">      <span class="ide">await</span> <span class="ide">server</span><span class="op">.</span><span class="ide">acceptRequest</span>(<span class="ide">cb</span>)</div></div><div class="line"><div class="line-content">    <span class="kwd">else</span>:</div></div><div class="line"><div class="line-content">      <span class="com"># too many concurrent connections, `maxFDs` exceeded</span></div></div><div class="line"><div class="line-content">      <span class="com"># wait 500ms for FDs to be closed</span></div></div><div class="line"><div class="line-content">      <span class="ide">await</span> <span class="ide">sleepAsync</span>(<span class="num">500</span>)</div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">waitFor</span> <span class="ide">serveHTTP</span>()</div></div>  </code></pre>
+<h2>Syntax for routes</h2>
+<ul>
+<li>Everything between curly braces, i.e. <code>{}</code>, is considered to be a variable within the route that should take the value of the strings at that position; e.g. <code>/user/{id}</code> will match <code>/user/abc</code> and <code>/user/def</code> and returns the mapping <code>id =&gt; &quot;abc&quot;</code> and <code>id =&gt; &quot;def&quot;</code> respectively.</li>
+<li>Matches are <strong>exact</strong>, meaning that routes defined with <code>/user/{id}</code> will not handle requests for <code>/user/{id}/edit</code>.</li>
+<li>The matched values never goes beyond one level; e.g. <code>/user/{id}</code> will NOT match <code>/user/abc/def</code> with <code>id =&gt; &quot;abc/def&quot;</code>.</li>
+<li>To represent a literal curly brace character, use the at-sign character <code>@</code> before it (e.g. write <code>/some-@{url@}</code> instead of <code>/some-{url}</code>. The at-sign itself is escaped with sequence <code>@@</code>.</li>
+<li>You can match &quot;the rest of the path&quot; by postfixing your route with <code>**</code> (e.g. <code>/user/{id}/**</code> will match paths like <code>/user/abc/edit</code> and <code>/user/abc/edit/confirm</code>). <code>**</code> must be at the end of the route declaration, or else a compile error would be raised. The strings matched by this pattern would be set as <code>_rest</code> in the resulting <code>args</code> (e.g. matching <code>/user/abc/edit/confirm</code> with <code>/user/{id}/**</code> would return <code>id =&gt; &quot;abc&quot;; _args =&gt; &quot;edit/confirm&quot;</code>.</li>
+</ul>
+<h2>Syntax for templates</h2>
+<p>Templates are mostly HTML with template tags (surrounded by double-curly-braces, i.e. <code>{{ ... }}</code>) insterted within. All template tags are considered to contain valid Nim expressions that will return the string that&apos;s meant to be inserted at its position when evaluated other than all the &quot;special tags&quot; listed as follows:</p>
+<ul>
+<li><code>{{include [filename]}}</code>: This tag causes the macro evaluator reads the file content of <code>[filename]</code> and use it as a part of the template.</li>
+<li><code>{{for [var] in [expr]}}</code> ... <code>{{/for}}</code>: The <code>for</code> construct. The content within this construct will be rendered for each of the elements from <code>[expr]</code> (which is bound to the variable <code>[var]</code>. Currently <code>[var]</code> must be a single variable (i.e. things like <code>for k, n in someExpr</code> are not allowed)</li>
+<li><code>{{if [cond]}}</code> ... <code>{{elif [cond}}</code> ... <code>{{else [cond]}}</code> ... <code>{{/if}}</code>: The <code>if</code>...<code>elif</code>...<code>else</code> construct. Only the part within the branch where <code>[cond]</code> evaluates to <code>true</code> will be rendered and appended to the result.</li>
+</ul>
+<h2>How Tejina works</h2>
+<p>Both the template engine part and the routing part of Tejina are implemented as macros and run at compile time. The template engine converts raw strings read from the template files and generates statements (<code>for</code> and <code>if</code> tags are converted to <code>for</code> and <code>if</code> statements in Nim, respectively). The macros used to declare routes (e.g. the <code>GET</code> and <code>POST</code> you see in the example above) simply collect the following code into a dictionary; this dictionary is converted to the actual dispatching code by calling <code>dispatchAllRoute</code>.</p>
+</document>
+            
+        </div>
+        <div class="col-3" id="meta-section">
+            <div class="container box rounded p-3">
+                
+                    <p>
+                        <strong>Licence:</strong>
+                        MIT
+                    </p>
+                
+
+                
+                    <p> <a href="https://github.com/bctnry/tejina">Project website</a> </p>
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="pt-10 px-3">
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <h4 class="h5">Getting started with Nim</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://learnxinyminutes.com/docs/nim/">Learn Nim in 5 minutes</a></li>
+          <li><a class="text-decoration-none" href="https://nim-by-example.github.io/">Nim by Example</a></li>
+          <li><a class="text-decoration-none" href="https://play.nim-lang.org/">Official Playground</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Official Tutorials</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut1.html">General Tutorial</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut2.html">Advanced Features</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tut3.html">Macros and Metaprogramming</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Nim for...</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">C programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers">Python programmers</a></li>
+          <li><a class="text-decoration-none" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers">TypeScript programmers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h4 class="h5">Documentation</h4>
+        <ul>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/lib.html">Standard Library</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/manual.html">Language Manual</a></li>
+          <li><a class="text-decoration-none" href="https://nim-lang.org/docs/tools.html">Tools Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center mt-4 mx-auto">
+        <a href="#" class="d-block mb-3 mx-auto bw"></a>
+        <p class="text-muted">
+        Created in <a href="https://nim-lang.org/">Nim</a> on <a href="https://pages.github.com/">GitHub Pages</a>.
+        <a href="https://github.com/gabbhack/nimidirectory">Available</a>
+        under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
+        </p>
+        <p class="text-muted">
+        Builded at 2025-01-09T02:04:18Z
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+</body>
+</html>

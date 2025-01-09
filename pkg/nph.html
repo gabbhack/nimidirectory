@@ -115,28 +115,20 @@ echo &quot;echo 1&quot; | nph -
 </code></pre>
 <p>More information about features and style available from the <a href="https://arnetheduck.github.io/nph/">documentation</a></p>
 <h2>Installation</h2>
-<p>Download binaries from the <a href="https://github.com/arnetheduck/nph/releases/tag/latest">releases page</a>.</p>
-<p><code>nph</code> can be also compiled or installed using <code>nimble</code> version <code>v0.14.2</code>+:</p>
-<pre>  <code class="language-sh">nimble -l setup
+<p>Binaries are available from the <a href="https://github.com/arnetheduck/nph/releases/tag/latest">releases page</a> on Github.</p>
+<p><code>nph</code> can be also compiled or installed using <code>nimble</code> v0.16.4+:</p>
+<pre>  <code class="language-sh"># Install globally
+nimble install nph
+
+# Alternatively, build in source folder:
+nimble setup -l
 nimble build
 </code></pre>
+<p>See the <a href="https://arnetheduck.github.io/nph/installation.html">installation instructions</a> in the manual for more details.</p>
 <h2>Editor integration</h2>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=arnetheduck.vscode-nph">VSCode</a> (<code>ext install arnetheduck.vscode-nph</code>)</li>
-<li><a href="https://github.com/sbdchd/neoformat">NeoVim</a> - Install <strong>neoformat</strong> in your neovim setup then add the nim formating option with <strong>nph</strong> with this option in init.vim <code>let g:neoformat_enabled_nim = [&apos;nph&apos;]</code></li>
-<li><a href="https://github.com/foxoman/zed-nim">Zed Editor</a> - Use this in your editor settings</li>
-</ul>
-<pre>  <code>&quot;languages&quot;: {
-    &quot;Nim&quot;: {
-      &quot;formatter&quot;: {
-        &quot;external&quot;: {
-          &quot;command&quot;: &quot;nph&quot;,
-          &quot;arguments&quot;: [&quot;-&quot;]
-        }
-      }
-    }
-  }
-</code></pre>
+<p>Editor integrations are described <a href="https://arnetheduck.github.io/nph/installation.html#editor-integration">in the manual</a>.</p>
+<h2>Continuous integration</h2>
+<p>Check out the <a href="https://github.com/arnetheduck/nph-action">companion Github Action</a> for a convenient CI option!</p>
 </document>
             
         </div>
@@ -205,7 +197,7 @@ nimble build
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>

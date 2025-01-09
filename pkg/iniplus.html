@@ -98,13 +98,14 @@
                 <document><h1>iniplus</h1>
 <p>An INI parser written in Nim with support for extra datatypes such as arrays and tables. It&apos;s intended to be as performant as std/parsecfg but with a way friendly interface and design.</p>
 <p>Documentation can be found <a href="https://penguinite.github.io/iniplus/">here</a>, you can also build the documentation locally by running <code>nimble docs</code> if you clone this repository</p>
+<p>A simple <code>requires &quot;iniplus ^= VERSION&quot;</code> in your <code>.nimble</code> file is enough to import the project.</p>
 <h2>Features/Drawbacks</h2>
 <ol>
 <li>iniplus does not support triple quoted string literals or raw string literals like <code>std/parsecfg</code> does.</li>
 <li>iniplus does not support nesting sections.</li>
-<li>iniplus supports arrays/sequences consisting of all supported data types. (Except for tables)</li>
+<li>iniplus supports arrays/sequences consisting of all the primitive data types.</li>
 <li>iniplus supports tables consisting of strings, integers or booleans. But it does <strong>not</strong> support nested tables or arrays inside tables.</li>
-<li>Mixing arrays and tables are a terrible idea. Don&apos;t do it.</li>
+<li>Mixing/nesting arrays and tables are a terrible idea. Don&apos;t do it. (I do want to fix this issue in the future.)</li>
 </ol>
 <h2>Status</h2>
 <p>Everything has been implemented, here is a short list of all the available features we have:</p>
@@ -116,6 +117,20 @@
 </ol>
 <p>Please create a new issue if there are any bugs or anything. The config file parser has been recently re-written and may have some edge cases that aren&apos;t yet accounted for, so please report an issue if it there is one.</p>
 <p>It shouldn&apos;t crash when encountering unknown data, but if it does, then please report it and thank you. This library <em>has</em> been rigorously tested and has a comprehensive test suite but still, there might be edge cases.</p>
+<h2>Compatability breaks</h2>
+<p>When using third-party modules such as this one in your codebase, it&apos;s a terrible idea to just download whatever the latest version happens to be.
+Many README files for packages suggest using the <code>&gt;=</code> operator for importing packages, which is a terrible, terrible idea!
+If you use <code>&gt;=</code> or <code>&gt;</code> or whatever other operator then you&apos;re basically asking for pain (in the form of software breakage)</p>
+<p>I try to not break iniplus, and I try to document moments whenever I do break iniplus, but it is unrealistic for me to stick with the same broken API for the rest of time.
+(Table support and bulk value set support was basically a hack, and I want to give iniplus something nicer lol)</p>
+<p>TL;DR iniplus <strong>can</strong> break compatability, if you don&apos;t like this then use one of the following methods to import iniplus.</p>
+<p>(<code>0.3.3</code> is a placeholder, plate it with your own version obviously.)</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus ^= 0.3.3&quot;</span> <span class="com"># This is the recommended way to import iniplus</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus == 0.3.3&quot;</span> <span class="com"># Not bad, but also, you could use the semver-compatible operator and get compatible bug fixes.</span></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus@0.3.3&quot;</span> <span class="com"># Same exact thing</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus &lt; 0.3.3&quot;</span>  <span class="com"># No minimum version but it&apos;s ok if u know what you&apos;re doing.</span></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus &lt;= 0.3.3&quot;</span> <span class="com"># Same thing here</span></div></div>  </code></pre>
+<p>And do NOT use one of these methods!</p>
+<pre>  <code class="language-nim"><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus &gt;= 0.3.3&quot;</span> <span class="com"># Suspectible to breakage, no maximum limit.</span></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus &gt; 0.3.3&quot;</span> <span class="com"># Same thing</span></div></div><div class="line"><div class="line-content"></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus&quot;</span> <span class="com"># Horrible! No minimum or maximum version!</span></div></div><div class="line"><div class="line-content"><span class="ide">requires</span> <span class="str">&quot;iniplus@head&quot;</span> <span class="com"># This is technically worse since HEAD could contain WIP commits.</span></div></div>  </code></pre>
+<p>Will iniplus 100% guarantee no breakage at all if you do as i say? Not 100%, as there are probably so many edge cases.</p>
+<p>But the moral of the story is that you shouldn&apos;t blindly install whatever the latest version of iniplus is, especially not a existing codebase that is well-adapted to one specific version of it.</p>
+<p>Also, if you are really serious about not getting broken dependencies then consider <a href="https://nim-lang.github.io/nimble/workflow.html#nimble-lock">locking your dependencies</a></p>
 <h2>Copyright</h2>
 <p>Copyright (c) penguinite 2023-2024 <a href="mailto:penguinite@tuta.io">penguinite@tuta.io</a>
 Licensed under the BSD 3-Clause license.</p>
@@ -187,7 +202,7 @@ Licensed under the BSD 3-Clause license.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2024-12-12T01:45:17Z
+        Builded at 2025-01-09T02:04:18Z
         </p>
       </div>
     </div>
