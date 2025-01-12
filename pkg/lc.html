@@ -206,7 +206,11 @@ can <em>also</em> bold, italic, blink, underline, struck, and inverse <em>indepe
 So, 8 usable output dimensions, 6 shallow 1-bit dimensions + fg/bg color with
 larger value ranges.  While subjective, I find it not hard to distinguish text
 with <em>all</em> those attributes varying.  Geographical map folk often call this
-&quot;layering&quot; (such as political borders layered atop satellite imagery).</p>
+&quot;layers&quot; (such as political borders layered atop satellite imagery).  Lately,
+kitty/patched-st/etc. have true color
+<a href="https://unix.stackexchange.com/questions/696210/how-to-check-if-a-terminal-can-display-undercurl-from-within-a-bash-zsh-script">undercurls</a>
+instead of just underlines (sometimes of varying styles like wavy/triangular),
+adding another deep (like fore/background) output dimension/layer.</p>
 <p>The input/data side has <em>many</em> independent fields &amp; bits.  While <code>dirent.d_type</code>
 is a mutually exclusive type code (like directory/named pipe/..), most types
 aren&apos;t.  E.g., a file can be <em>  <strong>both</strong></em> an executable regular file <em>  <strong>and</strong></em>
@@ -215,7 +219,7 @@ set.  Independently of all that, it can begin with a &apos;.&apos; or not.  Add 
 <code>struct stat</code> and deep file header inspection and the type space explodes both
 in kinds &amp; independent sub-kinds/dimensions (stripped|not, 32|64-bit, etc.).
 Only end users can prioritize use of precious few output layers to represent the
-huge space of input kinds.</p>
+much larger space of input kinds.</p>
 <p>This may sound daunting, but other highlighting systems follow this model - e.g.
 a misspelled word bolded inside an elsewise colorized source code comment.  <code>lc</code>
 simply explicitly models this structure to try to enable better allocation by
@@ -386,7 +390,7 @@ before all dot regular files, but it is obviously much more general.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2025-01-11T01:37:10Z
+        Builded at 2025-01-12T01:44:48Z
         </p>
       </div>
     </div>
