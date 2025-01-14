@@ -91,28 +91,32 @@
 <p>Have you been cloning git repositories left and right? Do you wish to keep them automatically up-to date?</p>
 <p>gitman is a cross-platform manager for git repositories, that are located inside a single directory.</p>
 <h2>Usage</h2>
-<p>Arguments:</p>
+<h3>Arguments</h3>
 <ul>
 <li>
-<p><code>clone [url: string]</code>: Clones one or more git repositories to the git repository directory. (urls seperated by spaces)</p>
+<p><code>clone [url: string]</code>: Clones one or more git repositories to the git repository directory. (urls separated by spaces)</p>
 <p><strong>Example:</strong> <code>gitman clone https://github.com/nirokay/gitman https://github.com/nirokay/nirokay</code></p>
 </li>
 <li>
-<p><code>pull</code>: Pulls every repository&apos;s changes, or only the ones which names are provided.</p>
+<p><code>pull</code>: Pulls every repository&apos;s changes, or only the ones which names are provided synchronously.</p>
 <p><strong>Examples:</strong> <code>gitman pull</code> (pulls all repos), <code>gitman pull gitman nirokay</code> (only pulls gitman and nirokay repo)</p>
+</li>
+<li>
+<p><code>async-pull</code>: Pulls every repository&apos;s changes, or only the ones which names are provided asynchronously.</p>
+<p><strong>Examples:</strong> <code>gitman async-pull</code> (pulls all repos), <code>gitman async-pull gitman nirokay</code> (only pulls gitman and nirokay repo)</p>
 </li>
 <li>
 <p><code>help</code>: Displays a help message.</p>
 </li>
 <li>
-<p><code>remove [dir: string]</code>: Removes the specified directory inside the git-repo directory. Can accept mutliple directories to remove.</p>
+<p><code>remove [dir: string]</code>: Removes the specified directory inside the git-repo directory. Can accept multiple directories to remove.</p>
 <p><strong>Example:</strong> <code>gitman remove nirokay gitman</code></p>
 </li>
 <li>
 <p><code>list</code>: Lists all git repositories.</p>
 </li>
 <li>
-<p><code>install</code>: Executes installation commands specified in the installation json file (defualt: <code>$GITMAN_REPOS_LOCATION/.gitman-install.json</code>).</p>
+<p><code>install</code>: Executes installation commands specified in the installation json file (default: <code>$GITMAN_REPOS_LOCATION/.gitman-install.json</code>).</p>
 <p><strong>Example:</strong> <code>gitman install</code> (executes install instructions on every repository)</p>
 </li>
 <li>
@@ -121,6 +125,16 @@
 </li>
 </ul>
 <p>Some commands may also have aliases, see <code>help</code> for more information.</p>
+<h3>Automatic installation</h3>
+<p>gitman supports automatic installations with <code>gitman install</code> for specified repositories (installations instructions by default in
+<code>$GITMAN_REPOS_LOCATION/.gitman-install.json</code>).</p>
+<p>This is the JSON format:</p>
+<pre>  <code class="language-json">{
+    &quot;gitman&quot;: &quot;nimble build -d:release &amp;&amp; nimble install&quot;
+}
+</code></pre>
+<p>This will automatically <code>cd</code> into every directory and execute the command, the instructions above would install gitman, when the gitman
+repository is cloned to <code>$GITMAN_REPOS_LOCATION/gitman/</code>.</p>
 <h2>Installation</h2>
 <p>You will need to have <a href="https://nim-lang.org">Nim</a> installed, as well as its package-manager nimble.</p>
 <p>  <strong>Note:</strong></p>
@@ -160,7 +174,7 @@
 <h2>Supported Operating Systems</h2>
 <p>Any operating system that is supported by the <a href="https://nim-lang.org">nim programming language</a> should be supported.</p>
 <p>This program was tested on GNU/Linux (Manjaro) and Windows 10 (64 bit).</p>
-<h2>Dependancies</h2>
+<h2>Dependencies</h2>
 <ul>
 <li>
 <p>  <a href="https://git-scm.com/">git</a></p>
@@ -237,7 +251,7 @@
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2025-01-13T01:41:38Z
+        Builded at 2025-01-14T01:25:45Z
         </p>
       </div>
     </div>
