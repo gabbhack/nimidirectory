@@ -168,7 +168,6 @@ Run <code>nimble refresh</code> to fetch a newer <code>package.json</code></p>
 <li>[x] <code>with open(fn, [, ...]):</code> Read, write, append, and <code>read()</code>, <code>seek()</code>, <code>tell()</code>, etc.</li>
 <li>[x] <code>super(...).method(...)</code></li>
 <li>[x] <code>global/nonlocal</code> (with some limits)</li>
-<li>[x] <code>timeit()</code> with Nanoseconds precision</li>
 <li>[x] <code>True</code> / <code>False</code></li>
 <li>[x] <code>pass</code></li>
 <li>[x] <code>del foo[x]</code></li>
@@ -215,14 +214,18 @@ Run <code>nimble refresh</code> to fetch a newer <code>package.json</code></p>
 <li>[x] <code>str()</code></li>
 <li>[x] <code>sum()</code></li>
 <li>[x] <code>!=</code> and Python1 <code>&lt;&gt;</code></li>
-<li>[x] <code>long()</code> Python2 like</li>
-<li>[x] <code>unicode()</code> Python2 like</li>
+<li>[x] <code>long()</code> Python2 like (deprecated)</li>
 <li>[x] <code>u&quot;string here&quot;</code> / <code>u&apos;a&apos;</code> Python2 like</li>
 <li>[x] <code>b&quot;string here&quot;</code> / <code>b&apos;a&apos;</code></li>
 <li>[x] <code>zip(*iterables, strict=False)</code></li>
-<li>[x] (WIP) standard libraries like <code>math</code>, <code>random</code>, <code>datetime</code>, <code>os</code>, <code>tempfile</code></li>
+<li>[x] (WIP) standard libraries <code>math</code>, <code>random</code>, <code>datetime</code>, <code>os</code>, <code>tempfile</code>, <code>timeit</code>, ... (see <a href="https://nimpylib.github.io/pylib/Lib">Lib Docs</a> for all supported)</li>
+<li>[ ] <code>aiter</code> <code>anext</code> and <code>await</code> (yet <code>async def</code> is supported)</li>
 <li>More...</li>
 </ul>
+<h3>Features cannot be implemented</h3>
+<p>However, due to Nim&apos;s AST astrict<a href="Mostly">^nimInvalidAST</a>, a few syntaxes of Python cannot be implemented.</p>
+<p>See <a href="doc/mustRewriteExtern/">here</a> for details and workaround.</p>
+<p>because they cannot form valid AST in Nim.</p>
 <h2>Other Python-like modules</h2>
 <ul>
 <li>  <a href="https://nimble.directory/search?query=python">serach in nimble</a></li>
@@ -308,7 +311,7 @@ is not likely to be updated from then on.</p>
         under <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>
         </p>
         <p class="text-muted">
-        Builded at 2025-01-14T01:25:45Z
+        Builded at 2025-01-15T01:27:22Z
         </p>
       </div>
     </div>
